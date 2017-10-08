@@ -1,0 +1,10 @@
+services:
+#    ribs_framework.example:
+#        class: Ribs\FrameworkBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    ribs_framework.acess_rights:
+        class: Ribs\FrameworkBundle\Service\AccessRights
+        arguments: ['@service_container', "@router", "@session", "@request_stack"]
+        tags:
+            - {name: kernel.event_listener, event: kernel.controller}
