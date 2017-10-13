@@ -1,0 +1,10 @@
+{
+    "name": "piou-piou/ribs-admin-bundle",
+    "authors": [
+        {
+            "name": "Anthony Pilloud",
+            "email": "pilloud;anthony@gmail.com"
+        }
+    ],
+    "require": {}
+}
