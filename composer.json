@@ -6,5 +6,7 @@
             "email": "pilloud.anthony@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "friendsofsymfony/user-bundle": "^2.0"
+    }
 }
