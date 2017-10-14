@@ -1,0 +1,14 @@
+{% extends "@RibsAdmin/base.html.twig" %}
+
+{% block body %}
+	<form method="post" action="{{ path("fos_user_security_check") }}">
+		<input type="text" name="_username" required="required">
+		<input type="password" name="_password" required="required">
+		
+		<button>Connection</button>
+		
+		{% if csrf_token %}
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+		{% endif %}
+	</form>
+{% endblock %}

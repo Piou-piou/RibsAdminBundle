@@ -34,11 +34,11 @@ class AccessRights
 		$route = $this->request->getCurrentRequest()->get("_route");
 		$admin_page = explode("_", $route)[0];
 		
-		//if we are on login or register we clear all sessions
-		if ($route == "fos_user_security_login" || $route == "fos_user_registration_register") {
+		//comment because it cause errore redirect
+		/*if ($route == "fos_user_security_login" || $route == "fos_user_registration_register") {
 			$this->session->clear();
 			$this->em->get("security.token_storage")->setToken(null);
-		}
+		}*/
 		
 		//to show admin panel
 		if (in_array($route, ["_profiler", "_profiler_search_bar", "_wdt"])) {
@@ -54,9 +54,6 @@ class AccessRights
 			if ($route_right === false) {
 				throw new AccessDeniedException("No access");
 			}
-			
-			dump($route_right);
-			dump($user_rights);
 			
 			foreach ($user_rights as $right) {
 				if (in_array($right, $route_right)) {
