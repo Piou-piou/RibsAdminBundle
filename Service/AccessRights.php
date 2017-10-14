@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AccessRights
 {
@@ -33,15 +34,45 @@ class AccessRights
 		$route = $this->request->getCurrentRequest()->get("_route");
 		$admin_page = explode("_", $route)[0];
 		
-		//$ribs_admin_rights = json_decode(file_get_contents($this->em->get('kernel')->getRootDir()."/../src/Ribs/RibsAdminBundle/Resources/json/ribsadmin_rights.json"));
+		//if we are on login or register we clear all sessions
+		if ($route == "fos_user_security_login" || $route == "fos_user_registration_register") {
+			$this->session->clear();
+			$this->em->get("security.token_storage")->setToken(null);
+		}
 		
+		//to show admin panel
+		if (in_array($route, ["_profiler", "_profiler_search_bar", "_wdt"])) {
+			return;
+		}
+		
+		$ribs_admin_rights = json_decode(file_get_contents($this->em->get('kernel')->getRootDir()."/../src/Ribs/RibsAdminBundle/Resources/json/ribsadmin_rights.json"));
+		
+		if ($admin_page == "ribsadmin" && ($route !== 404) && ($route !== null)) {
+			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
+			$user_rights = $this->getUserRights();
+			
+			if ($route_right === false) {
+				throw new AccessDeniedException("No access");
+			}
+			
+			dump($route_right);
+			dump($user_rights);
+			
+			foreach ($user_rights as $right) {
+				if (in_array($right, $route_right)) {
+					return;
+				}
+			}
+			
+			throw new AccessDeniedException("No access");
+		}
 	}
 	
 	/**
 	 * @param $needle
 	 * @param $haystack
 	 * @return bool|mixed
-	 * fonction qui recherche l'url dans le tableau comprenant gestion + resporting
+	 * fonction that search if the right contain an url or more
 	 */
 	private function in_array_recursive($needle, $haystack)
 	{
@@ -50,7 +81,7 @@ class AccessRights
 		
 		foreach ($it AS $element => $value) {
 			if ($value == $needle) {
-				$rights[] = $it->getInnerIterator()["page_id"];
+				$rights[] = $it->getInnerIterator()["right"];
 			}
 		}
 		
@@ -59,5 +90,19 @@ class AccessRights
 		}
 		
 		return $rights;
+	}
+	
+	/**
+	 * @return array function that retun a array that contain all user rights or empty array if no right found
+	 */
+	private function getUserRights(): array {
+		$user_rights = $this->em->get("security.token_storage")->getToken()->getUser()->getUser()->getAccessRights();
+		
+		if ($user_rights) {
+			return explode(",", $user_rights);
+		}
+		
+		return [""];
+		
 	}
 }

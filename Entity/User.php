@@ -73,13 +73,6 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="utilisateurcol", type="string", length=45, nullable=true)
-     */
-    private $utilisateurcol;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="access_rights", type="text", nullable=true)
      */
     private $accessRights;
@@ -224,22 +217,6 @@ class User
     public function setState($state)
     {
         $this->state = $state;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUtilisateurcol()
-    {
-        return $this->utilisateurcol;
-    }
-
-    /**
-     * @param string $utilisateurcol
-     */
-    public function setUtilisateurcol($utilisateurcol)
-    {
-        $this->utilisateurcol = $utilisateurcol;
     }
 
     /**
