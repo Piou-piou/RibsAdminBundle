@@ -3,7 +3,7 @@ services:
 #        class: Ribs\FrameworkBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
 
-    ribs_framework.acess_rights:
+    ribs_admin.acess_rights:
         class: Ribs\RibsAdminBundle\Service\AccessRights
         arguments: ['@service_container', "@router", "@session", "@request_stack"]
         tags:
