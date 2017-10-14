@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsFrameworkBundle\DependencyInjection;
+namespace Ribs\RibsAdminBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

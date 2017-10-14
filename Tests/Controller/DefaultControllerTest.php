@@ -1,8 +1,8 @@
 <?php
 
-namespace Ribs\RibsFrameworkBundle\Tests\Controller;
+namespace Ribs\RibsAdminBundle\Tests\Controller;
 
-use Symfony\Bundle\RibsFrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\RibsAdminBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {

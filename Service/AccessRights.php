@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsFrameworkBundle\Service;
+namespace Ribs\RibsAdminBundle\Service;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -33,7 +33,7 @@ class AccessRights
 		$route = $this->request->getCurrentRequest()->get("_route");
 		$admin_page = explode("_", $route)[0];
 		
-		$ribs_admin_rights = json_decode(file_get_contents($this->em->get('kernel')->getRootDir()."/../src/Ribs/FrameworkBundle/Resources/json/ribsadmin_rights.json"));
+		//$ribs_admin_rights = json_decode(file_get_contents($this->em->get('kernel')->getRootDir()."/../src/Ribs/RibsAdminBundle/Resources/json/ribsadmin_rights.json"));
 		
 	}
 	

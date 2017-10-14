@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsFrameworkBundle\Controller;
+namespace Ribs\RibsAdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,6 +12,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('RibsFrameworkBundle:Default:index.html.twig');
+        return $this->render('RibsAdminBundle:Default:index.html.twig');
     }
 }

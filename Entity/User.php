@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsFrameworkBundle\Entity;
+namespace Ribs\RibsAdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

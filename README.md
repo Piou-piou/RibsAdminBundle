@@ -1,1 +1,1 @@
-# RibsFrameworkBundle
+# RibsAdminBundle
