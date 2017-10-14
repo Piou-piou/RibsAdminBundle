@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/ribs-index", name="ribsadmin_index")
+     * @Route("/index", name="ribsadmin_index")
      */
     public function indexAction()
     {
