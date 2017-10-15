@@ -1,0 +1,26 @@
+{
+  "name": "RibsAdminBundle",
+  "private": false,
+  "version": "0.0.1",
+  "description": "Ribs admin bundle",
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.16.0",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "webpack": "^3.7.1"
+  },
+  "dependencies": {
+    "css-loader": "^0.28.4",
+    "expose-loader": "^0.7.3",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "style-loader": "^0.18.2",
+    "webpack-dev-server": "^2.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Piou-piou/RibsAdminBundle"
+  },
+  "bugs": "https://github.com/Piou-piou/RibsAdminBundle/issues",
+  "author": "Anthony Pilloud",
+  "license": "MIT"
+}
