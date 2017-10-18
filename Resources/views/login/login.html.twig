@@ -13,12 +13,12 @@
 					
 					<div class="modifier-contenu">
 						<div class="block">
-							<label class="label" for="_username">Pseudo</label>
+							<label class="label" for="_username">Your pseudo</label>
 							<input type="text" name="_username" required="required">
 						</div>
 						
 						<div class="block">
-							<label class="label" for="_password">Mot de passe</label>
+							<label class="label" for="_password">Your password</label>
 							<input type="password" name="_password" required="required">
 						</div>
 					</div>
@@ -31,7 +31,7 @@
 				</form>
 				
 				<div class="lien">
-					<a id="mdp-oublie">Mot de passe oublié ?</a>
+					<a id="mdp-oublie">Forgot your password ?</a>
 				</div>
 			</div>
 			
@@ -40,21 +40,20 @@
 				<form  action="" method="POST">
 					<img src="{{ asset('bundles/ribsadmin/images/ribs.png') }}" alt="">
 					
-					<h1>Mot de passe oublié</h1>
+					<h1>Forgot your password</h1>
 					
 					<div class="modifier-contenu">
 						<div class="bloc">
-							<label class="label" for="mail" data-error="L'adresse mail doit êtreau minimum de 3 caractères">Entrez votre adresse E-mail</label>
+							<label class="label" for="mail" data-error="E-mail must be at least 3 caracters">Enter your E-mail</label>
 							<input type="text" name="mail" required/>
 						</div>
 					</div>
 					
-					<input type="submit" class="submit-contenu submit-standard no-shadow full-width" value="Valider">
-					<input type="hidden" name="admin" value="true"/>
+					<button type="submit" class="no-shadow full-width">Send</button>
 				</form>
 				
 				<div class="lien">
-					<a id="login">Retour</a>
+					<a id="login">Return</a>
 				</div>
 			</div>
 		</div>
