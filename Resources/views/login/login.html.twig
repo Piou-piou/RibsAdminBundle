@@ -6,21 +6,19 @@
 		
 		<div class="inner">
 			<div class="login-form active" id="login">
-				<form  action="{{ path("fos_user_security_check") }}" method="POST">
+				<form action="{{ path("fos_user_security_check") }}" method="POST">
 					<img src="{{ asset('bundles/ribsadmin/images/ribs.png') }}" alt="">
 					
 					<h1>Connexion à Ribs</h1>
 					
-					<div class="modifier-contenu">
-						<div class="block">
-							<label class="label" for="_username">Your pseudo</label>
-							<input type="text" name="_username" required="required">
-						</div>
-						
-						<div class="block">
-							<label class="label" for="_password">Your password</label>
-							<input type="password" name="_password" required="required">
-						</div>
+					<div class="block">
+						<label class="label" for="_username">Your pseudo</label>
+						<input type="text" name="_username" required="required">
+					</div>
+					
+					<div class="block">
+						<label class="label" for="_password">Your password</label>
+						<input type="password" name="_password" required="required">
 					</div>
 					
 					<button type="submit" class="no-shadow full-width">Connection</button>
@@ -35,28 +33,24 @@
 				</div>
 			</div>
 			
-			
 			<div class="login-form" id="mdp-oublie">
-				<form  action="" method="POST">
+				<form action="" method="POST">
 					<img src="{{ asset('bundles/ribsadmin/images/ribs.png') }}" alt="">
 					
 					<h1>Forgot your password</h1>
 					
-					<div class="modifier-contenu">
-						<div class="bloc">
-							<label class="label" for="mail" data-error="E-mail must be at least 3 caracters">Enter your E-mail</label>
-							<input type="text" name="mail" required/>
-						</div>
+					<div class="block">
+						<label class="label" for="mail" data-error="E-mail must be at least 3 caracters">Enter your E-mail</label>
+						<input type="text" name="mail" required/>
 					</div>
 					
 					<button type="submit" class="no-shadow full-width">Send</button>
 				</form>
 				
-				<div class="lien">
+				<div class="link">
 					<a id="login">Return</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	
 {% endblock %}
