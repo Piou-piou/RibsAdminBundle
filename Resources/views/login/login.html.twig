@@ -12,13 +12,13 @@
 					<h1>Connexion à Ribs</h1>
 					
 					<div class="modifier-contenu">
-						<div class="bloc">
-							<label class="label" for="pseudo" type-val="string" min="3" max="15" data-error="Le doit être comprise entre 3 et 15 caractères">Pseudo</label>
+						<div class="block">
+							<label class="label" for="_username">Pseudo</label>
 							<input type="text" name="_username" required="required">
 						</div>
 						
-						<div class="bloc">
-							<label class="label" for="mdp" type-val="string" min="3" max="15" data-error="Le mot de passe être comprise entre 3 et 15 caractères">Mot de passe</label>
+						<div class="block">
+							<label class="label" for="_password">Mot de passe</label>
 							<input type="password" name="_password" required="required">
 						</div>
 					</div>
@@ -38,7 +38,7 @@
 			
 			<div class="login-form" id="mdp-oublie">
 				<form  action="" method="POST">
-					{#<img src="<?=WEBROOT?>admin/views/template/images/ribs.png" alt="">#}
+					<img src="{{ asset('bundles/ribsadmin/images/ribs.png') }}" alt="">
 					
 					<h1>Mot de passe oublié</h1>
 					

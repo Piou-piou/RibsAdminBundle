@@ -1,0 +1,97 @@
+.block {
+	position: relative;
+	padding: 16px 0 8px 0;
+
+	.label {
+		position: relative;
+		margin: 0;
+		display: block;
+		color: #A7A7A7;
+		line-height: 16px;
+		font-size: 16px;
+		font-weight: 400;
+		transform: translateY(32px);
+		transition: transform 0.3s, font-size 0.3s;
+
+		&.label-textarea {
+			transform: translateY(37px);
+			margin-left: 10px;
+		}
+	}
+
+	input {
+		position: relative;
+		display: block;
+		width: 100%;
+		min-width: inherit;
+		height: 32px;
+		padding: 8px 3px 3px 3px;
+		margin: 0;
+		line-height: 16px;
+		font-size: 16px;
+		background: transparent;
+		border: none;
+		-webkit-appearance: none;
+		outline: none;
+	}
+
+	&:not(.no-input) {
+		&::before, &::after {
+			content: '';
+			height: 2px;
+			width: 100%;
+			position: absolute;
+			bottom: 6px;
+			left: 0;
+			background-color: #A7A7A7;
+		}
+
+		&::after {
+			background-color: $color-lien-page;
+			transform: scaleX(0);
+			transition: transform 0.3s ease;
+		}
+	}
+
+	/*appellee dans le js*/
+	&.is-focused {
+		.label {
+			color: $color-lien-page
+		}
+
+		&::after {
+			transform: scaleX(1);
+		}
+	}
+	/*appelee par le js egalement*/
+	&.has-label {
+		.label {
+			transform: translateY(0);
+			font-size: 14px;
+			margin-left: 0;
+		}
+
+		&.invalid {
+			.label::after {
+				top: 65px;
+			}
+		}
+	}
+
+	/*appelle par le js*/
+	&.invalid {
+		&::after {
+			transform: scaleX(1);
+			background-color: $color-error-input-login;
+		}
+
+		.label::after {
+			color: $color-error-input-login;
+			content: attr(data-error);
+			opacity: 1;
+			position: absolute;
+			top: 35px;
+			left: 0;
+		}
+	}
+}
