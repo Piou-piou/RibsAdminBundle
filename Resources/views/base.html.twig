@@ -18,11 +18,11 @@
 		{% endfor %}
 		
 		{% for message in app.session.flashBag.get('info-flash') %}
-			{% include "flash-messages.html.twig" with {"message": message, "type": "info"} %}
+			{% include "@RibsAdmin/flash-messages.html.twig" with {"message": message, "type": "info"} %}
 		{% endfor %}
 		
 		{% for message in app.session.flashBag.get('success-flash') %}
-			{% include "flash-messages.html.twig" with {"message": message, "type": "success"} %}
+			{% include "@RibsAdmin/flash-messages.html.twig" with {"message": message, "type": "success"} %}
 		{% endfor %}
 		
 		{% block javascripts %}
