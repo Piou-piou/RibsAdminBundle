@@ -6,6 +6,10 @@ Encore
 	.setOutputPath('../../../web/build/')
 	.setPublicPath('/build')
 	.cleanupOutputBeforeBuild()
+    
+    .addEntry("js/vendor", [
+        "./node_modules/jquery/dist/jquery.min.js"
+    ])
 	
 	.addEntry("js/main", [
 		"./assets/js/form_blocks/inputs.js"
@@ -21,7 +25,14 @@ Encore
     ])
 	
 	.enableSassLoader()
-	.enableSourceMaps(!Encore.isProduction())
+    
+    .autoProvideVariables({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+    })
+    
+    .enableSourceMaps(!Encore.isProduction())
 	.enableVersioning()
 ;
 
