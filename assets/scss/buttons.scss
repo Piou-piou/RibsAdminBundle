@@ -12,6 +12,7 @@ button {
 	color: #fff;
 	text-align: center;
 	box-shadow: 1px 1px 3px #b4b4b4;
+	cursor: pointer;
 	
 	&.full-width {
 		width: 100%;
@@ -24,4 +25,6 @@ button {
 	&.no-shadow {
 		box-shadow: none;
 	}
+	
+	@include hbgtranslate($bg-button, $bg-button-hover, top, bottom);
 }
