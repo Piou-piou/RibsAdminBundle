@@ -54,3 +54,9 @@
 		</div>
 	</div>
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	
+	<script src="{{ asset("build/js/login.js") }}"></script>
+{% endblock %}

@@ -7,9 +7,18 @@ Encore
 	.setPublicPath('/build')
 	.cleanupOutputBeforeBuild()
 	
+	.addEntry("js/main", [
+		"./assets/js/form_blocks/inputs.js"
+	])
+	
 	.addStyleEntry("css/style", [
 		"./assets/scss/style.scss"
 	])
+    
+    .addEntry("js/login", [
+        "./assets/js/login/particles.js",
+        "./assets/js/login/app.js"
+    ])
 	
 	.enableSassLoader()
 	.enableSourceMaps(!Encore.isProduction())
