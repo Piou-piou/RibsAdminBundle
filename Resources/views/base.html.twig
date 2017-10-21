@@ -9,6 +9,45 @@
 		{% endblock %}
 	</head>
 	<body>
+		<nav class="menu active">
+			<div class="title">
+				<h1>Ribs V0.1</h1>
+				<i class="fa fa-bars"></i>
+			</div>
+			
+			<div class="mon-compte">
+				<div class="column">
+					<div class="image">
+						<img src="{{ asset('bundles/ribsadmin/images/default-profile.png') }}" alt="">
+					</div>
+				</div>
+				<div class="column">
+					<div class="account-infos">
+						<h3>Username</h3>
+						<div class="functions">
+							
+							<div class="column">
+								<div class="notif not-view">
+									<a href=""><i class="fa fa-bell"></i></a>
+								</div>
+							</div>
+							
+							<div class="column">
+								<div class="config">
+									<a href=""><i class="fa fa-gear"></i></a>
+								</div>
+							</div>
+							<div class="column">
+								<div class="logout">
+									<a href=""><i class="fa fa-sign-out"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		
 		{% block body %}
 		
 		{% endblock %}
