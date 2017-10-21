@@ -38,6 +38,10 @@ class LoginController extends FOSController
 			$error = null; // The value does not come from the security component.
 		}
 		
+		if ($error !== null) {
+			$this->addFlash("error-flash", "Login informations are invalid");
+		}
+		
 		// last username entered by the user
 		$lastUsername = (null === $session) ? '' : $session->get($lastUsernameKey);
 		
