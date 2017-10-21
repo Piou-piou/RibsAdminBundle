@@ -94,4 +94,19 @@
 			left: 0;
 		}
 	}
+	
+	textarea {
+		border: none;
+		padding: 10px;
+		margin: 10px 0px;
+		border-radius: 2px;
+		background: transparent;
+		transition: 0.3s all ease;
+		min-width: 1080px;
+		min-height: 70px;
+		display: block;
+		resize: none;
+		position: relative;
+		border: 2px solid #E6E6E6;
+	}
 }
