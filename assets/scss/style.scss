@@ -1,7 +1,9 @@
 @import "variable";
 @import "reset";
+@import "~font-awesome/scss/font-awesome.scss";
 @import "mixins";
 @import "general";
+@import "flash-messages";
 @import "form";
 @import "buttons";
 @import "login";

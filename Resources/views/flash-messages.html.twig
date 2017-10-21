@@ -1,0 +1,18 @@
+<div class="module-flashmessage {{ type }}">
+	<div class="notification">
+		<div class="left">
+			<div class="icone">
+				{% if type == "error" %}
+					<i class='fa fa-close'></i>
+				{% elseif type == "success" %}
+					<i class='fa fa-check'></i>
+				{% else %}
+					<i class='fa fa-info'></i>
+				{% endif %}
+			</div>
+		</div>
+		<div class="right">
+			<p>{{ message }}</p>
+		</div>
+	</div>
+</div>

@@ -12,7 +12,8 @@ Encore
     ])
 	
 	.addEntry("js/main", [
-		"./assets/js/form_blocks/inputs.js"
+		"./assets/js/form_blocks/inputs.js",
+		"./assets/js/popups/flash-messages.js"
 	])
 	
 	.addStyleEntry("css/style", [

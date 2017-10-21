@@ -13,6 +13,17 @@
 		
 		{% endblock %}
 		
+		{% for message in app.session.flashBag.get('error-flash') %}
+			{% include "@RibsAdmin/flash-messages.html.twig" with {"message": message, "type": "error"} %}
+		{% endfor %}
+		
+		{% for message in app.session.flashBag.get('info-flash') %}
+			{% include "flash-messages.html.twig" with {"message": message, "type": "info"} %}
+		{% endfor %}
+		
+		{% for message in app.session.flashBag.get('success-flash') %}
+			{% include "flash-messages.html.twig" with {"message": message, "type": "success"} %}
+		{% endfor %}
 		
 		{% block javascripts %}
 			<script src="{{ asset('build/js/vendor.js') }}"></script>
