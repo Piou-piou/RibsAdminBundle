@@ -1,8 +1,8 @@
 {
   "items": [
     {
-      "right": "ribsadmin@index",
-      "url": "ribsadmin_index"
+      "right": "ribsadmin@accounts",
+      "url": "ribsadmin_accounts"
     },
     {
       "right": "ribsadmin@accounts",
