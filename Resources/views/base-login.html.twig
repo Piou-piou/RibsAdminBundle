@@ -9,9 +9,7 @@
 		{% endblock %}
 	</head>
 	<body>
-		{% block body %}
-		
-		{% endblock %}
+		{% block body %}{% endblock %}
 		
 		{% for message in app.session.flashBag.get('error-flash') %}
 			{% include "@RibsAdmin/flash-messages.html.twig" with {"message": message, "type": "error"} %}
