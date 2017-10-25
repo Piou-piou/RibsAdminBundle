@@ -1,7 +1,6 @@
 <?php
 namespace Ribs\RibsAdminBundle\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,10 +18,10 @@ class NavigationBuilderController extends Controller
 				];
 			}
 		}
-		
-		dump($menu);
-		
-		return new Response();
+
+		// Testing
+		// dump($menu);
+		// return new Response();
 		
 		return $menu;
 	}
