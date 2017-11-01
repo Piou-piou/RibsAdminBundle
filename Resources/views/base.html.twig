@@ -47,7 +47,7 @@
 				</div>
 			</div>
 
-            {#{{ render("RibsAdminBundle:NavigationBuilder:getLeftNavigation") }}#}
+            {{ render(controller("RibsAdminBundle:NavigationBuilder:getLeftNavigation")) }}
 		</nav>
 		
 		{% block body %}

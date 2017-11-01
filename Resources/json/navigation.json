@@ -1,9 +1,6 @@
 {
+  "test": "test",
   "items": [
-    {
-      "right": "ribsadmin@accounts",
-      "url": "ribsadmin_accounts"
-    },
     {
       "right": "ribsadmin@accounts",
       "url": "ribsadmin_accounts"
