@@ -6,10 +6,10 @@ Encore
 	.setOutputPath('../../../web/build/')
 	.setPublicPath('/build')
 	.cleanupOutputBeforeBuild()
-    
-    .addEntry("js/vendor", [
-        "./node_modules/jquery/dist/jquery.min.js"
-    ])
+	
+	.addEntry("js/vendor", [
+		"./node_modules/jquery/dist/jquery.min.js"
+	])
 	
 	.addEntry("js/main", [
 		"./assets/js/main.js",
@@ -20,21 +20,21 @@ Encore
 	.addStyleEntry("css/style", [
 		"./assets/scss/style.scss"
 	])
-    
-    .addEntry("js/login", [
-        "./assets/js/login/particles.js",
-        "./assets/js/login/app.js"
-    ])
+	
+	.addEntry("js/login", [
+		"./assets/js/login/particles.js",
+		"./assets/js/login/app.js"
+	])
 	
 	.enableSassLoader()
-    
-    .autoProvideVariables({
-        $: 'jquery',
-        jQuery: 'jquery',
-        'window.jQuery': 'jquery',
-    })
-    
-    .enableSourceMaps(!Encore.isProduction())
+	
+	.autoProvideVariables({
+		$: 'jquery',
+		jQuery: 'jquery',
+		'window.jQuery': 'jquery',
+	})
+	
+	.enableSourceMaps(!Encore.isProduction())
 	.enableVersioning()
 ;
 
