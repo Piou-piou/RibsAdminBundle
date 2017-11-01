@@ -7,23 +7,20 @@ use Symfony\Component\HttpFoundation\Response;
 
 class NavigationBuilderController extends Controller
 {
-	public function getLeftNavigationAction()
+	/**
+	 * @return Response function that display the left navigation mapped by user rights
+	 */
+	public function getLeftNavigationAction(): Response
 	{
 		$navigation = json_decode(file_get_contents($this->get('kernel')->getRootDir() . "/../src/Ribs/RibsAdminBundle/Resources/json/navigation.json"), true);
 		$menu = [];
 		
 		foreach ($navigation["items"] as $item) {
 			if ($this->get("ribs_admin.acess_rights")->testRight($item["right"])) {
-				dump("f");
-				$menu[] = [
-					"url" => $item["url"]
-				];
+				$menu[] = $item;
 			}
 		}
 		
-		// Testing
-		/* dump($menu);*/
-		
-		return new Response();
+		return $this->render("@RibsAdmin/navigation.html.twig", ["navigation" => $menu]);
 	}
 }

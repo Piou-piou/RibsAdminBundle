@@ -3,19 +3,27 @@
   "items": [
     {
       "right": "ribsadmin@accounts",
-      "url": "ribsadmin_accounts"
+      "url": "ribsadmin_accounts",
+      "icon": "fa-users",
+      "text": "Accounts management"
     },
     {
       "right": "ribsadmin@access_rights",
-      "url": "ribsadmin_access_rights"
+      "url": "ribsadmin_access_rights",
+      "icon": "fa-lock",
+      "text": "Access rights management"
     },
     {
       "right": "ribsadmin@contents",
-      "url": "ribsadmin_contents"
+      "url": "ribsadmin_contents",
+      "icon": "fa-file-text",
+      "text": "Contents management"
     },
     {
       "right": "ribsadmin@navigation",
-      "url": "ribsadmin_navigation"
+      "url": "ribsadmin_navigation",
+      "icon": "fa-link",
+      "text": "Navigation management"
     }
   ]
 }
