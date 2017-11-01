@@ -45,7 +45,6 @@ $clr-txt: #fff;
 	padding: 0;
 	display: none;
 	position: fixed;
-	min-height: 70px;
 	top: 20px;
 	right: 20px;
 	z-index: 999;
@@ -102,18 +101,6 @@ $clr-txt: #fff;
 					&:last-child {
 						margin-bottom: -16px;
 					}
-				}
-			}
-			
-			/*pour un affichage avec des blocs*/
-			.bloc {
-				float: left;
-				margin: 0px 5px;
-				font-family: "Arial", arial;
-				
-				a {
-					display: block;
-					padding: 17px;
 				}
 			}
 		}
