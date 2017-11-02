@@ -10,30 +10,30 @@
 		<table class="list">
 			<thead>
 				<tr>
-					<td>Image du profil</td>
-					<td>Prénom Nom</td>
+					<td>Profile image</td>
+					<td>Firstname Ladtname</td>
 					<td>Pseudo</td>
-					<td>Réinitialiser le mot de passe</td>
-					<td>Archiver le compte</td>
-					<td>Supprimer le compte</td>
+					<td>Reinitialise password</td>
+					<td>Archive account</td>
+					<td>Delete account</td>
 				</tr>
 			</thead>
-			<tbody><tr>
-					<td><img src="http://ribs.anthony-pilloud.fr/app/images/profil/defaut.png"></td>
-					<td>test test</td>
-					<td>test</td>
-					<td><a href="/administrator/controller/core/admin/comptes/reinitialiser_mdp?id_identite=2">Réinitialiser le mot de passe</a></td>
-					<td><a href="/administrator/controller/core/admin/comptes/archiver_compte?id_identite=2" class="supprimer open-popup" popup="popup-archiver-utilisateur">Archiver ce compte</a></td>
-					<td><a href="/administrator/controller/core/admin/comptes/supprimer_compte?id_identite=2" class="supprimer open-popup" popup="popup-supprimer-utilisateur">Supprimer ce compte</a></td>
-				</tr>
-				<tr>
-					<td><img src="http://ribs.anthony-pilloud.fr/app/images/profil/defaut.png"></td>
-					<td>demo demo</td>
-					<td>demo</td>
-					<td><a href="/administrator/controller/core/admin/comptes/reinitialiser_mdp?id_identite=3">Réinitialiser le mot de passe</a></td>
-					<td><a href="/administrator/controller/core/admin/comptes/archiver_compte?id_identite=3" class="supprimer open-popup" popup="popup-archiver-utilisateur">Archiver ce compte</a></td>
-					<td><a href="/administrator/controller/core/admin/comptes/supprimer_compte?id_identite=3" class="supprimer open-popup" popup="popup-supprimer-utilisateur">Supprimer ce compte</a></td>
-				</tr>
-			</tbody></table>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td><img src="http://ribs.anthony-pilloud.fr/app/images/profil/defaut.png"></td>
+						<td>{{ user.user.firstname }} {{ user.user.lastname }}</td>
+						<td>{{ user.username }}</td>
+						<td><a>Reinitialise password</a></td>
+						<td><a>Archive this account</a></td>
+						<td><a>Delete this account</a></td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6" class="text-center">No account was found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
 {% endblock %}

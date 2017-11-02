@@ -76,6 +76,13 @@ class User
      * @ORM\Column(name="access_rights", type="text", nullable=true)
      */
     private $accessRights;
+	
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="archived", type="boolean", nullable=false, options={"default": false})
+	 */
+	private $archived;
 
     /**
      * @var \DateTime
@@ -250,6 +257,22 @@ class User
     {
         $this->creationDate = $creationDate;
     }
+	
+	/**
+	 * @return string
+	 */
+	public function getArchived(): string
+	{
+		return $this->archived;
+	}
+	
+	/**
+	 * @param string $archived
+	 */
+	public function setArchived(string $archived)
+	{
+		$this->archived = $archived;
+	}
 
     /**
      * @return \DateTime
