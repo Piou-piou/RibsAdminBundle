@@ -20,7 +20,7 @@ class AccountsController extends Controller
 		$current_account = $this->getUser()->getUser();
 		
 		$users = $em->getRepository("RibsAdminBundle:FosUser")->findAllUserNoArchived($current_account);
-		dump($users);
+		
 		return $this->render('@RibsAdmin/accounts/list-all-accounts.html.twig', [
 			"users" => $users
 		]);
@@ -32,7 +32,8 @@ class AccountsController extends Controller
 	 * @param string $guid
 	 * @return RedirectResponse function that will archive a user
 	 */
-	public function archiveAccount(string $guid): RedirectResponse {
+	public function archiveAccount(string $guid): RedirectResponse
+	{
 		$em = $this->getDoctrine()->getManager();
 		
 		$user = $em->getRepository("RibsAdminBundle:User")->findOneBy(["guid" => $guid]);
@@ -42,7 +43,7 @@ class AccountsController extends Controller
 			$em->persist($user);
 			$em->flush();
 			
-			$this->addFlash("success-flash", "The user ". $user->getFirstname() . " " . $user->getLastname() .
+			$this->addFlash("success-flash", "The user " . $user->getFirstname() . " " . $user->getLastname() .
 				" was archived sucessfuly");
 		}
 		
