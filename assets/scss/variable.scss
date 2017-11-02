@@ -18,18 +18,24 @@ $bg-page: #fff;
 /*----- FOR LOGIN PAGE -----*/
 $color-error-input-login: #F34336;
 
+
+/*----- FOR CONTENTS BLOCKS -----*/
+$color-block-contents-title: #AFBDC4;
+
+
 /*----- BUTTONS COLORS -----*/
 $bg-button: #2196F3;
 $bg-button-hover: #217ED3;
 $bg-button-error: #F34336;
 $bg-button-error-hover: #DD2A2A;
 
+
 /*----- LINK COLORS -----*/
 $link-color: #AFBDC4;
-$color-lien-page: #2196F3;
-$color-lien-hover-page: #217ED3;
-$bg-lien-supprimer: #F34336;
-$bg-lien-supprimer-hover: #DD2A2A;
+$color-link-page: #2196F3;
+$color-link-page-hover: #217ED3;
+$bg-link-delete: #F34336;
+$bg-link-delete-hover: #DD2A2A;
 
 
 /*----- COLOR FOR LABELS || TITLES AND FONTS -----*/
@@ -42,6 +48,6 @@ $police-sec: lobster;
 /*----- LEFT SIDE NAV -----*/
 $menug-bg-header: #00BEE7;
 $menug-clr-header: #0082A8;
-$menug-clr-border-lien: #2BA5CA;
+$menug-clr-border-link: #2BA5CA;
 $menug-ombre-header: #2C3747;
 $bg-lien-hover-menu: #2A3344;

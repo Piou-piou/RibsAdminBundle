@@ -50,9 +50,17 @@
             {{ render(controller("RibsAdminBundle:NavigationBuilder:getLeftNavigation")) }}
 		</nav>
 		
-		{% block body %}
+		<header>
+			<div class="inner">
+				{% block title_page %}{% endblock %}
+			</div>
+		</header>
 		
-		{% endblock %}
+		<div class="inner">
+			{% block body %}
+			
+			{% endblock %}
+		</div>
 		
 		{% for message in app.session.flashBag.get('error-flash') %}
 			{% include "@RibsAdmin/flash-messages.html.twig" with {"message": message, "type": "error"} %}

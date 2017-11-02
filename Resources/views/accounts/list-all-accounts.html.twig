@@ -1,1 +1,38 @@
 {% extends "@RibsAdmin/base.html.twig" %}
+
+{% block title_page %}
+	<h1>List all users</h1>
+{% endblock %}
+
+{% block body %}
+	<div class="content-block">
+		<table class="list">
+			<thead>
+				<tr>
+					<td>Image du profil</td>
+					<td>Prénom Nom</td>
+					<td>Pseudo</td>
+					<td>Réinitialiser le mot de passe</td>
+					<td>Archiver le compte</td>
+					<td>Supprimer le compte</td>
+				</tr>
+			</thead>
+			<tbody><tr>
+					<td><img src="http://ribs.anthony-pilloud.fr/app/images/profil/defaut.png"></td>
+					<td>test test</td>
+					<td>test</td>
+					<td><a href="/administrator/controller/core/admin/comptes/reinitialiser_mdp?id_identite=2">Réinitialiser le mot de passe</a></td>
+					<td><a href="/administrator/controller/core/admin/comptes/archiver_compte?id_identite=2" class="supprimer open-popup" popup="popup-archiver-utilisateur">Archiver ce compte</a></td>
+					<td><a href="/administrator/controller/core/admin/comptes/supprimer_compte?id_identite=2" class="supprimer open-popup" popup="popup-supprimer-utilisateur">Supprimer ce compte</a></td>
+				</tr>
+				<tr>
+					<td><img src="http://ribs.anthony-pilloud.fr/app/images/profil/defaut.png"></td>
+					<td>demo demo</td>
+					<td>demo</td>
+					<td><a href="/administrator/controller/core/admin/comptes/reinitialiser_mdp?id_identite=3">Réinitialiser le mot de passe</a></td>
+					<td><a href="/administrator/controller/core/admin/comptes/archiver_compte?id_identite=3" class="supprimer open-popup" popup="popup-archiver-utilisateur">Archiver ce compte</a></td>
+					<td><a href="/administrator/controller/core/admin/comptes/supprimer_compte?id_identite=3" class="supprimer open-popup" popup="popup-supprimer-utilisateur">Supprimer ce compte</a></td>
+				</tr>
+			</tbody></table>
+	</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+.content-block {
+	margin-top: 30px;
+	background-color: $bg-page;
+	padding: 20px;
+	border-radius: 3px;
+	
+	h3 {
+		color: $color-block-contents-title;
+	}
+	
+	.block {
+		margin: 10px;
+	}
+	
+	table.list {
+		width: 100%;
+		margin-top: 20px;
+		
+		thead {
+			td {
+				border-top: none;
+			}
+		}
+		
+		td {
+			padding: 10px;
+			border: 1px solid #D9E3E7;
+			margin: 10px;
+			vertical-align: middle;
+			
+			a {
+				color: $color-link-page;
+				text-decoration: none;
+				transition: 0.3s all ease;
+				
+				&:hover {
+					color: $color-link-page-hover;
+					transition: 0.3s all ease;
+				}
+			}
+		}
+	}
+}
