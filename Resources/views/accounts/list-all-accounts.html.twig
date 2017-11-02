@@ -25,7 +25,8 @@
 						<td>{{ user.user.firstname }} {{ user.user.lastname }}</td>
 						<td>{{ user.username }}</td>
 						<td><a>Reinitialise password</a></td>
-						<td><a>Archive this account</a></td>
+						<td><a href="{{ path('ribsadmin_account_archive', {"guid": user.user.guid}) }}">Archive this
+								account</a></td>
 						<td><a>Delete this account</a></td>
 					</tr>
 				{% else %}

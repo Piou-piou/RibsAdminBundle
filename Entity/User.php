@@ -78,7 +78,7 @@ class User
     private $accessRights;
 	
 	/**
-	 * @var string
+	 * @var boolean
 	 *
 	 * @ORM\Column(name="archived", type="boolean", nullable=false, options={"default": false})
 	 */
@@ -259,17 +259,17 @@ class User
     }
 	
 	/**
-	 * @return string
+	 * @return boolean
 	 */
-	public function getArchived(): string
+	public function getArchived(): bool
 	{
 		return $this->archived;
 	}
 	
 	/**
-	 * @param string $archived
+	 * @param boolean $archived
 	 */
-	public function setArchived(string $archived)
+	public function setArchived(bool $archived)
 	{
 		$this->archived = $archived;
 	}
