@@ -15,7 +15,6 @@
 					<td>Pseudo</td>
 					<td>Reinitialise password</td>
 					<td>Archive account</td>
-					<td>Delete account</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -27,7 +26,6 @@
 						<td><a>Reinitialise password</a></td>
 						<td><a href="{{ path('ribsadmin_account_archive', {"guid": user.user.guid}) }}">Archive this
 								account</a></td>
-						<td><a>Delete this account</a></td>
 					</tr>
 				{% else %}
 					<tr>
@@ -48,7 +46,6 @@
                 <td>Pseudo</td>
                 <td>Reinitialise password</td>
                 <td>Archive account</td>
-                <td>Delete account</td>
             </tr>
             </thead>
             <tbody>
@@ -60,7 +57,6 @@
                     <td><a>Reinitialise password</a></td>
                     <td><a href="{{ path('ribsadmin_account_archive', {"guid": user.user.guid, "activate": true}) }}">Active this
                             account</a></td>
-                    <td><a>Delete this account</a></td>
                 </tr>
             {% else %}
                 <tr>
