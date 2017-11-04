@@ -53,7 +53,7 @@
 		background-color: $menug-bg-header;
 		color: $menug-clr-header;
 		padding: 10px;
-		box-shadow: -3px 3px 3px $menug-ombre-header;
+		box-shadow: -3px 3px 3px $menug-shadow-header;
 		height: 38px;
 		width: 55px;
 		margin-left: 400px;
@@ -170,7 +170,7 @@
 			}
 			
 			&:hover {
-				background-color: $bg-lien-hover-menu;
+				background-color: $bg-link-hover-menu;
 				border-left: 3px solid $menug-clr-border-link;
 				cursor: pointer;
 				
@@ -184,7 +184,7 @@
 			}
 			
 			&.active {
-				background-color: $bg-lien-hover-menu;
+				background-color: $bg-link-hover-menu;
 			}
 			
 			&.support {
