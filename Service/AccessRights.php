@@ -46,7 +46,7 @@ class AccessRights
 			return;
 		}
 		
-		$ribs_admin_rights = json_decode(file_get_contents($this->em->get('kernel')->getRootDir() . "/../src/Ribs/RibsAdminBundle/Resources/json/ribsadmin_rights.json"));
+		$ribs_admin_rights = json_decode(file_get_contents($this->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
 		
 		if ($admin_page == "ribsadmin" && ($route !== 404) && ($route !== null)) {
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
@@ -64,6 +64,22 @@ class AccessRights
 			
 			throw new AccessDeniedException("No access");
 		}
+	}
+	
+	/**
+	 * @param string $right
+	 * @return bool
+	 * function that allow to test a right directly in the view
+	 */
+	public function testRight(string $right): bool
+	{
+		$user_rights = $this->getUserRights();
+		
+		if (in_array($right, $user_rights)) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	/**
@@ -106,18 +122,13 @@ class AccessRights
 	}
 	
 	/**
-	 * @param string $right
-	 * @return bool
-	 * function that allow to test a right directly in the view
+	 * @return string
 	 */
-	public function testRight(string $right): bool
+	private function getBaseBundlePath(): string
 	{
-		$user_rights = $this->getUserRights();
+		$path = explode("/", __DIR__);
+		array_pop($path);
 		
-		if (in_array($right, $user_rights)) {
-			return true;
-		}
-		
-		return false;
+		return implode("/", $path);
 	}
 }
