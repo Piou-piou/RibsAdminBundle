@@ -12,7 +12,7 @@ class NavigationBuilderController extends Controller
 	 */
 	public function getLeftNavigationAction(): Response
 	{
-		$navigation = json_decode(file_get_contents($this->get('kernel')->getRootDir() . "/../src/Ribs/RibsAdminBundle/Resources/json/navigation.json"), true);
+		$navigation = json_decode(file_get_contents($this->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/navigation.json"), true);
 		$menu = [];
 		
 		foreach ($navigation["items"] as $item) {
