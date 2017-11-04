@@ -8,3 +8,6 @@ services:
         arguments: ['@service_container', "@router", "@session", "@request_stack"]
         tags:
             - {name: kernel.event_listener, event: kernel.controller}
+
+    ribs_admin.globals:
+        class: Ribs\RibsAdminBundle\Service\Globals

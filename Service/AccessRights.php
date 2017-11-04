@@ -46,7 +46,7 @@ class AccessRights
 			return;
 		}
 		
-		$ribs_admin_rights = json_decode(file_get_contents($this->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
+		$ribs_admin_rights = json_decode(file_get_contents($this->em->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
 		
 		if ($admin_page == "ribsadmin" && ($route !== 404) && ($route !== null)) {
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
@@ -119,16 +119,5 @@ class AccessRights
 		}
 		
 		return [""];
-	}
-	
-	/**
-	 * @return string
-	 */
-	private function getBaseBundlePath(): string
-	{
-		$path = explode("/", __DIR__);
-		array_pop($path);
-		
-		return implode("/", $path);
 	}
 }
