@@ -15,7 +15,7 @@ class User
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -27,6 +27,14 @@ class User
      * @ORM\Column(name="guid", type="string", length=255, nullable=false)
      */
     private $guid;
+	
+	/**
+	 * @var AccessRight
+	 *
+	 * @ORM\ManyToOne(targetEntity="Ribs\RibsAdminBundle\Entity\AccessRight")
+	 * @ORM\JoinColumn(name="id_access_right", referencedColumnName="id", nullable=true)
+	 */
+    private $accessRightList;
 
     /**
      * @var string
@@ -129,6 +137,22 @@ class User
     {
         $this->guid = $guid;
     }
+	
+	/**
+	 * @return AccessRight
+	 */
+	public function getAccessRightList(): AccessRight
+	{
+		return $this->accessRightList;
+	}
+	
+	/**
+	 * @param AccessRight $accessRightList
+	 */
+	public function setAccessRightList(AccessRight $accessRightList)
+	{
+		$this->accessRightList = $accessRightList;
+	}
 
     /**
      * @return string
