@@ -35,12 +35,6 @@ class AccessRights
 		$route = $this->request->getCurrentRequest()->get("_route");
 		$admin_page = explode("_", $route)[0];
 		
-		//comment because it cause errore redirect
-		/*if ($route == "fos_user_security_login" || $route == "fos_user_registration_register") {
-			$this->session->clear();
-			$this->em->get("security.token_storage")->setToken(null);
-		}*/
-		
 		//to show admin panel
 		if (in_array($route, ["_profiler", "_profiler_search_bar", "_wdt"])) {
 			return;
@@ -50,16 +44,13 @@ class AccessRights
 		
 		if ($admin_page == "ribsadmin" && ($route !== 404) && ($route !== null)) {
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
-			$user_rights = $this->getUserRights();
 			
 			if ($route_right === false) {
 				throw new AccessDeniedException("No access");
 			}
 			
-			foreach ($user_rights as $right) {
-				if (in_array($right, $route_right)) {
-					return;
-				}
+			if ($this->testRouteRight($route_right) === true) {
+				return;
 			}
 			
 			throw new AccessDeniedException("No access");
@@ -74,9 +65,32 @@ class AccessRights
 	public function testRight(string $right): bool
 	{
 		$user_rights = $this->getUserRights();
+		$list_rights = $this->getRightsListOfUser();
 		
-		if (in_array($right, $user_rights)) {
+		$all_rights = array_merge($user_rights, $list_rights);
+		
+		if (in_array($right, $all_rights)) {
 			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * @param array $route_right
+	 * @return bool
+	 * test if route_right is found in users rights
+	 */
+	private function testRouteRight(array $route_right): bool {
+		$user_rights = $this->getUserRights();
+		$list_rights = $this->getRightsListOfUser();
+		
+		$all_rights = array_merge($user_rights, $list_rights);
+		
+		foreach ($all_rights as $right) {
+			if (in_array($right, $route_right)) {
+				return true;
+			}
 		}
 		
 		return false;
@@ -113,6 +127,19 @@ class AccessRights
 	private function getUserRights(): array
 	{
 		$user_rights = $this->em->get("security.token_storage")->getToken()->getUser()->getUser()->getAccessRights();
+		
+		if ($user_rights) {
+			return explode(",", $user_rights);
+		}
+		
+		return [""];
+	}
+	
+	/**
+	 * @return array function that retun a array that contain all rights of rattached list right of the current user
+	 */
+	private function getRightsListOfUser(): array {
+		$user_rights = $this->em->get("security.token_storage")->getToken()->getUser()->getUser()->getAccessRightList()->getAccessRights();
 		
 		if ($user_rights) {
 			return explode(",", $user_rights);
