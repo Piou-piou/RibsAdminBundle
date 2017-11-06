@@ -4,8 +4,14 @@ body {
 }
 
 .inner {
-	width: 1180px;
-	margin: auto;
+	width: 80%;
+	margin-left: 10%;
+	transition: all 0.3s ease;
+
+	&.displayed-nav {
+		margin-left: 350px;
+		transition: all 0.3s ease;
+	}
 }
 
 .column {
