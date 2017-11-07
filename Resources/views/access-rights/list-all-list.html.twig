@@ -13,49 +13,14 @@
 				<h2>{{ i.name }}</h2>
 				
 				<ul>
+					<li>Number of users : {{ i.users|length }}</li>
 					<li>Created at {{ i.creationDate|date("Y/m/d") }}</li>
 					<li>Edited at {{ i.updateDate|date("Y/m/d") }}</li>
 				</ul>
+				
+				<a href="" class="edit">Edit</a>
+				<a href="" class="delete">Delete</a>
 			</div>
 		{% endfor %}
-		
-		
-		<div class="block">
-			<img src="{{ asset('bundles/ribsadmin/images/block-background.png') }}" alt="background of the block">
-			<h2>Title of the block</h2>
-			
-			<div class="content">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, quis, repellat. Beatae deleniti
-					distinctio facilis illo inventore iste quasi reprehenderit voluptate voluptates voluptatibus. Accusamus
-					beatae nostrum optio sint veniam voluptate?
-				</p>
-			</div>
-			
-			<a href="" class="edit">Edit</a>
-			<a href="" class="delete">Delete</a>
-		</div>
-		<div class="block">
-			<img src="{{ asset('bundles/ribsadmin/images/block-background.png') }}" alt="background of the block">
-			<h2>Title of the block</h2>
-			
-			<div class="content">
-				<ul>
-					<li>test li 1</li>
-					<li>test li 2</li>
-					<li>test li 3</li>
-					<li>test li 4</li>
-					<li>test li 5</li>
-					<li>test li 5</li>
-					<li>test li 5</li>
-					<li>test li 5</li>
-					<li>test li 5</li>
-					<li>test li 5</li>
-					<li>test li 8</li>
-				</ul>
-			</div>
-			
-			<a href="" class="edit">Edit</a>
-			<a href="" class="delete">Delete</a>
-		</div>
 	</div>
 {% endblock %}
