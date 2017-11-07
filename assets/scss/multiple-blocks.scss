@@ -24,6 +24,13 @@
 		.content {
 			max-height: 130px;
 			overflow-y: auto;
+
+			ul {
+				li {
+					padding: 10px 0;
+					color: $color-multiple-block-li;
+				}
+			}
 		}
 
 		a {

@@ -12,11 +12,13 @@
 				<img src="{{ asset('bundles/ribsadmin/images/block-background.png') }}" alt="background of the block">
 				<h2>{{ i.name }}</h2>
 				
-				<ul>
-					<li>Number of users : {{ i.users|length }}</li>
-					<li>Created at {{ i.creationDate|date("Y/m/d") }}</li>
-					<li>Edited at {{ i.updateDate|date("Y/m/d") }}</li>
-				</ul>
+				<div class="content">
+					<ul>
+						<li>Number of users : {{ i.users|length }}</li>
+						<li>Created at {{ i.creationDate|date("Y/m/d") }}</li>
+						<li>Edited at {{ i.updateDate|date("Y/m/d") }}</li>
+					</ul>
+				</div>
 				
 				<a href="" class="edit">Edit</a>
 				<a href="" class="delete">Delete</a>
