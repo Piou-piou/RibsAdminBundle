@@ -14,6 +14,11 @@ class AccessRightsController extends Controller
 	 */
 	public function listAction(): Response
 	{
-		return $this->render("@RibsAdmin/access-rights/list-all-list.html.twig");
+		$em = $this->getDoctrine()->getManager();
+		$acces_right = $em->getRepository("RibsAdminBundle:AccessRight")->findAll();
+		
+		return $this->render("@RibsAdmin/access-rights/list-all-list.html.twig", [
+			"access_right" => $acces_right
+		]);
 	}
 }

@@ -7,6 +7,19 @@
 
 {% block body %}
 	<div class="multiple-blocks">
+		{% for i in access_right %}
+			<div class="block">
+				<img src="{{ asset('bundles/ribsadmin/images/block-background.png') }}" alt="background of the block">
+				<h2>{{ i.name }}</h2>
+				
+				<ul>
+					<li>Created at {{ i.creationDate|date("Y/m/d") }}</li>
+					<li>Edited at {{ i.updateDate|date("Y/m/d") }}</li>
+				</ul>
+			</div>
+		{% endfor %}
+		
+		
 		<div class="block">
 			<img src="{{ asset('bundles/ribsadmin/images/block-background.png') }}" alt="background of the block">
 			<h2>Title of the block</h2>
