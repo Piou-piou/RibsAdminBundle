@@ -31,7 +31,7 @@ class User
 	/**
 	 * @var AccessRight
 	 *
-	 * @ORM\ManyToOne(targetEntity="Ribs\RibsAdminBundle\Entity\AccessRight")
+	 * @ORM\ManyToOne(targetEntity="Ribs\RibsAdminBundle\Entity\AccessRight", inversedBy="users")
 	 * @ORM\JoinColumn(name="id_access_right", referencedColumnName="id", nullable=true)
 	 */
     private $accessRightList;

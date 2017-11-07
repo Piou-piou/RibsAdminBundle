@@ -2,6 +2,7 @@
 
 namespace Ribs\RibsAdminBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,49 +13,64 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class AccessRight
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="guid", type="string", length=255, nullable=false)
-     */
-    private $guid;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
-     */
-    private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="access_rights", type="text", nullable=true)
-     */
-    private $accessRights;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="creation_date", type="date", nullable=true)
-     */
-    private $creationDate;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="update_date", type="date", nullable=true)
-     */
-    private $updateDate;
+	/**
+	 * @var integer
+	 *
+	 * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="IDENTITY")
+	 */
+	private $id;
+	
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="guid", type="string", length=255, nullable=false)
+	 */
+	private $guid;
+	
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="name", type="string", length=255, nullable=false)
+	 */
+	private $name;
+	
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="access_rights", type="text", nullable=true)
+	 */
+	private $accessRights;
+	
+	/**
+	 * @var \DateTime
+	 *
+	 * @ORM\Column(name="creation_date", type="date", nullable=true)
+	 */
+	private $creationDate;
+	
+	/**
+	 * @var \DateTime
+	 *
+	 * @ORM\Column(name="update_date", type="date", nullable=true)
+	 */
+	private $updateDate;
+	
+	/**
+	 * @var ArrayCollection
+	 *
+	 * @ORM\OneToMany(targetEntity="Ribs\RibsAdminBundle\Entity\User", mappedBy="accessRightList")
+	 */
+	private $users;
+	
+	/**
+	 * AccessRight constructor.
+	 */
+	public function __construct()
+	{
+		$this->users = new ArrayCollection();
+	}
 	
 	/**
 	 * @return int
@@ -151,5 +167,31 @@ class AccessRight
 	{
 		$this->updateDate = $updateDate;
 	}
+	
+	/**
+	 * @return ArrayCollection
+	 */
+	public function getUsers()
+	{
+		return $this->users;
+	}
+	
+	/**
+	 * @param User $user
+	 * @return $this
+	 */
+	public function addUser(User $user)
+	{
+		$this->users[] = $user;
+		
+		return $this;
+	}
+	
+	/**
+	 * @param User $user
+	 */
+	public function removeUSer(User $user)
+	{
+		$this->users->removeElement($user);
+	}
 }
-
