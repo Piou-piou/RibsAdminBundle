@@ -6,6 +6,12 @@
 
 
 {% block body %}
+	{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@create") == true %}
+		<div class="top-buttons">
+			<a href="">Create a new list</a>
+		</div>
+	{% endif %}
+	
 	<div class="multiple-blocks">
 		{% for i in access_right %}
 			<div class="block">
