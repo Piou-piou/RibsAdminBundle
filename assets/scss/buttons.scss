@@ -1,4 +1,4 @@
-button {
+@mixin default_button() {
 	margin: 10px;
 	padding: 10px 20px;
 	min-width: 64px;
@@ -13,6 +13,7 @@ button {
 	text-align: center;
 	box-shadow: 1px 1px 3px #b4b4b4;
 	cursor: pointer;
+	@include hbgtranslate($bg-button, $bg-button-hover, top, bottom);
 	
 	&.full-width {
 		width: 100%;
@@ -26,5 +27,25 @@ button {
 		box-shadow: none;
 	}
 	
-	@include hbgtranslate($bg-button, $bg-button-hover, top, bottom);
+	&.delete {
+		@include hbgtranslate($bg-button-error, $bg-button-error-hover, top, bottom);
+	}
 }
+
+button {
+	@include default_button();
+}
+
+.top-buttons {
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	
+	a {
+		@include default_button();
+		@include hbgtranslate($bg-button, $bg-button-hover, top, bottom);
+		
+		float: right;
+	}
+}
+
