@@ -25,9 +25,14 @@
 						<li>Edited at {{ i.updateDate|date("Y/m/d") }}</li>
 					</ul>
 				</div>
+			
+				{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@edit") == true %}
+					<a href="{{ path('ribsadmin_access_rights_edit', {"guid": i.guid}) }}" class="edit">Edit</a>
+				{% endif %}
 				
-				<a href="" class="edit">Edit</a>
-				<a href="" class="delete">Delete</a>
+				{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@delete") == true %}
+					<a href="" class="delete">Edit</a>
+				{% endif %}
 			</div>
 		{% endfor %}
 	</div>

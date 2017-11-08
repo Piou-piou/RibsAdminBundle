@@ -18,15 +18,15 @@
     },
     {
       "right": "ribsadmin@access_rights@create",
-      "url": "ribsadmin_access_rights"
+      "url": "ribsadmin_access_rights_create"
     },
     {
       "right": "ribsadmin@access_rights@edit",
-      "url": "ribsadmin_access_rights"
+      "url": "ribsadmin_access_rights_edit"
     },
     {
       "right": "ribsadmin@access_rights@delete",
-      "url": "ribsadmin_access_rights"
+      "url": "ribsadmin_access_rights_delete"
     },
     {
       "right": "ribsadmin@contents",
