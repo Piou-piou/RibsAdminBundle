@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccessRightsController extends Controller
 {
 	/**
-	 * @Route("/access-rights-management", name="ribsadmin_access_rights")
+	 * @Route("/access-rights-management/", name="ribsadmin_access_rights")
 	 * @return Response
 	 */
 	public function listAction(): Response
@@ -28,7 +28,8 @@ class AccessRightsController extends Controller
 	 * @Route("/access-rights-management/edit/{guid}", name="ribsadmin_access_rights_edit")
 	 * @return Response
 	 */
-	public function editAction(string $guid = null): Response {
+	public function editAction(string $guid = null): Response
+	{
 		$em = $this->getDoctrine()->getManager();
 		
 		if ($guid === null) {
@@ -36,5 +37,9 @@ class AccessRightsController extends Controller
 		} else {
 			$access_right = $em->getRepository("RibsAdminBundle:AccessRight")->findOneBy(["guid" => $guid]);
 		}
+		
+		return $this->render("@RibsAdmin/access-rights/edit-list.html.twig", [
+			"access_right" => $access_right
+		]);
 	}
 }
