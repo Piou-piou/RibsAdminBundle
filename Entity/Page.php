@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="page", indexes={@ORM\Index(name="fk_page_page1_idx", columns={"parent"})})
  * @ORM\Entity
+ * @ORM\EntityListeners({"Ribs\RibsAdminBundle\EventListener\GuidAwareListener"})
  */
 class Page
 {
