@@ -2,6 +2,7 @@
 
 namespace Ribs\RibsAdminBundle\Controller;
 
+use Ribs\RibsAdminBundle\Entity\AccessRight;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,7 +28,13 @@ class AccessRightsController extends Controller
 	 * @Route("/access-rights-management/edit/{guid}", name="ribsadmin_access_rights_edit")
 	 * @return Response
 	 */
-	public function editAction(): Response {
-	
+	public function editAction(string $guid = null): Response {
+		$em = $this->getDoctrine()->getManager();
+		
+		if ($guid === null) {
+			$access_right = new AccessRight();
+		} else {
+			$access_right = $em->getRepository("RibsAdminBundle:AccessRight")->findOneBy(["guid" => $guid]);
+		}
 	}
 }
