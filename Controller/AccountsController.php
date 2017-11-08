@@ -11,7 +11,7 @@ class AccountsController extends Controller
 {
 	//-------------------------------------------- DISPLAY VIEWS ---------------------------------------------------------------//
 	/**
-	 * @Route("/accounts", name="ribsadmin_accounts")
+	 * @Route("/accounts/", name="ribsadmin_accounts")
 	 * @return Response function that return a list of all users that are archived or not and different of current accout
 	 */
 	public function AccountsListAction(): Response
