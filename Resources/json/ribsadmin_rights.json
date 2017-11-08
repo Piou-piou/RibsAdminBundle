@@ -17,6 +17,14 @@
       "url": "ribsadmin_access_rights"
     },
     {
+      "right": "ribsadmin@access_rights@create",
+      "url": "ribsadmin_access_rights"
+    },
+    {
+      "right": "ribsadmin@access_rights@edit",
+      "url": "ribsadmin_access_rights"
+    },
+    {
       "right": "ribsadmin@contents",
       "url": "ribsadmin_contents"
     },

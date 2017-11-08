@@ -21,4 +21,13 @@ class AccessRightsController extends Controller
 			"access_right" => $acces_right
 		]);
 	}
+	
+	/**
+	 * @Route("/access-rights-management/create/", name="ribsadmin_access_rights_create")
+	 * @Route("/access-rights-management/edit/{guid}", name="ribsadmin_access_rights_edit")
+	 * @return Response
+	 */
+	public function editAction(): Response {
+	
+	}
 }
