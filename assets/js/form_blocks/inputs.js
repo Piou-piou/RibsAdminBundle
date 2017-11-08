@@ -35,6 +35,10 @@ $(document).ready(function() {
         }
 
 		$parent.removeClass('is-focused');
+    
+    if ($this.val() == "") {
+      $parent.removeClass('has-label');
+    }
 	});
 
 	$('.block input').each(function() {
