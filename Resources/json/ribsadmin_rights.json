@@ -25,6 +25,10 @@
       "url": "ribsadmin_access_rights"
     },
     {
+      "right": "ribsadmin@access_rights@delete",
+      "url": "ribsadmin_access_rights"
+    },
+    {
       "right": "ribsadmin@contents",
       "url": "ribsadmin_contents"
     },
