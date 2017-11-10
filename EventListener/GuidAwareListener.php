@@ -2,7 +2,6 @@
 
 namespace Ribs\RibsAdminBundle\EventListener;
 
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Ramsey\Uuid\Uuid;
 
@@ -18,7 +17,7 @@ class GuidAwareListener
 		$this->container = $container;
 	}
 	
-	public function prePersist($entity, LifecycleEventArgs $events)
+	public function prePersist($entity)
 	{
 		if ($entity->getGuid() === null) {
 			$entity->setGuid((string)Uuid::uuid4());
