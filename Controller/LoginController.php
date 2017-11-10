@@ -23,6 +23,7 @@ class LoginController extends FOSController
 		
 		$authErrorKey = Security::AUTHENTICATION_ERROR;
 		$lastUsernameKey = Security::LAST_USERNAME;
+		$error = null;
 		
 		// get the error if any (works with forward and redirect -- see below)
 		if ($request->attributes->has($authErrorKey)) {
@@ -30,8 +31,6 @@ class LoginController extends FOSController
 		} else if (null !== $session && $session->has($authErrorKey)) {
 			$error = $session->get($authErrorKey);
 			$session->remove($authErrorKey);
-		} else {
-			$error = null;
 		}
 		
 		if (!$error instanceof AuthenticationException) {
