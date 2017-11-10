@@ -17,12 +17,12 @@ class AccessRightsController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		$acces_right = $em->getRepository("RibsAdminBundle:AccessRight")->findAll();
-		
+
 		return $this->render("@RibsAdmin/access-rights/list-all-list.html.twig", [
 			"access_right" => $acces_right
 		]);
 	}
-	
+
 	/**
 	 * @Route("/access-rights-management/create/", name="ribsadmin_access_rights_create")
 	 * @Route("/access-rights-management/edit/{guid}", name="ribsadmin_access_rights_edit")
@@ -31,15 +31,18 @@ class AccessRightsController extends Controller
 	public function editAction(string $guid = null): Response
 	{
 		$em = $this->getDoctrine()->getManager();
-		
+
 		if ($guid === null) {
 			$access_right = new AccessRight();
 		} else {
 			$access_right = $em->getRepository("RibsAdminBundle:AccessRight")->findOneBy(["guid" => $guid]);
 		}
-		
+
+		$form = $this->createForm("Ribs\RibsAdminBundle\Form\AccessRight", $access_right);
+
 		return $this->render("@RibsAdmin/access-rights/edit-list.html.twig", [
-			"access_right" => $access_right
+			"access_right" => $access_right,
+            "form" => $form->createView()
 		]);
 	}
 }

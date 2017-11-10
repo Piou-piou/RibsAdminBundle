@@ -6,13 +6,17 @@
 {% endblock %}
 
 {% block body %}
-	<form action="">
+    {{ form_start(form) }}
+        <div class="top-buttons">
+            {{ form_widget(form.submit) }}
+        </div>
+
 		<div class="content-block">
 			<h2>Edit the name of the list</h2>
 			
 			<div class="block">
-				<label for="name" class="label">Name of the list</label>
-				<input type="text" name="name" required="">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name) }}
 			</div>
 		</div>
 		
@@ -34,5 +38,5 @@
 				</tbody>
 			</table>
 		</div>
-	</form>
+    {{ form_end(form) }}
 {% endblock %}
