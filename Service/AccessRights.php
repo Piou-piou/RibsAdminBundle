@@ -42,7 +42,7 @@ class AccessRights
 		
 		$ribs_admin_rights = json_decode(file_get_contents($this->em->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
 		
-		if ($admin_page == "ribsadmin" && ($route !== 404) && ($route !== null)) {
+		if ($admin_page == "ribsadmin") {
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
 			
 			if ($route_right === false) {
