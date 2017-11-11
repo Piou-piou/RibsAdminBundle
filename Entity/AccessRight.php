@@ -4,6 +4,8 @@ namespace Ribs\RibsAdminBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * AccessRight
@@ -47,6 +49,7 @@ class AccessRight
 	/**
 	 * @var \DateTime
 	 *
+	 * @Gedmo\Timestampable(on="create")
 	 * @ORM\Column(name="creation_date", type="date", nullable=true)
 	 */
 	private $creationDate;
@@ -54,6 +57,7 @@ class AccessRight
 	/**
 	 * @var \DateTime
 	 *
+	 * @Gedmo\Timestampable(on="update")
 	 * @ORM\Column(name="update_date", type="date", nullable=true)
 	 */
 	private $updateDate;

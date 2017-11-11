@@ -3,6 +3,7 @@
 namespace Ribs\RibsAdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * User
@@ -92,20 +93,22 @@ class User
 	 * @ORM\Column(name="archived", type="boolean", nullable=false, options={"default": false})
 	 */
 	private $archived;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="creation_date", type="date", nullable=true)
-     */
-    private $creationDate;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="update_date", type="date", nullable=true)
-     */
-    private $updateDate;
+	
+	/**
+	 * @var \DateTime
+	 *
+	 * @Gedmo\Timestampable(on="create")
+	 * @ORM\Column(name="creation_date", type="date", nullable=true)
+	 */
+	private $creationDate;
+	
+	/**
+	 * @var \DateTime
+	 *
+	 * @Gedmo\Timestampable(on="update")
+	 * @ORM\Column(name="update_date", type="date", nullable=true)
+	 */
+	private $updateDate;
 
     /**
      * @return int
