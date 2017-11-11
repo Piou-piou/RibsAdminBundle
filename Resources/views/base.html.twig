@@ -5,6 +5,7 @@
 		<meta charset="UTF-8">
 		
 		{% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('build/css/vendor.css') }}">
 			<link rel="stylesheet" href="{{ asset('build/css/style.css') }}">
 		{% endblock %}
 	</head>
@@ -62,6 +63,15 @@
 			{% block body %}
 			
 			{% endblock %}
+		</div>
+		
+		{# For inforamtions messages before delete an element for exemple #}
+		<div class="popup" style="display:none;height: 120px;width: 500px;" id="info-popup">
+			<div>
+				<p></p>
+			</div>
+
+			<button data-fancybox-close class="form-button button-cancel">Cancel</button>
 		</div>
 		
 		{% for message in app.session.flashBag.get('error-flash') %}
