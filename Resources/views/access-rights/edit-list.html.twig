@@ -6,37 +6,39 @@
 {% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-        <div class="top-buttons">
-            {{ form_widget(form.submit) }}
-        </div>
-
-		<div class="content-block">
-			<h2>Edit the name of the list</h2>
-			
-			<div class="block">
-                {{ form_label(form.name) }}
-                {{ form_widget(form.name) }}
-			</div>
-		</div>
+	{{ form_start(form) }}
+	<div class="top-buttons">
+		{{ form_widget(form.submit) }}
+	</div>
+	
+	<div class="content-block">
+		<h2>Edit the name of the list</h2>
 		
-		<div class="content-block">
-			<h2>Right list</h2>
-			
-			<table class="list">
-				<thead>
-					<tr>
-						<td>name of the right</td>
-						<td>Activate or not</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>toto</td>
-						<td><input type="checkbox"></td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="block">
+			{{ form_label(form.name) }}
+			{{ form_widget(form.name) }}
 		</div>
-    {{ form_end(form) }}
+	</div>
+	
+	<div class="content-block">
+		<h2>Right list</h2>
+		
+		<table class="list">
+			<thead>
+			<tr>
+				<td>name of the right</td>
+				<td>Activate or not</td>
+			</tr>
+			</thead>
+			<tbody>
+				{% for i in ribs_admin_rights.items %}
+					<tr>
+						<td>{{ i.text }}</td>
+						<td><input type="checkbox" name="right" value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %}></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	{{ form_end(form) }}
 {% endblock %}

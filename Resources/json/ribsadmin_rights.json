@@ -2,39 +2,48 @@
   "items": [
     {
       "right": "ribsadmin@index",
-      "url": "ribsadmin_index"
+      "url": "ribsadmin_index",
+      "text": "Index page of Ribs"
     },
     {
       "right": "ribsadmin@accounts",
-      "url": "ribsadmin_accounts"
+      "url": "ribsadmin_accounts",
+      "text": "Index page of accounts management"
     },
     {
       "right": "ribsadmin@account@archive",
-      "url": "ribsadmin_account_archive"
+      "url": "ribsadmin_account_archive",
+      "text": "Archive an account"
     },
     {
       "right": "ribsadmin@access_rights",
-      "url": "ribsadmin_access_rights"
+      "url": "ribsadmin_access_rights",
+      "text": "Index page of access rights management"
     },
     {
       "right": "ribsadmin@access_rights@create",
-      "url": "ribsadmin_access_rights_create"
+      "url": "ribsadmin_access_rights_create",
+      "text": "Create an access rights list"
     },
     {
       "right": "ribsadmin@access_rights@edit",
-      "url": "ribsadmin_access_rights_edit"
+      "url": "ribsadmin_access_rights_edit",
+      "text": "Edit an access rights list"
     },
     {
       "right": "ribsadmin@access_rights@delete",
-      "url": "ribsadmin_access_rights_delete"
+      "url": "ribsadmin_access_rights_delete",
+      "text": "Delete an access rights list"
     },
     {
       "right": "ribsadmin@contents",
-      "url": "ribsadmin_contents"
+      "url": "ribsadmin_contents",
+      "text": "Index of contents management"
     },
     {
       "right": "ribsadmin@navigation",
-      "url": "ribsadmin_navigation"
+      "url": "ribsadmin_navigation",
+      "text": "Index of navigation management"
     }
   ]
 }
