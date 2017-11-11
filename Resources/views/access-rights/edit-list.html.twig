@@ -22,7 +22,7 @@
 	</div>
 	
 	<div class="content-block">
-		<h2>Right list</h2>
+		<h2>Rights list</h2>
 		
 		<table class="list">
 			<thead>
@@ -35,7 +35,7 @@
 				{% for i in ribs_admin_rights.items %}
 					<tr>
 						<td>{{ i.text }}</td>
-						<td><input type="checkbox" name="right" value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %}></td>
+						<td><input type="checkbox" name="right[]" value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %}></td>
 					</tr>
 				{% endfor %}
 			</tbody>

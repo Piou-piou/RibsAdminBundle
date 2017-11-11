@@ -5,6 +5,7 @@ namespace Ribs\RibsAdminBundle\Controller;
 use Ribs\RibsAdminBundle\Entity\AccessRight;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +21,7 @@ class AccessRightsController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		$acces_right = $em->getRepository("RibsAdminBundle:AccessRight")->findAll();
-
+		
 		return $this->render("@RibsAdmin/access-rights/list-all-list.html.twig", [
 			"access_right" => $acces_right
 		]);
@@ -37,14 +38,14 @@ class AccessRightsController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		$list_rights_user = [];
-
+		
 		if ($guid === null) {
 			$access_right = new AccessRight();
 		} else {
 			$access_right = $em->getRepository("RibsAdminBundle:AccessRight")->findOneBy(["guid" => $guid]);
 			$list_rights_user = explode(",", $access_right->getAccessRights());
 		}
-
+		
 		$form = $this->createForm("Ribs\RibsAdminBundle\Form\AccessRight", $access_right);
 		$form->handleRequest($request);
 		
@@ -54,7 +55,7 @@ class AccessRightsController extends Controller
 		
 		return $this->render("@RibsAdmin/access-rights/edit-list.html.twig", [
 			"access_right" => $access_right,
-            "form" => $form->createView(),
+			"form" => $form->createView(),
 			"list_rights_user" => $list_rights_user,
 			"ribs_admin_rights" => json_decode(file_get_contents($this->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"))
 		]);
@@ -65,12 +66,20 @@ class AccessRightsController extends Controller
 	 * @param Request $request
 	 * @param Form $form
 	 * @param AccessRight $access_right
-	 * in dev
+	 * @return RedirectResponse
 	 */
-	private function handleEditForm(Request $request, Form $form, AccessRight $access_right) {
-		dump($request);
-		dump($form);
-		dump($access_right);
-		die();
+	private function handleEditForm(Request $request, Form $form, AccessRight $access_right): RedirectResponse
+	{
+		$em = $this->getDoctrine()->getManager();
+		$rights = implode(",", $request->get("right"));
+		
+		$access_right->setAccessRights($rights);
+		
+		$em->persist($access_right);
+		$em->flush();
+		
+		$this->addFlash("success-flash", "The right list was correctly edited");
+		
+		return $this->redirectToRoute("ribsadmin_access_rights");
 	}
 }
