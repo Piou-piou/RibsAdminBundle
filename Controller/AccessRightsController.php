@@ -66,7 +66,7 @@ class AccessRightsController extends Controller
 	 * @param Request $request
 	 * @param Form $form
 	 * @param AccessRight $access_right
-	 * @return RedirectResponse
+	 * @return RedirectResponse function that handle the form request
 	 */
 	private function handleEditForm(Request $request, Form $form, AccessRight $access_right): RedirectResponse
 	{
@@ -79,6 +79,28 @@ class AccessRightsController extends Controller
 		$em->flush();
 		
 		$this->addFlash("success-flash", "The right list was correctly edited");
+		
+		return $this->redirectToRoute("ribsadmin_access_rights");
+	}
+	
+	/**
+	 * @Route("/access-rights-management/delete/{guid}", name="ribsadmin_access_rights_delete")
+	 * @param string $guid
+	 * @return RedirectResponse function that delete an access right list
+	 */
+	public function deleteList(string $guid): RedirectResponse
+	{
+		$em = $this->getDoctrine()->getManager();
+		$list = $em->getRepository("RibsAdminBundle:AccessRight")->findOneBy(["guid" => $guid]);
+		
+		if ($list) {
+			$em->remove($list);
+			$em->flush();
+			
+			$this->addFlash("success-flash", "The right list was deleted");
+		} else {
+			$this->addFlash("error-flash", "The right list wasn't found");
+		}
 		
 		return $this->redirectToRoute("ribsadmin_access_rights");
 	}
