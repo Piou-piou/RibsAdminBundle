@@ -8,7 +8,7 @@
 {% block body %}
 	{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@create") == true %}
 		<div class="top-buttons">
-			<a href="">Create a new list</a>
+			<a href="{{ path('ribsadmin_access_rights_create') }}">Create a new list</a>
 		</div>
 	{% endif %}
 	
