@@ -9,7 +9,6 @@ Encore
 	
 	.addEntry("js/vendor", [
 		"./node_modules/jquery/dist/jquery.min.js",
-        './assets/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js',
 	])
 	
 	.addEntry("js/main", [
@@ -24,13 +23,22 @@ Encore
     ])
 
     .addStyleEntry("css/vendor", [
-        './assets/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css'
+        './node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css',
     ])
 	
 	.addStyleEntry("css/style", [
 		"./assets/scss/style.scss"
 
 	])
+
+    .addLoader({
+        test: /\.js$/,
+        exclude: /node_modules/,
+        include: path.join(__dirname, 'assets/'),
+        use: [{
+            loader: 'babel-loader',
+        }],
+    })
 	
 	.enableSassLoader()
 	
