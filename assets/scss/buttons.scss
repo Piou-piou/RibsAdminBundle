@@ -38,8 +38,12 @@ button {
 
 .top-buttons {
 	position: fixed;
-	right: 0px;
+	right: 24px;
 	top: 0px;
+	
+	button {
+		float: right;
+	}
 	
 	a {
 		@include default_button();
