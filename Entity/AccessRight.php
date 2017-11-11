@@ -92,7 +92,7 @@ class AccessRight
 	/**
 	 * @return string
 	 */
-	public function getGuid(): string
+	public function getGuid()
 	{
 		return $this->guid;
 	}
@@ -108,7 +108,7 @@ class AccessRight
 	/**
 	 * @return string
 	 */
-	public function getName(): string
+	public function getName()
 	{
 		return $this->name;
 	}
@@ -124,7 +124,7 @@ class AccessRight
 	/**
 	 * @return string
 	 */
-	public function getAccessRights(): string
+	public function getAccessRights()
 	{
 		return $this->accessRights;
 	}
@@ -140,7 +140,7 @@ class AccessRight
 	/**
 	 * @return \DateTime
 	 */
-	public function getCreationDate(): \DateTime
+	public function getCreationDate()
 	{
 		return $this->creationDate;
 	}
@@ -156,7 +156,7 @@ class AccessRight
 	/**
 	 * @return \DateTime
 	 */
-	public function getUpdateDate(): \DateTime
+	public function getUpdateDate()
 	{
 		return $this->updateDate;
 	}
@@ -191,7 +191,7 @@ class AccessRight
 	/**
 	 * @param User $user
 	 */
-	public function removeUSer(User $user)
+	public function removeUser(User $user)
 	{
 		$this->users->removeElement($user);
 	}
