@@ -27,7 +27,7 @@ composer require piou-piou/ribs-admin-bundle
 Edit the file app/config/config.yml, yo have to delete nothing just add parameters under
 correct parts lije framework or twig.
 
-```
+```YML
 framework:
     assets:
         json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'
@@ -43,6 +43,6 @@ fos_user:
     firewall_name: main
     user_class: Ribs\RibsAdminBundle\Entity\FosUser
     from_email:
-        address: pilloud.anthony@gmail.com
+        address: youadresse@mail.com
         sender_name: Ribs            
 ```
