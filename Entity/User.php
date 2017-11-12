@@ -41,7 +41,7 @@ class User
 	/**
 	 * @var boolean
 	 *
-	 * @ORM\Column(name="firstname", type="boolean", nullable=false, options={"default": false})
+	 * @ORM\Column(name="admin", type="boolean", nullable=false, options={"default": false})
 	 */
     private $admin;
 
