@@ -37,6 +37,13 @@ class User
 	 * @ORM\JoinColumn(name="id_access_right", referencedColumnName="id", nullable=true)
 	 */
     private $accessRightList;
+	
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="firstname", type="boolean", nullable=false, options={"default": false})
+	 */
+    private $admin;
 
     /**
      * @var string
@@ -156,6 +163,22 @@ class User
 	public function setAccessRightList(AccessRight $accessRightList)
 	{
 		$this->accessRightList = $accessRightList;
+	}
+	
+	/**
+	 * @return bool
+	 */
+	public function getAdmin(): bool
+	{
+		return $this->admin;
+	}
+	
+	/**
+	 * @param bool $admin
+	 */
+	public function setAdmin(bool $admin)
+	{
+		$this->admin = $admin;
 	}
 
     /**
