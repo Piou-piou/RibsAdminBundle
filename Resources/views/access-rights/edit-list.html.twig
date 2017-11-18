@@ -35,7 +35,12 @@
 				{% for i in ribs_admin_rights.items %}
 					<tr>
 						<td>{{ i.text }}</td>
-						<td><input type="checkbox" name="right[]" value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %}></td>
+						<td>
+							<label for="right-check{{ loop.index }}" class="checkbox-perso switched">
+								<input type="checkbox" class="test-check" id="right-check{{ loop.index }}" name="right[]"
+									   value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %}>
+							</label>
+						</td>
 					</tr>
 				{% endfor %}
 			</tbody>

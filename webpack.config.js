@@ -9,6 +9,7 @@ Encore
 	
 	.addEntry("js/vendor", [
 		"./node_modules/jquery/dist/jquery.min.js",
+		"./node_modules/ribs-checkbox/dist/js/ribs-checkbox.js",
 	])
 	
 	.addEntry("js/main", [
@@ -24,6 +25,7 @@ Encore
 
     .addStyleEntry("css/vendor", [
         './node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css',
+        './node_modules/ribs-checkbox/dist/css/style.css',
     ])
 	
 	.addStyleEntry("css/style", [
