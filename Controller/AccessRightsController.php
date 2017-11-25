@@ -50,7 +50,7 @@ class AccessRightsController extends Controller
 		$form->handleRequest($request);
 		
 		if ($form->isValid() && $form->isSubmitted()) {
-			return $this->handleEditForm($request, $form, $access_right);
+			return $this->handleEditForm($request, $access_right);
 		}
 		
 		return $this->render("@RibsAdmin/access-rights/edit-list.html.twig", [
@@ -64,11 +64,10 @@ class AccessRightsController extends Controller
 	
 	/**
 	 * @param Request $request
-	 * @param Form $form
 	 * @param AccessRight $access_right
 	 * @return RedirectResponse function that handle the form request
 	 */
-	private function handleEditForm(Request $request, Form $form, AccessRight $access_right): RedirectResponse
+	private function handleEditForm(Request $request, AccessRight $access_right): RedirectResponse
 	{
 		$em = $this->getDoctrine()->getManager();
 		$rights = implode(",", $request->get("right"));
