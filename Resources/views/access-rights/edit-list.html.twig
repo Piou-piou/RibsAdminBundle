@@ -46,5 +46,31 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<div class="content-block">
+		<h2>Administrators list</h2>
+		
+		<table class="list">
+			<thead>
+			<tr>
+				<td>name of the admin</td>
+				<td>Inside the list or not</td>
+			</tr>
+			</thead>
+			<tbody>
+			{% for i in admins %}
+				<tr>
+					<td>{{ i.firstname }} {{ i.lastname }}</td>
+					<td>
+						<label for="admin-check{{ loop.index }}" class="checkbox-perso switched">
+							<input type="checkbox" class="test-check" id="admin-check{{ loop.index }}" name="admins[]"
+							       value="{{ i.guid }}" {% if i in access_right.users %}checked{% endif %}>
+						</label>
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
 	{{ form_end(form) }}
 {% endblock %}

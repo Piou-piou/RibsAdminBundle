@@ -46,6 +46,8 @@ class AccessRightsController extends Controller
 			$list_rights_user = explode(",", $access_right->getAccessRights());
 		}
 		
+		$admins = $em->getRepository("RibsAdminBundle:User")->findBy(["admin" => true, "archived" => false]);
+		
 		$form = $this->createForm("Ribs\RibsAdminBundle\Form\AccessRight", $access_right);
 		$form->handleRequest($request);
 		
@@ -57,6 +59,7 @@ class AccessRightsController extends Controller
 			"access_right" => $access_right,
 			"form" => $form->createView(),
 			"list_rights_user" => $list_rights_user,
+			"admins" => $admins,
 			"ribs_admin_rights" => json_decode(file_get_contents($this->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"))
 		]);
 	}
