@@ -83,7 +83,9 @@ class AccessRightsController extends Controller
 		if ($admins !== null) {
 			foreach ($admins as $admin) {
 				$user = $em->getRepository("RibsAdminBundle:User")->findOneBy(["guid" => $admin]);
+				$user->setAccessRightList($access_right);
 				$access_right->addUser($user);
+				$em->persist($user);
 			}
 		}
 		
