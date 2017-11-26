@@ -24,8 +24,8 @@ composer require piou-piou/ribs-admin-bundle
 
 ### Edit configuration of symfony
 
-Edit the file app/config/config.yml, yo have to delete nothing just add parameters under
-correct parts lije framework or twig.
+Edit the file app/config/config.yml, you have to delete nothing just add parameters under
+correct parts wich are framework or twig.
 
 ```YML
 framework:
@@ -45,4 +45,67 @@ fos_user:
     from_email:
         address: youadresse@mail.com
         sender_name: Ribs            
+```
+
+### Edit routing of symfony
+
+Edit the file app/config/routing.yml, you have to delete nothing just add parameters at the end of the file.
+
+```YML
+ribs_admin:
+    resource: "@RibsAdminBundle/Controller/"
+    type: annotation
+    prefix: /ribs-admin
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_security_login:
+    path:      /login
+    defaults:  { _controller: RibsAdminBundle:Login:login, _method: POST }
+
+fos_user_security_logout:
+    path:      /logout
+    defaults:  { _controller: RibsAdminBundle:Login:logout, _method: POST }
+```
+
+### Edit security of symfony
+
+Edit the file app/config/security.yml, yo have to replace all the content by the following code : 
+
+```YML
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+                login_path: /login
+                check_path: /login_check
+            logout:
+                path: /logout
+                target: /login
+            anonymous:    true
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/ribs-admin/, role: ROLE_USER }
 ```
