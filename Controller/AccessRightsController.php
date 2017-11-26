@@ -77,6 +77,16 @@ class AccessRightsController extends Controller
 		
 		$access_right->setAccessRights($rights);
 		
+		$em->getRepository("RibsAdminBundle:AccessRight")->deleteAllUsersList($access_right);
+		$admins = $request->get("admins");
+		
+		if ($admins !== null) {
+			foreach ($admins as $admin) {
+				$user = $em->getRepository("RibsAdminBundle:User")->findOneBy(["guid" => $admin]);
+				$access_right->addUser($user);
+			}
+		}
+		
 		$em->persist($access_right);
 		$em->flush();
 		

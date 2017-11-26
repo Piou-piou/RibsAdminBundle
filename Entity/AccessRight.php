@@ -11,7 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * AccessRight
  *
  * @ORM\Table(name="access_right", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE", columns={"guid"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ribs\RibsAdminBundle\Repository\AccessRightRepository")
  * @ORM\EntityListeners({"Ribs\RibsAdminBundle\EventListener\GuidAwareListener"})
  */
 class AccessRight
