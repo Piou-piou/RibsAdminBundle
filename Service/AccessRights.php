@@ -139,10 +139,12 @@ class AccessRights
 	 * @return array function that retun a array that contain all rights of rattached list right of the current user
 	 */
 	private function getRightsListOfUser(): array {
-		$user_rights = $this->em->get("security.token_storage")->getToken()->getUser()->getUser()->getAccessRightList()->getAccessRights();
-		
-		if ($user_rights) {
-			return explode(",", $user_rights);
+		if ($this->em->get("security.token_storage")->getToken()->getUser()->getUser()->getAccessRightList()) {
+			$user_rights = $this->em->get("security.token_storage")->getToken()->getUser()->getUser()->getAccessRightList()->getAccessRights();
+			
+			if ($user_rights) {
+				return explode(",", $user_rights);
+			}
 		}
 		
 		return [""];

@@ -152,7 +152,7 @@ class User
 	/**
 	 * @return AccessRight
 	 */
-	public function getAccessRightList(): AccessRight
+	public function getAccessRightList()
 	{
 		return $this->accessRightList;
 	}
