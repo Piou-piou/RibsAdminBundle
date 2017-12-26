@@ -2,14 +2,14 @@
 
 namespace Ribs\RibsAdminBundle\Controller;
 
-use FOS\UserBundle\Controller\SecurityController as FOSController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 
-class LoginController extends FOSController
+class LoginController extends Controller
 {
 	/**
 	 * @param Request $request
