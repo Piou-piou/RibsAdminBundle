@@ -6,8 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LoginController extends Controller
@@ -21,7 +19,7 @@ class LoginController extends Controller
 	public function loginAction(Request $request)
 	{
 		/** @var $session \Symfony\Component\HttpFoundation\Session\Session */
-		$session = $request->getSession();
+		/*$session = $request->getSession();
 		
 		$authErrorKey = Security::AUTHENTICATION_ERROR;
 		$lastUsernameKey = Security::LAST_USERNAME;
@@ -54,7 +52,25 @@ class LoginController extends Controller
 			'last_username' => $lastUsername,
 			'error' => $error,
 			'csrf_token' => $csrfToken,
-		]);
+		]);*/
+		
+		$csrfToken = $this->has('security.csrf.token_manager')
+			? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
+			: null;
+		
+		$authUtils = $this->get("security.authentication_utils");
+		
+		// get the login error if there is one
+		$error = $authUtils->getLastAuthenticationError();
+		
+		// last username entered by the user
+		$lastUsername = $authUtils->getLastUsername();
+		
+		return $this->render('@RibsAdmin/login/login.html.twig', array(
+			'last_username' => $lastUsername,
+			'error'         => $error,
+			'csrf_token' => $csrfToken,
+		));
 	}
 	
 	/**

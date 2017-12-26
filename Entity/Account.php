@@ -169,7 +169,7 @@ class Account implements UserInterface, \Serializable
 	 */
 	public function getRoles()
 	{
-		return ['ROLE_USER'];
+		return ['ROLE_ADMIN'];
 	}
 	
 	/**
@@ -185,10 +185,6 @@ class Account implements UserInterface, \Serializable
 		// see section on salt below
 		return null;
 	}
-	
-	
-	
-	
 	
 	/**
 	 * Removes sensitive data from the user.
