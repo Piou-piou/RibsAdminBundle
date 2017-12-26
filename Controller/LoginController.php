@@ -8,10 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Routing\Annotation\Route;
 
 class LoginController extends Controller
 {
 	/**
+	 * @Route("/login/", name="ribsadmin_login")
 	 * @param Request $request
 	 *
 	 * @return Response
@@ -71,15 +73,5 @@ class LoginController extends Controller
 		}
 		
 		return $this->render("@RibsAdmin/login/login.html.twig", $data);
-	}
-	
-	public function checkAction()
-	{
-		throw new \RuntimeException('You must configure the check path to be handled by the firewall using form_login in your security firewall configuration.');
-	}
-	
-	public function logoutAction()
-	{
-		throw new \RuntimeException('You must activate the logout in your security firewall configuration.');
 	}
 }

@@ -42,7 +42,7 @@ class AccessRights
 		
 		$ribs_admin_rights = json_decode(file_get_contents($this->em->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
 		
-		if ($admin_page == "ribsadmin") {
+		if ($admin_page == "ribsadmin" && strpos($route, "login") == false) {
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
 			
 			if ($route_right === false) {
@@ -126,6 +126,7 @@ class AccessRights
 	 */
 	private function getUserRights(): array
 	{
+		dump($this->em->get("security.token_storage")->getToken()->getUser());
 		$user_rights = $this->em->get("security.token_storage")->getToken()->getUser()->getUser()->getAccessRights();
 		
 		if ($user_rights) {
