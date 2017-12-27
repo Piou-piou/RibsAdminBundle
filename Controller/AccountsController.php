@@ -22,6 +22,8 @@ class AccountsController extends Controller
 		$users = $em->getRepository("RibsAdminBundle:Account")->findAllUserArchived($current_account);
 		$users_archived = $em->getRepository("RibsAdminBundle:Account")->findAllUserArchived($current_account, true);
 		
+		$this->addFlash("info-flash", "test");
+		
 		return $this->render('@RibsAdmin/accounts/list-all-accounts.html.twig', [
 			"users" => $users,
 			"users_archived" => $users_archived
