@@ -126,7 +126,6 @@ class AccessRights
 	 */
 	private function getUserRights(): array
 	{
-		dump($this->em->get("security.token_storage")->getToken()->getUser());
 		$user_rights = $this->em->get("security.token_storage")->getToken()->getUser()->getUser()->getAccessRights();
 		
 		if ($user_rights) {
