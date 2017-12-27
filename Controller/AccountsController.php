@@ -19,8 +19,8 @@ class AccountsController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$current_account = $this->getUser()->getUser();
 		
-		$users = $em->getRepository("RibsAdminBundle:FosUser")->findAllUserArchived($current_account);
-		$users_archived = $em->getRepository("RibsAdminBundle:FosUser")->findAllUserArchived($current_account, true);
+		$users = $em->getRepository("RibsAdminBundle:Account")->findAllUserArchived($current_account);
+		$users_archived = $em->getRepository("RibsAdminBundle:Account")->findAllUserArchived($current_account, true);
 		
 		return $this->render('@RibsAdmin/accounts/list-all-accounts.html.twig', [
 			"users" => $users,

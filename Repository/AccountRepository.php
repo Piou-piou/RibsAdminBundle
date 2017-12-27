@@ -5,7 +5,7 @@ namespace Ribs\RibsAdminBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use Ribs\RibsAdminBundle\Entity\User;
 
-class FosUserRepository extends EntityRepository
+class AccountRepository extends EntityRepository
 {
 	/**
 	 * @param User $current_account
@@ -14,7 +14,7 @@ class FosUserRepository extends EntityRepository
 	 */
 	public function findAllUserArchived(User $current_account, bool $archived = false): array
 	{
-		$query = $this->getEntityManager()->createQuery("SELECT fu FROM RibsAdminBundle:FosUser fu
+		$query = $this->getEntityManager()->createQuery("SELECT fu FROM RibsAdminBundle:Account fu
 			  JOIN RibsAdminBundle:User u  WITH fu.user = u
 			  WHERE u.archived = :archived and u != :current_account
 			")
