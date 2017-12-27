@@ -4,7 +4,6 @@ namespace Ribs\RibsAdminBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Ribs\RibsAdminBundle\Entity\AccessRight;
-use Ribs\RibsAdminBundle\Entity\User;
 
 class AccessRightRepository extends EntityRepository
 {
