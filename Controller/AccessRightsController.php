@@ -4,7 +4,6 @@ namespace Ribs\RibsAdminBundle\Controller;
 
 use Ribs\RibsAdminBundle\Entity\AccessRight;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,7 +72,12 @@ class AccessRightsController extends Controller
 	private function handleEditForm(Request $request, AccessRight $access_right): RedirectResponse
 	{
 		$em = $this->getDoctrine()->getManager();
-		$rights = implode(",", $request->get("right"));
+		
+		if ($request->get("right") === null) {
+			$rights = "";
+		} else {
+			$rights = implode(",", $request->get("right"));
+		}
 		
 		$access_right->setAccessRights($rights);
 		
