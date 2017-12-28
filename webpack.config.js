@@ -9,8 +9,8 @@ Encore
 
 .addEntry('js/vendor', [
   './node_modules/jquery/dist/jquery.min.js',
-  './node_modules/ribs-checkbox/source/js/ribs-checkbox.js',
-  './node_modules/ribs-flash-message/source/js/ribs-flash-message.js',
+  './node_modules/ribs-checkbox/dist/js/ribs-checkbox.js',
+  './node_modules/ribs-flash-message/dist/js/ribs-flash-message.js',
 ])
 
 .addEntry('js/main', [
@@ -35,11 +35,9 @@ Encore
 
 .addLoader({
   test: /\.js$/,
+  exclude: [path.join(__dirname, 'node_modules/ribs-core/')],
   include: [
     path.join(__dirname, 'assets/'),
-    path.join(__dirname, 'node_modules/ribs-core/'),
-    path.join(__dirname, 'node_modules/ribs-checkbox/source/'),
-    path.join(__dirname, 'node_modules/ribs-flash-message/source/')
   ],
   loader: 'babel-loader',
 })
