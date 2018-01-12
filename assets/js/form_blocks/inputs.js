@@ -6,14 +6,14 @@ $(document).ready(function() {
 
 	//---------------------------- EFFECT MATERIAL ON INPUT INPUT -----------------------------//
 	$('.block input').focus(function() {
-		$parent = $(this).parent();
+		let $parent = $(this).parent();
 		$parent.addClass('is-focused has-label');
 		$parent.removeClass('invalid');
 	});
 
 	$('.block input').blur(function() {
-		$parent = $(this).parent();
-		$this = $(this);
+    let $parent = $(this).parent();
+		let $this = $(this);
 
         var type = $this.attr("type-val");
         var min = $this.attr("min");
@@ -35,7 +35,7 @@ $(document).ready(function() {
         }
 
 		$parent.removeClass('is-focused');
-    
+
     if ($this.val() == "") {
       $parent.removeClass('has-label');
     }
