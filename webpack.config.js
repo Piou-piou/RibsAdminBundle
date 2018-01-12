@@ -35,7 +35,7 @@ Encore
 
 .addLoader({
   test: /\.js$/,
-  exclude: [path.join(__dirname, 'node_modules/ribs-core/')],
+  exclude: /node_modules/,
   include: [
     path.join(__dirname, 'assets/'),
   ],
