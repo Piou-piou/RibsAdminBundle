@@ -50,6 +50,20 @@ class Page
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
      */
     private $title;
+	
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="template", type="string", length=255, nullable=false)
+	 */
+    private $template;
+	
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="url", type="string", length=255, nullable=false)
+	 */
+	private $url;
 
     /**
      * @var string
@@ -184,6 +198,38 @@ class Page
     {
         $this->title = $title;
     }
+	
+	/**
+	 * @return string
+	 */
+	public function getTemplate()
+	{
+		return $this->template;
+	}
+	
+	/**
+	 * @param string $template
+	 */
+	public function setTemplate($template)
+	{
+		$this->template = $template;
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getUrl()
+	{
+		return $this->url;
+	}
+	
+	/**
+	 * @param string $url
+	 */
+	public function setUrl($url)
+	{
+		$this->url = $url;
+	}
 
     /**
      * @return string
