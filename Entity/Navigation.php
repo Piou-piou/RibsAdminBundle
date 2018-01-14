@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Navigation
  *
- * @ORM\Table(name="navigation", indexes={@ORM\Index(name="fk_navigation_page1_idx", columns={"page_id"}),
- *     @ORM\Index(name="fk_navigation_module1_idx", columns={"module_id"})})
+ * @ORM\Table(name="navigation", indexes={@ORM\Index(name="fk_navigation_page1_idx", columns={"id_page"}),
+ *     @ORM\Index(name="fk_navigation_module1_idx", columns={"id_module"})})
  * @ORM\Entity(repositoryClass="Ribs\RibsAdminBundle\Repository\NavigationRepository")
  */
 class Navigation
