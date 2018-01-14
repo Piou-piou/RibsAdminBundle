@@ -22,4 +22,12 @@ class PageController extends Controller
 		
 		throw new NotFoundHttpException("The required page does not exist");
 	}
+	
+	/**
+	 * @Route("/contents", name="ribsadmin_contents")
+	 */
+	public function indexAction(): Response
+	{
+		return $this->render('RibsAdminBundle:Default:index.html.twig');
+	}
 }
