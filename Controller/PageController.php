@@ -13,10 +13,8 @@ class PageController extends Controller
 	 */
 	public function indexAction(): Response
 	{
-		$navigation = $this->getDoctrine()->getManager()->getRepository("RibsAdminBundle:Navigation")->findAllNavigation();
+		$navigation = $this->getDoctrine()->getManager()->getRepository("RibsAdminBundle:Navigation")->findAllNavigationPage();
 		
-		dump($navigation);
-		
-		return $this->render('@RibsAdmin/page/index.html.twig');
+		return $this->render('@RibsAdmin/page/index.html.twig', ["navigation" => $navigation]);
 	}
 }

@@ -34,7 +34,7 @@ class Navigation
 	 *
 	 * @ORM\ManyToOne(targetEntity="Module")
 	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="module_id", referencedColumnName="id")
+	 *   @ORM\JoinColumn(name="id_module", referencedColumnName="id", nullable=true)
 	 * })
 	 */
 	private $module;
@@ -44,7 +44,7 @@ class Navigation
 	 *
 	 * @ORM\ManyToOne(targetEntity="Page")
 	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="page_id", referencedColumnName="id")
+	 *   @ORM\JoinColumn(name="id_page", referencedColumnName="id", nullable=true)
 	 * })
 	 */
 	private $page;
