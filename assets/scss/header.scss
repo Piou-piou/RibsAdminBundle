@@ -16,9 +16,17 @@ header {
 	}
 }
 
+.displayed-nav .nav-page {
+	padding-left: 350px;
+}
+
 .nav-page {
 	background-color: $bg-general;
 	min-height: 48px;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	padding-left: 190px;
 	
 	.notification {
 		float: right;
@@ -37,7 +45,7 @@ header {
 		}
 	}
 	
-	.inner >ul {
+	ul {
 		a {
 			height: 23px;
 			min-width: 120px;
