@@ -24,15 +24,15 @@ class LoginController extends Controller
 		
 		$auth_utils = $this->get("security.authentication_utils");
 		
-		// get the login error if there is one
-		$error = $auth_utils->getLastAuthenticationError();
+		if ($auth_utils->getLastAuthenticationError()) {
+			$this->addFlash("error-flash", "Your login or password are incorrect");
+		}
 		
 		// last username entered by the user
 		$last_username = $auth_utils->getLastUsername();
 		
 		return $this->render('@RibsAdmin/login/login.html.twig', array(
 			'last_username' => $last_username,
-			'error' => $error,
 			'csrf_token' => $csrf_token,
 		));
 	}
