@@ -1,3 +1,9 @@
 {% extends page.template %}
 
-{% block body %}{% endblock %}
+{% block title %}{{ page.titleTag }}{% endblock %}
+
+{% block description %}{{ page.descriptionTag }}{% endblock %}
+
+{% block ribsBlock %}
+	{{ page.content }}
+{% endblock %}
