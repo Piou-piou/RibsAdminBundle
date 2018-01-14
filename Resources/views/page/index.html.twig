@@ -6,12 +6,12 @@
 
 {% block body %}
 	<nav class="nav-page">
-		<ul>
-			<li><a href="">Accueil</a></li>
-			<li><a href="">page 2</a></li>
-			<li><a href="">page 3</a></li>
-			<li><a href="">page 4</a></li>
-			<li><a href="">page 1</a></li>
-		</ul>
+		{% if navigation is iterable and navigation|length > 0 %}
+			<ul>
+				{% for i in navigation %}
+					<li><a href="{{ i.url }}" title="{{ i.title_tag }}">{{ i.title }}</a></li>
+				{% endfor %}
+			</ul>
+		{% endif %}
 	</nav>
 {% endblock %}
