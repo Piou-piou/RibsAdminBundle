@@ -28,6 +28,6 @@ class PageController extends Controller
 	 */
 	public function indexAction(): Response
 	{
-		return $this->render('RibsAdminBundle:Default:index.html.twig');
+		return $this->render('@RibsAdmin/page/index.html.twig');
 	}
 }
