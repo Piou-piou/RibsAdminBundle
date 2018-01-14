@@ -14,7 +14,10 @@ class RenderPageController extends Controller
 	 */
 	public function renderPageAction(string $url): Response
 	{
-		$page = $this->getDoctrine()->getManager()->getRepository("RibsAdminBundle:Page")->findOneBy(["url" => $url]);
+		$em = $this->getDoctrine()->getManager();
+		
+		$page = $em->getRepository("RibsAdminBundle:Page")->findOneBy(["url" => $url]);
+		$navigation = $em->getRepository("RibsAdminBundle:Navigation")->findAllNavigation();
 		
 		if ($page) {
 			return $this->render("@RibsAdmin/page.html.twig", ["page" => $page]);
