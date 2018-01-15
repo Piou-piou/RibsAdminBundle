@@ -1,6 +1,7 @@
 body {
 	font-family: $police-princ;
 	background-color: #EBEDF1;
+    overflow-x: hidden;
 }
 
 .inner {
@@ -31,7 +32,7 @@ body {
 a {
 	text-decoration: none;
 	color: inherit;
-	
+
 	&:hover {
 		cursor: pointer;
 	}
