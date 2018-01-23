@@ -9,7 +9,18 @@
     ],
     "require": {
         "ramsey/uuid": "^3.7",
-        "stof/doctrine-extensions-bundle": "^1.2"
+        "stof/doctrine-extensions-bundle": "^1.2",
+        "php": ">=7.1.3",
+        "symfony/orm-pack": "^1.0",
+        "symfony/security-bundle": "^4.0",
+        "symfony/config": "^4.0",
+        "symfony/dependency-injection": "^4.0",
+        "symfony/doctrine-bridge": "^4.0",
+        "symfony/form": "^4.0",
+        "symfony/framework-bundle": "^4.0",
+        "symfony/http-kernel": "^4.0",
+        "symfony/validator": "^4.0",
+        "twig/twig": "~2.4"
     },
     "autoload": {
       "psr-4": {
