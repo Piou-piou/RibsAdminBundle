@@ -3,7 +3,7 @@
   "license": "MIT",
   "type": "symfony-bundle",
   "description": "ribs-admin-bundle it offer the possibility to create fully personalisable and administrable pages ! You can also add you awn modules and/or modules added by the community",
-  "homepage": "https://github.com/Piou-piou/RibsAdminBundle"
+  "homepage": "https://github.com/Piou-piou/RibsAdminBundle",
   "authors": [
     {
       "name": "Anthony Pilloud",
