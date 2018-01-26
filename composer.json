@@ -14,27 +14,29 @@
     "php": ">=7.0",
     "ramsey/uuid": "^3.7",
     "stof/doctrine-extensions-bundle": "^1.2",
-    "symfony/framework-bundle": "~2.7|~3.0|~4.0",
-    "sensio/framework-extra-bundle": "~2.3|~3.0,>=3.0.2|4.0.x",
-    "symfony/config": "~2.3|~3.0|~4.0",
+    "symfony/framework-bundle": "^3.3|^4.0",
+    "sensio/framework-extra-bundle": "~3.0,>=3.0.2|4.0.x",
+    "symfony/config": "^3.3|^4.0",
     "symfony/polyfill-mbstring": "^1.0",
-    "symfony/security-bundle": "~2.3|~3.0|~4.0",
-    "symfony/translation": "~2.3|~3.0|~4.0",
-    "symfony/form": "~2.3|~3.0|~4.0",
+    "symfony/security-bundle": "~3.0|~4.0",
+    "symfony/translation": "~3.0|~4.0",
+    "symfony/form": "~3.0|~4.0",
     "doctrine/dbal": "~2.5",
     "doctrine/doctrine-bundle": "~1.8",
-    "symfony/twig-bridge": "^2.3.4|~3.0|~4.0",
-    "symfony/twig-bundle": "~2.3|~3.0|~4.0",
-    "symfony/validator": "~2.3|~3.0|~4.0",
+    "symfony/twig-bridge": "~3.0|~4.0",
+    "symfony/twig-bundle": "~3.0|~4.0",
+    "symfony/validator": "~3.0|~4.0",
     "twig/extensions": "^1.0",
     "twig/twig": "~1.14,>=1.14.2|~2.0",
-    "symfony/routing": "^2.8 || ^3.2 || ^4.0",
-    "symfony/console": "^2.8 || ^3.2 || ^4.0",
-    "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0"
+    "symfony/routing": "^3.2 || ^4.0",
+    "symfony/console": "^3.2 || ^4.0",
+    "symfony/http-foundation": "^3.2 || ^4.0",
+    "symfony/dependency-injection": "^3.3|^4.0",
+    "symfony/http-kernel": "^3.3|^4.0"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.1",
-    "symfony/yaml": "^2.8 || ^3.2 || ^4.0"
+    "symfony/yaml": "^3.2 || ^4.0"
   },
   "autoload": {
     "psr-4": {
