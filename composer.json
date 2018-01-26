@@ -41,7 +41,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ribs\\RibsAdminBundle\\": ""
+      "PiouPiou\\RibsAdminBundle\\": ""
     }
   },
   "extra": {
