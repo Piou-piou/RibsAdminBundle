@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Entity;
+namespace PiouPiou\RibsAdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE", columns={"guid"})})
  * @ORM\Entity
- * @ORM\EntityListeners({"Ribs\RibsAdminBundle\EventListener\GuidAwareListener"})
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener"})
  */
 class User
 {
@@ -33,7 +33,7 @@ class User
 	/**
 	 * @var AccessRight
 	 *
-	 * @ORM\ManyToOne(targetEntity="Ribs\RibsAdminBundle\Entity\AccessRight", inversedBy="users")
+	 * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\AccessRight", inversedBy="users")
 	 * @ORM\JoinColumn(name="id_access_right", referencedColumnName="id", nullable=true)
 	 */
     private $accessRightList;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Entity;
+namespace PiouPiou\RibsAdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="page", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE", columns={"guid"})}, indexes={@ORM\Index(name="fk_page_page1_idx", columns={"parent"})})
  * @ORM\Entity
- * @ORM\EntityListeners({"Ribs\RibsAdminBundle\EventListener\GuidAwareListener"})
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener"})
  */
 class Page
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Service;
+namespace PiouPiou\RibsAdminBundle\Service;
 
 class Globals
 {

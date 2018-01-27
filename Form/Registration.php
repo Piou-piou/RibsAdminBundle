@@ -1,8 +1,8 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Form;
+namespace PiouPiou\RibsAdminBundle\Form;
 
-use Ribs\RibsAdminBundle\Entity\Account;
+use PiouPiou\RibsAdminBundle\Entity\Account;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\DependencyInjection;
+namespace PiouPiou\RibsAdminBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

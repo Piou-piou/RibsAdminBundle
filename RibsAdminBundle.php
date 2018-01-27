@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle;
+namespace PiouPiou\RibsAdminBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

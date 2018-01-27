@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Repository;
+namespace PiouPiou\RibsAdminBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

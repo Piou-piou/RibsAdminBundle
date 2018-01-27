@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Tests\Controller;
+namespace PiouPiou\RibsAdminBundle\Tests\Controller;
 
 use Symfony\Bundle\RibsAdminBundle\Test\WebTestCase;
 

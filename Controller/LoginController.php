@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Controller;
+namespace PiouPiou\RibsAdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

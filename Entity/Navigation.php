@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Entity;
+namespace PiouPiou\RibsAdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="navigation", indexes={@ORM\Index(name="fk_navigation_page1_idx", columns={"id_page"}),
  *     @ORM\Index(name="fk_navigation_module1_idx", columns={"id_module"})})
- * @ORM\Entity(repositoryClass="Ribs\RibsAdminBundle\Repository\NavigationRepository")
+ * @ORM\Entity(repositoryClass="PiouPiou\RibsAdminBundle\Repository\NavigationRepository")
  */
 class Navigation
 {

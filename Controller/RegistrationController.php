@@ -1,9 +1,9 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Controller;
+namespace PiouPiou\RibsAdminBundle\Controller;
 
-use Ribs\RibsAdminBundle\Form\Registration;
-use Ribs\RibsAdminBundle\Entity\Account;
+use PiouPiou\RibsAdminBundle\Form\Registration;
+use PiouPiou\RibsAdminBundle\Entity\Account;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

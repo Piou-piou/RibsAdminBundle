@@ -1,12 +1,12 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Entity;
+namespace PiouPiou\RibsAdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="Ribs\RibsAdminBundle\Repository\AccountRepository")
+ * @ORM\Entity(repositoryClass="PiouPiou\RibsAdminBundle\Repository\AccountRepository")
  * @ORM\Table(name="account")
  */
 class Account implements UserInterface, \Serializable
@@ -41,7 +41,7 @@ class Account implements UserInterface, \Serializable
 	/**
 	 * @var User
 	 *
-	 * @ORM\OneToOne(targetEntity="Ribs\RibsAdminBundle\Entity\User", cascade={"persist"})
+	 * @ORM\OneToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User", cascade={"persist"})
 	 * @ORM\JoinColumns({
 	 *   @ORM\JoinColumn(name="id_user", referencedColumnName="id", nullable=true)
 	 * })

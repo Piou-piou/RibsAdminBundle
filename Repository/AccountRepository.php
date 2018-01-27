@@ -1,9 +1,9 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Repository;
+namespace PiouPiou\RibsAdminBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Ribs\RibsAdminBundle\Entity\User;
+use PiouPiou\RibsAdminBundle\Entity\User;
 
 class AccountRepository extends EntityRepository
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Entity;
+namespace PiouPiou\RibsAdminBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,8 +11,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * AccessRight
  *
  * @ORM\Table(name="access_right", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE", columns={"guid"})})
- * @ORM\Entity(repositoryClass="Ribs\RibsAdminBundle\Repository\AccessRightRepository")
- * @ORM\EntityListeners({"Ribs\RibsAdminBundle\EventListener\GuidAwareListener"})
+ * @ORM\Entity(repositoryClass="PiouPiou\RibsAdminBundle\Repository\AccessRightRepository")
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener"})
  */
 class AccessRight
 {
@@ -65,7 +65,7 @@ class AccessRight
 	/**
 	 * @var ArrayCollection
 	 *
-	 * @ORM\OneToMany(targetEntity="Ribs\RibsAdminBundle\Entity\User", mappedBy="accessRightList")
+	 * @ORM\OneToMany(targetEntity="PiouPiou\RibsAdminBundle\Entity\User", mappedBy="accessRightList")
 	 */
 	private $users;
 	

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\EventListener;
+namespace PiouPiou\RibsAdminBundle\EventListener;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Ramsey\Uuid\Uuid;

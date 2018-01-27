@@ -1,6 +1,6 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Form;
+namespace PiouPiou\RibsAdminBundle\Form;
 
 use AppBundle\Entity\Profil;
 use Symfony\Component\Form\AbstractType;
@@ -31,7 +31,7 @@ class AccessRight extends AbstractType
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults([
-			'data_class' => \Ribs\RibsAdminBundle\Entity\AccessRight::class,
+			'data_class' => \PiouPiou\RibsAdminBundle\Entity\AccessRight::class,
 		]);
 	}
 }

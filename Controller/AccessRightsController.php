@@ -1,8 +1,8 @@
 <?php
 
-namespace Ribs\RibsAdminBundle\Controller;
+namespace PiouPiou\RibsAdminBundle\Controller;
 
-use Ribs\RibsAdminBundle\Entity\AccessRight;
+use PiouPiou\RibsAdminBundle\Entity\AccessRight;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,7 +47,7 @@ class AccessRightsController extends Controller
 		
 		$admins = $em->getRepository("RibsAdminBundle:User")->findBy(["admin" => true, "archived" => false]);
 		
-		$form = $this->createForm("Ribs\RibsAdminBundle\Form\AccessRight", $access_right);
+		$form = $this->createForm("PiouPiou\RibsAdminBundle\Form\AccessRight", $access_right);
 		$form->handleRequest($request);
 		
 		if ($form->isValid() && $form->isSubmitted()) {

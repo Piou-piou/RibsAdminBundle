@@ -41,7 +41,7 @@ twig:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: Ribs\RibsAdminBundle\Entity\FosUser
+    user_class: PiouPiou\RibsAdminBundle\Entity\FosUser
     from_email:
         address: youadresse@mail.com
         sender_name: Ribs            

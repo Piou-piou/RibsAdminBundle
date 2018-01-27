@@ -4,16 +4,16 @@ services:
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
 
     # EntityListeners
-    Ribs\RibsAdminBundle\EventListener\GuidAwareListener:
+    PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener:
         arguments: [ "@service_container" ]
         tags:
             - { name: doctrine.orm.entity_listener }
 
     ribs_admin.acess_rights:
-        class: Ribs\RibsAdminBundle\Service\AccessRights
+        class: PiouPiou\RibsAdminBundle\Service\AccessRights
         arguments: ['@service_container', "@router", "@session", "@request_stack"]
         tags:
             - {name: kernel.event_listener, event: kernel.controller}
 
     ribs_admin.globals:
-        class: Ribs\RibsAdminBundle\Service\Globals
+        class: PiouPiou\RibsAdminBundle\Service\Globals
