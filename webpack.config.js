@@ -3,7 +3,7 @@ const path = require('path');
 var glob = require('glob');
 
 Encore
-.setOutputPath('../../../web/build/')
+.setOutputPath('../../../public/build/')
 .setPublicPath('/build')
 .cleanupOutputBeforeBuild()
 
