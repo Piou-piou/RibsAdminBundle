@@ -50,7 +50,7 @@ class AccessRightsController extends Controller
 		$form = $this->createForm("PiouPiou\RibsAdminBundle\Form\AccessRight", $access_right);
 		$form->handleRequest($request);
 		
-		if ($form->isValid() && $form->isSubmitted()) {
+		if ($form->isSubmitted() && $form->isValid()) {
 			return $this->handleEditForm($request, $access_right);
 		}
 		
