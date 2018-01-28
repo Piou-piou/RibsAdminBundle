@@ -11,7 +11,7 @@ services:
 
     ribs_admin.acess_rights:
         class: PiouPiou\RibsAdminBundle\Service\AccessRights
-        arguments: ['@service_container', "@router", "@session", "@request_stack"]
+        arguments: ['@service_container', "@router", "@session", "@request_stack", "@ribs_admin.globals"]
         tags:
             - {name: kernel.event_listener, event: kernel.controller}
 

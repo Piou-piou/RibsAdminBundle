@@ -14,6 +14,7 @@ class AccessRights
 	private $router;
 	private $session;
 	private $request;
+	private $globals;
 	
 	/**
 	 * AccessRights constructor.
@@ -22,12 +23,13 @@ class AccessRights
 	 * @param Session $session
 	 * @param RequestStack $request
 	 */
-	public function __construct(ContainerInterface $em, RouterInterface $router, Session $session, RequestStack $request)
+	public function __construct(ContainerInterface $em, RouterInterface $router, Session $session, RequestStack $request, Globals $globals)
 	{
 		$this->em = $em;
 		$this->router = $router;
 		$this->session = $session;
 		$this->request = $request;
+		$this->globals = $globals;
 	}
 	
 	public function onKernelController()
@@ -40,7 +42,7 @@ class AccessRights
 			return;
 		}
 		
-		$ribs_admin_rights = json_decode(file_get_contents($this->em->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
+		$ribs_admin_rights = json_decode(file_get_contents($this->globals->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
 		
 		if ($route === null) {
 			throw new AccessDeniedException("No access");
