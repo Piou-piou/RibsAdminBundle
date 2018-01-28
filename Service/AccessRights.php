@@ -44,10 +44,6 @@ class AccessRights
 		
 		$ribs_admin_rights = json_decode(file_get_contents($this->globals->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
 		
-		if ($route === null) {
-			throw new AccessDeniedException("No access");
-		}
-		
 		if ($admin_page == "ribsadmin" && strpos($route, "login") == false && strpos($route, "register") == false) {
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
 			

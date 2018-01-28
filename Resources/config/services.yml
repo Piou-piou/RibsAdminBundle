@@ -14,6 +14,8 @@ services:
         arguments: ['@service_container', "@router", "@session", "@request_stack", "@ribs_admin.globals"]
         tags:
             - {name: kernel.event_listener, event: kernel.controller}
+        public: true
 
     ribs_admin.globals:
         class: PiouPiou\RibsAdminBundle\Service\Globals
+        public: true
