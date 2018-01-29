@@ -65,9 +65,9 @@ class Module
 	private $url;
 	
 	/**
-	 * @var integer
+	 * @var boolean
 	 *
-	 * @ORM\Column(name="active", type="integer", nullable=false)
+	 * @ORM\Column(name="active", type="boolean", nullable=false)
 	 */
 	private $active;
 	
@@ -79,9 +79,9 @@ class Module
 	private $order;
 	
 	/**
-	 * @var integer
+	 * @var boolean
 	 *
-	 * @ORM\Column(name="displayed", type="integer", nullable=false)
+	 * @ORM\Column(name="displayed", type="boolean", nullable=false)
 	 */
 	private $displayed;
 	
