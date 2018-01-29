@@ -19,7 +19,6 @@ class NavigationBuilderController extends Controller
 		
 		foreach ($navigation["items"] as $item) {
 			if ($this->get("ribs_admin.acess_rights")->testRight($item["right"])) {
-				dump($item);
 				$this->nav[] = $item;
 			}
 		}
@@ -42,7 +41,7 @@ class NavigationBuilderController extends Controller
 		foreach ($modules as $module) {
 			$this->nav[] = [
 				"right" => "ribsadmin@blog",
-				"url" => "ribsbadmin_index",
+				"url" => "ribsadmin_index",
 				"icon" => "",
 				"text" => $module->getTitle()
 			];
