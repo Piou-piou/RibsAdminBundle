@@ -25,9 +25,9 @@ class Module
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="name", type="string", length=255, nullable=false)
+	 * @ORM\Column(name="package_name", type="string", length=255, nullable=false)
 	 */
-	private $name;
+	private $packageName;
 	
 	/**
 	 * @var string
@@ -127,17 +127,17 @@ class Module
 	/**
 	 * @return string
 	 */
-	public function getName(): string
+	public function getPackageName(): string
 	{
-		return $this->name;
+		return $this->packageName;
 	}
 	
 	/**
-	 * @param string $name
+	 * @param string $package_namee
 	 */
-	public function setName(string $name)
+	public function setpackageName(string $package_namee)
 	{
-		$this->name = $name;
+		$this->packageName = $package_namee;
 	}
 	
 	/**
