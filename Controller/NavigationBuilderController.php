@@ -40,7 +40,7 @@ class NavigationBuilderController extends Controller
 		
 		foreach ($modules as $module) {
 			$navigation = json_decode(file_get_contents($this->get("ribs_admin.globals")->getBaseBundlePath
-				($module->getPackageName()) .	"/Resources/json/navigation.json"), true);
+				($module->getPackageName()) . "/Resources/json/navigation.json"), true);
 			
 			foreach ($navigation["items"] as $item) {
 				if ($this->get("ribs_admin.acess_rights")->testRight($item["right"])) {
