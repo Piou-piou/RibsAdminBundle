@@ -2,6 +2,7 @@
 
 namespace PiouPiou\RibsAdminBundle\Service;
 
+use PiouPiou\RibsAdminBundle\Entity\Module;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -43,6 +44,8 @@ class AccessRights
 		}
 		
 		$ribs_admin_rights = json_decode(file_get_contents($this->globals->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
+		$modules_rights = $this->getModuleRights();
+		$ribs_admin_rights = (object) array_merge((array) $ribs_admin_rights, (array) $modules_rights);
 		
 		if ($admin_page == "ribsadmin" && strpos($route, "login") == false && strpos($route, "register") == false) {
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
@@ -57,6 +60,25 @@ class AccessRights
 			
 			throw new AccessDeniedException("No access");
 		}
+	}
+	
+	/**
+	 * @return object
+	 * function that return all modules rights
+	 */
+	private function getModuleRights()
+	{
+		$modules = $this->em->get("doctrine")->getRepository(Module::class)->findBy([
+			"active" => true,
+			"displayed" => true
+		]);
+		$rights = [];
+		
+		foreach ($modules as $module) {
+			$rights[] = json_decode(file_get_contents($this->globals->getBaseBundlePath($module->getPackageName()) . "/Resources/json/ribsadmin_rights.json"));
+		}
+		
+		return (object)$rights;
 	}
 	
 	/**
