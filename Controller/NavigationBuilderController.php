@@ -41,7 +41,7 @@ class NavigationBuilderController extends Controller
 		foreach ($modules as $module) {
 			$this->nav[] = [
 				"right" => "ribsadmin@blog",
-				"url" => "ribsadmin_index",
+				"url" => $module->getUrlAdmin(),
 				"icon" => "",
 				"text" => $module->getTitle()
 			];

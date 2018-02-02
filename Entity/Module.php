@@ -65,6 +65,13 @@ class Module
 	private $url;
 	
 	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="url_admin", type="string", length=255, nullable=false)
+	 */
+	private $urlAdmin;
+	
+	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="active", type="integer", nullable=false)
@@ -211,6 +218,20 @@ class Module
 	public function setUrl(string $url)
 	{
 		$this->url = $url;
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getUrlAdmin(): string {
+		return $this->urlAdmin;
+	}
+	
+	/**
+	 * @param string $urlAdmin
+	 */
+	public function setUrlAdmin(string $urlAdmin) {
+		$this->urlAdmin = $urlAdmin;
 	}
 	
 	/**
