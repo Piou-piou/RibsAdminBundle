@@ -98,17 +98,17 @@ class Navigation
 	}
 	
 	/**
-	 * @return \Page
+	 * @return Page
 	 */
-	public function getPage(): \Page
+	public function getPage(): Page
 	{
 		return $this->page;
 	}
 	
 	/**
-	 * @param \Page $page
+	 * @param Page $page
 	 */
-	public function setPage(\Page $page)
+	public function setPage(Page $page)
 	{
 		$this->page = $page;
 	}
