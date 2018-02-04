@@ -50,7 +50,7 @@ class AccessRights
 		$modules_rights = $this->module->getModuleRights();
 		$ribs_admin_rights = (object) array_merge((array) $ribs_admin_rights, (array) $modules_rights);
 		
-		if ($admin_page == "ribsadmin" && strpos($route, "login") == false && strpos($route, "register") == false) {
+		if ($admin_page == "ribsadmin" && strpos($route, "login") === false && strpos($route, "register") === false) {
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
 			
 			if ($route_right === false) {
