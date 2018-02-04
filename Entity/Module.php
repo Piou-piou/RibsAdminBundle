@@ -235,17 +235,17 @@ class Module
 	}
 	
 	/**
-	 * @return int
+	 * @return boolean
 	 */
-	public function getActive(): int
+	public function getActive(): bool
 	{
 		return $this->active;
 	}
 	
 	/**
-	 * @param int $active
+	 * @param bool $active
 	 */
-	public function setActive(int $active)
+	public function setActive(bool $active)
 	{
 		$this->active = $active;
 	}

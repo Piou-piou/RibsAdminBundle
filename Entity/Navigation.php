@@ -30,7 +30,7 @@ class Navigation
 	private $order;
 	
 	/**
-	 * @var \Module
+	 * @var Module
 	 *
 	 * @ORM\ManyToOne(targetEntity="Module")
 	 * @ORM\JoinColumns({
