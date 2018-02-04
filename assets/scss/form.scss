@@ -2,6 +2,10 @@ form .block {
 	position: relative;
 	padding: 16px 0 8px 0;
 
+	&.mid-width {
+		width: 50%;
+	}
+
 	.label {
 		position: relative;
 		margin: 0;
