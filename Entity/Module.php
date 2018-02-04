@@ -267,17 +267,17 @@ class Module
 	}
 	
 	/**
-	 * @return int
+	 * @return bool
 	 */
-	public function getDisplayed(): int
+	public function getDisplayed(): bool
 	{
 		return $this->displayed;
 	}
 	
 	/**
-	 * @param int $displayed
+	 * @param bool $displayed
 	 */
-	public function setDisplayed(int $displayed)
+	public function setDisplayed(bool $displayed)
 	{
 		$this->displayed = $displayed;
 	}

@@ -40,7 +40,7 @@ class Navigation
 	private $module;
 	
 	/**
-	 * @var \Page
+	 * @var Page
 	 *
 	 * @ORM\ManyToOne(targetEntity="Page")
 	 * @ORM\JoinColumns({
@@ -82,17 +82,17 @@ class Navigation
 	}
 	
 	/**
-	 * @return \Module
+	 * @return Module
 	 */
-	public function getModule(): \Module
+	public function getModule(): Module
 	{
 		return $this->module;
 	}
 	
 	/**
-	 * @param \Module $module
+	 * @param Module $module
 	 */
-	public function setModule(\Module $module)
+	public function setModule(Module $module)
 	{
 		$this->module = $module;
 	}
