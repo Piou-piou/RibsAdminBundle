@@ -11,11 +11,16 @@ services:
 
     ribs_admin.acess_rights:
         class: PiouPiou\RibsAdminBundle\Service\AccessRights
-        arguments: ['@service_container', "@router", "@session", "@request_stack", "@ribs_admin.globals"]
+        arguments: ['@service_container', "@router", "@session", "@request_stack", "@ribs_admin.globals", "@ribs_admin.module_service"]
         tags:
             - {name: kernel.event_listener, event: kernel.controller}
         public: true
 
     ribs_admin.globals:
         class: PiouPiou\RibsAdminBundle\Service\Globals
+        public: true
+
+    ribs_admin.module_service:
+        class: PiouPiou\RibsAdminBundle\Service\ModuleService
+        arguments: ['@service_container', "@ribs_admin.globals"]
         public: true

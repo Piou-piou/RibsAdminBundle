@@ -2,7 +2,6 @@
 
 namespace PiouPiou\RibsAdminBundle\Service;
 
-use PiouPiou\RibsAdminBundle\Entity\Module;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -16,6 +15,7 @@ class AccessRights
 	private $session;
 	private $request;
 	private $globals;
+	private $module;
 	
 	/**
 	 * AccessRights constructor.
@@ -23,14 +23,17 @@ class AccessRights
 	 * @param RouterInterface $router
 	 * @param Session $session
 	 * @param RequestStack $request
+	 * @param Globals $globals
+	 * @param ModuleService $module
 	 */
-	public function __construct(ContainerInterface $em, RouterInterface $router, Session $session, RequestStack $request, Globals $globals)
+	public function __construct(ContainerInterface $em, RouterInterface $router, Session $session, RequestStack $request, Globals $globals, ModuleService $module)
 	{
 		$this->em = $em;
 		$this->router = $router;
 		$this->session = $session;
 		$this->request = $request;
 		$this->globals = $globals;
+		$this->module = $module;
 	}
 	
 	public function onKernelController()
@@ -44,7 +47,7 @@ class AccessRights
 		}
 		
 		$ribs_admin_rights = json_decode(file_get_contents($this->globals->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
-		$modules_rights = $this->getModuleRights();
+		$modules_rights = $this->module->getModuleRights();
 		$ribs_admin_rights = (object) array_merge((array) $ribs_admin_rights, (array) $modules_rights);
 		
 		if ($admin_page == "ribsadmin" && strpos($route, "login") == false && strpos($route, "register") == false) {
@@ -60,25 +63,6 @@ class AccessRights
 			
 			throw new AccessDeniedException("No access");
 		}
-	}
-	
-	/**
-	 * @return object
-	 * function that return all modules rights
-	 */
-	private function getModuleRights()
-	{
-		$modules = $this->em->get("doctrine")->getRepository(Module::class)->findBy([
-			"active" => true,
-			"displayed" => true
-		]);
-		$rights = [];
-		
-		foreach ($modules as $module) {
-			$rights[] = json_decode(file_get_contents($this->globals->getBaseBundlePath($module->getPackageName()) . "/Resources/json/ribsadmin_rights.json"));
-		}
-		
-		return (object)$rights;
 	}
 	
 	/**
