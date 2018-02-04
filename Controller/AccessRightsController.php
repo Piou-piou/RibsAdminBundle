@@ -59,7 +59,8 @@ class AccessRightsController extends Controller
 			"form" => $form->createView(),
 			"list_rights_user" => $list_rights_user,
 			"admins" => $admins,
-			"ribs_admin_rights" => json_decode(file_get_contents($this->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"))
+			"ribs_admin_rights" => json_decode(file_get_contents($this->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json")),
+			"modules" => $this->get("ribs_admin.module_service")->getAllInfosModules()
 		]);
 	}
 	//---------------------------------------------- END VIEWS METHODS ---------------------------------------------------------//

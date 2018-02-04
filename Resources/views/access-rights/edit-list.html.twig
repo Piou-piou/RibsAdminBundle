@@ -47,6 +47,34 @@
 		</table>
 	</div>
 	
+	{% for i in modules %}
+		<div class="content-block">
+			<h2>{{ i.name }} rights list</h2>
+			
+			<table class="list">
+				<thead>
+					<tr>
+						<td>name of the right</td>
+						<td>Activate or not</td>
+					</tr>
+				</thead>
+				<tbody>
+					{% for j in i.rights.items %}
+						<tr>
+							<td>{{ j.text }}</td>
+							<td>
+								<label for="right-check-{{ i.name }}-{{ loop.index }}" class="ribs-checkbox switched">
+									<input type="checkbox" class="test-check" id="right-check-{{ i.name }}-{{ loop.index }}" name="right[]"
+										   value="{{ j.right }}" {% if j.right in list_rights_user %}checked{% endif %}>
+								</label>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	{% endfor %}
+	
 	<div class="content-block">
 		<h2>Administrators list</h2>
 		
