@@ -4,7 +4,7 @@
 	<h1>Page management </h1>
 {% endblock %}
 
-{% block body %}
+{% block nav_page %}
 	<nav class="nav-page">
 		{% if navigation is iterable and navigation|length > 0 %}
 			<ul>
@@ -14,4 +14,7 @@
 			</ul>
 		{% endif %}
 	</nav>
+{% endblock %}
+
+{% block body %}
 {% endblock %}
