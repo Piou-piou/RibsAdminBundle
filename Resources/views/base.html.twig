@@ -69,16 +69,6 @@
 			{% endblock %}
 		</div>
 		
-		{# For inforamtions messages before delete an element for exemple #}
-		<div class="popup" style="display:none;height: 120px;width: 500px;" id="info-popup">
-			<div>
-				<p></p>
-			</div>
-			
-			<a href="" class="validate">Validate</a>
-			<a data-fancybox-close class="cancel">Cancel</a>
-		</div>
-		
 		{% for message in app.session.flashBag.get('error-flash') %}
 			{% include "@RibsAdmin/flash-messages.html.twig" with {"message": message, "type": "error"} %}
 		{% endfor %}
