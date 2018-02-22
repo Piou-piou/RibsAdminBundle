@@ -9,7 +9,6 @@ Encore
   .cleanupOutputBeforeBuild()
   
   .addEntry('js/vendor', [
-    './node_modules/jquery/dist/jquery.min.js',
     './node_modules/ribs-checkbox/dist/js/ribs-checkbox.js',
     './node_modules/ribs-flash-message/dist/js/ribs-flash-message.js',
   ])

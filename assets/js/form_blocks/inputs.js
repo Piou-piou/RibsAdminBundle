@@ -1,88 +1,74 @@
-$(document).ready(function () {
-  function ValidateDate(dtValue) {
+import RibsCore from 'ribs-core';
+
+class InputAdmin {
+  constructor() {
+    const inputs = document.querySelectorAll('.block input');
+
+    Array.from(inputs).forEach((element) => {
+      element.addEventListener('focus', (event) => this.inputFocus(event));
+      element.addEventListener('blur', (event) => this.inputBlur(event));
+    });
+  }
+
+  /**
+   * @param dtValue
+   * @returns {boolean}
+   * method that test if a date is correct
+   */
+  validateDate(dtValue) {
     var dtRegex = new RegExp(/\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/);
     return dtRegex.test(dtValue);
   }
 
-  //---------------------------- EFFECT MATERIAL ON INPUT INPUT -----------------------------//
-  $('.block input').focus(function () {
-    let $parent = $(this).parent();
-    $parent.addClass('is-focused has-label');
-    $parent.removeClass('invalid');
-  });
+  /**
+   * @param event
+   * method that add class on focus an input
+   */
+  inputFocus(event) {
+    const parent = RibsCore.parents(event.currentTarget, '.block');
+    parent.classList.add('is-focused', 'has-label');
+    parent.classList.remove('invalid');
+  }
 
-  $('.block input').blur(function () {
-    let $parent = $(this).parent();
-    let $this = $(this);
+  /**
+   * @param event
+   * method that test is value is correct and add or remove classes
+   */
+  inputBlur(event) {
+    const parent = RibsCore.parents(event.currentTarget, '.block');
+    const element = event.currentTarget;
+    const label = parent.querySelector('label');
+    const type = element.dataset.type;
+    const min = element.dataset.min;
+    const max = element.dataset.max;
+    const required = element.required;
 
-    const type = $this.attr("type-val");
-    const min = $this.attr("min");
-    const max = $this.attr("max");
-
-    if (type == "string") {
-      if ($this.val() == "") {
-        $parent.addClass('invalid');
-        $parent.removeClass('has-label');
+    if (type == 'string') {
+      if (element.value === '' && required === true) {
+        label.dataset.error = label.dataset.empty !== undefined ? label.dataset.empty : '';
+        parent.classList.add('invalid');
+        parent.classList.remove('has-label');
+      } else if (element.value.length < min) {
+        label.dataset.error = label.dataset.min !== undefined ? label.dataset.min : '';
+        parent.classList.add('invalid');
+      } else if (element.value.length > max) {
+        label.dataset.error = label.dataset.max !== undefined ? label.dataset.max : '';
+        parent.classList.add('invalid');
       }
-      else if (($this.val().length < min) || ($this.val().length > max)) {
-        $parent.addClass('invalid');
-      }
-    }
-    else if (type == "date") {
-      if (($this.attr('name') == "date") && (!ValidateDate($this.val()))) {
-        $parent.addClass('invalid');
-      }
-    }
-
-    $parent.removeClass('is-focused');
-
-    if ($this.val() == "") {
-      $parent.removeClass('has-label');
-    }
-  });
-
-  $('.block input').each(function () {
-    if (($(this).val() != '') || ($(this).val() != 0)) {
-      $(this).parent().addClass('has-label');
-    }
-  });
-
-
-  $('.block textarea').focus(function () {
-    let $parent = $(this).parent();
-    $parent.addClass('is-focused has-label');
-    $parent.removeClass('invalid');
-  });
-
-  $('.block textarea').blur(function () {
-    let $parent = $(this).parent();
-    let $this = $(this);
-
-    const type = $this.attr("type-val");
-    const min = $this.attr("min");
-    const max = $this.attr("max");
-
-    if (type == "string") {
-      if ($this.val() == "") {
-        $parent.addClass('invalid');
-        $parent.removeClass('has-label');
-      }
-      else if (($this.val().length < min) || ($this.val().length > max)) {
-        $parent.addClass('invalid');
+    } else if (type === 'date' && required === true) {
+      if (!this.validateDate(element.value)) {
+        parent.classList.add('invalid');
       }
     }
 
-    $parent.removeClass('is-focused');
+    parent.classList.remove('is-focused');
 
-    if ($this.val() == "") {
-      $parent.removeClass('has-label');
+    if (element.value == '') {
+      parent.classList.remove('has-label');
     }
-  });
+  }
+}
 
-  $('.block textarea').each(function () {
-    if (($(this).val() != '') || ($(this).val() != 0)) {
-      $(this).parent().addClass('has-label');
-    }
-  });
-  //---------------------------- END EFFECT MATERIAL ON INPUT INPUT -----------------------------//
-});
+export default (InputAdmin);
+
+const input = new InputAdmin();
