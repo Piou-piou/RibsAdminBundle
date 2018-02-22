@@ -25,7 +25,6 @@ Encore
   ])
   
   .addStyleEntry('css/vendor', [
-    './node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css',
     './node_modules/ribs-checkbox/dist/css/style.css',
     './node_modules/ribs-flash-message/dist/css/style.css',
   ])
