@@ -1,13 +1,18 @@
-import $ from 'jquery';
+import RibsCore from 'ribs-core';
 
-$(document).ready(() => {
-    $(".menu .title i").click(function () {
-        $(this).parent().parent().toggleClass("active");
-        $(".inner").toggleClass("displayed-nav");
-        $(".nav-page").toggleClass("displayed-nav");
-    });
+document.querySelector('.menu .title i').addEventListener('click', (event) => {
+  const inners = document.querySelectorAll('.inner');
+  RibsCore.parents(event.currentTarget, '.menu').classList.toggle('active');
+  document.querySelector('.nav-page').classList.toggle('displayed-nav');
 
-    $(".menu ul li").click(function () {
-        window.location = $(this).find("a").attr("href");
-    });
+  Array.from(inners).forEach((element) => {
+    element.classList.toggle('displayed-nav')
+  });
+});
+
+const lis = document.querySelectorAll('.menu ul li');
+Array.from(lis).forEach((element) => {
+  element.addEventListener('click', (event) => {
+    window.location = event.currentTarget.querySelector('a').href;
+  });
 });
