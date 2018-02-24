@@ -33,8 +33,13 @@ class AccountsController extends Controller
 	 * @Route("/accounts/edit", name="ribsadmin_accounts_edit")
 	 * @return Response
 	 */
-	public function editUserAction(): Response {
-		return $this->render("@RibsAdmin/accounts/create.html.twig");
+	public function editUserAction(): Response
+	{
+		$form = $this->createForm("PiouPiou\RibsAdminBundle\Form\Account");
+		
+		return $this->render("@RibsAdmin/accounts/edit.html.twig", [
+			"form" => $form->createView()
+		]);
 	}
 	//-------------------------------------------- END DISPLAY VIEWS -----------------------------------------------------------//
 	
