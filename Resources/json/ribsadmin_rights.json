@@ -11,6 +11,11 @@
       "text": "Index page of accounts management"
     },
     {
+      "right": "ribsadmin@account@create",
+      "url": "ribsadmin_account_create",
+      "text": "Create an account"
+    },
+    {
       "right": "ribsadmin@account@archive",
       "url": "ribsadmin_account_archive",
       "text": "Archive an account"

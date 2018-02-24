@@ -5,6 +5,12 @@
 {% endblock %}
 
 {% block body %}
+	{% if ribsadmin_acces_right.testRight("ribsadmin@account@create") == true %}
+		<div class="top-buttons">
+			<a href="{{ path('ribsadmin_access_rights_create') }}">Create an account</a>
+		</div>
+	{% endif %}
+	
 	<div class="content-block">
 		<h2>Activated accounts on website</h2>
 		<table class="list">
@@ -14,7 +20,9 @@
 					<td>Firstname Ladtname</td>
 					<td>Pseudo</td>
 					<td>Reinitialise password</td>
-					<td>Archive account</td>
+					{% if ribsadmin_acces_right.testRight("ribsadmin@account@archive") == true %}
+						<td>Archive account</td>
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>
@@ -24,8 +32,10 @@
 						<td>{{ user.user.firstname }} {{ user.user.lastname }}</td>
 						<td>{{ user.username }}</td>
 						<td><a>Reinitialise password</a></td>
-						<td><a href="{{ path('ribsadmin_account_archive', {"guid": user.user.guid}) }}">Archive this
+						{% if ribsadmin_acces_right.testRight("ribsadmin@account@archive") == true %}
+							<td><a href="{{ path('ribsadmin_account_archive', {"guid": user.user.guid}) }}">Archive this
 								account</a></td>
+						{% endif %}
 					</tr>
 				{% else %}
 					<tr>
@@ -45,8 +55,10 @@
                 <td>Firstname Ladtname</td>
                 <td>Pseudo</td>
                 <td>Reinitialise password</td>
-                <td>Archive account</td>
-            </tr>
+				{% if ribsadmin_acces_right.testRight("ribsadmin@account@archive") == true %}
+					<td>Active account</td>
+				{% endif %}
+			</tr>
             </thead>
             <tbody>
             {% for user in users_archived %}
@@ -55,8 +67,10 @@
                     <td>{{ user.user.firstname }} {{ user.user.lastname }}</td>
                     <td>{{ user.username }}</td>
                     <td><a>Reinitialise password</a></td>
-                    <td><a href="{{ path('ribsadmin_account_archive', {"guid": user.user.guid, "activate": true}) }}">Active this
-                            account</a></td>
+					{% if ribsadmin_acces_right.testRight("ribsadmin@account@archive") == true %}
+						<td><a href="{{ path('ribsadmin_account_archive', {"guid": user.user.guid}) }}">Archive this
+								account</a></td>
+					{% endif %}
                 </tr>
             {% else %}
                 <tr>
