@@ -5,6 +5,41 @@
 {% endblock %}
 
 {% block body %}
-
+	{{ form_start(form) }}
+	<div class="top-buttons">
+		{{ form_widget(form.submit) }}
+		<a href="{{ path('ribsadmin_accounts') }}" class="delete">Cancel</a>
+	</div>
+	
+	<div class="content-block">
+		<h2>Account informations</h2>
+		
+		<div class="block mid-width">
+			{{ form_label(form.username) }}
+			{{ form_widget(form.username) }}
+		</div>
+		<div class="block mid-width">
+			{{ form_label(form.email) }}
+			{{ form_widget(form.email) }}
+		</div>
+		<div class="block mid-width">
+			{{ form_label(form.user.firstname) }}
+			{{ form_widget(form.user.firstname) }}
+		</div>
+		<div class="block mid-width">
+			{{ form_label(form.user.lastname) }}
+			{{ form_widget(form.user.lastname) }}
+		</div>
+	</div>
+	
+	<div class="content-block">
+		<h2>Account informations</h2>
+		
+		<div class="block mid-width">
+			<label for="admin" class="ribs-checkbox switched">Access to administration
+				<input type="checkbox" class="admin" id="admin" name="admin">
+			</label>
+		</div>
+	</div>
 
 {% endblock %}
