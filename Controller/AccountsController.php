@@ -27,6 +27,15 @@ class AccountsController extends Controller
 			"users_archived" => $users_archived
 		]);
 	}
+	
+	/**
+	 * @Route("/accounts/create/", name="ribsadmin_accounts_create")
+	 * @Route("/accounts/edit", name="ribsadmin_accounts_edit")
+	 * @return Response
+	 */
+	public function editUserAction(): Response {
+		return $this->render("@RibsAdmin/accounts/create.html.twig");
+	}
 	//-------------------------------------------- END DISPLAY VIEWS -----------------------------------------------------------//
 	
 	/**

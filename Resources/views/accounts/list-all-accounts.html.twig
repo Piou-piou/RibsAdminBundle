@@ -7,7 +7,7 @@
 {% block body %}
 	{% if ribsadmin_acces_right.testRight("ribsadmin@account@create") == true %}
 		<div class="top-buttons">
-			<a href="{{ path('ribsadmin_access_rights_create') }}">Create an account</a>
+			<a href="{{ path('ribsadmin_accounts_create') }}">Create an account</a>
 		</div>
 	{% endif %}
 	

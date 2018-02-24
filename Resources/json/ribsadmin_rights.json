@@ -12,12 +12,12 @@
     },
     {
       "right": "ribsadmin@account@create",
-      "url": "ribsadmin_account_create",
+      "url": "ribsadmin_accounts_create",
       "text": "Create an account"
     },
     {
       "right": "ribsadmin@account@archive",
-      "url": "ribsadmin_account_archive",
+      "url": "ribsadmin_accounts_archive",
       "text": "Archive an account"
     },
     {
