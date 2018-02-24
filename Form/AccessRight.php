@@ -18,14 +18,14 @@ class AccessRight extends AbstractType
 				'label_attr' => [
 					'class' => 'label'
 				],
-                'attr' => [],
-                'required' => true
-            ])
-            ->add('submit', SubmitType::class, [
-		'label' => 'Validate',
-		'attr' => []
-	]);
-    }
+				'attr' => [],
+				'required' => true
+			])
+			->add('submit', SubmitType::class, [
+				'label' => 'Validate',
+				'attr' => []
+			]);
+	}
 	
 	public function configureOptions(OptionsResolver $resolver)
 	{
