@@ -4,8 +4,8 @@ var glob = require('glob');
 const copyWebpackPlugin = require('copy-webpack-plugin');
 
 Encore
-  .setOutputPath('../../../public/build/')
-  .setPublicPath('/build')
+  .setOutputPath('../../../public/build/ribs-admin-bundle')
+  .setPublicPath('/build/ribs-admin-bundle')
   .cleanupOutputBeforeBuild()
   
   .addEntry('js/vendor', [
