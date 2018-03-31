@@ -56,7 +56,6 @@ Encore
   })
   
   .enableSourceMaps(!Encore.isProduction())
-  .enableVersioning()
 ;
 
 module.exports = Encore.getWebpackConfig();
