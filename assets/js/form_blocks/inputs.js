@@ -2,11 +2,15 @@ import RibsCore from 'ribs-core';
 
 class InputAdmin {
   constructor() {
-    const inputs = document.querySelectorAll('.block input');
+    const inputs = document.querySelectorAll('.block input, .block textarea');
 
     Array.from(inputs).forEach((element) => {
       element.addEventListener('focus', (event) => this.inputFocus(event));
       element.addEventListener('blur', (event) => this.inputBlur(event));
+
+      if ((element.value != '') || (element.value != 0)) {
+        element.parentNode.classList.add('has-label');
+      }
     });
   }
 
