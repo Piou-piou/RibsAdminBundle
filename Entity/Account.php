@@ -39,6 +39,16 @@ class Account implements UserInterface, \Serializable
 	private $isActive;
 	
 	/**
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
+	private $token;
+	
+	/**
+	 * @ORM\Column(type="datetime", nullable=true)
+	 */
+	private $endToken;
+	
+	/**
 	 * @var User
 	 *
 	 * @ORM\OneToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User", cascade={"persist"})
