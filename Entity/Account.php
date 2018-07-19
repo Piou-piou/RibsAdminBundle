@@ -162,6 +162,38 @@ class Account implements UserInterface, \Serializable
 	}
 	
 	/**
+	 * @return mixed
+	 */
+	public function getToken()
+	{
+		return $this->token;
+	}
+	
+	/**
+	 * @param mixed $token
+	 */
+	public function setToken($token)
+	{
+		$this->token = $token;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function getEndToken()
+	{
+		return $this->endToken;
+	}
+	
+	/**
+	 * @param mixed $endToken
+	 */
+	public function setEndToken($endToken)
+	{
+		$this->endToken = $endToken;
+	}
+	
+	/**
 	 * Returns the roles granted to the user.
 	 *
 	 * <code>
