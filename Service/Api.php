@@ -12,6 +12,10 @@ class Api
 	 */
 	private $em;
 	
+	/**
+	 * Api constructor.
+	 * @param EntityManagerInterface $em
+	 */
 	public function __construct(EntityManagerInterface $em)
 	{
 		$this->em = $em;
@@ -43,7 +47,7 @@ class Api
 	{
 		$token = uniqid();
 		$now = new \DateTime();
-		$end_token = $now->add(new \DateInterval('P20M'));
+		$end_token = $now->add(new \DateInterval('PT20M'));
 		
 		$account->setToken($token);
 		$account->setEndToken($end_token);
