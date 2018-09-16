@@ -3,6 +3,7 @@
 namespace PiouPiou\RibsAdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,10 +29,10 @@ class User extends AbstractType
 				'attr' => [],
 				'required' => true
 			])
-			->add('accessRightList', TextType::class, [
-				'label' => 'lastname',
+			->add('accessRightList', CheckboxType::class, [
+				'label' => 'Access to administration',
 				'label_attr' => [
-					'class' => 'label'
+					'class' => 'ribs-checkbox switched'
 				],
 				'attr' => [],
 				'required' => true

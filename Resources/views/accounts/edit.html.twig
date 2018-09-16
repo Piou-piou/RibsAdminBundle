@@ -23,6 +23,14 @@
 			{{ form_widget(form.email) }}
 		</div>
 		<div class="block mid-width">
+			{{ form_label(form.password.first) }}
+			{{ form_widget(form.password.first) }}
+		</div>
+		<div class="block mid-width">
+			{{ form_label(form.password.second) }}
+			{{ form_widget(form.password.second) }}
+		</div>
+		<div class="block mid-width">
 			{{ form_label(form.user.firstname) }}
 			{{ form_widget(form.user.firstname) }}
 		</div>
@@ -36,10 +44,14 @@
 		<h2>Account informations</h2>
 		
 		<div class="block mid-width no-input">
+			
+			{{ form_label(form.user.accessRightList) }}
+			{{ form_widget(form.user.accessRightList) }}
+			
 			<label for="admin" class="ribs-checkbox switched">Access to administration
 				<input type="checkbox" class="admin" id="admin" name="admin">
 			</label>
 		</div>
 	</div>
-
+	{{ form_end(form) }}
 {% endblock %}

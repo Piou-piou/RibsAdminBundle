@@ -4,6 +4,7 @@ namespace PiouPiou\RibsAdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -33,9 +34,15 @@ class AccountsController extends Controller
 	 * @Route("/accounts/edit", name="ribsadmin_accounts_edit")
 	 * @return Response
 	 */
-	public function editUserAction(): Response
+	public function editUserAction(Request $request): Response
 	{
 		$form = $this->createForm("PiouPiou\RibsAdminBundle\Form\Account");
+		
+		$form->handleRequest($request);
+		
+		if ($form->isSubmitted() && $form->isValid()) {
+		
+		}
 		
 		return $this->render("@RibsAdmin/accounts/edit.html.twig", [
 			"form" => $form->createView()
