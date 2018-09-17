@@ -45,12 +45,8 @@
 		
 		<div class="block mid-width no-input">
 			
-			{{ form_label(form.user.accessRightList) }}
-			{{ form_widget(form.user.accessRightList) }}
-			
-			<label for="admin" class="ribs-checkbox switched">Access to administration
-				<input type="checkbox" class="admin" id="admin" name="admin">
-			</label>
+			{{ form_label(form.user.admin) }}
+			{{ form_widget(form.user.admin) }}
 		</div>
 	</div>
 	{{ form_end(form) }}

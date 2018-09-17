@@ -29,12 +29,11 @@ class User extends AbstractType
 				'attr' => [],
 				'required' => true
 			])
-			->add('accessRightList', CheckboxType::class, [
+			->add('admin', CheckboxType::class, [
 				'label' => 'Access to administration',
-				'label_attr' => [
+				'attr' => [
 					'class' => 'ribs-checkbox switched'
 				],
-				'attr' => [],
 				'required' => true
 			]);
 	}
