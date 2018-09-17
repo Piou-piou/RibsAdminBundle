@@ -36,10 +36,8 @@
 					<tr>
 						<td>{{ i.text }}</td>
 						<td>
-							<label for="right-check{{ loop.index }}" class="ribs-checkbox switched">
-								<input type="checkbox" class="test-check" id="right-check{{ loop.index }}" name="right[]"
-									   value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %}>
-							</label>
+							<input type="checkbox" class="ribs-checkbox switched" id="right-check{{ loop.index }}" name="right[]"
+								   value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %}>
 						</td>
 					</tr>
 				{% endfor %}
