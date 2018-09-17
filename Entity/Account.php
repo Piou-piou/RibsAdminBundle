@@ -29,6 +29,11 @@ class Account implements UserInterface, \Serializable
 	private $password;
 	
 	/**
+	 * @ORM\Column(type="string", length=64, nullable=true)
+	 */
+	private $plainPassword;
+	
+	/**
 	 * @ORM\Column(type="string", length=100, unique=true)
 	 */
 	private $email;
@@ -111,6 +116,22 @@ class Account implements UserInterface, \Serializable
 	public function setPassword($password)
 	{
 		$this->password = $password;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function getPlainPassword()
+	{
+		return $this->plainPassword;
+	}
+	
+	/**
+	 * @param mixed $plainPassword
+	 */
+	public function setPlainPassword(string $plainPassword)
+	{
+		$this->plainPassword = $plainPassword;
 	}
 	
 	/**

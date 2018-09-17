@@ -41,7 +41,7 @@ class User
 	/**
 	 * @var boolean
 	 *
-	 * @ORM\Column(name="admin", type="boolean", nullable=false, options={"default": false})
+	 * @ORM\Column(name="admin", type="boolean", nullable=true, options={"default": false})
 	 */
     private $admin;
 
@@ -97,9 +97,9 @@ class User
 	/**
 	 * @var boolean
 	 *
-	 * @ORM\Column(name="archived", type="boolean", nullable=false, options={"default": false})
+	 * @ORM\Column(name="archived", type="boolean", nullable=true, options={"default": false})
 	 */
-	private $archived;
+	private $archived = false;
 	
 	/**
 	 * @var \DateTime
@@ -168,7 +168,7 @@ class User
 	/**
 	 * @return bool
 	 */
-	public function getAdmin(): bool
+	public function getAdmin(): ?bool
 	{
 		return $this->admin;
 	}
@@ -312,7 +312,7 @@ class User
 	/**
 	 * @return boolean
 	 */
-	public function getArchived(): bool
+	public function getArchived(): ?bool
 	{
 		return $this->archived;
 	}

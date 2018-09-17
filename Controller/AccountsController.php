@@ -2,13 +2,16 @@
 
 namespace PiouPiou\RibsAdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use PiouPiou\RibsAdminBundle\Entity\Account;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\EncoderFactory;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class AccountsController extends Controller
+class AccountsController extends AbstractController
 {
 	//-------------------------------------------- DISPLAY VIEWS ---------------------------------------------------------------//
 	/**
@@ -36,12 +39,26 @@ class AccountsController extends Controller
 	 */
 	public function editUserAction(Request $request): Response
 	{
+		$em = $this->getDoctrine()->getManager();
 		$form = $this->createForm("PiouPiou\RibsAdminBundle\Form\Account");
 		
 		$form->handleRequest($request);
 		
 		if ($form->isSubmitted() && $form->isValid()) {
-		
+			/**
+			 * @var Account
+			 */
+			$account = $form->getData();
+			
+			$temp_password = $this->get("security.password_encoder")->encodePassword($account, $form->get("password")->getData());
+			$account->setPassword($temp_password);
+			
+			$em->persist($account);
+			$em->flush();
+			
+			$username = $account->getUser()->getFirstName() . " " . $account->getUser()->getLastName();
+			
+			$this->addFlash("success-flash", "the account of ". $username . " was created");
 		}
 		
 		return $this->render("@RibsAdmin/accounts/edit.html.twig", [
