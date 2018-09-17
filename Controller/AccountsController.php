@@ -68,7 +68,7 @@ class AccountsController extends AbstractController
 	//-------------------------------------------- END DISPLAY VIEWS -----------------------------------------------------------//
 	
 	/**
-	 * @Route("/account/archive/{guid}/{activate}", name="ribsadmin_account_archive")
+	 * @Route("/accounts/archive/{guid}/{activate}", name="ribsadmin_accounts_archive")
 	 * @param string $guid
 	 * @return RedirectResponse function that will disable or activate a user
 	 */
