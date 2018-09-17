@@ -34,7 +34,7 @@ class User extends AbstractType
 				'attr' => [
 					'class' => 'ribs-checkbox switched'
 				],
-				'required' => true
+				'required' => false
 			]);
 	}
 	
