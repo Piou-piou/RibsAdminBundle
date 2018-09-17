@@ -68,7 +68,7 @@
                     <td>{{ user.username }}</td>
                     <td><a>Reinitialise password</a></td>
 					{% if ribsadmin_acces_right.testRight("ribsadmin@account@archive") == true %}
-						<td><a href="{{ path('ribsadmin_accounts_archive', {"guid": user.user.guid}) }}">Archive this
+						<td><a href="{{ path('ribsadmin_accounts_archive', {"guid": user.user.guid, "activate": true}) }}">Active this
 								account</a></td>
 					{% endif %}
                 </tr>
