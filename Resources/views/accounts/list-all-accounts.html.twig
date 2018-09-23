@@ -29,7 +29,7 @@
 				{% for user in users %}
 					<tr>
 						<td><img src="http://ribs.anthony-pilloud.fr/app/images/profil/defaut.png"></td>
-						<td>{{ user.user.firstname }} {{ user.user.lastname }}</td>
+						<td><a href="{{ path('ribsadmin_accounts_edit', {'guid': user.user.guid}) }}">{{ user.user.firstname }} {{ user.user.lastname }}</a></td>
 						<td>{{ user.username }}</td>
 						<td><a>Reinitialise password</a></td>
 						{% if ribsadmin_acces_right.testRight("ribsadmin@account@archive") == true %}

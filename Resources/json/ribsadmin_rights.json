@@ -16,6 +16,11 @@
       "text": "Create an account"
     },
     {
+      "right": "ribsadmin@account@edit",
+      "url": "ribsadmin_accounts_edit",
+      "text": "Edit an account"
+    },
+    {
       "right": "ribsadmin@account@archive",
       "url": "ribsadmin_accounts_archive",
       "text": "Archive an account"

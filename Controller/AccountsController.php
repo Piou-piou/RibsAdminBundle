@@ -3,6 +3,7 @@
 namespace PiouPiou\RibsAdminBundle\Controller;
 
 use PiouPiou\RibsAdminBundle\Entity\Account;
+use PiouPiou\RibsAdminBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,13 +35,21 @@ class AccountsController extends AbstractController
 	
 	/**
 	 * @Route("/accounts/create/", name="ribsadmin_accounts_create")
-	 * @Route("/accounts/edit", name="ribsadmin_accounts_edit")
+	 * @Route("/accounts/edit/{guid}", name="ribsadmin_accounts_edit")
 	 * @return Response
 	 */
-	public function editUserAction(Request $request): Response
+	public function editUserAction(Request $request, string $guid = null): Response
 	{
 		$em = $this->getDoctrine()->getManager();
-		$form = $this->createForm("PiouPiou\RibsAdminBundle\Form\Account");
+		
+		if ($guid === null) {
+			$account = new Account();
+		} else {
+			$user = $em->getRepository(User::class)->findOneBy(["guid" => $guid]);
+			$account = $em->getRepository(Account::class)->find($user->getId());
+		}
+		
+		$form = $this->createForm("PiouPiou\RibsAdminBundle\Form\Account", $account);
 		
 		$form->handleRequest($request);
 		
@@ -48,22 +57,22 @@ class AccountsController extends AbstractController
 			/**
 			 * @var Account
 			 */
-			$account = $form->getData();
+			$data = $form->getData();
 			
-			$account_exist = $em->getRepository(Account::class)->findOneBy(["username" => $account->getUsername()]);
+			$account_exist = $em->getRepository(Account::class)->findOneBy(["username" => $data->getUsername()]);
 			
 			if (!$account_exist) {
-				$temp_password = $this->get("security.password_encoder")->encodePassword($account, $form->get("password")->getData());
-				$account->setPassword($temp_password);
+				$temp_password = $this->get("security.password_encoder")->encodePassword($data, $form->get("password")->getData());
+				$data->setPassword($temp_password);
 				
-				$em->persist($account);
+				$em->persist($data);
 				$em->flush();
 				
-				$username = $account->getUser()->getFirstName() . " " . $account->getUser()->getLastName();
+				$username = $data->getUser()->getFirstName() . " " . $data->getUser()->getLastName();
 				
 				$this->addFlash("success-flash", "the account of ". $username . " was created");
 			} else {
-				$this->addFlash("error-flash", "An account with username ". $account->getUsername() . " already exist");
+				$this->addFlash("error-flash", "An account with username ". $data->getUsername() . " already exist");
 			}
 		}
 		
