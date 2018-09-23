@@ -50,15 +50,21 @@ class AccountsController extends AbstractController
 			 */
 			$account = $form->getData();
 			
-			$temp_password = $this->get("security.password_encoder")->encodePassword($account, $form->get("password")->getData());
-			$account->setPassword($temp_password);
+			$account_exist = $em->getRepository(Account::class)->findOneBy(["username" => $account->getUsername()]);
 			
-			$em->persist($account);
-			$em->flush();
-			
-			$username = $account->getUser()->getFirstName() . " " . $account->getUser()->getLastName();
-			
-			$this->addFlash("success-flash", "the account of ". $username . " was created");
+			if (!$account_exist) {
+				$temp_password = $this->get("security.password_encoder")->encodePassword($account, $form->get("password")->getData());
+				$account->setPassword($temp_password);
+				
+				$em->persist($account);
+				$em->flush();
+				
+				$username = $account->getUser()->getFirstName() . " " . $account->getUser()->getLastName();
+				
+				$this->addFlash("success-flash", "the account of ". $username . " was created");
+			} else {
+				$this->addFlash("error-flash", "An account with username ". $account->getUsername() . " already exist");
+			}
 		}
 		
 		return $this->render("@RibsAdmin/accounts/edit.html.twig", [
