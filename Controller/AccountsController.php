@@ -74,9 +74,16 @@ class AccountsController extends AbstractController
 				
 				$username = $data->getUser()->getFirstName() . " " . $data->getUser()->getLastName();
 				
-				$this->addFlash("success-flash", "the account of ". $username . " was created");
+				if ($guid === null) {
+					$this->addFlash("success-flash", "the account of ". $username . " was created");
+				} else {
+					$this->addFlash("success-flash", "the account of ". $username . " was edited");
+				}
+				
+				return $this->redirectToRoute("ribsadmin_accounts");
 			} else {
 				$this->addFlash("error-flash", "An account with username ". $data->getUsername() . " already exist");
+				return $this->redirectToRoute($request->get("_route"), ["guid" => $guid]);
 			}
 		}
 		
