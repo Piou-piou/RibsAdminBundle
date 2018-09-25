@@ -61,6 +61,10 @@ class AccountsController extends AbstractController
 			
 			$account_exist = $em->getRepository(Account::class)->findOneBy(["username" => $data->getUsername()]);
 			
+			if ($account_exist && $account_exist === $account) {
+				$account_exist = null;
+			}
+			
 			if (!$account_exist) {
 				$temp_password = $this->get("security.password_encoder")->encodePassword($data, $form->get("password")->getData());
 				$data->setPassword($temp_password);

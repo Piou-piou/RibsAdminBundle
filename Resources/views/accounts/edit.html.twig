@@ -24,11 +24,11 @@
 		</div>
 		<div class="block mid-width">
 			{{ form_label(form.password.first) }}
-			{{ form_widget(form.password.first) }}
+			{{ form_widget(form.password.first, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
 		</div>
 		<div class="block mid-width">
 			{{ form_label(form.password.second) }}
-			{{ form_widget(form.password.second) }}
+			{{ form_widget(form.password.second, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
 		</div>
 		<div class="block mid-width">
 			{{ form_label(form.user.firstname) }}
