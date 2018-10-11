@@ -10,6 +10,7 @@ Encore
   
   .addEntry('js/vendor', [
     './node_modules/ribs-checkbox/dist/js/ribs-checkbox.js',
+    './node_modules/ribs-popup/dist/js/ribs-popup.js',
     './node_modules/ribs-flash-message/dist/js/ribs-flash-message.js',
   ])
   
@@ -25,6 +26,7 @@ Encore
   
   .addStyleEntry('css/vendor', [
     './node_modules/ribs-checkbox/dist/css/style.css',
+    './node_modules/ribs-popup/dist/css/style.css',
     './node_modules/ribs-flash-message/dist/css/style.css',
   ])
   
