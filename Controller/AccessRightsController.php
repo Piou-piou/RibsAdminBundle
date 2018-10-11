@@ -81,6 +81,8 @@ class AccessRightsController extends Controller
 		}
 		
 		$access_right->setAccessRights($rights);
+		$em->persist($access_right);
+		$em->flush();
 		
 		$em->getRepository("RibsAdminBundle:AccessRight")->deleteAllUsersList($access_right);
 		$admins = $request->get("admins");
@@ -90,9 +92,6 @@ class AccessRightsController extends Controller
 				$em->getRepository("RibsAdminBundle:AccessRight")->setAccessRightListUser($access_right->getId(), $admin);
 			}
 		}
-		
-		$em->persist($access_right);
-		$em->flush();
 		
 		$this->addFlash("success-flash", "The right list was correctly edited");
 		
@@ -110,6 +109,10 @@ class AccessRightsController extends Controller
 		$list = $em->getRepository("RibsAdminBundle:AccessRight")->findOneBy(["guid" => $guid]);
 		
 		if ($list) {
+			foreach ($list->getUsers() as $user) {
+				$user->setAccessRightList(null);
+			}
+			
 			$em->remove($list);
 			$em->flush();
 			

@@ -160,7 +160,7 @@ class User
 	/**
 	 * @param AccessRight $accessRightList
 	 */
-	public function setAccessRightList(AccessRight $accessRightList)
+	public function setAccessRightList($accessRightList)
 	{
 		$this->accessRightList = $accessRightList;
 	}
