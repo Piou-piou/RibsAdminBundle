@@ -17,32 +17,26 @@
 		<div class="block mid-width">
 			{{ form_label(form.username) }}
 			{{ form_widget(form.username) }}
-			{{ form_errors(form.username) }}
 		</div>
 		<div class="block mid-width">
 			{{ form_label(form.email) }}
 			{{ form_widget(form.email) }}
-			{{ form_errors(form.email) }}
 		</div>
 		<div class="block mid-width">
 			{{ form_label(form.password.first) }}
 			{{ form_widget(form.password.first, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
-			{{ form_errors(form.password.first) }}
 		</div>
 		<div class="block mid-width">
 			{{ form_label(form.password.second) }}
 			{{ form_widget(form.password.second, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
-			{{ form_errors(form.password.second) }}
 		</div>
 		<div class="block mid-width">
 			{{ form_label(form.user.firstname) }}
 			{{ form_widget(form.user.firstname) }}
-			{{ form_errors(form.user.firstname) }}
 		</div>
 		<div class="block mid-width">
 			{{ form_label(form.user.lastname) }}
 			{{ form_widget(form.user.lastname) }}
-			{{ form_errors(form.user.lastname) }}
 		</div>
 	</div>
 	
@@ -59,4 +53,22 @@
 		</div>
 	</div>
 	{{ form_end(form) }}
+	
+	<div class="RibsFlashMessage error">
+		<div class="notification">
+			<div class="left">
+				<div class="icone">
+					<i class='fa fa-check'></i>
+				</div>
+			</div>
+			<div class="right">
+				{{ form_errors(form.username) }}
+				{{ form_errors(form.email) }}
+				{{ form_errors(form.password.first) }}
+				{{ form_errors(form.password.second) }}
+				{{ form_errors(form.user.firstname) }}
+				{{ form_errors(form.user.lastname) }}
+			</div>
+		</div>
+	</div>
 {% endblock %}
