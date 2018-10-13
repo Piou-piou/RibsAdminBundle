@@ -63,7 +63,7 @@ class AccessRights
 		$this->request = $request;
 		$this->globals = $globals;
 		$this->module = $module;
-		$this->user = $this->em->get("security.token_storage")->getToken()->getUser()->getUser();
+		$this->user = !is_string($this->em->get("security.token_storage")->getToken()->getUser()) ? $this->em->get("security.token_storage")->getToken()->getUser()->getUser() : null;
 	}
 	
 	public function onKernelController()
