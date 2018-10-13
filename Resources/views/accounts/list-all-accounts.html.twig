@@ -33,8 +33,11 @@
 						<td>{{ user.username }}</td>
 						<td><a>Reinitialise password</a></td>
 						{% if ribsadmin_acces_right.testRight("ribsadmin@account@archive") == true %}
-							<td><a href="{{ path('ribsadmin_accounts_archive', {"guid": user.user.guid}) }}">Archive this
-								account</a></td>
+							<td>
+								<a href="#" class="delete open-popup" data-ribspopup data-href="{{ path('ribsadmin_accounts_archive', {"guid": user.user.guid}) }}" data-popup="delete-element">
+									Archive this account
+								</a>
+							</td>
 						{% endif %}
 					</tr>
 				{% else %}
