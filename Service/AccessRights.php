@@ -2,6 +2,7 @@
 
 namespace PiouPiou\RibsAdminBundle\Service;
 
+use PiouPiou\RibsAdminBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -41,6 +42,11 @@ class AccessRights
 	private $module;
 	
 	/**
+	 * @var User
+	 */
+	private $user;
+	
+	/**
 	 * AccessRights constructor.
 	 * @param ContainerInterface $em
 	 * @param RouterInterface $router
@@ -57,6 +63,7 @@ class AccessRights
 		$this->request = $request;
 		$this->globals = $globals;
 		$this->module = $module;
+		$this->user = $this->em->get("security.token_storage")->getToken()->getUser()->getUser();
 	}
 	
 	public function onKernelController()
@@ -157,7 +164,7 @@ class AccessRights
 	 */
 	private function getUserRights(): array
 	{
-		$user_rights = $this->em->get("security.token_storage")->getToken()->getUser()->getUser()->getAccessRights();
+		$user_rights = $this->user->getAccessRights();
 		
 		if ($user_rights) {
 			return explode(",", $user_rights);
@@ -170,8 +177,8 @@ class AccessRights
 	 * @return array function that retun a array that contain all rights of rattached list right of the current user
 	 */
 	private function getRightsListOfUser(): array {
-		if ($this->em->get("security.token_storage")->getToken()->getUser()->getUser()->getAccessRightList()) {
-			$user_rights = $this->em->get("security.token_storage")->getToken()->getUser()->getUser()->getAccessRightList()->getAccessRights();
+		if ($this->user->getAccessRightList()) {
+			$user_rights = $this->user->getAccessRightList()->getAccessRights();
 			
 			if ($user_rights) {
 				return explode(",", $user_rights);
