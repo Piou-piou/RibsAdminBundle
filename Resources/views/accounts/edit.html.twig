@@ -54,21 +54,23 @@
 	</div>
 	{{ form_end(form) }}
 	
-	<div class="RibsFlashMessage error">
-		<div class="notification">
-			<div class="left">
-				<div class="icone">
-					<i class='fa fa-check'></i>
+	{% if form_errors is defined and form_errors is iterable %}
+		<div class="RibsFlashMessage error">
+			<div class="notification">
+				<div class="left">
+					<div class="icone">
+						<i class='fa fa-check'></i>
+					</div>
+				</div>
+				<div class="right">
+					{{ form_errors(form.username) }}
+					{{ form_errors(form.email) }}
+					{{ form_errors(form.password.first) }}
+					{{ form_errors(form.password.second) }}
+					{{ form_errors(form.user.firstname) }}
+					{{ form_errors(form.user.lastname) }}
 				</div>
 			</div>
-			<div class="right">
-				{{ form_errors(form.username) }}
-				{{ form_errors(form.email) }}
-				{{ form_errors(form.password.first) }}
-				{{ form_errors(form.password.second) }}
-				{{ form_errors(form.user.firstname) }}
-				{{ form_errors(form.user.lastname) }}
-			</div>
 		</div>
-	</div>
+	{% endif %}
 {% endblock %}
