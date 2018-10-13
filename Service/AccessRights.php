@@ -10,11 +10,34 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AccessRights
 {
+	/**
+	 * @var ContainerInterface
+	 */
 	private $em;
+	
+	/**
+	 * @var RouterInterface
+	 */
 	private $router;
+	
+	/**
+	 * @var Session
+	 */
 	private $session;
+	
+	/**
+	 * @var RequestStack
+	 */
 	private $request;
+	
+	/**
+	 * @var Globals
+	 */
 	private $globals;
+	
+	/**
+	 * @var ModuleService
+	 */
 	private $module;
 	
 	/**
