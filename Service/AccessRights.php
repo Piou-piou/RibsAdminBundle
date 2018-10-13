@@ -78,7 +78,7 @@ class AccessRights
 		
 		$ribs_admin_rights = json_decode(file_get_contents($this->globals->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
 		$modules_rights = $this->module->getModuleRights();
-		$ribs_admin_rights = (object) array_merge((array) $ribs_admin_rights, (array) $modules_rights);
+		$ribs_admin_rights = (object)array_merge((array)$ribs_admin_rights, (array)$modules_rights);
 		
 		if ($admin_page == "ribsadmin" && strpos($route, "login") === false && strpos($route, "register") === false) {
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
@@ -88,6 +88,8 @@ class AccessRights
 			}
 			
 			if ($this->testRouteRight($route_right) === true) {
+				return;
+			} else if ($this->user->getAdmin() === true && in_array("ribsadmin@index", $route_right)) {
 				return;
 			}
 			
@@ -119,7 +121,8 @@ class AccessRights
 	 * @return bool
 	 * test if route_right is found in users rights
 	 */
-	private function testRouteRight(array $route_right): bool {
+	private function testRouteRight(array $route_right): bool
+	{
 		$user_rights = $this->getUserRights();
 		$list_rights = $this->getRightsListOfUser();
 		
@@ -158,7 +161,6 @@ class AccessRights
 		return $rights;
 	}
 	
-	
 	/**
 	 * @return array function that retun a array that contain all user rights or empty array if no right found
 	 */
@@ -176,7 +178,8 @@ class AccessRights
 	/**
 	 * @return array function that retun a array that contain all rights of rattached list right of the current user
 	 */
-	private function getRightsListOfUser(): array {
+	private function getRightsListOfUser(): array
+	{
 		if ($this->user->getAccessRightList()) {
 			$user_rights = $this->user->getAccessRightList()->getAccessRights();
 			
