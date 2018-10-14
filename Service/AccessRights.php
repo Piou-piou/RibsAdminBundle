@@ -14,7 +14,7 @@ class AccessRights
 	/**
 	 * @var ContainerInterface
 	 */
-	private $em;
+	private $container;
 	
 	/**
 	 * @var RouterInterface
@@ -48,22 +48,21 @@ class AccessRights
 	
 	/**
 	 * AccessRights constructor.
-	 * @param ContainerInterface $em
+	 * @param ContainerInterface $container
 	 * @param RouterInterface $router
 	 * @param Session $session
 	 * @param RequestStack $request
 	 * @param Globals $globals
 	 * @param ModuleService $module
 	 */
-	public function __construct(ContainerInterface $em, RouterInterface $router, Session $session, RequestStack $request, Globals $globals, ModuleService $module)
+	public function __construct(ContainerInterface $container, RouterInterface $router, Session $session, RequestStack $request, Globals $globals, ModuleService $module)
 	{
-		$this->em = $em;
+		$this->container = $container;
 		$this->router = $router;
 		$this->session = $session;
 		$this->request = $request;
 		$this->globals = $globals;
 		$this->module = $module;
-		$this->user = !is_string($this->em->get("security.token_storage")->getToken()->getUser()) ? $this->em->get("security.token_storage")->getToken()->getUser()->getUser() : null;
 	}
 	
 	public function onKernelController()
@@ -81,6 +80,13 @@ class AccessRights
 		$ribs_admin_rights = (object)array_merge((array)$ribs_admin_rights, (array)$modules_rights);
 		
 		if ($admin_page == "ribsadmin" && strpos($route, "login") === false && strpos($route, "register") === false) {
+			//redirection si user pas connecté
+			if ($this->container->get("security.token_storage")->getToken() === null || !$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+				return new RedirectResponse($this->router->generate("login"));
+			}
+			
+			$this->user = $this->container->get("security.token_storage")->getToken()->getUser()->getUser();
+			
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
 			
 			if ($route_right === false) {
