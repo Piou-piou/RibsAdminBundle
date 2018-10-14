@@ -1,5 +1,11 @@
 {% extends "@RibsAdmin/base.html.twig" %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('build/ribs-admin-bundle/css/tynimce_skin.css') }}">
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('build/ribs-admin-bundle/css/tynimce_perso.css') }}">
+{% endblock %}
+
 {% block title_page %}
 	<h1>Page management </h1>
 {% endblock %}
@@ -17,4 +23,12 @@
 {% endblock %}
 
 {% block body %}
+	<div class="content-block">
+		<textarea name="tinymce" id="tinymce" class="tinymce" cols="30" rows="10"></textarea>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('build/ribs-admin-bundle/js/tinymce.js') }}"></script>
 {% endblock %}

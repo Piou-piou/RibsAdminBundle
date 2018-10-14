@@ -41,10 +41,12 @@ Encore
   './assets/scss/style.scss'
 ])
 
-.addStyleEntry('css/tynimce', [
+.addStyleEntry('css/tynimce_skin', [
   './node_modules/tinymce/skins/lightgray/skin.min.css',
   './node_modules/tinymce/skins/lightgray/content.min.css',
 ])
+
+.addStyleEntry('css/tynimce_perso', './assets/scss/tinymce.scss')
 
 
 // ----------------------  Other configs --------------------------------------//
