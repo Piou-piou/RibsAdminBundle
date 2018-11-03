@@ -30,5 +30,6 @@
 
 {% block javascripts %}
 	{{ parent() }}
+	<script>const toolbar = 'text-only';</script>
 	<script src="{{ asset('build/ribs-admin-bundle/js/tinymce.js') }}"></script>
 {% endblock %}

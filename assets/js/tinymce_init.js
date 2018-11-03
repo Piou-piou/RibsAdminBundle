@@ -27,6 +27,21 @@ import 'tinymce/plugins/textcolor';
 import 'tinymce/plugins/visualblocks';
 import 'tinymce/plugins/wordcount';
 
+let toolbarOptions = [];
+
+if (toolbar === 'all' || toolbar === undefined) {
+  toolbarOptions = [
+    ' paste cut copy | undo redo |  bold italic underline | strikethrough subscript superscript | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
+    ' fontselect | fontsizeselect | formatselect | table | hr link unlink image media | print preview ',
+  ];
+} else if (toolbar === 'text-only') {
+  toolbarOptions = [
+    ' paste cut copy | undo redo |  bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
+    ' hr link unlink ',
+  ];
+}
+
+
 // tinymce.baseURL = "/assets/node_modules/tinymce";
 tinymce.init({
   selector: '.tinymce',
@@ -42,10 +57,7 @@ tinymce.init({
   height: 300,
   menubar: false,
   plugins: ['paste', 'lists', 'advlist', 'hr', 'link', 'print', 'preview', 'code', 'image', 'media', 'table', 'textcolor', 'wordcount'],
-  toolbar: [
-    ' paste cut copy | undo redo |  bold italic underline | strikethrough subscript superscript | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
-    ' fontselect | fontsizeselect | formatselect | table | hr link unlink image media | print preview ',
-  ],
+  toolbar: toolbarOptions,
   mobile: {
     theme: 'mobile',
     plugins: ['autosave', 'autolink', 'lists'],
