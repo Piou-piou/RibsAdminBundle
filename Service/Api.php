@@ -22,6 +22,33 @@ class Api
 	}
 	
 	/**
+	 * @param string $infos_jwt
+	 * @param string $token
+	 * @return Account|bool
+	 * this method is used to test jwt and if the user is ok else send false
+	 */
+	private function userIslogged(string $infos_jwt, string $token)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$jwt = $this->get("ribs_admin.jwt")->decode($infos_jwt, $token);
+		
+		if ($jwt === false) {
+			return false;
+		}
+		
+		$this->infoJwt = $jwt;
+		
+		$user = $em->getRepository(Account::class)->findOneBy(["token" => $token]);
+		
+		if (!$user) {
+			return false;
+		}
+		
+		return $user;
+	}
+	
+	
+	/**
 	 * @param Account $account
 	 * @return string
 	 * method that return the token for a user
@@ -63,7 +90,7 @@ class Api
 	 * @return string
 	 * generate a token for api
 	 */
-	private function generateToken(int $length = 15): string
+	private function generateToken(int $length = 200): string
 	{
 		$string = "abcdefghijklmnopqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789";
 		$token = "";
