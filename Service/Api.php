@@ -45,7 +45,7 @@ class Api
 	 */
 	public function setToken(Account $account): string
 	{
-		$token = uniqid();
+		$token = $this->generateToken();
 		$now = new \DateTime();
 		$end_token = $now->add(new \DateInterval('PT20M'));
 		
@@ -54,6 +54,23 @@ class Api
 		
 		$this->em->persist($account);
 		$this->em->flush();
+		
+		return $token;
+	}
+	
+	/**
+	 * @param int $length
+	 * @return string
+	 * generate a token for api
+	 */
+	private function generateToken(int $length = 15): string
+	{
+		$string = "abcdefghijklmnopqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789";
+		$token = "";
+		srand((double)microtime() * 1000000);
+		for ($i = 0 ; $i < $length ; $i++) {
+			$token .= $string[rand() % strlen($string)];
+		}
 		
 		return $token;
 	}
