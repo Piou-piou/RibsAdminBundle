@@ -13,7 +13,7 @@ class ApiController extends AbstractController
 {
 	/**
 	 * @Route("/api/users/authenticate", name="ribsadmin_api_login")
-	 * @Method({"GET", "POST"})
+	 * @Method({"POST"})
 	 * @param Request $request
 	 * @return JsonResponse
 	 * this method is user to authenticate a user by an api request
