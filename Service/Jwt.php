@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace PiouPiou\RibsAdminBundle\Service;
 
 use \Firebase\JWT\JWT as JsonWebToken;
 
