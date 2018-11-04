@@ -34,7 +34,8 @@
     "symfony/http-foundation": "^3.2 || ^4.0",
     "symfony/dependency-injection": "^3.3|^4.0",
     "symfony/http-kernel": "^3.3|^4.0",
-    "symfony/asset": "^3.4 || ^4.0"
+    "symfony/asset": "^3.4 || ^4.0",
+    "firebase/php-jwt": "^5.0.0"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.1",
