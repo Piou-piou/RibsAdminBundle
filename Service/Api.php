@@ -4,20 +4,30 @@ namespace PiouPiou\RibsAdminBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use PiouPiou\RibsAdminBundle\Entity\Account;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Api
 {
+	/**
+	 * @var ContainerInterface
+	 */
+	private $container;
+	
 	/**
 	 * @var EntityManagerInterface
 	 */
 	private $em;
 	
+	private $infoJwt;
+	
 	/**
 	 * Api constructor.
+	 * @param ContainerInterface $container
 	 * @param EntityManagerInterface $em
 	 */
-	public function __construct(EntityManagerInterface $em)
+	public function __construct(ContainerInterface $container, EntityManagerInterface $em)
 	{
+		$this->container = $container;
 		$this->em = $em;
 	}
 	
@@ -27,10 +37,10 @@ class Api
 	 * @return Account|bool
 	 * this method is used to test jwt and if the user is ok else send false
 	 */
-	private function userIslogged(string $infos_jwt, string $token)
+	public function userIslogged(string $infos_jwt, string $token)
 	{
-		$em = $this->getDoctrine()->getManager();
-		$jwt = $this->get("ribs_admin.jwt")->decode($infos_jwt, $token);
+		$em = $this->em;
+		$jwt = $this->container->get("ribs_admin.jwt")->decode($infos_jwt, $token);
 		
 		if ($jwt === false) {
 			return false;
