@@ -24,7 +24,7 @@
 				</div>
 				<div class="column">
 					<div class="account-infos">
-						<h3>Username</h3>
+						<h3>{{ app.user.user.firstname }} {{ app.user.user.lastname }}</h3>
 						<div class="functions">
 							
 							<div class="column">
@@ -40,7 +40,7 @@
 							</div>
 							<div class="column">
 								<div class="logout">
-									<a href=""><i class="fa fa-sign-out"></i></a>
+									<a href="{{ path('ribs_admin_logout') }}"><i class="fa fa-sign-out"></i></a>
 								</div>
 							</div>
 						</div>
