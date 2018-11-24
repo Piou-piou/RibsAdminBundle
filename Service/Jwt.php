@@ -25,6 +25,7 @@ class Jwt
 	 */
 	public function decode(string $encoded_json, string $token)
 	{
+		JsonWebToken::$leeway = 5;
 		$decoded = JsonWebToken::decode($encoded_json, $token, ['HS256']);
 		
 		if ($decoded) {
