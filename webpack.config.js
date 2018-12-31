@@ -5,7 +5,7 @@ const copyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 Encore
-.setOutputPath('../../../public/build/ribs-admin-bundle')
+.setOutputPath('../../public/build/ribs-admin-bundle')
 .setPublicPath('/build/ribs-admin-bundle')
 .cleanupOutputBeforeBuild()
 
