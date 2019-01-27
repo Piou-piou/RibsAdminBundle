@@ -1,5 +1,11 @@
 # RibsAdminBundle
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Piou-piou/RibsAdminBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Piou-piou/RibsAdminBundle/?branch=master)
+![](https://img.shields.io/david/Piou-piou/RibsAdminBundle.svg)
+![](https://img.shields.io/david/dev/Piou-piou/RibsAdminBundle.svg)
+[![](https://img.shields.io/packagist/v/piou-piou/ribs-admin-bundle.svg)](https://packagist.org/packages/piou-piou/ribs-admin-bundle)
+![Licence](https://img.shields.io/github/license/Piou-piou/RibsAdminBundle.svg)
+
 ## Introduction
 
 RibsAdminBundle is a symfony Bundle that allow you to manager your website. With
