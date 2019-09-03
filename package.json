@@ -30,8 +30,8 @@
   "dependencies": {
     "font-awesome": "^4.7.0",
     "ribs-checkbox": "*",
-    "ribs-flash-message": "*",
     "ribs-core": "*",
+    "ribs-flash-message": "*",
     "ribs-popup": "*",
     "tinymce": "^4.7.4"
   },
