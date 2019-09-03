@@ -33,7 +33,7 @@ Encore
 // ----------------------  CSS --------------------------------------//
 .addStyleEntry('css/vendor', [
   './node_modules/ribs-checkbox/dist/css/style.css',
-  './node_modules/ribs-popup/dist/css/style.css',
+  './node_modules/ribs-popup/dist/css/style.min.css',
   './node_modules/ribs-flash-message/dist/css/style.css',
 ])
 
