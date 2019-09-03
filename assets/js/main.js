@@ -1,4 +1,6 @@
 import RibsCore from 'ribs-core';
+import RibsFlashMessage from 'ribs-flash-message';
+import RibsPopup from "ribs-popup/source/js/ribs-popup";
 
 if (document.querySelector('.menu .title i')) {
   document.querySelector('.menu .title i').addEventListener('click', (event) => {
@@ -18,3 +20,6 @@ if (document.querySelector('.menu .title i')) {
     });
   });
 }
+
+const flash = new RibsFlashMessage();
+const popups = new RibsPopup();
