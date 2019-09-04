@@ -116,7 +116,11 @@ class AccessRights
 		$list_rights = $this->getRightsListOfUser();
 		
 		$all_rights = array_merge($user_rights, $list_rights);
-		
+
+        if (in_array("*", $all_rights)) {
+            return true;
+        }
+
 		if (in_array($right, $all_rights)) {
 			return true;
 		}
@@ -135,7 +139,11 @@ class AccessRights
 		$list_rights = $this->getRightsListOfUser();
 		
 		$all_rights = array_merge($user_rights, $list_rights);
-		
+
+		if (in_array("*", $all_rights)) {
+		    return true;
+        }
+
 		foreach ($all_rights as $right) {
 			if (in_array($right, $route_right)) {
 				return true;
