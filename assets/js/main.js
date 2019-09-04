@@ -1,6 +1,6 @@
 import RibsCore from 'ribs-core';
 import RibsFlashMessage from 'ribs-flash-message';
-import RibsPopup from "ribs-popup";
+import RibsPopup from "ribs-popup/source/js/ribs-popup";
 
 if (document.querySelector('.menu .title i')) {
   document.querySelector('.menu .title i').addEventListener('click', (event) => {
