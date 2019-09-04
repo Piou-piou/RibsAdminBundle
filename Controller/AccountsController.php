@@ -32,21 +32,26 @@ class AccountsController extends AbstractController
 			"users_archived" => $users_archived
 		]);
 	}
-	
-	/**
-	 * @Route("/accounts/create/", name="ribsadmin_accounts_create")
-	 * @Route("/accounts/edit/{guid}", name="ribsadmin_accounts_edit")
-	 * @return Response
-	 */
+
+    /**
+     * @Route("/accounts/create/", name="ribsadmin_accounts_create")
+     * @Route("/accounts/edit/{guid}", name="ribsadmin_accounts_edit")
+     * @param Request $request
+     * @param string|null $guid
+     * @return Response
+     */
 	public function editUserAction(Request $request, string $guid = null): Response
 	{
 		$em = $this->getDoctrine()->getManager();
 		
 		if ($guid === null) {
 			$account = new Account();
+			$old_password = null;
+            $user = null;
 		} else {
 			$user = $em->getRepository(User::class)->findOneBy(["guid" => $guid]);
-			$account = $em->getRepository(Account::class)->find($user->getId());
+			$account = $em->getRepository(Account::class)->findOneBy(["user" => $user->getId()]);
+            $old_password = $account->getPassword();
 		}
 		
 		$form = $this->createForm("PiouPiou\RibsAdminBundle\Form\Account", $account);
@@ -66,9 +71,16 @@ class AccountsController extends AbstractController
 			}
 			
 			if (!$account_exist) {
-				$temp_password = $this->get("security.password_encoder")->encodePassword($data, $form->get("password")->getData());
-				$data->setPassword($temp_password);
-				
+			    if ($guid === null) {
+                    $temp_password = $this->get("security.password_encoder")->encodePassword($data, $form->get("password")->getData());
+                    $data->setPassword($temp_password);
+                } else if ($form->get("password")->getData()) {
+                    $temp_password = $this->get("security.password_encoder")->encodePassword($data, $form->get("password")->getData());
+                    $data->setPassword($temp_password);
+                } else {
+			        $data->setPassword($old_password);
+                }
+
 				$em->persist($data);
 				$em->flush();
 				
@@ -88,7 +100,8 @@ class AccountsController extends AbstractController
 		}
 		
 		return $this->render("@RibsAdmin/accounts/edit.html.twig", [
-			"form" => $form->createView()
+			"form" => $form->createView(),
+            "user" => $user
 		]);
 	}
 	//-------------------------------------------- END DISPLAY VIEWS -----------------------------------------------------------//

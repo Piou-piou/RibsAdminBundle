@@ -1,7 +1,7 @@
 {% extends "@RibsAdmin/base.html.twig" %}
 
 {% block title_page %}
-	<h1>Create a user</h1>
+	<h1>{% if user %}Edit {{ user.firstname }} {{ user.lastname }} account{% else %}Create a user{% endif %}</h1>
 {% endblock %}
 
 {% block body %}
