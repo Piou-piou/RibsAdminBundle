@@ -32,10 +32,10 @@ class Api
 	}
 	
 	/**
+     * this method is used to test jwt and if the user is ok else send false
 	 * @param string $infos_jwt
 	 * @param string $token
 	 * @return Account|bool
-	 * this method is used to test jwt and if the user is ok else send false
 	 */
 	public function userIslogged(string $infos_jwt, string $token)
 	{
@@ -56,13 +56,14 @@ class Api
 		
 		return $user;
 	}
-	
-	
-	/**
-	 * @param Account $account
-	 * @return string
-	 * method that return the token for a user
-	 */
+
+
+    /**
+     * method that return the token for a user
+     * @param Account $account
+     * @return string
+     * @throws \Exception
+     */
 	public function getToken(Account $account): string
 	{
 		$token = $account->getToken();
@@ -74,12 +75,13 @@ class Api
 		
 		return $token;
 	}
-	
-	/**
-	 * @param Account $account
-	 * @return string
-	 * method that set a toek for the user
-	 */
+
+    /**
+     * method that set a toek for the user
+     * @param Account $account
+     * @return string
+     * @throws \Exception
+     */
 	public function setToken(Account $account): string
 	{
 		$token = $this->generateToken();
@@ -96,9 +98,9 @@ class Api
 	}
 	
 	/**
+     * generate a token for api
 	 * @param int $length
 	 * @return string
-	 * generate a token for api
 	 */
 	private function generateToken(int $length = 200): string
 	{

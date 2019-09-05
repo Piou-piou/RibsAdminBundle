@@ -106,9 +106,9 @@ class AccessRights
 	}
 	
 	/**
+     * function that allow to test a right directly in the view
 	 * @param string $right
 	 * @return bool
-	 * function that allow to test a right directly in the view
 	 */
 	public function testRight(string $right): bool
 	{
@@ -129,9 +129,9 @@ class AccessRights
 	}
 	
 	/**
+     * test if route_right is found in users rights
 	 * @param array $route_right
 	 * @return bool
-	 * test if route_right is found in users rights
 	 */
 	private function testRouteRight(array $route_right): bool
 	{
@@ -154,10 +154,10 @@ class AccessRights
 	}
 	
 	/**
+     * function that search if the right contain an url or more
 	 * @param $needle
 	 * @param $haystack
 	 * @return bool|mixed
-	 * fonction that search if the right contain an url or more
 	 */
 	private function in_array_recursive($needle, $haystack)
 	{
@@ -178,7 +178,8 @@ class AccessRights
 	}
 	
 	/**
-	 * @return array function that retun a array that contain all user rights or empty array if no right found
+     * function that retun a array that contain all user rights or empty array if no right found
+	 * @return array
 	 */
 	private function getUserRights(): array
 	{
@@ -192,7 +193,8 @@ class AccessRights
 	}
 	
 	/**
-	 * @return array function that retun a array that contain all rights of rattached list right of the current user
+     * function that retun a array that contain all rights of rattached list right of the current user
+	 * @return array
 	 */
 	private function getRightsListOfUser(): array
 	{

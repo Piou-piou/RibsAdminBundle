@@ -8,9 +8,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PageController extends Controller
 {
-	/**
-	 * @Route("/contents", name="ribsadmin_contents")
-	 */
+    /**
+     * method to show index page of content management
+     * @Route("/contents", name="ribsadmin_contents")
+     * @return Response
+     */
 	public function indexAction(): Response
 	{
 		$navigation = $this->getDoctrine()->getManager()->getRepository("RibsAdminBundle:Navigation")->findAllNavigationPage();

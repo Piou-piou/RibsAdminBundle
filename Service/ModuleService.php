@@ -22,8 +22,8 @@ class ModuleService
 	}
 	
 	/**
+     * method that return all infos needed in access right management page
 	 * @return array
-	 * method that return all infos needed in access right management page
 	 */
 	public function getAllInfosModules()
 	{
@@ -44,8 +44,8 @@ class ModuleService
 	}
 	
 	/**
+     * function that return all modules rights
 	 * @return object
-	 * function that return all modules rights
 	 */
 	public function getModuleRights()
 	{

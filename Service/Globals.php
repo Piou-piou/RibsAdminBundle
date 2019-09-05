@@ -10,8 +10,12 @@ class Globals
 	 * @var ContainerInterface
 	 */
 	private $container;
-	
-	public function __construct(ContainerInterface $container)
+
+    /**
+     * Globals constructor.
+     * @param ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
 	{
 		$this->container = $container;
 	}

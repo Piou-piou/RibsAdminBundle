@@ -11,7 +11,8 @@ class NavigationBuilderController extends Controller
 	private  $nav = [];
 	
 	/**
-	 * @return Response function that display the left navigation mapped by user rights
+     * function that display the left navigation mapped by user rights
+	 * @return Response
 	 */
 	public function getLeftNavigationAction(): Response
 	{

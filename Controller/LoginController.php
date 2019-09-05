@@ -13,10 +13,9 @@ class LoginController extends Controller
 	/**
 	 * @Route("/login/", name="ribsadmin_login")
 	 * @param Request $request
-	 *
 	 * @return Response
 	 */
-	public function loginAction()
+	public function loginAction(): Response
 	{
 		$csrf_token = $this->has('security.csrf.token_manager')
 			? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
@@ -39,7 +38,6 @@ class LoginController extends Controller
 	
 	/**
 	 * @param array $data
-	 *
 	 * @return Response
 	 */
 	protected function renderLogin(array $data): Response

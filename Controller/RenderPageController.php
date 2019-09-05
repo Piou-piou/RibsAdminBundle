@@ -9,9 +9,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RenderPageController extends Controller
 {
-	/**
-	 * @Route("/page/{url}", name="page", requirements={"url" = "[a-zA-Z0-9\-\_\/]*"})
-	 */
+    /**
+     * @Route("/page/{url}", name="page", requirements={"url" = "[a-zA-Z0-9\-\_\/]*"})
+     * @param string $url
+     * @return Response
+     */
 	public function renderPageAction(string $url): Response
 	{
 		$em = $this->getDoctrine()->getManager();
