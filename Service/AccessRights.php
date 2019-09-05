@@ -82,7 +82,7 @@ class AccessRights
 		$ribs_admin_rights = (object)array_merge((array)$ribs_admin_rights, (array)$modules_rights);
 		
 		if ($admin_page == "ribsadmin" && $api !== "api" && strpos($route, "login") === false && strpos($route, "register") === false) {
-			//redirection si user pas connecté
+			//redirection if user not connected
 			if ($this->container->get("security.token_storage")->getToken() === null || !$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
 				return new RedirectResponse($this->router->generate("login"));
 			}
