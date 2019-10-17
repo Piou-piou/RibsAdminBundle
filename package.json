@@ -30,7 +30,7 @@
   "dependencies": {
     "font-awesome": "^4.7.0",
     "ribs-checkbox": "*",
-    "ribs-core": "*",
+    "ribs-core": "0.0.9-4",
     "ribs-flash-message": "*",
     "ribs-popup": "*",
     "tinymce": "^4.7.4"
