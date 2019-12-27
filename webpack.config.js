@@ -27,8 +27,6 @@ Encore
   './assets/js/login/app.js'
 ])
 
-.addEntry('js/tinymce', './assets/js/tinymce_init.js')
-
 
 // ----------------------  CSS --------------------------------------//
 .addStyleEntry('css/vendor', [
@@ -41,20 +39,8 @@ Encore
   './assets/scss/style.scss'
 ])
 
-.addStyleEntry('css/tynimce_skin', [
-  './node_modules/tinymce/skins/lightgray/skin.min.css',
-  './node_modules/tinymce/skins/lightgray/content.min.css',
-])
-
-.addStyleEntry('css/tynimce_perso', './assets/scss/tinymce.scss')
-
 
 // ----------------------  Other configs --------------------------------------//
-.addPlugin(new copyWebpackPlugin([
-  {from: './node_modules/tinymce/plugins', to: './plugins'},
-  {from: './node_modules/tinymce/themes', to: './themes'},
-  {from: './node_modules/tinymce/skins', to: './skins'},
-]))
 
 .addPlugin(new ProgressBarPlugin())
 
