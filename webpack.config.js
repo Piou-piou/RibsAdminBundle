@@ -12,6 +12,8 @@ Encore
 
 // ----------------------  JS --------------------------------------//
 .addEntry('js/vendor', [
+  './node_modules/ribs-admin-bundle-templates/dist/js/index.js',
+  './node_modules/ribs-admin-bundle-templates/dist/js/tables.js',
   './node_modules/ribs-checkbox/dist/js/ribs-checkbox.js',
   './node_modules/ribs-popup/dist/js/ribs-popup.js',
   './node_modules/ribs-flash-message/dist/js/ribs-flash-message.js',
@@ -30,14 +32,14 @@ Encore
 
 // ----------------------  CSS --------------------------------------//
 .addStyleEntry('css/vendor', [
-  './node_modules/ribs-checkbox/dist/css/style.css',
+  './node_modules/ribs-admin-bundle-templates/dist/style.min.css',
   './node_modules/ribs-popup/dist/css/style.min.css',
   './node_modules/ribs-flash-message/dist/css/style.css',
 ])
 
-.addStyleEntry('css/style', [
+/*.addStyleEntry('css/style', [
   './assets/scss/style.scss'
-])
+])*/
 
 
 // ----------------------  Other configs --------------------------------------//
