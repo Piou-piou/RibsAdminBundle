@@ -33,7 +33,7 @@
     "ribs-core": "0.0.9-4",
     "ribs-flash-message": "*",
     "ribs-popup": "*",
-    "tinymce": "^4.7.4"
+    "ribs-admin-bundle-templates": "^1.0.1"
   },
   "repository": {
     "type": "git",
