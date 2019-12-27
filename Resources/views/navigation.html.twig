@@ -1,8 +1,10 @@
 <ul>
 	{% for i in navigation %}
 		<li>
-			<i class="fa {{ i.icon }}"></i>
-			<a href="{{ path(i.url) }}">{{ i.text }}</a>
+			<a href="{{ path(i.url) }}">
+				<i class="fa {{ i.icon }}"></i>
+				<span>{{ i.text }}</span>
+			</a>
 		</li>
 	{% endfor %}
 </ul>

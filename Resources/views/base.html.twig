@@ -6,68 +6,36 @@
 		
 		{% block stylesheets %}
 			<link rel="stylesheet" href="{{ asset('build/ribs-admin-bundle/css/vendor.css') }}">
-			<link rel="stylesheet" href="{{ asset('build/ribs-admin-bundle/css/style.css') }}">
 		{% endblock %}
 	</head>
 	<body>
-		<nav class="menu active">
-			<div class="title">
-				<h1>Ribs V0.1</h1>
-				<i class="fa fa-bars"></i>
-			</div>
-			
-			<div class="my-account">
-				<div class="column">
-					<div class="image">
-						<img src="{{ asset('bundles/ribsadmin/images/default-profile.png') }}" alt="">
-					</div>
-				</div>
-				<div class="column">
-					<div class="account-infos">
-						<h3>{{ app.user.user.firstname }} {{ app.user.user.lastname }}</h3>
-						<div class="functions">
-							
-							<div class="column">
-								<div class="notif not-view">
-									<a href=""><i class="fa fa-bell"></i></a>
-								</div>
-							</div>
-							
-							<div class="column">
-								<div class="config">
-									<a href=""><i class="fa fa-gear"></i></a>
-								</div>
-							</div>
-							<div class="column">
-								<div class="logout">
-									<a href="{{ path('ribs_admin_logout') }}"><i class="fa fa-sign-out"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+        <nav id="left-nav">
+            <div class="title">
+                <h1>Ribs V0.1</h1>
+            </div>
 
             {{ render(controller("RibsAdminBundle:NavigationBuilder:getLeftNavigation")) }}
-		</nav>
+        </nav>
 		
-		<header>
-			<div class="inner displayed-nav">
-				{% block title_page %}
-					<h1>Dashboard</h1>
-				{% endblock %}
-			</div>
+		<header id="main">
+            <form action="">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Recherche quelque chose">
+            </form>
+            <ul>
+                <li id="notif"><i class="fas fa-bell"></i></li>
+                <li id="profile">Sierra Brooks</li>
+            </ul>
 		</header>
 		
 		{% block nav_page %}
 		
 		{% endblock %}
 		
-		<div class="inner displayed-nav">
+		<main>
 			{% block body %}
-			
 			{% endblock %}
-		</div>
+		</main>
 		
 		{% for message in app.session.flashBag.get('error-flash') %}
 			{% include "@RibsAdmin/flash-messages.html.twig" with {"message": message, "type": "error"} %}
@@ -95,6 +63,16 @@
 				<div class="clear"></div>
 			</div>
 		</div>
+
+        <div id="loader">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
 		
 		{% block javascripts %}
 			<script src="{{ asset('build/ribs-admin-bundle/js/vendor.js') }}"></script>
