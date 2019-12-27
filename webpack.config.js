@@ -32,7 +32,7 @@ Encore
 
 // ----------------------  CSS --------------------------------------//
 .addStyleEntry('css/vendor', [
-  './node_modules/ribs-admin-bundle-templates/dist/style.min.css',
+  './node_modules/ribs-admin-bundle-templates/dist/css/style.min.css',
   './node_modules/ribs-popup/dist/css/style.min.css',
   './node_modules/ribs-flash-message/dist/css/style.css',
 ])
