@@ -41,17 +41,11 @@ class User extends AbstractType
 		$builder
 			->add('firstname', TextType::class, [
 				'label' => 'Firstname',
-				'label_attr' => [
-					'class' => 'label'
-				],
 				'attr' => [],
 				'required' => true
 			])
 			->add('lastname', TextType::class, [
 				'label' => 'lastname',
-				'label_attr' => [
-					'class' => 'label'
-				],
 				'attr' => [],
 				'required' => true
 			])

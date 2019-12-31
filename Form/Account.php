@@ -18,17 +18,11 @@ class Account extends AbstractType
 		$builder
 			->add('username', TextType::class, [
 				'label' => 'Pseudo',
-				'label_attr' => [
-					'class' => 'label'
-				],
 				'attr' => [],
 				'required' => true
 			])
 			->add('email', EmailType::class, [
 				'label' => 'E-mail',
-				'label_attr' => [
-					'class' => 'label'
-				],
 				'attr' => [],
 				'required' => true
 			])
@@ -38,15 +32,9 @@ class Account extends AbstractType
 				'required' => false,
 				'first_options' => [
 					'label' => 'Password',
-					'label_attr' => [
-						'class' => 'label'
-					]
 				],
 				'second_options' => [
 					'label' => 'Repeat Password',
-					'label_attr' => [
-						'class' => 'label'
-					]
 				],
 			])
 			->add('submit', SubmitType::class, [

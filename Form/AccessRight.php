@@ -15,9 +15,6 @@ class AccessRight extends AbstractType
 		$builder
 			->add('name', TextType::class, [
 				'label' => 'Name of the list',
-				'label_attr' => [
-					'class' => 'label'
-				],
 				'attr' => [],
 				'required' => true
 			])
