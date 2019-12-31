@@ -3,6 +3,12 @@
 
 {% block body %}
 	<div class="ribs-container-fluid">
+		{% if ribsadmin_acces_right.testRight("ribsadmin@account@create") == true %}
+			<div class="top-links">
+				<a href="{{ path('ribsadmin_accounts_create') }}" class="ribs-button">Create an account</a>
+			</div>
+		{% endif %}
+
 		<div class="page-title">
 			<span>Overview</span>
 			<h3>List all users</h3>
@@ -95,10 +101,4 @@
 			</div>
 		</div>
 	</div>
-
-	{% if ribsadmin_acces_right.testRight("ribsadmin@account@create") == true %}
-		<div class="top-buttons">
-			<a href="{{ path('ribsadmin_accounts_create') }}">Create an account</a>
-		</div>
-	{% endif %}
 {% endblock %}
