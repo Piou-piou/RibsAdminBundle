@@ -1,55 +1,79 @@
 {% extends "@RibsAdmin/base.html.twig" %}
+{% form_theme form '@RibsAdmin/forms/template.html.twig' %}
 
 {% block title_page %}
 	<h1>{% if user %}Edit {{ user.firstname }} {{ user.lastname }} account{% else %}Create a user{% endif %}</h1>
 {% endblock %}
 
 {% block body %}
-	{{ form_start(form) }}
-	<div class="top-buttons">
-		{{ form_widget(form.submit) }}
-		<a href="{{ path('ribsadmin_accounts') }}" class="delete">Cancel</a>
-	</div>
-	
-	<div class="content-block">
-		<h2>Account informations</h2>
-		
-		<div class="block mid-width">
-			{{ form_label(form.username) }}
-			{{ form_widget(form.username) }}
+	<div class="ribs-container-fluid">
+		{{ form_start(form) }}
+		<div class="top-links">
+			{{ form_widget(form.submit) }}
+			<a href="{{ path('ribsadmin_accounts') }}" class="ribs-button danger">Cancel</a>
 		</div>
-		<div class="block mid-width">
-			{{ form_label(form.email) }}
-			{{ form_widget(form.email) }}
+
+
+		<div class="row">
+			<div class="cxs-12">
+				<div class="block">
+					<header>
+						<h5>Create a user</h5>
+					</header>
+
+					<div class="row form-group">
+						<div class="cxs-12 cmd-6">
+							{{ form_label(form.username) }}
+							{{ form_widget(form.username) }}
+						</div>
+						<div class="cxs-12 cmd-6">
+							{{ form_label(form.email) }}
+							{{ form_widget(form.email) }}
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="cxs-12 cmd-6">
+							{{ form_label(form.password.first) }}
+							{{ form_widget(form.password.first, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
+						</div>
+						<div class="cxs-12 cmd-6">
+							{{ form_label(form.password.second) }}
+							{{ form_widget(form.password.second, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="cxs-12 cmd-6">
+							{{ form_label(form.user.firstname) }}
+							{{ form_widget(form.user.firstname) }}
+						</div>
+						<div class="cxs-12 cmd-6">
+							{{ form_label(form.user.lastname) }}
+							{{ form_widget(form.user.lastname) }}
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="block mid-width">
-			{{ form_label(form.password.first) }}
-			{{ form_widget(form.password.first, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
-		</div>
-		<div class="block mid-width">
-			{{ form_label(form.password.second) }}
-			{{ form_widget(form.password.second, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
-		</div>
-		<div class="block mid-width">
-			{{ form_label(form.user.firstname) }}
-			{{ form_widget(form.user.firstname) }}
-		</div>
-		<div class="block mid-width">
-			{{ form_label(form.user.lastname) }}
-			{{ form_widget(form.user.lastname) }}
-		</div>
-	</div>
-	
-	<div class="content-block">
-		<h2>Account informations</h2>
-		
-		<div class="block mid-width no-input">
-			{{ form_label(form.user.admin) }}
-			{{ form_widget(form.user.admin) }}
-		</div>
-		<div class="block mid-width no-input">
-			{{ form_label(form.user.AccessRightList) }}
-			{{ form_widget(form.user.AccessRightList) }}
+
+		<div class="row">
+			<div class="cxs-12">
+				<div class="block">
+					<header>
+						<h5>Create a user</h5>
+					</header>
+
+					<div class="row form-group">
+						<div class="cxs-12 cmd-6">
+							{{ form_label(form.user.admin) }}
+							{{ form_widget(form.user.admin) }}
+						</div>
+						<div class="cxs-12 cmd-6">
+							{{ form_label(form.user.AccessRightList) }}
+							{{ form_widget(form.user.AccessRightList) }}
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	{{ form_end(form) }}

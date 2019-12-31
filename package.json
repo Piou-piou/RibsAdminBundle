@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "font-awesome": "^4.7.0",
-    "ribs-checkbox": "*",
     "ribs-core": "0.0.9-4",
     "ribs-flash-message": "*",
     "ribs-popup": "*",
