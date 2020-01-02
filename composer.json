@@ -29,7 +29,6 @@
     "symfony/validator": "~3.0|~4.0",
     "twig/extensions": "^1.0",
     "twig/twig": "~1.14,>=1.14.2|~2.0",
-    "Ramsey/Uuid": "3.8.*",
     "symfony/routing": "^3.2 || ^4.0",
     "symfony/console": "^3.2 || ^4.0",
     "symfony/http-foundation": "^3.2 || ^4.0",
