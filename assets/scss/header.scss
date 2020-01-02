@@ -29,11 +29,10 @@
 	
 	ul {
 		a {
-			height: 23px;
+			line-height: 38px;
 			min-width: 120px;
 			display: block;
 			text-align: center;
-			padding: 10px 0px;
 			color: $link-color;
 			transition: 0.3s all ease;
 			border-top: 5px solid transparent;
@@ -52,6 +51,7 @@
 			
 			>a {
 				margin: 0px 10px;
+				
 				&:hover {
 					border-top: 5px solid $menug-clr-border-link;
 					transition: 0.3s all ease;
