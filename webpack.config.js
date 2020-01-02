@@ -19,7 +19,6 @@ Encore
 
 .addEntry('js/main', [
   './assets/js/main.js',
-  './assets/js/form_blocks/inputs.js',
 ])
 
 .addEntry('js/login', [
