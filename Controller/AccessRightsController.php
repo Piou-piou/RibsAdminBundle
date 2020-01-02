@@ -57,6 +57,7 @@ class AccessRightsController extends Controller
 		return $this->render("@RibsAdmin/access-rights/edit-list.html.twig", [
 			"access_right" => $access_right,
 			"form" => $form->createView(),
+			"form_errors" => $form->getErrors(),
 			"list_rights_user" => $list_rights_user,
 			"admins" => $admins,
 			"ribs_admin_rights" => json_decode(file_get_contents($this->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json")),
