@@ -1,39 +1,49 @@
 {% extends "@RibsAdmin/base.html.twig" %}
 
-{% block title_page %}
-	<h1>Access rights management</h1>
-{% endblock %}
-
 
 {% block body %}
-	{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@create") == true %}
-		<div class="top-buttons">
-			<a href="{{ path('ribsadmin_access_rights_create') }}">Create a new list</a>
-		</div>
-	{% endif %}
-	
-	<div class="multiple-blocks">
-		{% for i in access_right %}
-			<div class="block">
-				<img src="{{ asset('bundles/ribsadmin/images/block-background.png') }}" alt="background of the block">
-				<h2>{{ i.name }}</h2>
-				
-				<div class="content">
-					<ul>
-						<li>Number of users : {{ i.users|length }}</li>
-						<li>Created at {{ i.creationDate|date("Y/m/d") }}</li>
-						<li>Edited at {{ i.updateDate|date("Y/m/d") }}</li>
-					</ul>
-				</div>
-			
-				{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@edit") == true %}
-					<a href="{{ path('ribsadmin_access_rights_edit', {"guid": i.guid}) }}" class="edit">Edit</a>
-				{% endif %}
-				
-				{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@delete") == true %}
-					<a class="delete" href="{{ path('ribsadmin_access_rights_delete', {"guid": i.guid}) }}">Delete</a>
-				{% endif %}
+	<div class="ribs-container-fluid">
+		{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@create") == true %}
+			<div class="top-links">
+				<a  class="ribs-button" href="{{ path('ribsadmin_access_rights_create') }}">Create a new list</a>
 			</div>
-		{% endfor %}
+		{% endif %}
+
+		<div class="page-title">
+			<span>Overview</span>
+			<h3>List access rights lists</h3>
+		</div>
+
+		<div class="row">
+			{% for i in access_right %}
+				<div class="cxs-12 cmd-3">
+					<div class="block">
+						<header class="with-image no-mb" style="background-image: url({{ asset('bundles/ribsadmin/images/block-background.png') }})"></header>
+
+						<div class="row content">
+							<div class="cxs-12">
+								<h4>{{ i.name }}</h4>
+
+								<ul class="p-initial rounded">
+									<li>Number of users : {{ i.users|length }}</li>
+									<li>Created at {{ i.creationDate|date("Y/m/d") }}</li>
+									<li>Edited at {{ i.updateDate|date("Y/m/d") }}</li>
+								</ul>
+							</div>
+						</div>
+
+						<footer class="row between-xs">
+							{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@edit") == true %}
+								<a class="ribs-button" href="{{ path('ribsadmin_access_rights_edit', {"guid": i.guid}) }}">Edit</a>
+							{% endif %}
+
+							{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@delete") == true %}
+								<a class="ribs-button danger" href="{{ path('ribsadmin_access_rights_delete', {"guid": i.guid}) }}">Delete</a>
+							{% endif %}
+						</footer>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}
