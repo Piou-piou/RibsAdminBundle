@@ -1,4 +1,5 @@
 {% extends "@RibsAdmin/base.html.twig" %}
+{% form_theme form '@RibsAdmin/forms/template.html.twig' %}
 
 {% block title_page %}
 	<h1>Access rights management : </h1>
@@ -6,93 +7,156 @@
 {% endblock %}
 
 {% block body %}
-	{{ form_start(form) }}
-	<div class="top-buttons">
-		{{ form_widget(form.submit) }}
-		<a href="{{ path('ribsadmin_access_rights') }}" class="delete">Cancel</a>
-	</div>
-	
-	<div class="content-block">
-		<h2>Edit the name of the list</h2>
-		
-		<div class="block">
-			{{ form_label(form.name) }}
-			{{ form_widget(form.name) }}
+	<div class="ribs-container-fluid">
+		{{ form_start(form) }}
+		<div class="top-links">
+			<a href="{{ path('ribsadmin_access_rights') }}" class="ribs-button danger">Cancel</a>
+			{{ form_widget(form.submit) }}
 		</div>
-	</div>
-	
-	<div class="content-block">
-		<h2>General rights list</h2>
-		
-		<table class="list">
-			<thead>
-			<tr>
-				<td>name of the right</td>
-				<td>Activate or not</td>
-			</tr>
-			</thead>
-			<tbody>
-				{% for i in ribs_admin_rights.items %}
-					<tr>
-						<td>{{ i.text }}</td>
-						<td>
-							<input type="checkbox" class="ribs-checkbox switched" id="right-check{{ loop.index }}" name="right[]"
-								   value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %}>
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	</div>
-	
-	{% for i in modules %}
-		<div class="content-block">
-			<h2>{{ i.name }} rights list</h2>
-			
-			<table class="list">
-				<thead>
-					<tr>
-						<td>name of the right</td>
-						<td>Activate or not</td>
-					</tr>
-				</thead>
-				<tbody>
-					{% for j in i.rights.items %}
-						<tr>
-							<td>{{ j.text }}</td>
-							<td>
-								<input type="checkbox" class="ribs-checkbox switched" id="right-check-{{ i.name }}-{{ loop.index }}" name="right[]"
-									   value="{{ j.right }}" {% if j.right in list_rights_user %}checked{% endif %}>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+
+		<div class="page-title">
+			<span>Overview</span>
+			<h3>Edit rights</h3>
 		</div>
-	{% endfor %}
-	
-	<div class="content-block">
-		<h2>Administrators list</h2>
-		
-		<table class="list">
-			<thead>
-			<tr>
-				<td>name of the admin</td>
-				<td>Inside the list or not</td>
-			</tr>
-			</thead>
-			<tbody>
-			{% for i in admins %}
-				<tr>
-					<td>{{ i.firstname }} {{ i.lastname }}</td>
-					<td>
-						<input type="checkbox" class="ribs-checkbox switched" id="admin-check{{ loop.index }}" name="admins[]"
-							   value="{{ i.guid }}" {% if i in access_right.users %}checked{% endif %}>
-					</td>
-				</tr>
-			{% endfor %}
-			</tbody>
-		</table>
+
+		<div class="row">
+			<div class="cxs-12">
+				<div class="block">
+					<header>
+						<h5>Edit the name of the list</h5>
+					</header>
+
+					<div class="row form-group">
+						<div class="cxs-12">
+							{{ form_label(form.name) }}
+							{{ form_widget(form.name) }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="cxs-12">
+				<div class="block">
+					<header>
+						<h5>General rights list</h5>
+					</header>
+
+					<table class="mt1">
+						<thead>
+							<tr>
+								<td>name of the right</td>
+								<td>Activate or not</td>
+							</tr>
+						</thead>
+						<tbody>
+							{% for i in ribs_admin_rights.items %}
+								<tr>
+									<td>{{ i.text }}</td>
+									<td>
+										<input type="checkbox" class="ribs-checkbox switched" id="right-check{{ loop.index }}" name="right[]"
+											   value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %}>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="cxs-12">
+				<div class="block">
+					<header>
+						<h5>General rights list</h5>
+					</header>
+
+					<table class="mt1">
+						<thead>
+							<tr>
+								<td>name of the right</td>
+								<td>Activate or not</td>
+							</tr>
+						</thead>
+						<tbody>
+							{% for i in ribs_admin_rights.items %}
+								<tr>
+									<td>{{ i.text }}</td>
+									<td>
+										<input type="checkbox" class="ribs-checkbox switched" id="right-check{{ loop.index }}" name="right[]"
+											   value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %}>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		{% for i in modules %}
+			<div class="row">
+				<div class="cxs-12">
+					<div class="block">
+						<header>
+							<h5>{{ i.name }} rights list</h5>
+						</header>
+
+						<table class="mt1">
+							<thead>
+								<tr>
+									<td>name of the right</td>
+									<td>Activate or not</td>
+								</tr>
+							</thead>
+							<tbody>
+								{% for j in i.rights.items %}
+									<tr>
+										<td>{{ j.text }}</td>
+										<td>
+											<input type="checkbox" class="ribs-checkbox switched" id="right-check-{{ i.name }}-{{ loop.index }}" name="right[]"
+												   value="{{ j.right }}" {% if j.right in list_rights_user %}checked{% endif %}>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+
+		<div class="row">
+			<div class="cxs-12">
+				<div class="block">
+					<header>
+						<h5>Administrators list</h5>
+					</header>
+
+					<table class="mt1">
+						<thead>
+							<tr>
+								<td>name of the admin</td>
+								<td>Inside the list or not</td>
+							</tr>
+						</thead>
+						<tbody>
+							{% for i in admins %}
+								<tr>
+									<td>{{ i.firstname }} {{ i.lastname }}</td>
+									<td>
+										<input type="checkbox" class="ribs-checkbox switched" id="admin-check{{ loop.index }}" name="admins[]"
+											   value="{{ i.guid }}" {% if i in access_right.users %}checked{% endif %}>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		{{ form_end(form) }}
 	</div>
-	{{ form_end(form) }}
 {% endblock %}
