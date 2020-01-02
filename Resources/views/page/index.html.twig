@@ -1,9 +1,5 @@
 {% extends "@RibsAdmin/base.html.twig" %}
 
-{% block title_page %}
-	<h1>Page management </h1>
-{% endblock %}
-
 {% block nav_page %}
 	<nav class="nav-page">
 		{% if navigation is iterable and navigation|length > 0 %}
@@ -17,7 +13,20 @@
 {% endblock %}
 
 {% block body %}
-	<div class="content-block">
-		<textarea name="tinymce" id="tinymce" class="tinymce" cols="30" rows="10"></textarea>
+	<div class="ribs-container-fluid">
+		<div class="page-title">
+			<span>Overview</span>
+			<h3>Edit page</h3>
+		</div>
+
+		<div class="row">
+			<div class="cxs-12">
+				<div class="block">
+					<div class="row content">
+						<textarea cols="30" rows="10"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 {% endblock %}
