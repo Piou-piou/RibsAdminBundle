@@ -101,6 +101,7 @@ class AccountsController extends AbstractController
 		
 		return $this->render("@RibsAdmin/accounts/edit.html.twig", [
 			"form" => $form->createView(),
+            "form_errors" => $form->getErrors(),
             "user" => $user
 		]);
 	}

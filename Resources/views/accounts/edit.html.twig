@@ -28,32 +28,26 @@
 
 					<div class="row form-group">
 						<div class="cxs-12 cmd-6">
-							{{ form_label(form.username) }}
-							{{ form_widget(form.username) }}
+							{{ form_row(form.username) }}
 						</div>
 						<div class="cxs-12 cmd-6">
-							{{ form_label(form.email) }}
-							{{ form_widget(form.email) }}
+							{{ form_row(form.email) }}
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="cxs-12 cmd-6">
-							{{ form_label(form.password.first) }}
-							{{ form_widget(form.password.first, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
+							{{ form_row(form.password.first, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
 						</div>
 						<div class="cxs-12 cmd-6">
-							{{ form_label(form.password.second) }}
-							{{ form_widget(form.password.second, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
+							{{ form_row(form.password.second, {'required' : 'create' in app.request.attributes.get("_route") ? 'required' : '' }) }}
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="cxs-12 cmd-6">
-							{{ form_label(form.user.firstname) }}
-							{{ form_widget(form.user.firstname) }}
+							{{ form_row(form.user.firstname) }}
 						</div>
 						<div class="cxs-12 cmd-6">
-							{{ form_label(form.user.lastname) }}
-							{{ form_widget(form.user.lastname) }}
+							{{ form_row(form.user.lastname) }}
 						</div>
 					</div>
 				</div>
@@ -82,24 +76,4 @@
 		</div>
 	</div>
 	{{ form_end(form) }}
-	
-	{% if form_errors is defined and form_errors is iterable %}
-		<div class="RibsFlashMessage error">
-			<div class="notification">
-				<div class="left">
-					<div class="icone">
-						<i class='fa fa-check'></i>
-					</div>
-				</div>
-				<div class="right">
-					{{ form_errors(form.username) }}
-					{{ form_errors(form.email) }}
-					{{ form_errors(form.password.first) }}
-					{{ form_errors(form.password.second) }}
-					{{ form_errors(form.user.firstname) }}
-					{{ form_errors(form.user.lastname) }}
-				</div>
-			</div>
-		</div>
-	{% endif %}
 {% endblock %}
