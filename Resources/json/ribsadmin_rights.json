@@ -54,6 +54,11 @@
       "right": "ribsadmin@navigation",
       "url": "ribsadmin_navigation",
       "text": "Index of navigation management"
+    },
+    {
+      "right": "ribsadmin@modules",
+      "url": "ribsadmin_modules",
+      "text": "Index of modules management"
     }
   ]
 }
