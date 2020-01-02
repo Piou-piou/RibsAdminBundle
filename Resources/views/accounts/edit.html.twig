@@ -9,8 +9,13 @@
 	<div class="ribs-container-fluid">
 		{{ form_start(form) }}
 		<div class="top-links">
-			{{ form_widget(form.submit) }}
 			<a href="{{ path('ribsadmin_accounts') }}" class="ribs-button danger">Cancel</a>
+			{{ form_widget(form.submit) }}
+		</div>
+
+		<div class="page-title">
+			<span>Account</span>
+			<h3>{% if user %}Edit {{ user.firstname }} {{ user.lastname }} account{% else %}Create a user{% endif %}</h3>
 		</div>
 
 
@@ -18,7 +23,7 @@
 			<div class="cxs-12">
 				<div class="block">
 					<header>
-						<h5>Create a user</h5>
+						<h5>Informations</h5>
 					</header>
 
 					<div class="row form-group">
@@ -59,7 +64,7 @@
 			<div class="cxs-12">
 				<div class="block">
 					<header>
-						<h5>Create a user</h5>
+						<h5>Access to administration</h5>
 					</header>
 
 					<div class="row form-group">
