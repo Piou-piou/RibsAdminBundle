@@ -19,12 +19,12 @@
 		
 		<header id="main">
             <form action="">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Recherche quelque chose">
+                {#<i class="fas fa-search"></i>#}
+                {#<input type="text" placeholder="Recherche quelque chose">#}
             </form>
             <ul>
                 <li id="notif"><i class="fas fa-bell"></i></li>
-                <li id="profile">Sierra Brooks</li>
+                <li id="profile">{{ app.user.user.firstname }} {{ app.user.user.lastname }}</li>
             </ul>
 		</header>
 		
