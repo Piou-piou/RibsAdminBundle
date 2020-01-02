@@ -14,7 +14,7 @@
 
 {%- block form_widget_simple -%}
     {%- set type = type|default('text') -%}
-    <input class="form-control" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    <input class="form-control {% if form_errors(form) %}is-invalid{% endif %}" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 {%- endblock form_widget_simple -%}
 
 {%- block textarea_widget -%}
@@ -36,3 +36,26 @@
     {%- endif -%}
     <button class="ribs-button" type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</button>
 {%- endblock button_widget -%}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        <ul>
+            {%- for error in errors -%}
+                <li>{{ error.message }}</li>
+            {%- endfor -%}
+        </ul>
+    {% elseif errors|length == 1 %}
+        {{ errors[0].message }}
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{%- block form_row -%}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+    {{- form_label(form) -}}
+    {{- form_widget(form, widget_attr) -}}
+    <div>{{- form_errors(form) -}}</div>
+    {{- form_help(form) -}}
+{%- endblock form_row -%}
