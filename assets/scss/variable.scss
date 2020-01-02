@@ -1,13 +1,3 @@
-@font-face {
-	font-family: lobster;
-	src: url(../fonts/lobster.ttf);
-}
-
-@font-face {
-	font-family: noto-sans;
-	src: url(../fonts/noto-sans.ttf);
-}
-
 /*----- MAIN COLOR -----*/
 $bg-general: #2F3B4C;
 $bg-notification: #f34336;
@@ -19,17 +9,6 @@ $bg-page: #fff;
 $color-error-input-login: #F34336;
 
 
-/*----- FOR CONTENTS BLOCKS -----*/
-$color-block-contents-title: #AFBDC4;
-$color-multiple-block-li: #AFBDC4;
-
-
-/*----- BUTTONS COLORS -----*/
-$bg-button: #2196F3;
-$bg-button-hover: #217ED3;
-$bg-button-error: #F34336;
-$bg-button-error-hover: #DD2A2A;
-
 
 /*----- LINK COLORS -----*/
 $link-color: #AFBDC4;
@@ -38,15 +17,7 @@ $color-link-page-hover: #217ED3;
 $bg-link-delete: #F34336;
 $bg-link-delete-hover: #DD2A2A;
 
-
-/*----- COLOR FOR LABELS || TITLES AND FONTS -----*/
-$color-title: #AFBDC4;
-$clr-text-label: #bfbfbf;
-$police-princ: noto-sans;
-$police-sec: lobster;
-
-
-/*----- LEFT SIDE NAV -----*/
+/*----- HEADER NAV -----*/
 $menug-bg-header: #00BEE7;
 $menug-clr-header: #0082A8;
 $menug-clr-border-link: #2BA5CA;

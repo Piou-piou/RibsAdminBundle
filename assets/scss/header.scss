@@ -1,21 +1,3 @@
-header {
-	background-color: $bg-header-page;
-	color: $color-title;
-	height: 58px;
-	box-shadow: 3px 3px 3px #ccc;
-	
-	h1 {
-		text-transform: uppercase;
-		margin-right: 50px;
-		padding: 5px;
-		padding-top: 12px;
-	}
-	
-	h1,h2 {
-		display: table-cell;
-	}
-}
-
 .nav-page {
 	background-color: $bg-general;
 	min-height: 48px;

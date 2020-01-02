@@ -35,9 +35,9 @@ Encore
   './node_modules/ribs-flash-message/dist/css/style.css',
 ])
 
-/*.addStyleEntry('css/style', [
+.addStyleEntry('css/style', [
   './assets/scss/style.scss'
-])*/
+])
 
 
 // ----------------------  Other configs --------------------------------------//
