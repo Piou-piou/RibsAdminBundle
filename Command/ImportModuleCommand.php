@@ -16,12 +16,12 @@ class ImportModuleCommand extends ContainerAwareCommand
         $this
             ->setName('ribsadmin:import-module')
             ->setDescription('Import a module in ribs admin')
-            /*->addArgument(
-                'name',
-                InputArgument::OPTIONAL,
-                'Who do you want to greet?'
+            ->addArgument(
+                'package-name',
+                InputArgument::REQUIRED,
+                'Name of composer package to import'
             )
-            ->addOption(
+            /*->addOption(
                 'yell',
                 null,
                 InputOption::VALUE_NONE,
@@ -32,6 +32,8 @@ class ImportModuleCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $pacakge_name = $input->getArgument('package-name');
+
         /*$name = $input->getArgument('name');
         if ($name) {
             $text = 'Hello '.$name;
@@ -43,6 +45,6 @@ class ImportModuleCommand extends ContainerAwareCommand
             $text = strtoupper($text);
         }*/
 
-        $output->writeln("Houra !");
+        $output->writeln("Houra ! -- " . $pacakge_name);
     }
 }
