@@ -1,0 +1,64 @@
+{% extends "@RibsAdmin/base.html.twig" %}
+{% form_theme form '@RibsAdmin/forms/template.html.twig' %}
+
+{% block body %}
+	<div class="ribs-container-fluid">
+		{{ form_start(form) }}
+		<div class="top-links">
+			<a href="{{ path('ribsadmin_modules') }}" class="ribs-button danger">Cancel</a>
+			{{ form_widget(form.submit) }}
+		</div>
+
+		<div class="page-title">
+			<span>Modules</span>
+			<h3>Edit {{ module.title }}</h3>
+		</div>
+
+
+		<div class="row">
+			<div class="cxs-12">
+				<div class="block">
+					<header>
+						<h5>Informations</h5>
+					</header>
+
+					<div class="row form-group mt1">
+						<div class="cxs-12 cmd-6">
+							{{ form_row(form.title) }}
+						</div>
+						<div class="cxs-12 cmd-6">
+							{{ form_row(form.packageName) }}
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="cxs-12 cmd-6">
+							{{ form_row(form.url) }}
+						</div>
+						<div class="cxs-12 cmd-6">
+							{{ form_row(form.urlAdmin) }}
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="cxs-12 cmd-6">
+							{{ form_widget(form.active) }}
+							{{ form_label(form.active) }}
+						</div>
+						<div class="cxs-12 cmd-6">
+							{{ form_widget(form.displayed) }}
+							{{ form_label(form.displayed) }}
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="cxs-12 cmd-6">
+							{{ form_row(form.titleTag) }}
+						</div>
+						<div class="cxs-12 cmd-6">
+							{{ form_row(form.descriptionTag) }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{ form_end(form) }}
+{% endblock %}

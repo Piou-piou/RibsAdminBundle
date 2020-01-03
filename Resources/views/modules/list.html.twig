@@ -3,12 +3,6 @@
 
 {% block body %}
 	<div class="ribs-container-fluid">
-		{% if ribsadmin_acces_right.testRight("ribsadmin@modules@add") == true %}
-			<div class="top-links">
-				<a href="{{ path('ribsadmin_accounts_create') }}" class="ribs-button">Add a module</a>
-			</div>
-		{% endif %}
-
 		<div class="page-title">
 			<span>Overview</span>
 			<h3>List all modules</h3>
@@ -30,17 +24,23 @@
 								<th>Admin url</th>
 								<th>Active</th>
 								<th>Displayed</th>
+								{% if ribsadmin_acces_right.testRight("ribsadmin@modules@edit") %}
+									<th>Actions</th>
+								{% endif %}
 							</tr>
 						</thead>
 						<tbody>
 							{% for module in modules %}
 								<tr>
-									<td>{{ module.titleTag }}</td>
+									<td>{{ module.title }}</td>
 									<td>{{ module.packageName }}</td>
 									<td>{{ module.url }}</td>
 									<td>{{ module.urlAdmin }}</td>
 									<td>{{ module.formattedactive }}</td>
 									<td>{{ module.formattedDisplayed }}</td>
+									{% if ribsadmin_acces_right.testRight("ribsadmin@modules@edit") %}
+										<td><a href="{{ url('ribsadmin_modules_edit', {'id': module.id}) }}">Edit</a></td>
+									{% endif %}
 								</tr>
 							{% else %}
 								<tr>
