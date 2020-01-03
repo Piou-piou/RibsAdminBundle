@@ -313,4 +313,14 @@ class Module
 	{
 		$this->updateDate = $updateDate;
 	}
+
+    public function getFormattedActive()
+    {
+        return $this->getActive() ? "Oui" : "Non";
+    }
+
+	public function getFormattedDisplayed()
+    {
+        return $this->getDisplayed() ? "Oui" : "Non";
+    }
 }

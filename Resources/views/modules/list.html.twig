@@ -1,0 +1,56 @@
+{% extends "@RibsAdmin/base.html.twig" %}
+
+
+{% block body %}
+	<div class="ribs-container-fluid">
+		{% if ribsadmin_acces_right.testRight("ribsadmin@modules@add") == true %}
+			<div class="top-links">
+				<a href="{{ path('ribsadmin_accounts_create') }}" class="ribs-button">Add a module</a>
+			</div>
+		{% endif %}
+
+		<div class="page-title">
+			<span>Overview</span>
+			<h3>List all modules</h3>
+		</div>
+
+		<div class="row">
+			<div class="cxs-12">
+				<div class="block">
+					<header>
+						<h5>Modules on website</h5>
+					</header>
+
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Package name</th>
+								<th>Url</th>
+								<th>Admin url</th>
+								<th>Active</th>
+								<th>Displayed</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for module in modules %}
+								<tr>
+									<td>{{ module.titleTag }}</td>
+									<td>{{ module.packageName }}</td>
+									<td>{{ module.url }}</td>
+									<td>{{ module.urlAdmin }}</td>
+									<td>{{ module.formattedactive }}</td>
+									<td>{{ module.formattedDisplayed }}</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="6" class="text-center">No module was found</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

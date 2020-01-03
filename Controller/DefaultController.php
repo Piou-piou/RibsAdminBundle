@@ -10,7 +10,6 @@ class DefaultController extends Controller
 	/**
 	 * @Route("/index", name="ribsadmin_index")
 	 * @Route("/navigation", name="ribsadmin_navigation")
-	 * @Route("/modules", name="ribsadmin_modules")
 	 */
 	public function indexAction()
 	{
