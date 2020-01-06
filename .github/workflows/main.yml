@@ -1,0 +1,17 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: SSH Execute Commands
+      uses: JimCronqvist/action-ssh@0.1.1
+      with:
+        command: cd /home/${{ DEV_SRV_USER }}/ && ./${{ SCRIPT }}.sh
+        hosts: ${{ DEV_SRV_URL }}
+        privateKey: ${{ SSH_KEY }}
+        debug: # optional
