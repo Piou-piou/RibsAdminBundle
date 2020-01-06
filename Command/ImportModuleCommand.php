@@ -2,15 +2,30 @@
 
 namespace PiouPiou\RibsAdminBundle\Command;
 
+use Doctrine\ORM\EntityManagerInterface;
+use PiouPiou\RibsAdminBundle\Entity\Module;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class ImportModuleCommand extends ContainerAwareCommand
 {
+    private $em;
+
+    /**
+     * ImportModuleCommand constructor.
+     * @param EntityManagerInterface $em
+     * @param string|null $name
+     */
+    public function __construct(EntityManagerInterface $em, string $name = null)
+    {
+        parent::__construct($name);
+        $this->em = $em;
+    }
+
     protected function configure()
     {
         $this
@@ -21,30 +36,39 @@ class ImportModuleCommand extends ContainerAwareCommand
                 InputArgument::REQUIRED,
                 'Name of composer package to import'
             )
-            /*->addOption(
-                'yell',
-                null,
-                InputOption::VALUE_NONE,
-                'If set, the task will yell in uppercase letters'
-            )*/
+            ->addArgument(
+                'module-name',
+                InputArgument::REQUIRED,
+                'Name of package to display in app'
+            )
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $pacakge_name = $input->getArgument('package-name');
+        $output->writeln("Start composer require " . $pacakge_name);
 
-        /*$name = $input->getArgument('name');
-        if ($name) {
-            $text = 'Hello '.$name;
-        } else {
-            $text = 'Hello';
+        $process = new Process("composer require " . $pacakge_name);
+        $process->run(function ($type, $buffer) {
+            echo $buffer;
+        });
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
         }
 
-        if ($input->getOption('yell')) {
-            $text = strtoupper($text);
-        }*/
+        $output->writeln("End composer require " . $pacakge_name);
+        $output->writeln("Start insertion of module in database " . $pacakge_name);
 
-        $output->writeln("Houra ! -- " . $pacakge_name);
+        $module = new Module();
+        $module->setPackageName($pacakge_name);
+        $module->setTitle($input->getArgument('module-name'));
+        $module->setActive(false);
+        $module->setDisplayed(true);
+        $this->em->persist($module);
+        $this->em->flush();
+
+        $output->writeln("Installation of " . $pacakge_name . " is finished. You have now to configure this module in your administration interface");
     }
 }
