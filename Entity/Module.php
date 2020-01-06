@@ -53,21 +53,21 @@ class Module
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="template", type="string", length=255, nullable=false)
+	 * @ORM\Column(name="template", type="string", length=255, nullable=true)
 	 */
 	private $template;
 	
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="url", type="string", length=255, nullable=false)
+	 * @ORM\Column(name="url", type="string", length=255, nullable=true)
 	 */
 	private $url;
 	
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="url_admin", type="string", length=255, nullable=false)
+	 * @ORM\Column(name="url_admin", type="string", length=255, nullable=true)
 	 */
 	private $urlAdmin;
 	
@@ -81,7 +81,7 @@ class Module
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="order", type="integer", nullable=false)
+	 * @ORM\Column(name="order", type="integer", nullable=true)
 	 */
 	private $order;
 	
@@ -133,11 +133,11 @@ class Module
 	}
 	
 	/**
-	 * @param string $package_namee
+	 * @param string $package_name
 	 */
-	public function setpackageName(string $package_namee)
+	public function setPackageName(string $package_name)
 	{
-		$this->packageName = $package_namee;
+		$this->packageName = $package_name;
 	}
 	
 	/**
