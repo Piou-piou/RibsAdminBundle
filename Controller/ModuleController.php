@@ -33,7 +33,7 @@ class ModuleController extends AbstractController
      * @return Response
      * method to edit a module
      */
-    public function editUserAction(Request $request, int $id = null): Response
+    public function edit(Request $request, int $id = null): Response
     {
         $em = $this->getDoctrine()->getManager();
         $module = $em->getRepository(Module::class)->findOneBy(["id" => $id]);
