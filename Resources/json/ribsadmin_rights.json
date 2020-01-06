@@ -64,6 +64,11 @@
       "right": "ribsadmin@modules@edit",
       "url": "ribsadmin_modules_edit",
       "text": "Edit a module"
+    },
+    {
+      "right": "ribsadmin@modules@delete",
+      "url": "ribsadmin_modules_delete",
+      "text": "Delete a module"
     }
   ]
 }

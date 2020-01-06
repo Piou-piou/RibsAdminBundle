@@ -4,6 +4,7 @@ namespace PiouPiou\RibsAdminBundle\Controller;
 
 use PiouPiou\RibsAdminBundle\Entity\Module;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -55,5 +56,29 @@ class ModuleController extends AbstractController
             "form_errors" => $form->getErrors(),
             "module" => $module
         ]);
+    }
+
+    /**
+     * @Route("/modules/delete/{id}", name="ribsadmin_modules_delete")
+     * @param Request $request
+     * @param int $id
+     * @return RedirectResponse
+     * method to delete a module
+     */
+    public function delete(Request $request, int $id): RedirectResponse
+    {
+        $em = $this->getDoctrine()->getManager();
+        $module = $em->getRepository(Module::class)->findOneBy(["id" => $id]);
+
+        if ($module) {
+            $name = $module->getTitle();
+            $em->remove($module);
+            $em->flush();
+            $this->addFlash("success-flash", "Module " . $name . " was deleted");
+        } else {
+            $this->addFlash("error-flash", "An error occured, module doesn't found");
+        }
+
+        return $this->redirectToRoute("ribsadmin_modules");
     }
 }
