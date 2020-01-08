@@ -5,8 +5,9 @@ namespace PiouPiou\RibsAdminBundle\Service;
 use PiouPiou\RibsAdminBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AccessRights
@@ -22,7 +23,7 @@ class AccessRights
 	private $router;
 	
 	/**
-	 * @var Session
+	 * @var SessionInterface
 	 */
 	private $session;
 	
@@ -45,17 +46,21 @@ class AccessRights
 	 * @var User
 	 */
 	private $user;
-	
-	/**
-	 * AccessRights constructor.
-	 * @param ContainerInterface $container
-	 * @param RouterInterface $router
-	 * @param Session $session
-	 * @param RequestStack $request
-	 * @param Globals $globals
-	 * @param ModuleService $module
-	 */
-	public function __construct(ContainerInterface $container, RouterInterface $router, Session $session, RequestStack $request, Globals $globals, ModuleService $module)
+
+	/** @var TokenStorageInterface */
+	private $token_storage;
+
+    /**
+     * AccessRights constructor.
+     * @param ContainerInterface $container
+     * @param RouterInterface $router
+     * @param SessionInterface $session
+     * @param RequestStack $request
+     * @param TokenStorageInterface $tokenStorage
+     * @param Globals $globals
+     * @param ModuleService $module
+     */
+	public function __construct(ContainerInterface $container, RouterInterface $router, SessionInterface $session, RequestStack $request, TokenStorageInterface $tokenStorage, Globals $globals, ModuleService $module)
 	{
 		$this->container = $container;
 		$this->router = $router;
@@ -63,6 +68,10 @@ class AccessRights
 		$this->request = $request;
 		$this->globals = $globals;
 		$this->module = $module;
+		$this->token_storage = $tokenStorage;
+		if ($this->token_storage->getToken()->getUser() && $this->token_storage->getToken()->getUser()->getUser()) {
+            $this->user = $this->token_storage->getToken()->getUser()->getUser();
+        }
 	}
 	
 	public function onKernelController()
@@ -87,7 +96,7 @@ class AccessRights
 				return new RedirectResponse($this->router->generate("login"));
 			}
 			
-			$this->user = $this->container->get("security.token_storage")->getToken()->getUser()->getUser();
+			$this->user = $this->token_storage->getToken()->getUser()->getUser();
 			
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
 			

@@ -3,6 +3,8 @@
 namespace PiouPiou\RibsAdminBundle\Controller;
 
 use PiouPiou\RibsAdminBundle\Entity\Module;
+use PiouPiou\RibsAdminBundle\Service\AccessRights;
+use PiouPiou\RibsAdminBundle\Service\Globals;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -14,12 +16,12 @@ class NavigationBuilderController extends AbstractController
      * function that display the left navigation mapped by user rights
 	 * @return Response
 	 */
-	public function getLeftNavigationAction(): Response
+	public function getLeftNavigation(Globals $globals, AccessRights $access_rights): Response
 	{
-		$navigation = json_decode(file_get_contents($this->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/navigation.json"), true);
+		$navigation = json_decode(file_get_contents($globals->getBaseBundlePath() . "/Resources/json/navigation.json"), true);
 		
 		foreach ($navigation["items"] as $item) {
-			if ($this->get("ribs_admin.acess_rights")->testRight($item["right"])) {
+			if ($access_rights->testRight($item["right"])) {
 				$this->nav[] = $item;
 			}
 		}
