@@ -69,7 +69,7 @@ class AccessRights
 		$this->globals = $globals;
 		$this->module = $module;
 		$this->token_storage = $tokenStorage;
-		if ($this->token_storage->getToken()->getUser() && $this->token_storage->getToken()->getUser()->getUser()) {
+		if ($this->token_storage->getToken()->getUser() && is_object($this->token_storage->getToken()->getUser()) &&  $this->token_storage->getToken()->getUser()->getUser()) {
             $this->user = $this->token_storage->getToken()->getUser()->getUser();
         }
 	}
