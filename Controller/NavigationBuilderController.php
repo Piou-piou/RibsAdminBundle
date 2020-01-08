@@ -3,10 +3,10 @@
 namespace PiouPiou\RibsAdminBundle\Controller;
 
 use PiouPiou\RibsAdminBundle\Entity\Module;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class NavigationBuilderController extends Controller
+class NavigationBuilderController extends AbstractController
 {
 	private  $nav = [];
 	

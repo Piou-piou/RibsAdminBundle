@@ -2,11 +2,11 @@
 
 namespace PiouPiou\RibsAdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-class PageController extends Controller
+class PageController extends AbstractController
 {
     /**
      * method to show index page of content management

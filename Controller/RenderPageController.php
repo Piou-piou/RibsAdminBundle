@@ -2,12 +2,12 @@
 
 namespace PiouPiou\RibsAdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class RenderPageController extends Controller
+class RenderPageController extends AbstractController
 {
     /**
      * @Route("/page/{url}", name="page", requirements={"url" = "[a-zA-Z0-9\-\_\/]*"})
