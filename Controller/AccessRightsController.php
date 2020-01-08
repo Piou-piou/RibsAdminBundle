@@ -3,6 +3,8 @@
 namespace PiouPiou\RibsAdminBundle\Controller;
 
 use PiouPiou\RibsAdminBundle\Entity\AccessRight;
+use PiouPiou\RibsAdminBundle\Service\Globals;
+use PiouPiou\RibsAdminBundle\Service\ModuleService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,15 +27,17 @@ class AccessRightsController extends AbstractController
 			"access_right" => $acces_right
 		]);
 	}
-	
-	/**
-	 * @Route("/access-rights-management/create/", name="ribsadmin_access_rights_create")
-	 * @Route("/access-rights-management/edit/{guid}", name="ribsadmin_access_rights_edit")
-	 * @param Request $request
-	 * @param string|null $guid
-	 * @return Response
-	 */
-	public function editAction(Request $request, string $guid = null): Response
+
+    /**
+     * @Route("/access-rights-management/create/", name="ribsadmin_access_rights_create")
+     * @Route("/access-rights-management/edit/{guid}", name="ribsadmin_access_rights_edit")
+     * @param Request $request
+     * @param Globals $globals
+     * @param ModuleService $module
+     * @param string|null $guid
+     * @return Response
+     */
+	public function editAction(Request $request, Globals $globals, ModuleService $module, string $guid = null): Response
 	{
 		$em = $this->getDoctrine()->getManager();
 		$list_rights_user = [];
@@ -60,8 +64,8 @@ class AccessRightsController extends AbstractController
 			"form_errors" => $form->getErrors(),
 			"list_rights_user" => $list_rights_user,
 			"admins" => $admins,
-			"ribs_admin_rights" => json_decode(file_get_contents($this->get("ribs_admin.globals")->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json")),
-			"modules" => $this->get("ribs_admin.module_service")->getAllInfosModules()
+			"ribs_admin_rights" => json_decode(file_get_contents($globals->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json")),
+			"modules" => $module->getAllInfosModules()
 		]);
 	}
 	//---------------------------------------------- END VIEWS METHODS ---------------------------------------------------------//
