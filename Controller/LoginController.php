@@ -3,25 +3,23 @@
 namespace PiouPiou\RibsAdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
-	/**
-	 * @Route("/login/", name="ribsadmin_login")
-	 * @param Request $request
-	 * @return Response
-	 */
-	public function loginAction(): Response
+    /**
+     * @Route("/login/", name="ribsadmin_login")
+     * @param AuthenticationUtils $auth_utils
+     * @return Response
+     */
+	public function loginAction(AuthenticationUtils $auth_utils): Response
 	{
 		$csrf_token = $this->has('security.csrf.token_manager')
 			? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
 			: null;
-		
-		$auth_utils = $this->get("security.authentication_utils");
 		
 		if ($auth_utils->getLastAuthenticationError()) {
 			$this->addFlash("error-flash", "Your login or password are incorrect");
