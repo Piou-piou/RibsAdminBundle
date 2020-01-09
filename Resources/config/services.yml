@@ -1,0 +1,10 @@
+services:
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    PiouPiou\RibsAdminBundle\:
+      resource: '../../*'
+      exclude: '../../{Entity,Migrations,Tests}'
+
+    PiouPiou\RibsAdminBundle\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
