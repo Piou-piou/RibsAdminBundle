@@ -6,20 +6,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
     /**
      * @Route("/login/", name="ribsadmin_login")
+     * @param CsrfTokenManagerInterface $token
      * @param AuthenticationUtils $auth_utils
      * @return Response
      */
-	public function loginAction(AuthenticationUtils $auth_utils): Response
+	public function loginAction(CsrfTokenManagerInterface $token, AuthenticationUtils $auth_utils): Response
 	{
-		$csrf_token = $this->has('security.csrf.token_manager')
-			? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
-			: null;
+		$csrf_token = $token ? $token->getToken('authenticate')->getValue() : null;
 		
 		if ($auth_utils->getLastAuthenticationError()) {
 			$this->addFlash("error-flash", "Your login or password are incorrect");
