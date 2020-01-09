@@ -1,14 +1,13 @@
 var Encore = require('@symfony/webpack-encore');
 const path = require('path');
 var glob = require('glob');
-const copyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 Encore
+.enableSingleRuntimeChunk()
 .setOutputPath('./Resources/public/')
 .setPublicPath('/bundles/ribsadmin')
 .setManifestKeyPrefix('bundles/ribsadmin')
-
 
 
 // ----------------------  JS --------------------------------------//
@@ -48,18 +47,13 @@ Encore
   test: /\.js$/,
   exclude: /node_modules/,
   include: [
+    path.join(__dirname, 'node_modules/ribs-core/'),
     path.join(__dirname, 'assets/'),
   ],
   loader: 'babel-loader',
 })
 
 .enableSassLoader()
-
-.autoProvideVariables({
-  $: 'jquery',
-  jQuery: 'jquery',
-  'window.jQuery': 'jquery',
-})
 
 .enableSourceMaps(!Encore.isProduction());
 
