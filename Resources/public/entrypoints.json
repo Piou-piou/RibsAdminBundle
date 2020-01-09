@@ -1,0 +1,38 @@
+{
+  "entrypoints": {
+    "js/vendor": {
+      "js": [
+        "/bundles/ribsadmin/runtime.js",
+        "/bundles/ribsadmin/js/vendor.js"
+      ]
+    },
+    "js/main": {
+      "js": [
+        "/bundles/ribsadmin/runtime.js",
+        "/bundles/ribsadmin/js/main.js"
+      ]
+    },
+    "js/login": {
+      "js": [
+        "/bundles/ribsadmin/runtime.js",
+        "/bundles/ribsadmin/js/login.js"
+      ]
+    },
+    "css/vendor": {
+      "js": [
+        "/bundles/ribsadmin/runtime.js"
+      ],
+      "css": [
+        "/bundles/ribsadmin/css/vendor.css"
+      ]
+    },
+    "css/style": {
+      "js": [
+        "/bundles/ribsadmin/runtime.js"
+      ],
+      "css": [
+        "/bundles/ribsadmin/css/style.css"
+      ]
+    }
+  }
+}
