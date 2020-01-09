@@ -1,10 +1,57 @@
 services:
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
     PiouPiou\RibsAdminBundle\:
-      resource: '../../*'
-      exclude: '../../{Entity,Migrations,Tests}'
+        resource: '../../*'
+        exclude: '../../{Entity,Migrations,Tests}'
 
     PiouPiou\RibsAdminBundle\Controller\:
         resource: '../../Controller'
         tags: ['controller.service_arguments']
+
+    PiouPiou\RibsAdminBundle\Command\ImportModuleCommand:
+        arguments: [ "@doctrine.orm.default_entity_manager" ]
+        tags:
+            - { name: 'console.command', command: 'ribsadmin:import-module' }
+
+    PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener:
+        arguments: [ "@service_container" ]
+        tags:
+            - { name: doctrine.orm.entity_listener }
+
+    PiouPiou\RibsAdminBundle\Service\AccessRights:
+        arguments: ['@service_container', "@router", "@session", "@request_stack", "@security.token_storage", "@ribs_admin.globals", "@ribs_admin.module_service"]
+        public: true
+
+    PiouPiou\RibsAdminBundle\Service\Globals:
+        arguments: ['@service_container']
+        public: true
+
+    ribs_admin.acess_rights:
+        class: PiouPiou\RibsAdminBundle\Service\AccessRights
+        arguments: ['@service_container', "@router", "@session", "@request_stack", "@security.token_storage", "@ribs_admin.globals", "@ribs_admin.module_service"]
+        tags:
+            - {name: kernel.event_listener, event: kernel.controller}
+        public: true
+
+    ribs_admin.globals:
+        class: PiouPiou\RibsAdminBundle\Service\Globals
+        arguments: ['@service_container']
+        public: true
+
+    ribs_admin.module_service:
+        class: PiouPiou\RibsAdminBundle\Service\ModuleService
+        arguments: ['@service_container', "@ribs_admin.globals"]
+        public: true
+
+    ribs_admin.api:
+        class: PiouPiou\RibsAdminBundle\Service\Api
+        arguments: ["@service_container","@doctrine.orm.default_entity_manager"]
+        public: true
+
+    ribs_admin.jwt:
+        class: PiouPiou\RibsAdminBundle\Service\Jwt
+        public: true
+
+    #forms
+    PiouPiou\RibsAdminBundle\Form\User:
+        arguments: ['@doctrine.orm.entity_manager', '@security.token_storage']
+        tags: [form.type]
