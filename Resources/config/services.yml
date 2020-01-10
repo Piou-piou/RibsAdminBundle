@@ -5,6 +5,8 @@ services:
 
     PiouPiou\RibsAdminBundle\Controller\:
         resource: '../../Controller'
+        calls:
+            - [setContainer, ["@service_container"]]
         tags: ['controller.service_arguments']
 
     PiouPiou\RibsAdminBundle\Command\ImportModuleCommand:
