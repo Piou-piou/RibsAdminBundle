@@ -14,6 +14,11 @@ services:
         tags:
             - { name: 'console.command', command: 'ribsadmin:import-module' }
 
+    PiouPiou\RibsAdminBundle\Command\CreateAdminCommand:
+        arguments: [ "@doctrine.orm.default_entity_manager", "@security.password_encoder" ]
+        tags:
+            - { name: 'console.command', command: 'ribsadmin:create-admin' }
+
     PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener:
         arguments: [ "@service_container" ]
         tags:
