@@ -24,8 +24,7 @@ class Module extends AbstractType
 			])
 			->add("packageName", TextType::class, [
 				"label" => "Package name",
-				"required" => true,
-                "disabled" => true
+				"required" => true
 			])
             ->add("titleTag", TextType::class, [
                 "label" => "Title tag",
