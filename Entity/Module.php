@@ -127,7 +127,7 @@ class Module
     /**
      * @return string
      */
-    public function getPackageName(): string
+    public function getPackageName(): ?string
     {
         return $this->packageName;
     }
@@ -143,7 +143,7 @@ class Module
     /**
      * @return string
      */
-    public function getTitleTag(): string
+    public function getTitleTag(): ?string
     {
         return $this->titleTag;
     }
@@ -159,7 +159,7 @@ class Module
     /**
      * @return string
      */
-    public function getDescriptionTag(): string
+    public function getDescriptionTag(): ?string
     {
         return $this->descriptionTag;
     }
@@ -175,7 +175,7 @@ class Module
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -191,7 +191,7 @@ class Module
     /**
      * @return string
      */
-    public function getTemplate(): string
+    public function getTemplate(): ?string
     {
         return $this->template;
     }
@@ -239,7 +239,7 @@ class Module
     /**
      * @return boolean
      */
-    public function getActive(): bool
+    public function getActive(): ?bool
     {
         return $this->active;
     }
@@ -255,7 +255,7 @@ class Module
     /**
      * @return int
      */
-    public function getOrder(): int
+    public function getOrder(): ?int
     {
         return $this->order;
     }
@@ -271,7 +271,7 @@ class Module
     /**
      * @return bool
      */
-    public function getDisplayed(): bool
+    public function getDisplayed(): ?bool
     {
         return $this->displayed;
     }
