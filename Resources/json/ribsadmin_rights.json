@@ -61,6 +61,11 @@
       "text": "Index of modules management"
     },
     {
+      "right": "ribsadmin@modules@create",
+      "url": "ribsadmin_modules_create",
+      "text": "Create a module"
+    },
+    {
       "right": "ribsadmin@modules@edit",
       "url": "ribsadmin_modules_edit",
       "text": "Edit a module"

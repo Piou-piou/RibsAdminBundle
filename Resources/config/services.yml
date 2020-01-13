@@ -49,6 +49,10 @@ services:
         arguments: ['@service_container', "@ribs_admin.globals"]
         public: true
 
+    PiouPiou\RibsAdminBundle\Service\ModuleService:
+        arguments: ['@service_container', "@ribs_admin.globals"]
+        public: true
+
     ribs_admin.api:
         class: PiouPiou\RibsAdminBundle\Service\Api
         arguments: ["@service_container","@doctrine.orm.default_entity_manager"]

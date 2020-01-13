@@ -3,6 +3,12 @@
 
 {% block body %}
 	<div class="ribs-container-fluid">
+		{% if ribsadmin_acces_right.testRight("ribsadmin@modules@create") == true %}
+			<div class="top-links">
+				<a href="{{ path('ribsadmin_modules_create') }}" class="ribs-button">Create an account</a>
+			</div>
+		{% endif %}
+
 		<div class="page-title">
 			<span>Overview</span>
 			<h3>List all modules</h3>

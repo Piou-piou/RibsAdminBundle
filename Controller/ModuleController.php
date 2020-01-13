@@ -28,6 +28,7 @@ class ModuleController extends AbstractController
     }
 
     /**
+     * @Route("/modules/create/", name="ribsadmin_modules_create")
      * @Route("/modules/edit/{id}", name="ribsadmin_modules_edit")
      * @param Request $request
      * @param int|null $id
@@ -37,7 +38,15 @@ class ModuleController extends AbstractController
     public function edit(Request $request, int $id = null): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $module = $em->getRepository(Module::class)->findOneBy(["id" => $id]);
+
+        if (!$id) {
+            $module = new Module();
+            $text = "created";
+        } else {
+            $module = $em->getRepository(Module::class)->findOneBy(["id" => $id]);
+            $text = "edited";
+        }
+
         $form = $this->createForm(\PiouPiou\RibsAdminBundle\Form\Module::class, $module);
         $form->handleRequest($request);
 
@@ -46,7 +55,7 @@ class ModuleController extends AbstractController
             $data = $form->getData();
             $em->persist($data);
             $em->flush();
-            $this->addFlash("success-flash", "Module ". $data->getTitleTag() . " was edited");
+            $this->addFlash("success-flash", "Module ". $data->getTitleTag() . " was " . $text);
 
             return $this->redirectToRoute("ribsadmin_modules");
         }
