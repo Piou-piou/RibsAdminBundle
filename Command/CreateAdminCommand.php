@@ -86,5 +86,7 @@ class CreateAdminCommand extends Command
         $this->em->flush();
 
         $output->writeln("End Create admin " . $firstname . " " . $lastname);
+
+        return 0;
     }
 }

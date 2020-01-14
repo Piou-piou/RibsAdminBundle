@@ -4,14 +4,14 @@ namespace PiouPiou\RibsAdminBundle\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
 use PiouPiou\RibsAdminBundle\Entity\Module;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-class ImportModuleCommand extends ContainerAwareCommand
+class ImportModuleCommand extends Command
 {
     private $em;
 
@@ -70,5 +70,7 @@ class ImportModuleCommand extends ContainerAwareCommand
         $this->em->flush();
 
         $output->writeln("Installation of " . $pacakge_name . " is finished. You have now to configure this module in your administration interface");
+
+        return 0;
     }
 }
