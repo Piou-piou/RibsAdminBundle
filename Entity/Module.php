@@ -93,6 +93,13 @@ class Module
     private $displayed;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="dev_mode", type="boolean", nullable=false)
+     */
+    private $devMode;
+
+    /**
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
@@ -282,6 +289,25 @@ class Module
     public function setDisplayed(bool $displayed)
     {
         $this->displayed = $displayed;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getDevMode(): bool
+    {
+        return $this->devMode;
+    }
+
+    /**
+     * @param bool $devMode
+     * @return Module
+     */
+    public function setDevMode(bool $devMode): Module
+    {
+        $this->devMode = $devMode;
+
+        return $this;
     }
 
     /**
