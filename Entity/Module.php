@@ -97,7 +97,7 @@ class Module
      *
      * @ORM\Column(name="dev_mode", type="boolean", nullable=false)
      */
-    private $devMode;
+    private $devMode = false;
 
     /**
      * @var \DateTime
