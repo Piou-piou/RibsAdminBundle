@@ -36,7 +36,7 @@ class ModuleService
 		foreach ($modules as $module) {
 			$modules_data[] = [
 				"name" => $module->getTitle(),
-				"rights" => (array)json_decode(file_get_contents($this->globals->getBaseBundlePath($module->getPackageName()) . "/Resources/json/ribsadmin_rights.json"))
+				"rights" => (array)json_decode(file_get_contents($this->globals->getBaseBundlePath($module->getPackageName(), $module->getDevMode()) . "/Resources/json/ribsadmin_rights.json"))
 			];
 		}
 		
@@ -56,7 +56,7 @@ class ModuleService
 		$rights = [];
 		
 		foreach ($modules as $module) {
-			$rights[] = json_decode(file_get_contents($this->globals->getBaseBundlePath($module->getPackageName()) . "/Resources/json/ribsadmin_rights.json"));
+			$rights[] = json_decode(file_get_contents($this->globals->getBaseBundlePath($module->getPackageName(), $module->getDevMode()) . "/Resources/json/ribsadmin_rights.json"));
 		}
 		
 		return (object)$rights;

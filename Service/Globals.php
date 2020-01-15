@@ -37,19 +37,20 @@ class Globals
 		
 		return $package_name;
 	}
-	
-	/**
-	 * this method send base bundle path related to ribs-admin
-	 * @param string|null $package
-	 * @return string
-	 */
-	public function getBaseBundlePath(string $package = "piou-piou/ribs-admin-bundle"): string
+
+    /**
+     * this method send base bundle path related to ribs-admin
+     * @param string|null $package
+     * @param bool $dev_mode
+     * @return string
+     */
+	public function getBaseBundlePath(string $package = "piou-piou/ribs-admin-bundle", bool $dev_mode = false): string
 	{
 		$path = explode("/", __DIR__);
 		array_pop($path);
-		
-		$dev_mode = $this->container->getParameter("ribs_admin")["dev_mode"];
-		
+
+        $dev_mode = $package === "piou-piou/ribs-admin-bundle" ? $this->container->getParameter("ribs_admin")["dev_mode"] : $dev_mode;
+
 		if ($dev_mode === true) {
 			$package = "lib/".$this->getPackageDevName($package);
 		}
