@@ -46,15 +46,16 @@ class Globals
      */
 	public function getBaseBundlePath(string $package = "piou-piou/ribs-admin-bundle", bool $dev_mode = false): string
 	{
-		$path = explode("/", __DIR__);
-		array_pop($path);
+		$path = $this->container->get('kernel')->getProjectDir();
 
         $dev_mode = $package === "piou-piou/ribs-admin-bundle" ? $this->container->getParameter("ribs_admin")["dev_mode"] : $dev_mode;
 
 		if ($dev_mode === true) {
-			$package = "lib/".$this->getPackageDevName($package);
-		}
+			$package = "/lib/".$this->getPackageDevName($package);
+		} else {
+            $package = "/vendor/" . $package;
+        }
 		
-		return implode("/", $path)."/../../" . $package;
+		return $path . $package;
 	}
 }
