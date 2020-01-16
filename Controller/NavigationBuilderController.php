@@ -21,7 +21,7 @@ class NavigationBuilderController extends AbstractController
 		$navigation = json_decode(file_get_contents($globals->getBaseBundlePath() . "/Resources/json/navigation.json"), true);
 		
 		foreach ($navigation["items"] as $item) {
-			if ($access_rights->testRight($item["right"])) {
+			if ($access_rights->testRight($item["right"]) && (!isset($item["position"]) || $item["position"] === "left")) {
 				$this->nav[] = $item;
 			}
 		}
@@ -46,7 +46,7 @@ class NavigationBuilderController extends AbstractController
 				($module->getPackageName(), $module->getDevMode()) . "/Resources/json/navigation.json"), true);
 			
 			foreach ($navigation["items"] as $item) {
-				if ($this->get("ribs_admin.acess_rights")->testRight($item["right"])) {
+				if ($this->get("ribs_admin.acess_rights")->testRight($item["right"]) && (!isset($item["position"]) || $item["position"] === "left")) {
 					$this->nav[] = $item;
 				}
 			}
