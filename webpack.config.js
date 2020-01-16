@@ -21,11 +21,6 @@ Encore
   './assets/js/main.js',
 ])
 
-.addEntry('js/login', [
-  './assets/js/login/particles.js',
-  './assets/js/login/app.js'
-])
-
 
 // ----------------------  CSS --------------------------------------//
 .addStyleEntry('css/vendor', [
