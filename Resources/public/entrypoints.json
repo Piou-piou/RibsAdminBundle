@@ -12,12 +12,6 @@
         "/bundles/ribsadmin/js/main.js"
       ]
     },
-    "js/login": {
-      "js": [
-        "/bundles/ribsadmin/runtime.js",
-        "/bundles/ribsadmin/js/login.js"
-      ]
-    },
     "css/vendor": {
       "js": [
         "/bundles/ribsadmin/runtime.js"
