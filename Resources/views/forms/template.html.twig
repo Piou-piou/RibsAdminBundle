@@ -59,3 +59,10 @@
     <div>{{- form_errors(form) -}}</div>
     {{- form_help(form) -}}
 {%- endblock form_row -%}
+
+{%- block form_end -%}
+{#    {%- if not render_rest is defined or render_rest -%}#}
+{#        {{ form_rest(form) }}#}
+{#    {%- endif -%}#}
+    </form>
+{%- endblock form_end -%}
