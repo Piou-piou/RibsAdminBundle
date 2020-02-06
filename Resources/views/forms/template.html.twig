@@ -64,5 +64,6 @@
 {#    {%- if not render_rest is defined or render_rest -%}#}
 {#        {{ form_rest(form) }}#}
 {#    {%- endif -%}#}
+    form_row(form._token)
     </form>
 {%- endblock form_end -%}
