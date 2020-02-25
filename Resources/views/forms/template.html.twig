@@ -18,7 +18,7 @@
 {%- endblock form_widget_simple -%}
 
 {%- block textarea_widget -%}
-    <textarea class="form-control {% if form_errors(form) %}is-invalid{% endif %} {% if attr is iterable and attr.class is defined %}{{ attr.class|join(' ') }}{% endif %}" {{ block('widget_attributes') }}>{{ value }}</textarea>
+    <textarea class="form-control {% if form_errors(form) %}is-invalid{% endif %} {% if attr is iterable and attr.class is defined %}{{ attr.class|join(' ') }}{% endif %}" {{ block('widget_attributes') }} >{{ value }}</textarea>
 {%- endblock textarea_widget -%}
 
 {%- block button_widget -%}
@@ -79,6 +79,21 @@
     <div>{{- form_errors(form) -}}</div>
     {{- form_help(form) -}}
 {%- endblock form_row -%}
+
+{% block attributes -%}
+    {%- for attrname, attrvalue in attr -%}
+        {{- " " -}}
+        {%- if attrname in ['placeholder', 'title'] -%}
+            {{- attrname }}="{{ translation_domain is same as(false) ? attrvalue : attrvalue|trans({}, translation_domain) }}"
+        {%- elseif attrvalue is same as(true) -%}
+            {{- attrname }}="{{ attrname }}"
+        {%- elseif attrvalue is not same as(false) -%}
+            {{- attrname }}="{{ attrvalue }}"
+        {%- elseif attrvalue == 'data-url' -%}
+            {{- attrname }}="path({{ attrvalue }})"
+        {%- endif -%}
+    {%- endfor -%}
+{%- endblock attributes -%}
 
 {%- block form_end -%}
 {#    {%- if not render_rest is defined or render_rest -%}#}
