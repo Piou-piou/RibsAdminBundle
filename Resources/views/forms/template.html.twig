@@ -89,7 +89,7 @@
             {{- attrname }}="{{ attrname }}"
         {%- elseif attrvalue is not same as(false) -%}
             {{- attrname }}="{{ attrvalue }}"
-        {%- elseif attrvalue == 'data-url' -%}
+        {%- elseif attrname == 'data-url' -%}
             {{- attrname }}="path({{ attrvalue }})"
         {%- endif -%}
     {%- endfor -%}
