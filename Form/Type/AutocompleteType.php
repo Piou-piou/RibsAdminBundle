@@ -2,12 +2,13 @@
 
 namespace PiouPiou\RibsAdminBundle\Form\Type;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AutocompleteType
+class AutocompleteType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
