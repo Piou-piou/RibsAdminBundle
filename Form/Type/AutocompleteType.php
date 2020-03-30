@@ -17,7 +17,8 @@ class AutocompleteType extends AbstractType
                 "label" => false,
                 "attr" => [
                     "class" => "input-autocomplete",
-                    "data-url" => $options["data_url"]
+                    "data-url" => $options["data_url"],
+                    "autocomplete" => "off"
                 ],
                 "mapped" => false
             ])
