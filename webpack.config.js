@@ -15,6 +15,7 @@ Encore
   './node_modules/ribs-checkbox/dist/js/ribs-checkbox.js',
   './node_modules/ribs-popup/dist/js/ribs-popup.js',
   './node_modules/ribs-flash-message/dist/js/ribs-flash-message.js',
+  './node_modules/ribs-admin-bundle-templates/dist/js/form.js'
 ])
 
 .addEntry('js/main', [
