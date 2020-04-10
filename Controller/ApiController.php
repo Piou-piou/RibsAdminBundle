@@ -30,15 +30,13 @@ class ApiController extends AbstractController
 		$account = $em->getRepository(Account::class)->findOneBy([
 			"username" => $request->get("username"),
 		]);
-		
+
 		if ($account) {
-			$encoder = $this->get("security.password_encoder");
-			
 			if ($encoder->getEncoder($account)->isPasswordValid($account->getPassword(), $request->get("password"), '') === true) {
 				if ($account->getisActive() == false) {
 					return new JsonResponse([
 						"success" => false,
-						"message" => "You account is disabled"
+						"error_message" => "You account is disabled"
 					]);
 				}
 				
@@ -51,7 +49,7 @@ class ApiController extends AbstractController
 		
 		return new JsonResponse([
 			"success" => false,
-			"message" => "bad identifiant and/or password"
+			"error_message" => "bad identifiant and/or password"
 		]);
 	}
 

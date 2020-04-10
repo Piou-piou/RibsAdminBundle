@@ -53,13 +53,8 @@ services:
         arguments: ['@service_container', "@ribs_admin.globals"]
         public: true
 
-    ribs_admin.api:
-        class: PiouPiou\RibsAdminBundle\Service\Api
-        arguments: ["@service_container","@doctrine.orm.default_entity_manager"]
-        public: true
-
-    ribs_admin.jwt:
-        class: PiouPiou\RibsAdminBundle\Service\Jwt
+    PiouPiou\RibsAdminBundle\Service\Api:
+        arguments: ["@service_container","@doctrine.orm.default_entity_manager", "@session", "@request_stack"]
         public: true
 
     #forms
