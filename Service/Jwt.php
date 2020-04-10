@@ -12,7 +12,7 @@ class Jwt
 	 * @param string $token
 	 * @return string
 	 */
-	public function encode(array $values, string $token)
+	public static function encode(array $values, string $token)
 	{
 		return JsonWebToken::encode($values, $token);
 	}
@@ -23,7 +23,7 @@ class Jwt
 	 * @param string $token
 	 * @return bool|object
 	 */
-	public function decode(string $encoded_json, string $token)
+	public static function decode(string $encoded_json, string $token)
 	{
 		JsonWebToken::$leeway = 5;
 		$decoded = JsonWebToken::decode($encoded_json, $token, ['HS256']);

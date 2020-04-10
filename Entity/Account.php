@@ -42,16 +42,17 @@ class Account implements UserInterface, \Serializable
 	 * @ORM\Column(name="is_active", type="boolean")
 	 */
 	private $isActive;
-	
-	/**
-	 * @ORM\Column(type="string", length=255, nullable=true)
-	 */
-	private $token;
-	
-	/**
-	 * @ORM\Column(type="datetime", nullable=true)
-	 */
-	private $endToken;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $last_connection;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AccountToken", mappedBy="account")
+     * @ORM\JoinColumn(name="id", referencedColumnName="account_id", nullable=false)
+     */
+    protected $tokens;
 	
 	/**
 	 * @var User
@@ -181,38 +182,44 @@ class Account implements UserInterface, \Serializable
 	{
 		$this->user = $user;
 	}
-	
-	/**
-	 * @return mixed
-	 */
-	public function getToken()
-	{
-		return $this->token;
-	}
-	
-	/**
-	 * @param mixed $token
-	 */
-	public function setToken($token)
-	{
-		$this->token = $token;
-	}
-	
-	/**
-	 * @return mixed
-	 */
-	public function getEndToken()
-	{
-		return $this->endToken;
-	}
-	
-	/**
-	 * @param mixed $endToken
-	 */
-	public function setEndToken($endToken)
-	{
-		$this->endToken = $endToken;
-	}
+
+    /**
+     * @return mixed
+     */
+    public function getLastConnection()
+    {
+        return $this->last_connection;
+    }
+
+    /**
+     * @param mixed $last_connection
+     * @return Account
+     */
+    public function setLastConnection($last_connection)
+    {
+        $this->last_connection = $last_connection;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokens()
+    {
+        return $this->tokens;
+    }
+
+    /**
+     * @param mixed $tokens
+     * @return Account
+     */
+    public function setTokens($tokens)
+    {
+        $this->tokens = $tokens;
+
+        return $this;
+    }
 	
 	/**
 	 * Returns the roles granted to the user.
