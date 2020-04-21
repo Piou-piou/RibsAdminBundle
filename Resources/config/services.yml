@@ -25,7 +25,7 @@ services:
             - { name: doctrine.orm.entity_listener }
 
     PiouPiou\RibsAdminBundle\Service\AccessRights:
-        arguments: ['@service_container', "@router", "@session", "@request_stack", "@security.token_storage", "@ribs_admin.globals", "@ribs_admin.module_service"]
+        arguments: ['@service_container', "@router", "@session", "@request_stack", "@security.token_storage", "@ribs_admin.globals", "@ribs_admin.module_service", "@ribs_admin.api"]
         public: true
 
     PiouPiou\RibsAdminBundle\Service\Globals:
@@ -34,7 +34,7 @@ services:
 
     ribs_admin.acess_rights:
         class: PiouPiou\RibsAdminBundle\Service\AccessRights
-        arguments: ['@service_container', "@router", "@session", "@request_stack", "@security.token_storage", "@ribs_admin.globals", "@ribs_admin.module_service"]
+        arguments: ['@service_container', "@router", "@session", "@request_stack", "@security.token_storage", "@ribs_admin.globals", "@ribs_admin.module_service", "@ribs_admin.api"]
         tags:
             - {name: kernel.event_listener, event: kernel.controller}
         public: true
@@ -47,6 +47,11 @@ services:
     ribs_admin.module_service:
         class: PiouPiou\RibsAdminBundle\Service\ModuleService
         arguments: ['@service_container', "@ribs_admin.globals"]
+        public: true
+
+    ribs_admin.api:
+        class: PiouPiou\RibsAdminBundle\Service\Api
+        arguments: ['@service_container', "@doctrine.orm.default_entity_manager", "@session", "@request_stack"]
         public: true
 
     PiouPiou\RibsAdminBundle\Service\ModuleService:

@@ -41,6 +41,11 @@ class AccessRights
 	 * @var ModuleService
 	 */
 	private $module;
+
+    /**
+     * @var Api
+     */
+    private $api;
 	
 	/**
 	 * @var User
@@ -59,8 +64,9 @@ class AccessRights
      * @param TokenStorageInterface $tokenStorage
      * @param Globals $globals
      * @param ModuleService $module
+     * @param Api $api
      */
-	public function __construct(ContainerInterface $container, RouterInterface $router, SessionInterface $session, RequestStack $request, TokenStorageInterface $tokenStorage, Globals $globals, ModuleService $module)
+	public function __construct(ContainerInterface $container, RouterInterface $router, SessionInterface $session, RequestStack $request, TokenStorageInterface $tokenStorage, Globals $globals, ModuleService $module, Api $api)
 	{
 		$this->container = $container;
 		$this->router = $router;
@@ -68,6 +74,7 @@ class AccessRights
 		$this->request = $request;
 		$this->globals = $globals;
 		$this->module = $module;
+		$this->api = $api;
 		$this->token_storage = $tokenStorage;
 		if ($this->token_storage->getToken() && is_object($this->token_storage->getToken()->getUser()) && $this->token_storage->getToken()->getUser()->getUser()) {
             $this->user = $this->token_storage->getToken()->getUser()->getUser();
@@ -111,7 +118,11 @@ class AccessRights
 			}
 			
 			throw new AccessDeniedException("No access");
-		}
+		} else if ($api === "api" && strpos($route, "login") === false && strpos($route, "register") === false) {
+            if ($this->api->userIslogged($this->request->getCurrentRequest()->get("infos"), $this->request->getCurrentRequest()->get("token")) === false) {
+                throw new AccessDeniedException("User is not connected");
+            }
+        }
 	}
 	
 	/**
