@@ -11,10 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Sleep for 120 seconds
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '120s'
     - name: SSH Execute Commands
       uses: JimCronqvist/action-ssh@0.1.1
       with:
         command: /home/${{ secrets.DEV_SRV_USER }}/${{ secrets.SCRIPT }}.sh
         hosts: ${{ secrets.DEV_SRV_URL }}
         privateKey: ${{ secrets.SSH_KEY }}
-        debug: # optional
