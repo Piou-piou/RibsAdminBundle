@@ -4,6 +4,7 @@ namespace PiouPiou\RibsAdminBundle\Service;
 
 use PiouPiou\RibsAdminBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\RouterInterface;
@@ -100,7 +101,7 @@ class AccessRights
 		if ($admin_page == "ribsadmin" && $api !== "api" && strpos($route, "login") === false && strpos($route, "register") === false) {
 			//redirection if user not connected
 			if ($this->container->get("security.token_storage")->getToken() === null || !$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-				return new RedirectResponse($this->router->generate("login"));
+				return new RedirectResponse($this->router->generate("ribs_admin_logout"));
 			}
 			
 			$this->user = $this->token_storage->getToken()->getUser()->getUser();
