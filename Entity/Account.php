@@ -71,7 +71,6 @@ class Account implements UserInterface, \Serializable
     protected $created_at;
 
     /**
-     * @ORM\Column(name="created_by", type="integer", nullable=false)
      * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
      */
@@ -83,7 +82,6 @@ class Account implements UserInterface, \Serializable
     protected $updated_at;
 
     /**
-     * @ORM\Column(name="updated_by", type="integer", nullable=false)
      * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User")
      * @ORM\JoinColumn(name="updated_by", referencedColumnName="id", nullable=false)
      */
