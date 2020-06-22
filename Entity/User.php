@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE", columns={"guid"})})
  * @ORM\Entity
- * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener"})
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class User
 {
@@ -100,22 +100,28 @@ class User
 	 * @ORM\Column(name="archived", type="boolean", nullable=true, options={"default": false})
 	 */
 	private $archived = false;
-	
-	/**
-	 * @var \DateTime
-	 *
-	 * @Gedmo\Timestampable(on="create")
-	 * @ORM\Column(name="creation_date", type="date", nullable=true)
-	 */
-	private $creationDate;
-	
-	/**
-	 * @var \DateTime
-	 *
-	 * @Gedmo\Timestampable(on="update")
-	 * @ORM\Column(name="update_date", type="date", nullable=true)
-	 */
-	private $updateDate;
+
+    /**
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    protected $created_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
+     */
+    protected $created_by;
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    protected $updated_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User")
+     * @ORM\JoinColumn(name="updated_by", referencedColumnName="id", nullable=false)
+     */
+    protected $updated_by;
 
     /**
      * @return int
@@ -292,22 +298,6 @@ class User
     {
         $this->accessRights = $accessRights;
     }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreationDate()
-    {
-        return $this->creationDate;
-    }
-
-    /**
-     * @param \DateTime $creationDate
-     */
-    public function setCreationDate($creationDate)
-    {
-        $this->creationDate = $creationDate;
-    }
 	
 	/**
 	 * @return boolean
@@ -326,21 +316,81 @@ class User
 	}
 
     /**
-     * @return \DateTime
+     * @return mixed
      */
-    public function getUpdateDate()
+    public function getCreatedAt()
     {
-        return $this->updateDate;
+        return $this->created_at;
     }
 
     /**
-     * @param \DateTime $updateDate
+     * @param mixed $created_at
+     * @return User
      */
-    public function setUpdateDate($updateDate)
+    public function setCreatedAt($created_at): User
     {
-        $this->updateDate = $updateDate;
+        $this->created_at = $created_at;
+
+        return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCreatedBy()
+    {
+        return $this->created_by;
+    }
 
+    /**
+     * @ORM\PrePersist
+     * @param mixed $created_by
+     * @return User
+     */
+    public function setCreatedBy($created_by): User
+    {
+        $this->created_by = $created_by;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @param mixed $updated_at
+     * @return User
+     */
+    public function setUpdatedAt($updated_at): User
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updated_by;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     * @param mixed $updated_by
+     * @return User
+     */
+    public function setUpdatedBy($updated_by): User
+    {
+        $this->updated_by = $updated_by;
+
+        return $this;
+    }
 }
 

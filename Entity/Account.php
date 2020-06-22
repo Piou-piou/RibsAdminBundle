@@ -7,6 +7,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="PiouPiou\RibsAdminBundle\Repository\AccountRepository")
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  * @ORM\Table(name="account")
  */
 class Account implements UserInterface, \Serializable
@@ -63,6 +64,30 @@ class Account implements UserInterface, \Serializable
 	 * })
 	 */
 	private $user;
+
+    /**
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    protected $created_at;
+
+    /**
+     * @ORM\Column(name="created_by", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
+     */
+    protected $created_by;
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    protected $updated_at;
+
+    /**
+     * @ORM\Column(name="updated_by", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User")
+     * @ORM\JoinColumn(name="updated_by", referencedColumnName="id", nullable=false)
+     */
+    protected $updated_by;
 	
 	public function __construct()
 	{
@@ -302,4 +327,82 @@ class Account implements UserInterface, \Serializable
 			// $this->salt
 			) = unserialize($serialized);
 	}
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @param mixed $created_at
+     * @return Account
+     */
+    public function setCreatedAt($created_at): Account
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedBy()
+    {
+        return $this->created_by;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @param mixed $created_by
+     * @return Account
+     */
+    public function setCreatedBy($created_by): Account
+    {
+        $this->created_by = $created_by;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @param mixed $updated_at
+     * @return Account
+     */
+    public function setUpdatedAt($updated_at): Account
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updated_by;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     * @param mixed $updated_by
+     * @return Account
+     */
+    public function setUpdatedBy($updated_by): Account
+    {
+        $this->updated_by = $updated_by;
+
+        return $this;
+    }
 }
