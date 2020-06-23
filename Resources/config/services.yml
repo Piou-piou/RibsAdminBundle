@@ -33,6 +33,12 @@ services:
         arguments: ['@service_container', "@router", "@session", "@request_stack", "@security.token_storage", "@ribs_admin.globals", "@ribs_admin.module_service", "@ribs_admin.api"]
         public: true
 
+    PiouPiou\RibsAdminBundle\Service\UserLog:
+        arguments: ["@security.token_storage", "@doctrine.orm.default_entity_manager"]
+        tags:
+            - {name: kernel.event_listener, event: kernel.request}
+        public: true
+
     PiouPiou\RibsAdminBundle\Service\Globals:
         arguments: ['@service_container']
         public: true

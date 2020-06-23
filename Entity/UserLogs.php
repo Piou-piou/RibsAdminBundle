@@ -18,21 +18,15 @@ class UserLogs
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var User
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
 
@@ -53,7 +47,7 @@ class UserLogs
     /**
      * @var string
      *
-     * @ORM\Column(name="equest_parameters", type="text", nullable=true)
+     * @ORM\Column(name="equest_parameters", type="json", nullable=true)
      */
     private $request_parameters;
 
@@ -127,19 +121,17 @@ class UserLogs
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getRequestParameters(): string
+
+    public function getRequestParameters()
     {
         return $this->request_parameters;
     }
 
     /**
-     * @param string $request_parameters
+     * @param $request_parameters
      * @return UserLogs
      */
-    public function setRequestParameters(string $request_parameters): UserLogs
+    public function setRequestParameters($request_parameters): UserLogs
     {
         $this->request_parameters = $request_parameters;
 
