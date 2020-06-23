@@ -3,7 +3,6 @@
 namespace PiouPiou\RibsAdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * UserLogs
@@ -26,7 +25,7 @@ class UserLogs
     private $id;
 
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
@@ -36,6 +35,27 @@ class UserLogs
      * })
      */
     private $user;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="method", type="string", length=255, nullable=false)
+     */
+    private $method;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255, nullable=false)
+     */
+    private $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="equest_parameters", type="text", nullable=true)
+     */
+    private $request_parameters;
 
     /**
      * @return int
@@ -54,9 +74,9 @@ class UserLogs
     }
 
     /**
-     * @return \User
+     * @return User
      */
-    public function getUser()
+    public function getUser(): User
     {
         return $this->user;
     }
@@ -67,6 +87,63 @@ class UserLogs
     public function setUser($user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMethod(): string
+    {
+        return $this->method;
+    }
+
+    /**
+     * @param string $method
+     * @return UserLogs
+     */
+    public function setMethod(string $method): UserLogs
+    {
+        $this->method = $method;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     * @return UserLogs
+     */
+    public function setUrl(string $url): UserLogs
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRequestParameters(): string
+    {
+        return $this->request_parameters;
+    }
+
+    /**
+     * @param string $request_parameters
+     * @return UserLogs
+     */
+    public function setRequestParameters(string $request_parameters): UserLogs
+    {
+        $this->request_parameters = $request_parameters;
+
+        return $this;
     }
 }
 
