@@ -10,9 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="navigation", indexes={@ORM\Index(name="fk_navigation_page1_idx", columns={"id_page"}),
  *     @ORM\Index(name="fk_navigation_module1_idx", columns={"id_module"})})
  * @ORM\Entity(repositoryClass="PiouPiou\RibsAdminBundle\Repository\NavigationRepository")
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class Navigation
 {
+    use CreatedUpdatedTrait;
+
 	/**
 	 * @var integer
 	 *

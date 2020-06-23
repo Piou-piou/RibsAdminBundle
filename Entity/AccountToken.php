@@ -12,9 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  *     indexes = {
  *          @ORM\Index(name="fk_user_token_account_idx", columns={"account_id"})
  *     })
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class AccountToken
 {
+    use CreatedUpdatedTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

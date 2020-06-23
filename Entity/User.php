@@ -14,6 +14,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class User
 {
+    use CreatedUpdatedTrait;
+
     /**
      * @var integer
      *
@@ -100,28 +102,6 @@ class User
 	 * @ORM\Column(name="archived", type="boolean", nullable=true, options={"default": false})
 	 */
 	private $archived = false;
-
-    /**
-     * @ORM\Column(name="created_at", type="datetime", nullable=true)
-     */
-    protected $created_at;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User")
-     * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
-     */
-    protected $created_by;
-
-    /**
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-     */
-    protected $updated_at;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="PiouPiou\RibsAdminBundle\Entity\User")
-     * @ORM\JoinColumn(name="updated_by", referencedColumnName="id", nullable=false)
-     */
-    protected $updated_by;
 
     /**
      * @return int
@@ -314,83 +294,5 @@ class User
 	{
 		$this->archived = $archived;
 	}
-
-    /**
-     * @return mixed
-     */
-    public function getCreatedAt()
-    {
-        return $this->created_at;
-    }
-
-    /**
-     * @param mixed $created_at
-     * @return User
-     */
-    public function setCreatedAt($created_at): User
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreatedBy()
-    {
-        return $this->created_by;
-    }
-
-    /**
-     * @ORM\PrePersist
-     * @param mixed $created_by
-     * @return User
-     */
-    public function setCreatedBy($created_by): User
-    {
-        $this->created_by = $created_by;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updated_at;
-    }
-
-    /**
-     * @param mixed $updated_at
-     * @return User
-     */
-    public function setUpdatedAt($updated_at): User
-    {
-        $this->updated_at = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdatedBy()
-    {
-        return $this->updated_by;
-    }
-
-    /**
-     * @ORM\PreUpdate
-     * @param mixed $updated_by
-     * @return User
-     */
-    public function setUpdatedBy($updated_by): User
-    {
-        $this->updated_by = $updated_by;
-
-        return $this;
-    }
 }
 

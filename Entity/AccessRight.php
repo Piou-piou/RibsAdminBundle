@@ -12,10 +12,12 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="access_right", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE", columns={"guid"})})
  * @ORM\Entity(repositoryClass="PiouPiou\RibsAdminBundle\Repository\AccessRightRepository")
- * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener"})
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class AccessRight
 {
+    use CreatedUpdatedTrait;
+
 	/**
 	 * @var integer
 	 *
@@ -45,22 +47,6 @@ class AccessRight
 	 * @ORM\Column(name="access_rights", type="text", nullable=true)
 	 */
 	private $accessRights;
-	
-	/**
-	 * @var \DateTime
-	 *
-	 * @Gedmo\Timestampable(on="create")
-	 * @ORM\Column(name="creation_date", type="date", nullable=true)
-	 */
-	private $creationDate;
-	
-	/**
-	 * @var \DateTime
-	 *
-	 * @Gedmo\Timestampable(on="update")
-	 * @ORM\Column(name="update_date", type="date", nullable=true)
-	 */
-	private $updateDate;
 	
 	/**
 	 * @var ArrayCollection
@@ -139,38 +125,6 @@ class AccessRight
 	public function setAccessRights(string $accessRights)
 	{
 		$this->accessRights = $accessRights;
-	}
-	
-	/**
-	 * @return \DateTime
-	 */
-	public function getCreationDate()
-	{
-		return $this->creationDate;
-	}
-	
-	/**
-	 * @param \DateTime $creationDate
-	 */
-	public function setCreationDate(\DateTime $creationDate)
-	{
-		$this->creationDate = $creationDate;
-	}
-	
-	/**
-	 * @return \DateTime
-	 */
-	public function getUpdateDate()
-	{
-		return $this->updateDate;
-	}
-	
-	/**
-	 * @param \DateTime $updateDate
-	 */
-	public function setUpdateDate(\DateTime $updateDate)
-	{
-		$this->updateDate = $updateDate;
 	}
 	
 	/**

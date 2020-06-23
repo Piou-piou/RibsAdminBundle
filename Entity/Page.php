@@ -10,10 +10,12 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="page", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE", columns={"guid"})}, indexes={@ORM\Index(name="fk_page_page1_idx", columns={"parent"})})
  * @ORM\Entity
- * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener"})
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class Page
 {
+    use CreatedUpdatedTrait;
+
     /**
      * @var integer
      *
@@ -102,22 +104,6 @@ class Page
      * })
      */
     private $parent;
-	
-	/**
-	 * @var \DateTime
-	 *
-	 * @Gedmo\Timestampable(on="create")
-	 * @ORM\Column(name="creation_date", type="date", nullable=true)
-	 */
-	private $creationDate;
-	
-	/**
-	 * @var \DateTime
-	 *
-	 * @Gedmo\Timestampable(on="update")
-	 * @ORM\Column(name="update_date", type="date", nullable=true)
-	 */
-	private $updateDate;
 
     /**
      * @return int
@@ -310,37 +296,5 @@ class Page
     {
         $this->parent = $parent;
     }
-	
-	/**
-	 * @return \DateTime
-	 */
-	public function getCreationDate(): \DateTime
-	{
-		return $this->creationDate;
-	}
-	
-	/**
-	 * @param \DateTime $creationDate
-	 */
-	public function setCreationDate(\DateTime $creationDate)
-	{
-		$this->creationDate = $creationDate;
-	}
-	
-	/**
-	 * @return \DateTime
-	 */
-	public function getUpdateDate(): \DateTime
-	{
-		return $this->updateDate;
-	}
-	
-	/**
-	 * @param \DateTime $updateDate
-	 */
-	public function setUpdateDate(\DateTime $updateDate)
-	{
-		$this->updateDate = $updateDate;
-	}
 }
 
