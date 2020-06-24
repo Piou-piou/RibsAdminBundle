@@ -11,11 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="`account_token`",
  *     indexes = {
  *          @ORM\Index(name="fk_user_token_account_idx", columns={"account_id"})
- *     })
- * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
+ *     }, uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE_account_token", columns={"guid"})})
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class AccountToken
 {
+    use GuidTrait;
     use CreatedUpdatedTrait;
 
     /**

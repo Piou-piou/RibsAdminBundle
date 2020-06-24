@@ -8,12 +8,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Module
  *
- * @ORM\Table(name="module")
+ * @ORM\Table(name="module", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE_module", columns={"guid"})})
  * @ORM\Entity
- * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class Module
 {
+    use GuidTrait;
     use CreatedUpdatedTrait;
 
     /**

@@ -7,12 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * UserLogs
  *
- * @ORM\Table(name="user_logs", indexes={@ORM\Index(name="fk_user_infos_user_idx", columns={"user_id"})})
+ * @ORM\Table(name="user_logs", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE_user_log", columns={"guid"})}, indexes={@ORM\Index(name="fk_user_infos_user_idx", columns={"user_id"})})
  * @ORM\Entity
- * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class UserLogs
 {
+    use GuidTrait;
     use CreatedUpdatedTrait;
 
     /**

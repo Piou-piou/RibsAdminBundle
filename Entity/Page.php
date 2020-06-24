@@ -8,12 +8,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Page
  *
- * @ORM\Table(name="page", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE", columns={"guid"})}, indexes={@ORM\Index(name="fk_page_page1_idx", columns={"parent"})})
+ * @ORM\Table(name="page", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE_page", columns={"guid"})}, indexes={@ORM\Index(name="fk_page_page1_idx", columns={"parent"})})
  * @ORM\Entity
  * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class Page
 {
+    use GuidTrait;
     use CreatedUpdatedTrait;
 
     /**
@@ -24,13 +25,6 @@ class Page
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="guid", type="string", length=255, nullable=false)
-     */
-    private $guid;
 
     /**
      * @var string
@@ -119,22 +113,6 @@ class Page
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGuid()
-    {
-        return $this->guid;
-    }
-
-    /**
-     * @param string $guid
-     */
-    public function setGuid($guid)
-    {
-        $this->guid = $guid;
     }
 
     /**

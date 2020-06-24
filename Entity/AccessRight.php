@@ -10,12 +10,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * AccessRight
  *
- * @ORM\Table(name="access_right", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE", columns={"guid"})})
+ * @ORM\Table(name="access_right", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE_access_right", columns={"guid"})})
  * @ORM\Entity(repositoryClass="PiouPiou\RibsAdminBundle\Repository\AccessRightRepository")
  * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class AccessRight
 {
+    use GuidTrait;
     use CreatedUpdatedTrait;
 
 	/**
@@ -26,13 +27,6 @@ class AccessRight
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
 	 */
 	private $id;
-	
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="guid", type="string", length=255, nullable=false)
-	 */
-	private $guid;
 	
 	/**
 	 * @var string
@@ -77,22 +71,6 @@ class AccessRight
 	public function setId(int $id)
 	{
 		$this->id = $id;
-	}
-	
-	/**
-	 * @return string
-	 */
-	public function getGuid()
-	{
-		return $this->guid;
-	}
-	
-	/**
-	 * @param string $guid
-	 */
-	public function setGuid(string $guid)
-	{
-		$this->guid = $guid;
 	}
 	
 	/**

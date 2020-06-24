@@ -7,11 +7,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="PiouPiou\RibsAdminBundle\Repository\AccountRepository")
- * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
- * @ORM\Table(name="account")
+ * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
+ * @ORM\Table(name="account", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE_account", columns={"guid"})})
  */
 class Account implements UserInterface, \Serializable
 {
+    use GuidTrait;
     use CreatedUpdatedTrait;
 
 	/**

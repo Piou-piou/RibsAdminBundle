@@ -8,12 +8,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * User
  *
- * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE", columns={"guid"})})
+ * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE_user", columns={"guid"})})
  * @ORM\Entity
  * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class User
 {
+    use GuidTrait;
     use CreatedUpdatedTrait;
 
     /**
@@ -24,13 +25,6 @@ class User
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="guid", type="string", length=255, nullable=false)
-     */
-    private $guid;
 	
 	/**
 	 * @var AccessRight
@@ -117,22 +111,6 @@ class User
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGuid()
-    {
-        return $this->guid;
-    }
-
-    /**
-     * @param string $guid
-     */
-    public function setGuid($guid)
-    {
-        $this->guid = $guid;
     }
 	
 	/**
