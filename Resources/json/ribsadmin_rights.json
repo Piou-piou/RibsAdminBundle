@@ -74,6 +74,11 @@
       "right": "ribsadmin@modules@delete",
       "url": "ribsadmin_modules_delete",
       "text": "Delete a module"
+    },
+    {
+      "right": "ribsadmin@userlogs",
+      "url": "ribsadmin_userlogs",
+      "text": "Access to log index page"
     }
   ]
 }

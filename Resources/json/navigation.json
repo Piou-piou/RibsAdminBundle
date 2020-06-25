@@ -29,6 +29,12 @@
       "url": "ribsadmin_navigation",
       "icon": "fa-link",
       "text": "Navigation management"
+    },
+    {
+      "right": "ribsadmin@userlogs",
+      "url": "ribsadmin_userlogs",
+      "icon": "fa-link",
+      "text": "Logs"
     }
   ]
 }

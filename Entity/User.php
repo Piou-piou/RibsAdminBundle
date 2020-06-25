@@ -272,5 +272,10 @@ class User
 	{
 		$this->archived = $archived;
 	}
+
+	public function __toString()
+    {
+        return $this->getFirstname() . " " . $this->getLastname();
+    }
 }
 

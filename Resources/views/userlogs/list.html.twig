@@ -1,0 +1,47 @@
+{% extends "@RibsAdmin/base.html.twig" %}
+
+
+{% block body %}
+    <div class="ribs-container-fluid">
+        <div class="page-title">
+            <span>Overview</span>
+            <h3>List all users logs</h3>
+        </div>
+
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Logs</h5>
+                    </header>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Method</th>
+                                <th>Url</th>
+                                <th>Request time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for log in logs %}
+                                <tr>
+                                    <td>{{ log.user }}</td>
+                                    <td>{{ log.method }}</td>
+                                    <td>{{ log.url }}</td>
+                                    <td>{{ log.createdAt|date('Y/m/d H:i:s') }}</td>
+                                    {#<td>{{ log.requestParameters|json_encode }}</td>#}
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" class="text-center">No log was found</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
