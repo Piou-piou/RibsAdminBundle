@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * UserLogs
  *
  * @ORM\Table(name="user_logs", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE_user_log", columns={"guid"})}, indexes={@ORM\Index(name="fk_user_infos_user_idx", columns={"user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="PiouPiou\RibsAdminBundle\Repository\UserLogsRepository")
  * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
 class UserLogs
