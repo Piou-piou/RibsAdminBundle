@@ -1,5 +1,5 @@
 {% if pagination.page_number > 0 %}
-    <ul class="pagination">
+    <ul class="ribs-pagination">
         {% if pagination.page > 1 %}
             <li>
                 <a href="{{ path(pagination.route, pagination.parameters|merge({'page': 1})) }}">
