@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
 	/**
+	 * @Route("/", name="ribsadmin")
 	 * @Route("/index", name="ribsadmin_index")
 	 * @Route("/navigation", name="ribsadmin_navigation")
 	 */

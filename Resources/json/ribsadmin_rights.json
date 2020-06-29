@@ -2,6 +2,11 @@
   "items": [
     {
       "right": "ribsadmin@index",
+      "url": "ribsadmin",
+      "text": "Index page of Ribs"
+    },
+    {
+      "right": "ribsadmin@index",
       "url": "ribsadmin_index",
       "text": "Index page of Ribs"
     },
