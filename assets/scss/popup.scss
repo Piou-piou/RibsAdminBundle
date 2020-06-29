@@ -1,0 +1,24 @@
+.ribs-popup {
+	h2 {
+		font-size: 1.625rem;
+		font-weight: 500;
+		line-height: 1;
+		color: $popup-color-h2;
+	}
+	
+	h3 {
+		font-size: 1.3rem;
+		color: $popup-color-h3;
+		margin: 15px 0;
+	}
+	
+	.content ul li {
+		font-weight: normal;
+		margin-bottom: 0;
+		
+		ul {
+			margin-left: 40px;
+		}
+	}
+	
+}

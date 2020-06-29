@@ -35,4 +35,20 @@ class UserLogsController extends AbstractController
             "pagination" => $pagination
         ]);
     }
+
+    /**
+     * show detail of a user log
+     * @Route("/user-logs/show/{guid}", name="ribsadmin_userlogs_show")
+     * @param string $guid
+     * @return Response
+     */
+    public function show(string $guid): Response
+    {
+        $log = $this->getDoctrine()->getRepository(UserLogs::class)->findOneByGuid($guid);
+        dump($log->getRequestParameters());
+
+        return $this->render("@RibsAdmin/userlogs/show.html.twig", [
+            "log" => $log,
+        ]);
+    }
 }

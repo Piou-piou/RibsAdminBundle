@@ -1,0 +1,28 @@
+<h2>Detail of a log</h2>
+
+<h3>General informations</h3>
+
+<ul>
+    <li>User : {{ log.user }}</li>
+    <li>Method : {{ log.method }}</li>
+    <li>Url : {{ log.url }}</li>
+    <li>Request time : {{ log.createdAt|date('m/d/y H:i:s') }}</li>
+</ul>
+
+<h3>Request parameters</h3>
+<ul>
+    {% for key, value in log.requestParameters %}
+        <li>
+            {{ key }} :
+            {% if value is not iterable %}
+                {{ value }}
+            {% else %}
+                <ul>
+                    {% for key1, value1 in value %}
+                        <li>{{ key1 }} : {{ value1 }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

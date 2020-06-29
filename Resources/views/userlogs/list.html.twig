@@ -31,6 +31,7 @@
                                     <td>{{ log.method }}</td>
                                     <td>{{ log.url }}</td>
                                     <td>{{ log.createdAt|date('Y/m/d H:i:s') }}</td>
+                                    <td><a href="#" data-ribspopup data-ajax="{{ path('ribsadmin_userlogs_show', {guid: log.guid}) }}" data-popup="userlogs-show-detail">See details</a></td>
                                     {#<td>{{ log.requestParameters|json_encode }}</td>#}
                                 </tr>
                             {% else %}
@@ -44,5 +45,17 @@
             </div>
         </div>
         {% include "@RibsAdmin/pagination.html.twig" %}
+    </div>
+
+    <div class="ribs-popup" id="userlogs-show-detail">
+        <div class="content fixed-width">
+            <div class="close" data-close>X</div>
+
+            <div id="set-content">
+
+            </div>
+
+            <div class="clear"></div>
+        </div>
     </div>
 {% endblock %}
