@@ -33,7 +33,11 @@ class User extends AbstractType
 		$this->em = $em;
 		$this->tokenStorage = $tokenStorage;
 	}
-	
+
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$access_rights_lists = $this->em->getRepository(\PiouPiou\RibsAdminBundle\Entity\AccessRight::class)->findAll();
@@ -65,7 +69,10 @@ class User extends AbstractType
 				"required" => false
 			]);
 	}
-	
+
+    /**
+     * @param OptionsResolver $resolver
+     */
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults([

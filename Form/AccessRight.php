@@ -10,6 +10,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AccessRight extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
@@ -23,7 +27,10 @@ class AccessRight extends AbstractType
 				'attr' => []
 			]);
 	}
-	
+
+    /**
+     * @param OptionsResolver $resolver
+     */
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults([

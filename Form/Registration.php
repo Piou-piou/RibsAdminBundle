@@ -13,6 +13,10 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class Registration extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
@@ -24,7 +28,10 @@ class Registration extends AbstractType
 				'second_options' => ['label' => 'Repeat Password'],
 			]);
 	}
-	
+
+    /**
+     * @param OptionsResolver $resolver
+     */
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults([

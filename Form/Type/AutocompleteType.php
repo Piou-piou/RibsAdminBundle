@@ -10,6 +10,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AutocompleteType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -22,11 +26,14 @@ class AutocompleteType extends AbstractType
                 ],
                 "mapped" => false
             ])
-            ->add($options["autocomplete_name"]."_id", HiddenType::class, [
+            ->add($options["autocomplete_name"] . "_id", HiddenType::class, [
                 "mapped" => false
             ]);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

@@ -13,6 +13,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Account extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
@@ -44,7 +48,10 @@ class Account extends AbstractType
 		
 		$builder->add('user', User::class);
 	}
-	
+
+    /**
+     * @param OptionsResolver $resolver
+     */
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults([
