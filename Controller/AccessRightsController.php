@@ -13,17 +13,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AccessRightsController extends AbstractController
 {
-	//---------------------------------------------- VIEWS METHODS ---------------------------------------------------------//
 	/**
 	 * @Route("/access-rights-management/", name="ribsadmin_access_rights")
 	 * @return Response
 	 */
-	public function listAction(): Response
+	public function list(): Response
 	{
 		$em = $this->getDoctrine()->getManager();
 		$acces_right = $em->getRepository("RibsAdminBundle:AccessRight")->findAll();
 		
-		return $this->render("@RibsAdmin/access-rights/list-all-list.html.twig", [
+		return $this->render("@RibsAdmin/access-rights/list.html.twig", [
 			"access_right" => $acces_right
 		]);
 	}
@@ -37,7 +36,7 @@ class AccessRightsController extends AbstractController
      * @param string|null $guid
      * @return Response
      */
-	public function editAction(Request $request, Globals $globals, ModuleService $module, string $guid = null): Response
+	public function edit(Request $request, Globals $globals, ModuleService $module, string $guid = null): Response
 	{
 		$em = $this->getDoctrine()->getManager();
 		$list_rights_user = [];
@@ -58,7 +57,7 @@ class AccessRightsController extends AbstractController
 			return $this->handleEditForm($request, $access_right);
 		}
 		
-		return $this->render("@RibsAdmin/access-rights/edit-list.html.twig", [
+		return $this->render("@RibsAdmin/access-rights/edit.html.twig", [
 			"access_right" => $access_right,
 			"form" => $form->createView(),
 			"form_errors" => $form->getErrors(),
@@ -68,7 +67,32 @@ class AccessRightsController extends AbstractController
 			"modules" => $module->getAllInfosModules()
 		]);
 	}
-	//---------------------------------------------- END VIEWS METHODS ---------------------------------------------------------//
+
+    /**
+     * @Route("/access-rights-management/delete/{guid}", name="ribsadmin_access_rights_delete")
+     * @param string $guid
+     * @return RedirectResponse function that delete an access right list
+     */
+    public function delete(string $guid): RedirectResponse
+    {
+        $em = $this->getDoctrine()->getManager();
+        $list = $em->getRepository("RibsAdminBundle:AccessRight")->findOneBy(["guid" => $guid]);
+
+        if ($list) {
+            foreach ($list->getUsers() as $user) {
+                $user->setAccessRightList(null);
+            }
+
+            $em->remove($list);
+            $em->flush();
+
+            $this->addFlash("success-flash", "The right list was deleted");
+        } else {
+            $this->addFlash("error-flash", "The right list wasn't found");
+        }
+
+        return $this->redirectToRoute("ribsadmin_access_rights");
+    }
 	
 	/**
 	 * @param Request $request
@@ -99,32 +123,6 @@ class AccessRightsController extends AbstractController
 		}
 		
 		$this->addFlash("success-flash", "The right list was correctly edited");
-		
-		return $this->redirectToRoute("ribsadmin_access_rights");
-	}
-	
-	/**
-	 * @Route("/access-rights-management/delete/{guid}", name="ribsadmin_access_rights_delete")
-	 * @param string $guid
-	 * @return RedirectResponse function that delete an access right list
-	 */
-	public function deleteList(string $guid): RedirectResponse
-	{
-		$em = $this->getDoctrine()->getManager();
-		$list = $em->getRepository("RibsAdminBundle:AccessRight")->findOneBy(["guid" => $guid]);
-		
-		if ($list) {
-			foreach ($list->getUsers() as $user) {
-				$user->setAccessRightList(null);
-			}
-			
-			$em->remove($list);
-			$em->flush();
-			
-			$this->addFlash("success-flash", "The right list was deleted");
-		} else {
-			$this->addFlash("error-flash", "The right list wasn't found");
-		}
 		
 		return $this->redirectToRoute("ribsadmin_access_rights");
 	}
