@@ -36,6 +36,11 @@ class UserLog
                 $user = $this->token_storage->getToken()->getUser()->getUser();
             }
             $request = $request_event->getRequest();
+            $route = $request->get("_route");
+
+            if (in_array($route, ["_profiler", "_profiler_search_bar", "_wdt", "ribsadmin_userlogs", "ribsadmin_userlogs_show"])) {
+                return;
+            }
 
             if ($user) {
                 $user_log = new UserLogs();
