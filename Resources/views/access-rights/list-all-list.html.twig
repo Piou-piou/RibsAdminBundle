@@ -18,12 +18,13 @@
 			{% for i in access_right %}
 				<div class="cxs-12 cmd-3">
 					<div class="block">
-						<header class="with-image no-mb" style="background-image: url({{ asset('bundles/ribsadmin/images/block-background.png') }})"></header>
+						<header>
+							<h5>{{ i.name }}</h5>
+						</header>
 
 						<div class="row content">
 							<div class="cxs-12">
-								<h4>{{ i.name }}</h4>
-
+								<h6>Details</h6>
 								<ul class="p-initial rounded">
 									<li>Number of users : {{ i.users|length }}</li>
 									<li>Created at {{ i.createdAt|date("Y/m/d") }}</li>
