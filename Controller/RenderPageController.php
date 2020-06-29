@@ -14,17 +14,17 @@ class RenderPageController extends AbstractController
      * @param string $url
      * @return Response
      */
-	public function renderPageAction(string $url): Response
-	{
-		$em = $this->getDoctrine()->getManager();
-		
-		$page = $em->getRepository("RibsAdminBundle:Page")->findOneBy(["url" => $url]);
-		$navigation = $em->getRepository("RibsAdminBundle:Navigation")->findAllNavigation();
-		
-		if ($page) {
-			return $this->render("@RibsAdmin/page.html.twig", ["page" => $page, "navigation" => $navigation]);
-		}
-		
-		throw new NotFoundHttpException("The required page does not exist");
-	}
+    public function renderPage(string $url): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $page = $em->getRepository("RibsAdminBundle:Page")->findOneBy(["url" => $url]);
+        $navigation = $em->getRepository("RibsAdminBundle:Navigation")->findAllNavigation();
+
+        if ($page) {
+            return $this->render("@RibsAdmin/page.html.twig", ["page" => $page, "navigation" => $navigation]);
+        }
+
+        throw new NotFoundHttpException("The required page does not exist");
+    }
 }
