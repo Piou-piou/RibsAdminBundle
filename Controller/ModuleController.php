@@ -15,7 +15,7 @@ class ModuleController extends AbstractController
      * @Route("/modules/", name="ribsadmin_modules")
      * @return Response
      */
-    public function List(): Response
+    public function list(): Response
     {
         $em = $this->getDoctrine()->getManager();
 

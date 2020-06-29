@@ -12,7 +12,7 @@ class DefaultController extends AbstractController
      * @Route("/index", name="ribsadmin_index")
      * @Route("/navigation", name="ribsadmin_navigation")
      */
-    public function indexAction()
+    public function index()
     {
         return $this->render('@RibsAdmin/Default/index.html.twig');
     }
