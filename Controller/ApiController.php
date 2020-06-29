@@ -23,35 +23,35 @@ class ApiController extends AbstractController
      * @return JsonResponse
      * @throws \Exception
      */
-	public function login(Request $request, Api $api, EncoderFactoryInterface $encoder): JsonResponse
-	{
-		$em = $this->getDoctrine()->getManager();
-		
-		$account = $em->getRepository(Account::class)->findOneBy([
-			"username" => $request->get("username"),
-		]);
+    public function login(Request $request, Api $api, EncoderFactoryInterface $encoder): JsonResponse
+    {
+        $em = $this->getDoctrine()->getManager();
 
-		if ($account) {
-			if ($encoder->getEncoder($account)->isPasswordValid($account->getPassword(), $request->get("password"), '') === true) {
-				if ($account->getisActive() == false) {
-					return new JsonResponse([
-						"success" => false,
-						"error_message" => "You account is disabled"
-					]);
-				}
-				
-				return new JsonResponse([
-					"success" => true,
-					"token" => $api->getToken($account)
-				]);
-			}
-		}
-		
-		return new JsonResponse([
-			"success" => false,
-			"error_message" => "bad identifiant and/or password"
-		]);
-	}
+        $account = $em->getRepository(Account::class)->findOneBy([
+            "username" => $request->get("username"),
+        ]);
+
+        if ($account) {
+            if ($encoder->getEncoder($account)->isPasswordValid($account->getPassword(), $request->get("password"), '') === true) {
+                if ($account->getisActive() == false) {
+                    return new JsonResponse([
+                        "success" => false,
+                        "error_message" => "You account is disabled"
+                    ]);
+                }
+
+                return new JsonResponse([
+                    "success" => true,
+                    "token" => $api->getToken($account)
+                ]);
+            }
+        }
+
+        return new JsonResponse([
+            "success" => false,
+            "error_message" => "bad identifiant and/or password"
+        ]);
+    }
 
     /**
      * method that test if user steel logged and send token or new token if it was expired
