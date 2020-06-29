@@ -14,7 +14,6 @@ class ModuleController extends AbstractController
     /**
      * @Route("/modules/", name="ribsadmin_modules")
      * @return Response
-     * function that return a list of all modules
      */
     public function List(): Response
     {
@@ -33,7 +32,6 @@ class ModuleController extends AbstractController
      * @param Request $request
      * @param int|null $id
      * @return Response
-     * method to edit a module
      */
     public function edit(Request $request, int $id = null): Response
     {
@@ -55,7 +53,7 @@ class ModuleController extends AbstractController
             $data = $form->getData();
             $em->persist($data);
             $em->flush();
-            $this->addFlash("success-flash", "Module ". $data->getTitleTag() . " was " . $text);
+            $this->addFlash("success-flash", "Module " . $data->getTitleTag() . " was " . $text);
 
             return $this->redirectToRoute("ribsadmin_modules");
         }
@@ -69,12 +67,10 @@ class ModuleController extends AbstractController
 
     /**
      * @Route("/modules/delete/{id}", name="ribsadmin_modules_delete")
-     * @param Request $request
      * @param int $id
      * @return RedirectResponse
-     * method to delete a module
      */
-    public function delete(Request $request, int $id): RedirectResponse
+    public function delete(int $id): RedirectResponse
     {
         $em = $this->getDoctrine()->getManager();
         $module = $em->getRepository(Module::class)->findOneBy(["id" => $id]);
