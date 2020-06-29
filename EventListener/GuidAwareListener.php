@@ -7,24 +7,24 @@ use Ramsey\Uuid\Uuid;
 
 class GuidAwareListener
 {
-	/**
-	 * @var ContainerInterface
-	 */
-	private $container;
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
 
     /**
      * GuidAwareListener constructor.
      * @param ContainerInterface $container
      */
     public function __construct(ContainerInterface $container)
-	{
-		$this->container = $container;
-	}
-	
-	public function prePersist($entity)
-	{
-		if ($entity->getGuid() === null) {
-			$entity->setGuid((string)Uuid::uuid4());
-		}
-	}
+    {
+        $this->container = $container;
+    }
+
+    public function prePersist($entity)
+    {
+        if ($entity->getGuid() === null) {
+            $entity->setGuid((string)Uuid::uuid4());
+        }
+    }
 }
