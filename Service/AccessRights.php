@@ -119,7 +119,7 @@ class AccessRights
 			}
 			
 			throw new AccessDeniedException("No access");
-		} else if ($api === "api" && strpos($route, "login") === false && strpos($route, "register") === false) {
+		} else if ($api && strpos($route, "login") === false && strpos($route, "register") === false) {
             if ($this->api->userIslogged($this->request->getCurrentRequest()->get("infos"), $this->request->getCurrentRequest()->get("token")) === false) {
                 throw new AccessDeniedException("User is not connected");
             }
