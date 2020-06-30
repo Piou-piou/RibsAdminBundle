@@ -87,7 +87,7 @@ class AccessRights
 		$route = $this->request->getCurrentRequest()->get("_route");
 		$route_array = explode("_", $route);
 		$admin_page = $route_array[0];
-		$api = count($route_array) > 1 ? $route_array[1] : null;
+		$api = in_array("api", $route_array);
 		
 		//to show admin panel
 		if (in_array($route, ["_profiler", "_profiler_search_bar", "_wdt"])) {
@@ -98,7 +98,7 @@ class AccessRights
 		$modules_rights = $this->module->getModuleRights();
 		$ribs_admin_rights = (object)array_merge((array)$ribs_admin_rights, (array)$modules_rights);
 		
-		if ($admin_page == "ribsadmin" && $api !== "api" && strpos($route, "login") === false && strpos($route, "register") === false) {
+		if ($admin_page == "ribsadmin" && !$api && strpos($route, "login") === false && strpos($route, "register") === false) {
 			//redirection if user not connected
 			if ($this->container->get("security.token_storage")->getToken() === null || !$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
 				return new RedirectResponse($this->router->generate("ribs_admin_logout"));
