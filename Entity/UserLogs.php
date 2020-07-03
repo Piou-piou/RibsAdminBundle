@@ -41,9 +41,30 @@ class UserLogs
     /**
      * @var string
      *
+     * @ORM\Column(name="route", type="string", length=255, nullable=false)
+     */
+    private $route;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="url", type="string", length=255, nullable=false)
      */
     private $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="full_url", type="string", length=255, nullable=false)
+     */
+    private $full_url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="request_format", type="string", length=255, nullable=false)
+     */
+    private $request_format;
 
     /**
      * @var string
@@ -106,6 +127,25 @@ class UserLogs
     /**
      * @return string
      */
+    public function getRoute(): string
+    {
+        return $this->route;
+    }
+
+    /**
+     * @param string $route
+     * @return UserLogs
+     */
+    public function setRoute(string $route): UserLogs
+    {
+        $this->route = $route;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function getUrl(): string
     {
         return $this->url;
@@ -122,6 +162,43 @@ class UserLogs
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getFullUrl(): string
+    {
+        return $this->full_url;
+    }
+
+    /**
+     * @param string $full_url
+     * @return UserLogs
+     */
+    public function setFullUrl(string $full_url): UserLogs
+    {
+        $this->full_url = $full_url;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRequestFormat(): string
+    {
+        return $this->request_format;
+    }
+
+    /**
+     * @param string $request_format
+     * @return UserLogs
+     */
+    public function setRequestFormat(string $request_format): UserLogs
+    {
+        $this->request_format = $request_format;
+
+        return $this;
+    }
 
     public function getRequestParameters()
     {

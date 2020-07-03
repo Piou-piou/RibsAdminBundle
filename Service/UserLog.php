@@ -46,7 +46,10 @@ class UserLog
                 $user_log = new UserLogs();
                 $user_log->setMethod($request->getMethod());
                 $user_log->setUser($user);
-                $user_log->setUrl($request->get("_route"));
+                $user_log->setRoute($request->get("_route"));
+                $user_log->setUrl($request->getRequestUri());
+                $user_log->setFullUrl($request->getUri());
+                $user_log->setRequestFormat($request->getRequestFormat());
                 $user_log->setRequestParameters($request->request->all());
                 $this->em->persist($user_log);
                 $this->em->flush();
