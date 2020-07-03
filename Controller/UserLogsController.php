@@ -20,7 +20,7 @@ class UserLogsController extends AbstractController
     public function list(ParameterBagInterface $parameterBag, int $page = 1): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $max_per_page = $parameterBag->get("ribs_admin")["paginator_element_per_page"];
+        $max_per_page = $parameterBag->get("ribs_admin.paginator_element_per_page");
 
         $logs = $em->getRepository(UserLogs::class)->findAllPaginated($page, $max_per_page);
         $pagination = array(

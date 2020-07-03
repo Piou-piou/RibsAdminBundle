@@ -153,7 +153,7 @@ class Api
     {
         $token = $this->generateToken();
         $now = new \DateTime();
-        $end_token = $now->add(new \DateInterval("PT".$this->container->getParameter("ribs_admin")["api_token_duration"]."M"));
+        $end_token = $now->add(new \DateInterval("PT".$this->container->getParameter("ribs_admin.api_token_duration")."M"));
 
         if (!$account_token) {
             $account_token = new AccountToken();

@@ -48,7 +48,7 @@ class Globals
 	{
 		$path = $this->container->get('kernel')->getProjectDir();
 
-        $dev_mode = $package === "piou-piou/ribs-admin-bundle" ? $this->container->getParameter("ribs_admin")["dev_mode"] : $dev_mode;
+        $dev_mode = $package === "piou-piou/ribs-admin-bundle" ? $this->container->getParameter("ribs_admin.dev_mode"): $dev_mode;
 
 		if ($dev_mode === true) {
 			$package = "/lib/".$this->getPackageDevName($package);
