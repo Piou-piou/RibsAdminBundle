@@ -45,7 +45,6 @@ class UserLogsController extends AbstractController
     public function show(string $guid): Response
     {
         $log = $this->getDoctrine()->getRepository(UserLogs::class)->findOneByGuid($guid);
-        dump($log->getRequestParameters());
 
         return $this->render("@RibsAdmin/userlogs/show.html.twig", [
             "log" => $log,
