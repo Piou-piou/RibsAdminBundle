@@ -1,4 +1,5 @@
 parameters:
+    ribs_admin.dev_mode: false
     ribs_admin.api_token_duration: 120
     ribs_admin.paginator_element_per_page: 20
 
