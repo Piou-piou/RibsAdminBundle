@@ -15,7 +15,8 @@ Encore
   './node_modules/ribs-checkbox/dist/js/ribs-checkbox.js',
   './node_modules/ribs-popup/dist/js/ribs-popup.js',
   './node_modules/ribs-flash-message/dist/js/ribs-flash-message.js',
-  './node_modules/ribs-admin-bundle-templates/dist/js/form.js'
+  './node_modules/ribs-admin-bundle-templates/dist/js/form.js',
+  './node_modules/ribs-file-uploader/dist/js/main.js'
 ])
 
 .addEntry('js/main', [
@@ -28,6 +29,7 @@ Encore
   './node_modules/ribs-admin-bundle-templates/dist/css/style.min.css',
   './node_modules/ribs-popup/dist/css/style.min.css',
   './node_modules/ribs-flash-message/dist/css/style.css',
+  './node_modules/ribs-file-uploader/dist/css/style.min.css'
 ])
 
 .addStyleEntry('css/style', [

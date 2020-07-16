@@ -2,6 +2,7 @@
 
 namespace PiouPiou\RibsAdminBundle\Form;
 
+use PiouPiou\RibsAdminBundle\Form\Type\UploaderType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -41,6 +42,12 @@ class Account extends AbstractType
 					'label' => 'Repeat Password',
 				],
 			])
+            ->add("profil_image", UploaderType::class, [
+                "label" => "Image du profil",
+                "uploader_name" => "test",
+                "mapped" => false,
+                "required" => false,
+            ])
 			->add('submit', SubmitType::class, [
 				'label' => 'Validate',
 				'attr' => []
