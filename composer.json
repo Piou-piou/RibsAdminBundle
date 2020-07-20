@@ -14,7 +14,7 @@
     "php": ">=7.1",
     "gedmo/doctrine-extensions": "2.4.*",
     "ramsey/uuid": "^3.7",
-    "symfony/framework-bundle": "^3.3|^4.0|~5.0",
+    "symfony/framework-bundle": "^3.3|^4.4|~5.0",
     "sensio/framework-extra-bundle": "^5.0",
     "symfony/config": "^3.4|^4.0|~5.0",
     "symfony/polyfill-mbstring": "1.13.*",
@@ -23,7 +23,9 @@
     "symfony/form": "~3.0|~4.0|~5.0",
     "symfony/orm-pack": "*",
     "symfony/validator": "~3.0|~4.0|~5.0",
-    "symfony/twig-pack": "*",
+    "symfony/twig-bundle": "~3.0|~4.0|~5.0",
+    "twig/extra-bundle": "^2.12|^3.0",
+    "twig/twig": "^2.12|^3.0",
     "symfony/routing": "^3.2 || ^4.0 || ~5.0",
     "symfony/console": "^3.2 || ^4.0 || ~5.0",
     "symfony/http-foundation": "^3.2 || ^4.0 || ~5.0",
@@ -33,7 +35,6 @@
     "firebase/php-jwt": "^5.0.0"
   },
   "require-dev": {
-    "sensio/generator-bundle": "^3.1",
     "symfony/yaml": "^3.4 || ^4.0 || ~5.0"
   },
   "autoload": {
