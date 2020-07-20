@@ -2,6 +2,8 @@ parameters:
     ribs_admin.dev_mode: false
     ribs_admin.api_token_duration: 120
     ribs_admin.paginator_element_per_page: 20
+    ribs_admin.base_upload_url: ''
+    ribs_admin.upload_dir: ''
 
 services:
     PiouPiou\RibsAdminBundle\:
