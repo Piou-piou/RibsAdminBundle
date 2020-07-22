@@ -32,6 +32,7 @@ class AccountsController extends AbstractController
 
     /**
      * @Route("/accounts/create/", name="ribsadmin_accounts_create")
+     * @Route("/accounts/show/{guid}", name="ribsadmin_accounts_show")
      * @Route("/accounts/edit/{guid}", name="ribsadmin_accounts_edit")
      * @param Request $request
      * @param string|null $guid
@@ -40,6 +41,7 @@ class AccountsController extends AbstractController
     public function edit(Request $request, string $guid = null): Response
     {
         $em = $this->getDoctrine()->getManager();
+        $disabled_form = strpos($request->get("_route"), "_show") ? true : false;
 
         if ($guid === null) {
             $account = new Account();
@@ -51,7 +53,7 @@ class AccountsController extends AbstractController
             $old_password = $account->getPassword();
         }
 
-        $form = $this->createForm("PiouPiou\RibsAdminBundle\Form\Account", $account);
+        $form = $this->createForm("PiouPiou\RibsAdminBundle\Form\Account", $account,  ["disabled" => $disabled_form]);
 
         $form->handleRequest($request);
 
@@ -99,7 +101,8 @@ class AccountsController extends AbstractController
         return $this->render("@RibsAdmin/accounts/edit.html.twig", [
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
-            "user" => $user
+            "user" => $user,
+            "disabled_form" => $disabled_form
         ]);
     }
 

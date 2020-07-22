@@ -16,6 +16,11 @@
       "text": "Index page of accounts management"
     },
     {
+      "right": "ribsadmin@account@show",
+      "url": "ribsadmin_accounts_show",
+      "text": "Show an account"
+    },
+    {
       "right": "ribsadmin@account@create",
       "url": "ribsadmin_accounts_create",
       "text": "Create an account"
@@ -42,6 +47,7 @@
     },
     {
       "right": "ribsadmin@access_rights@create",
+      "url": "ribsadmin_access_rights_create",
       "url": "ribsadmin_access_rights_create",
       "text": "Create an access rights list"
     },

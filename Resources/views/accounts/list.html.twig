@@ -34,13 +34,14 @@
 							{% for user in users %}
 								<tr>
 									<td><img src="http://ribs.anthony-pilloud.fr/app/images/profil/defaut.png"></td>
-									<td><a href="{{ path('ribsadmin_accounts_edit', {'guid': user.user.guid}) }}">{{ user.user.firstname }} {{ user.user.lastname }}</a></td>
+									<td><a href="{{ path('ribsadmin_accounts_show', {'guid': user.user.guid}) }}">{{ user.user.firstname }} {{ user.user.lastname }}</a></td>
 									<td>{{ user.username }}</td>
 									<td>
+										<a href="{{ path('ribsadmin_accounts_show', {'guid': user.user.guid}) }}">Show</a>
 										<a href="{{ path('ribsadmin_accounts_edit', {'guid': user.user.guid}) }}">Edit</a>
 										{% if ribsadmin_acces_right.testRight("ribsadmin@account@archive") == true %}
 											<a href="#" class="delete open-popup" data-ribspopup data-href="{{ path('ribsadmin_accounts_archive', {"guid": user.user.guid}) }}" data-popup="delete-element">
-												Archive this account
+												Archive
 											</a>
 										{% endif %}
 									</td>
@@ -79,10 +80,10 @@
 									<td>{{ user.user.firstname }} {{ user.user.lastname }}</td>
 									<td>{{ user.username }}</td>
 									<td>
+										<a href="{{ path('ribsadmin_accounts_show', {'guid': user.user.guid}) }}">Show</a>
 										<a href="{{ path('ribsadmin_accounts_edit', {'guid': user.user.guid}) }}">Edit</a>
 										{% if ribsadmin_acces_right.testRight("ribsadmin@account@archive") == true %}
-										<a href="{{ path('ribsadmin_accounts_archive', {"guid": user.user.guid, "activate": true}) }}">Active this
-											account</a>
+										<a href="{{ path('ribsadmin_accounts_archive', {"guid": user.user.guid, "activate": true}) }}">Active</a>
 										{% endif %}
 									</td>
 								</tr>
