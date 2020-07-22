@@ -10,8 +10,12 @@
 	<div class="ribs-container-fluid">
 		{{ form_start(form) }}
 		<div class="top-links">
-			<a href="{{ path('ribsadmin_access_rights') }}" class="ribs-button danger">Cancel</a>
-			{{ form_widget(form.submit) }}
+			{% if disabled_form %}
+				<a href="{{ path('ribsadmin_access_rights') }}" class="ribs-button ">Retour</a>
+			{% else %}
+				<a href="{{ path('ribsadmin_access_rights') }}" class="ribs-button danger">Cancel</a>
+				{{ form_widget(form.submit) }}
+			{% endif %}
 		</div>
 
 		<div class="page-title">
@@ -55,7 +59,7 @@
 									<td>{{ i.text }}</td>
 									<td>
 										<input type="checkbox" class="ribs-checkbox switched" id="right-check{{ loop.index }}" name="right[]"
-											   value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %}>
+											   value="{{ i.right }}" {% if i.right in list_rights_user %}checked{% endif %} {% if disabled_form %}disabled{% endif %}>
 									</td>
 								</tr>
 							{% endfor %}
@@ -86,7 +90,7 @@
 										<td>{{ j.text }}</td>
 										<td>
 											<input type="checkbox" class="ribs-checkbox switched" id="right-check-{{ i.name }}-{{ loop.index }}" name="right[]"
-												   value="{{ j.right }}" {% if j.right in list_rights_user %}checked{% endif %}>
+												   value="{{ j.right }}" {% if j.right in list_rights_user %}checked{% endif %} {% if disabled_form %}disabled{% endif %}>
 										</td>
 									</tr>
 								{% endfor %}
@@ -117,7 +121,7 @@
 									<td>{{ i.firstname }} {{ i.lastname }}</td>
 									<td>
 										<input type="checkbox" class="ribs-checkbox switched" id="admin-check{{ loop.index }}" name="admins[]"
-											   value="{{ i.guid }}" {% if i in access_right.users %}checked{% endif %}>
+											   value="{{ i.guid }}" {% if i in access_right.users %}checked{% endif %} {% if disabled_form %}disabled{% endif %}>
 									</td>
 								</tr>
 							{% endfor %}

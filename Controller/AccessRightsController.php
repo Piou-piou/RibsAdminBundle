@@ -29,6 +29,7 @@ class AccessRightsController extends AbstractController
 
     /**
      * @Route("/access-rights-management/create/", name="ribsadmin_access_rights_create")
+     * @Route("/access-rights-management/show/{guid}", name="ribsadmin_access_rights_show")
      * @Route("/access-rights-management/edit/{guid}", name="ribsadmin_access_rights_edit")
      * @param Request $request
      * @param Globals $globals
@@ -40,6 +41,7 @@ class AccessRightsController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $list_rights_user = [];
+        $disabled_form = strpos($request->get("_route"), "_show") ? true : false;
 
         if ($guid === null) {
             $access_right = new AccessRight();
@@ -50,7 +52,7 @@ class AccessRightsController extends AbstractController
 
         $admins = $em->getRepository("RibsAdminBundle:User")->findBy(["admin" => true, "archived" => false]);
 
-        $form = $this->createForm("PiouPiou\RibsAdminBundle\Form\AccessRight", $access_right);
+        $form = $this->createForm("PiouPiou\RibsAdminBundle\Form\AccessRight", $access_right, ["disabled" => $disabled_form]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -64,7 +66,8 @@ class AccessRightsController extends AbstractController
             "list_rights_user" => $list_rights_user,
             "admins" => $admins,
             "ribs_admin_rights" => json_decode(file_get_contents($globals->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json")),
-            "modules" => $module->getAllInfosModules()
+            "modules" => $module->getAllInfosModules(),
+            "disabled_form" => $disabled_form
         ]);
     }
 

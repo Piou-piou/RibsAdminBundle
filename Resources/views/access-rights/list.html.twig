@@ -33,14 +33,19 @@
 							</div>
 						</div>
 
-						<footer class="row between-xs">
-							{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@edit") == true %}
-								<a class="ribs-button" href="{{ path('ribsadmin_access_rights_edit', {"guid": i.guid}) }}">Edit</a>
-							{% endif %}
+						<footer>
+							<div class="row mb0-5">
+								<a class="ribs-button" href="{{ path('ribsadmin_access_rights_show', {"guid": i.guid}) }}">Show</a>
+							</div>
+							<div class="row between-xs">
+								{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@edit") == true %}
+									<a class="ribs-button" href="{{ path('ribsadmin_access_rights_edit', {"guid": i.guid}) }}">Edit</a>
+								{% endif %}
 
-							{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@delete") == true %}
-								<a class="ribs-button danger" href="{{ path('ribsadmin_access_rights_delete', {"guid": i.guid}) }}">Delete</a>
-							{% endif %}
+								{% if ribsadmin_acces_right.testRight("ribsadmin@access_rights@delete") == true %}
+									<a class="ribs-button danger" href="{{ path('ribsadmin_access_rights_delete', {"guid": i.guid}) }}">Delete</a>
+								{% endif %}
+							</div>
 						</footer>
 					</div>
 				</div>
