@@ -23,13 +23,18 @@ Encore
   './assets/js/main.js',
 ])
 
+.addEntry('js/edit-page', [
+  './assets/js/page/edit.js',
+])
+
 
 // ----------------------  CSS --------------------------------------//
 .addStyleEntry('css/vendor', [
   './node_modules/ribs-admin-bundle-templates/dist/css/style.min.css',
   './node_modules/ribs-popup/dist/css/style.min.css',
   './node_modules/ribs-flash-message/dist/css/style.css',
-  './node_modules/ribs-file-uploader/dist/css/style.min.css'
+  './node_modules/ribs-file-uploader/dist/css/style.min.css',
+  './node_modules/ribs-wysiwyg/dist/css/style.min.css'
 ])
 
 .addStyleEntry('css/style', [

@@ -23,10 +23,15 @@
 			<div class="cxs-12">
 				<div class="block">
 					<div class="row content">
-						<textarea cols="30" rows="10"></textarea>
+						<textarea name="ribs-wysiwyg" id="ribs-wysiwyg" cols="30" rows="10"></textarea>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('bundles/ribsadmin/js/edit-page.js') }}"></script>
 {% endblock %}
