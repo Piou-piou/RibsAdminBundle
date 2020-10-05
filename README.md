@@ -12,11 +12,12 @@ RibsAdminBundle is a symfony Bundle that allow you to manager your website. With
 this bundle you will be able to : 
 - Create | edit | delete users
 - Give access rights to users
-- Create lists of access rights and put users in them
-- Create | edit | delete page
-- Manage pages contents with WYIWIG system
+- Create lists of access rights and put users into them
+- Create | edit | delete page 
+- Manage pages contents with ribs-wysiwyg
 - Manage navigation
 - Add module compatible with RibsAdminBundle
+- As a server administrator you can manage cron with CronBundle
 
 ## Installation
 
