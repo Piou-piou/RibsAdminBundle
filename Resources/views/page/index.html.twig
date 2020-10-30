@@ -5,7 +5,7 @@
 		{% if navigation is iterable and navigation|length > 0 %}
 			<ul>
 				{% for i in navigation %}
-					<li><a href="{{ i.url }}" title="{{ i.title_tag }}">{{ i.title }}</a></li>
+					<li><a href="{{ path('ribsadmin_contents_edit_page', {page_id: i.id}) }}" title="{{ i.title_tag }}">{{ i.title }}</a></li>
 				{% endfor %}
 			</ul>
 		{% endif %}

@@ -32,7 +32,7 @@ class NavigationRepository extends EntityRepository
      */
     public function findAllNavigationPage(): array
     {
-        $query = $this->getEntityManager()->getConnection()->prepare("SELECT p.url, p.title, p.title_tag FROM navigation n
+        $query = $this->getEntityManager()->getConnection()->prepare("SELECT p.id, p.url, p.title, p.title_tag FROM navigation n
 			INNER JOIN page p ON n.id_page = p.id AND p.displayed = 1
 		  	ORDER BY n.order ASC
  		");

@@ -67,6 +67,11 @@
       "text": "Index of contents management"
     },
     {
+      "right": "ribsadmin@contents@edit_page",
+      "url": "ribsadmin_contents_edit_page",
+      "text": "Contents management edit a page"
+    },
+    {
       "right": "ribsadmin@navigation",
       "url": "ribsadmin_navigation",
       "text": "Index of navigation management"
