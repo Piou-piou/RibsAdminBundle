@@ -28,8 +28,7 @@ class ModuleService
 	public function getAllInfosModules()
 	{
 		$modules = $this->em->get("doctrine")->getRepository(Module::class)->findBy([
-			"active" => true,
-			"displayed" => true
+			"active" => true
 		]);
 		$modules_data = [];
 		
