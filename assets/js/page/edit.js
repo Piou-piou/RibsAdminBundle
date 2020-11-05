@@ -1,6 +1,7 @@
 import RibsWysiwyg from "ribs-wysiwyg";
 
 const wysiwyg = new RibsWysiwyg({
-  selector: '#ribs-wysiwyg',
+  mode: 'inline',
+  selector: '[data-ribs-wysiwyg]',
   height: 400,
 });

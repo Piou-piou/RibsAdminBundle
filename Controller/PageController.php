@@ -26,8 +26,10 @@ class PageController extends AbstractController
      */
     public function editPage(int $page_id): Response
     {
-        $navigation = $this->getDoctrine()->getManager()->getRepository("RibsAdminBundle:Navigation")->findAllNavigationPage();
+        $em = $this->getDoctrine()->getManager();
+        $navigation = $em->getRepository("RibsAdminBundle:Navigation")->findAllNavigationPage();
+        $page = $em->getRepository("RibsAdminBundle:Page")->find($page_id);
 
-        return $this->render('@RibsAdmin/page/index.html.twig', ["navigation" => $navigation]);
+        return $this->render('@RibsAdmin/page/edit-page.html.twig', ["navigation" => $navigation, "page" => $page]);
     }
 }

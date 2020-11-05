@@ -11,3 +11,21 @@
 		{% endif %}
 	</nav>
 {% endblock %}
+
+{% block body %}
+	<div class="ribs-container-fluid">
+		<div class="page-title">
+			<span>Overview</span>
+			<h3>Edit page</h3>
+		</div>
+
+		<div id="front-content">
+			{{ page.content|raw }}
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('bundles/ribsadmin/js/edit-page.js') }}"></script>
+{% endblock %}
