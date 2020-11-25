@@ -35,6 +35,12 @@
       "url": "ribsadmin_userlogs",
       "icon": "fa-link",
       "text": "Logs"
+    },
+    {
+      "right": "ribsadmin@versions",
+      "url": "ribsadmin_versions",
+      "icon": "fa-link",
+      "text": "Versions control"
     }
   ]
 }

@@ -105,6 +105,11 @@
       "right": "ribsadmin@userlogs",
       "url": "ribsadmin_userlogs_show",
       "text": "Access to log detail page"
+    },
+    {
+      "right": "ribsadmin@versions",
+      "url": "ribsadmin_versions",
+      "text": "Access to versions detail page"
     }
   ]
 }
