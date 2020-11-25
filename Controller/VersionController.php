@@ -2,6 +2,8 @@
 
 namespace PiouPiou\RibsAdminBundle\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
+use PiouPiou\RibsAdminBundle\Entity\Version;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,11 +13,14 @@ class VersionController extends AbstractController
 {
     /**
      * @Route("/versions/", name="ribsadmin_versions")
+     * @param EntityManagerInterface $em
      * @return Response
      */
-    public function index(): Response
+    public function index(EntityManagerInterface $em): Response
     {
-        return $this->render('@RibsAdmin/versions/list.html.twig');
+        $versions = $em->getRepository(Version::class)->findAll();
+        
+        return $this->render("@RibsAdmin/versions/list.html.twig", ["verions" => $versions]);
     }
 
     /**
@@ -25,7 +30,7 @@ class VersionController extends AbstractController
      */
     public function edit(int $id): Response
     {
-        return $this->render('@RibsAdmin/versions/edit.html.twig');
+        return $this->render("@RibsAdmin/versions/edit.html.twig");
     }
 
     /**

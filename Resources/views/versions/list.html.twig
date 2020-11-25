@@ -2,5 +2,47 @@
 
 
 {% block body %}
+    <div class="ribs-container-fluid">
+        <div class="page-title">
+            <span>Overview</span>
+            <h3>List all projects and versions</h3>
+        </div>
 
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Project versions</h5>
+                    </header>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Project name</th>
+                                <th>Project url</th>
+                                <th>Version</th>
+                                <th>Version date</th>
+                                <th>Last check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for version in verions %}
+                                <tr>
+                                    <td>{{ version.project_name }}</td>
+                                    <td>{{ version.project_url }}</td>
+                                    <td>{{ version.version }}</td>
+                                    <td>{{ version.version_date|date('Y/m/d') }}</td>
+                                    <td>{{ version.last_check|date('Y/m/d H:i:s') }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" class="text-center">No project was found</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
