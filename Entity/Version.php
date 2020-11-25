@@ -2,6 +2,7 @@
 
 namespace PiouPiou\RibsAdminBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -29,28 +30,42 @@ class Version
     /**
      * @var string
      *
-     * @ORM\Column(name="project_name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="project_name", type="string", length=255, nullable=false)
      */
     private $project_name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="project_url", type="string", length=255, nullable=true)
+     * @ORM\Column(name="project_url", type="string", length=255, nullable=false)
      */
     private $project_url;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="version", type="string", length=255, nullable=false)
+     * @ORM\Column(name="version", type="string", length=255, nullable=true)
      */
     private $version;
 
     /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="version_date", type="date", nullable=true)
+     */
+    private $version_date;
+
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="last_check", type="datetime", nullable=true)
+     */
+    private $last_check;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="mode", type="string", length=255, nullable=false)
+     * @ORM\Column(name="mode", type="string", length=255, nullable=true)
      */
     private $mode;
 	
@@ -133,6 +148,44 @@ class Version
     public function setVersion(string $version): self
     {
         $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getVersionDate(): DateTime
+    {
+        return $this->version_date;
+    }
+
+    /**
+     * @param DateTime $version_date
+     * @return Version
+     */
+    public function setVersionDate(DateTime $version_date): self
+    {
+        $this->version_date = $version_date;
+
+        return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getLastCheck(): DateTime
+    {
+        return $this->last_check;
+    }
+
+    /**
+     * @param DateTime $last_check
+     * @return Version
+     */
+    public function setLastCheck(DateTime $last_check): self
+    {
+        $this->last_check = $last_check;
 
         return $this;
     }
