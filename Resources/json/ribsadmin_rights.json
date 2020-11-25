@@ -110,6 +110,11 @@
       "right": "ribsadmin@versions",
       "url": "ribsadmin_versions",
       "text": "Access to versions detail page"
+    },
+    {
+      "right": "ribsadmin@versions@create",
+      "url": "ribsadmin_versions_create",
+      "text": "Create a version detail"
     }
   ]
 }

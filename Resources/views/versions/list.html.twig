@@ -1,8 +1,13 @@
 {% extends "@RibsAdmin/base.html.twig" %}
 
-
 {% block body %}
     <div class="ribs-container-fluid">
+        {% if ribsadmin_acces_right.testRight("ribsadmin@versions@create") == true %}
+            <div class="top-links">
+                <a href="{{ path('ribsadmin_versions_create') }}" class="ribs-button">Create a project</a>
+            </div>
+        {% endif %}
+
         <div class="page-title">
             <span>Overview</span>
             <h3>List all projects and versions</h3>

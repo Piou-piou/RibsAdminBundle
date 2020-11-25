@@ -98,7 +98,7 @@ class Version
     /**
      * @return string
      */
-    public function getProjectName(): string
+    public function getProjectName(): ?string
     {
         return $this->project_name;
     }
@@ -117,7 +117,7 @@ class Version
     /**
      * @return string
      */
-    public function getProjectUrl(): string
+    public function getProjectUrl(): ?string
     {
         return $this->project_url;
     }
@@ -136,7 +136,7 @@ class Version
     /**
      * @return string
      */
-    public function getVersion(): string
+    public function getVersion(): ?string
     {
         return $this->version;
     }
@@ -155,7 +155,7 @@ class Version
     /**
      * @return DateTime
      */
-    public function getVersionDate(): DateTime
+    public function getVersionDate(): ?DateTime
     {
         return $this->version_date;
     }
@@ -174,7 +174,7 @@ class Version
     /**
      * @return DateTime
      */
-    public function getLastCheck(): DateTime
+    public function getLastCheck(): ?DateTime
     {
         return $this->last_check;
     }
@@ -193,7 +193,7 @@ class Version
     /**
      * @return string
      */
-    public function getMode(): string
+    public function getMode(): ?string
     {
         return $this->mode;
     }
@@ -212,7 +212,7 @@ class Version
     /**
      * @return string
      */
-    public function getCheckVersionUrl(): string
+    public function getCheckVersionUrl(): ?string
     {
         return $this->check_version_url;
     }

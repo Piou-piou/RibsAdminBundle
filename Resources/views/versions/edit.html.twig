@@ -1,0 +1,43 @@
+{% extends "@RibsAdmin/base.html.twig" %}
+{% form_theme form '@RibsAdmin/forms/template.html.twig' %}
+
+{% block body %}
+	<div class="ribs-container-fluid">
+		{{ form_start(form) }}
+		<div class="top-links">
+			<a href="{{ path('ribsadmin_modules') }}" class="ribs-button danger">Cancel</a>
+			{{ form_widget(form.submit) }}
+		</div>
+
+		<div class="page-title">
+			<span>Versions</span>
+			<h3>Edit {{ version.projectName }}</h3>
+		</div>
+
+
+		<div class="row">
+			<div class="cxs-12">
+				<div class="block">
+					<header>
+						<h5>Informations</h5>
+					</header>
+
+					<div class="row form-group mt1">
+						<div class="cxs-12 cmd-6">
+							{{ form_row(form.projectName) }}
+						</div>
+						<div class="cxs-12 cmd-6">
+							{{ form_row(form.projectUrl) }}
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="cxs-12 cmd-6">
+							{{ form_row(form.checkVersionUrl) }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{ form_end(form) }}
+{% endblock %}
