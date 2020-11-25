@@ -4,6 +4,8 @@ parameters:
     ribs_admin.paginator_element_per_page: 20
     ribs_admin.base_upload_url: ''
     ribs_admin.upload_dir: ''
+    ribs_admin.check_version_url: '%env(RIBS_ADMIN_CHECK_VERSION_URL)%'
+    ribs_admin.allow_check_version_from_url: '%env(RIBS_ADMIN_ALLOW_CHECK_VERSION_FROM_URL)%'
 
 services:
     PiouPiou\RibsAdminBundle\:
@@ -78,6 +80,10 @@ services:
 
     PiouPiou\RibsAdminBundle\Service\Api:
         arguments: ["@service_container","@doctrine.orm.default_entity_manager", "@session", "@request_stack"]
+        public: true
+
+    PiouPiou\RibsAdminBundle\Service\Version:
+        arguments: [ "@doctrine.orm.default_entity_manager" ]
         public: true
 
     #forms

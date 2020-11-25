@@ -37,6 +37,13 @@ class Version
     /**
      * @var string
      *
+     * @ORM\Column(name="package_name", type="string", length=255, nullable=false)
+     */
+    private $package_name;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="project_url", type="string", length=255, nullable=false)
      */
     private $project_url;
@@ -110,6 +117,25 @@ class Version
     public function setProjectName(string $project_name): self
     {
         $this->project_name = $project_name;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPackageName(): ?string
+    {
+        return $this->package_name;
+    }
+
+    /**
+     * @param string $package_name
+     * @return Version
+     */
+    public function setPackageName(string $package_name): self
+    {
+        $this->package_name = $package_name;
 
         return $this;
     }
