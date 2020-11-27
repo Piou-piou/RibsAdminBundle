@@ -33,11 +33,11 @@
                         <tbody>
                             {% for version in verions %}
                                 <tr>
-                                    <td>{{ version.project_name }}</td>
-                                    <td>{{ version.project_url }}</td>
+                                    <td>{{ version.projectName }}</td>
+                                    <td>{{ version.projectUrl }}</td>
                                     <td>{{ version.version }}</td>
-                                    <td>{{ version.version_date|date('Y/m/d') }}</td>
-                                    <td>{{ version.last_check|date('Y/m/d H:i:s') }}</td>
+                                    <td>{{ version.versionDate|date('Y/m/d') }}</td>
+                                    <td>{{ version.lastCheck|date('Y/m/d H:i:s') }}</td>
                                 </tr>
                             {% else %}
                                 <tr>

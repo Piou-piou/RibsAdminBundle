@@ -5,6 +5,7 @@ namespace PiouPiou\RibsAdminBundle\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use PiouPiou\RibsAdminBundle\Entity\Version;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,5 +74,18 @@ class VersionController extends AbstractController
     public function delete(int $id): RedirectResponse
     {
         return $this->redirectToRoute("ribsadmin_modules");
+    }
+
+    /**
+     * @Route("/versions/send-version/{package_name}", name="ribsadmin_versions_send")
+     * @param \PiouPiou\RibsAdminBundle\Service\Version $version
+     * @return mixed|null
+     */
+    public function sendPackageInformations(\PiouPiou\RibsAdminBundle\Service\Version $version, string $package_name): JsonResponse
+    {
+        return new JsonResponse([
+            "version" => $version->getVersion($package_name),
+            "version_date" => $version->getVersionDate($package_name)
+        ]);
     }
 }

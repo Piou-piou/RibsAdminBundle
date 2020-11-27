@@ -25,6 +25,10 @@ class Version extends AbstractType
 				"label" => "Project url",
 				"required" => true
 			])
+            ->add("packageName", TextType::class, [
+                "label" => "Package name",
+                "required" => true
+            ])
             ->add("checkVersionUrl", TextType::class, [
                 "label" => "Check version url",
                 "required" => true
