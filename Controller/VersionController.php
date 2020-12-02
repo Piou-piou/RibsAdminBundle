@@ -31,7 +31,7 @@ class VersionController extends AbstractController
      * @Route("/versions/edit/{guid}", name="ribsadmin_versions_edit")
      * @param Request $request
      * @param EntityManagerInterface $em
-     * @param string $guid
+     * @param string|null $guid
      * @return Response
      */
     public function edit(Request $request, EntityManagerInterface $em, string $guid = null): Response
@@ -79,6 +79,7 @@ class VersionController extends AbstractController
     /**
      * @Route("/versions/send-version/{package_name}", name="ribsadmin_versions_send")
      * @param \PiouPiou\RibsAdminBundle\Service\Version $version
+     * @param string $package_name
      * @return mixed|null
      */
     public function sendPackageInformations(\PiouPiou\RibsAdminBundle\Service\Version $version, string $package_name): JsonResponse
