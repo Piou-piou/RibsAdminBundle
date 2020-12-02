@@ -66,6 +66,7 @@ class VersionController extends AbstractController
 
     /**
      * @Route("/versions/delete/{guid}", name="ribsadmin_versions_delete")
+     * @param EntityManagerInterface $em
      * @param string $guid
      * @return RedirectResponse
      */
