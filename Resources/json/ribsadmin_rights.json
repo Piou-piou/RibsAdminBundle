@@ -115,6 +115,16 @@
       "right": "ribsadmin@versions@create",
       "url": "ribsadmin_versions_create",
       "text": "Create a version detail"
+    },
+    {
+      "right": "ribsadmin@versions@edit",
+      "url": "ribsadmin_versions_edit",
+      "text": "Edit a version detail"
+    },
+    {
+      "right": "ribsadmin@versions@delete",
+      "url": "ribsadmin_versions_delete",
+      "text": "Delete a version detail"
     }
   ]
 }

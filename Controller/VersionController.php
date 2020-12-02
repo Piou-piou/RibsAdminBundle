@@ -36,8 +36,6 @@ class VersionController extends AbstractController
      */
     public function edit(Request $request, EntityManagerInterface $em, string $guid = null): Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         if (!$guid) {
             $version = new Version();
             $text = "created";
@@ -67,13 +65,23 @@ class VersionController extends AbstractController
     }
 
     /**
-     * @Route("/versions/delete/{id}", name="ribsadmin_versions_delete")
-     * @param int $id
+     * @Route("/versions/delete/{guid}", name="ribsadmin_versions_delete")
+     * @param string $guid
      * @return RedirectResponse
      */
-    public function delete(int $id): RedirectResponse
+    public function delete(EntityManagerInterface $em, string $guid): RedirectResponse
     {
-        return $this->redirectToRoute("ribsadmin_modules");
+        $version = $em->getRepository(Version::class)->findOneBy(["guid" => $guid]);
+
+        if ($version) {
+            $em->remove($version);
+            $em->flush();
+            $this->addFlash("success-flash", "The project version was deleted");
+        } else {
+            $this->addFlash("error-flash", "The project version was not found");
+        }
+
+        return $this->redirectToRoute("ribsadmin_versions");
     }
 
     /**

@@ -28,6 +28,7 @@
                                 <th>Version</th>
                                 <th>Version date</th>
                                 <th>Last check</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,6 +39,17 @@
                                     <td>{{ version.version }}</td>
                                     <td>{{ version.versionDate|date('Y/m/d') }}</td>
                                     <td>{{ version.lastCheck|date('Y/m/d H:i:s') }}</td>
+                                    <td>
+                                        <a href="{{ path('ribsadmin_versions_show', {'guid': version.guid}) }}">Show</a>
+                                        {% if ribsadmin_acces_right.testRight("ribsadmin@versions@edit") == true %}
+                                            <a href="{{ path('ribsadmin_versions_edit', {'guid': version.guid}) }}">Edit</a>
+                                        {% endif %}
+                                        {% if ribsadmin_acces_right.testRight("ribsadmin@versions@delete") == true %}
+                                            <a href="#" class="delete open-popup" data-ribspopup data-href="{{ path('ribsadmin_versions_delete', {'guid': version.guid}) }}" data-popup="delete-element">
+                                                Delete
+                                            </a>
+                                        {% endif %}
+                                    </td>
                                 </tr>
                             {% else %}
                                 <tr>
