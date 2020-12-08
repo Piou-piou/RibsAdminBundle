@@ -97,7 +97,7 @@ class AccessRights
 		$ribs_admin_rights = json_decode(file_get_contents($this->globals->getBaseBundlePath() . "/Resources/json/ribsadmin_rights.json"));
 		$modules_rights = $this->module->getModuleRights();
 		$ribs_admin_rights = (object)array_merge((array)$ribs_admin_rights, (array)$modules_rights);
-		
+
 		if ($admin_page == "ribsadmin" && !$api && strpos($route, "login") === false && strpos($route, "register") === false) {
 			//redirection if user not connected
 			if ($this->container->get("security.token_storage")->getToken() === null || !$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -105,6 +105,10 @@ class AccessRights
 			}
 			
 			$this->user = $this->token_storage->getToken()->getUser()->getUser();
+
+			if ($this->testIsOpenUrl($route)) {
+			    return;
+            }
 			
 			$route_right = $this->in_array_recursive($route, $ribs_admin_rights);
 			
@@ -125,6 +129,17 @@ class AccessRights
             }
         }
 	}
+
+	private function testIsOpenUrl($route)
+    {
+        $open_urls = json_decode(file_get_contents($this->globals->getBaseBundlePath() . "/Resources/json/ribsadmin_open_url.json"), true);
+
+        if ($open_urls && $open_urls["items"] && in_array($route, $open_urls["items"])) {
+            return true;
+        }
+
+        return false;
+    }
 	
 	/**
      * function that allow to test a right directly in the view

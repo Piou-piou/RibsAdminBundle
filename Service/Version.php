@@ -68,7 +68,14 @@ class Version
      */
     public function getVersionDate($package_name)
     {
-        return $this->getPackage($package_name) ? explode("T", $this->getPackage($package_name)["time"])[0] : null;
+        $string_date = $this->getPackage($package_name) ? explode("T", $this->getPackage($package_name)["time"])[0] : null;
+        $version_date = null;
+
+        if ($string_date) {
+            $version_date = new \DateTime($string_date);
+        }
+
+        return $version_date;
     }
 
     /**

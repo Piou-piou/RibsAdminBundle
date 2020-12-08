@@ -40,6 +40,7 @@
                                     <td>{{ version.versionDate|date('Y/m/d') }}</td>
                                     <td>{{ version.lastCheck|date('Y/m/d H:i:s') }}</td>
                                     <td>
+                                        <a href="{{ path('ribsadmin_versions_update', {'guid': version.guid}) }}">Update infos</a>
                                         <a href="{{ path('ribsadmin_versions_show', {'guid': version.guid}) }}">Show</a>
                                         {% if ribsadmin_acces_right.testRight("ribsadmin@versions@edit") == true %}
                                             <a href="{{ path('ribsadmin_versions_edit', {'guid': version.guid}) }}">Edit</a>

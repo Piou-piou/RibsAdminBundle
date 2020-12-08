@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Date;
 
 class VersionController extends AbstractController
 {
@@ -86,7 +87,33 @@ class VersionController extends AbstractController
     }
 
     /**
-     * @Route("/versions/send-version/{package_name}", name="ribsadmin_versions_send")
+     * @Route("/versions/update/{guid}", name="ribsadmin_versions_update")
+     * @param EntityManagerInterface $em
+     * @param \PiouPiou\RibsAdminBundle\Service\Version $version
+     * @param string $guid
+     * @return RedirectResponse
+     */
+    public function updateVersion(EntityManagerInterface $em, \PiouPiou\RibsAdminBundle\Service\Version $version, string $guid): RedirectResponse
+    {
+        $version_entity = $em->getRepository(Version::class)->findOneBy(["guid" => $guid]);
+
+        if ($version_entity) {
+            $version_entity->setVersion($version->getVersion($version_entity->getPackageName()));
+            $version_entity->setVersionDate($version->getVersionDate($version_entity->getPackageName()));
+            $version_entity->setLastCheck(new \DateTime());
+            $em->persist($version_entity);
+            $em->flush();
+
+            $this->addFlash("success-flash", "The project version was updated");
+        } else {
+            $this->addFlash("error-flash", "The project version was not found");
+        }
+
+        return $this->redirectToRoute("ribsadmin_versions");
+    }
+
+    /**
+     * @Route("/versions/send-version/{package_name}", name="ribsadmin_versions_send", requirements={"package_name"=".+"})
      * @param \PiouPiou\RibsAdminBundle\Service\Version $version
      * @param string $package_name
      * @return mixed|null

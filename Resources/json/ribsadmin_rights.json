@@ -125,6 +125,11 @@
       "right": "ribsadmin@versions@delete",
       "url": "ribsadmin_versions_delete",
       "text": "Delete a version detail"
+    },
+    {
+      "right": "ribsadmin@versions",
+      "url": "ribsadmin_versions_update",
+      "text": "Access to versions detail page"
     }
   ]
 }
