@@ -83,7 +83,7 @@ services:
         public: true
 
     PiouPiou\RibsAdminBundle\Service\Version:
-        arguments: [ "@doctrine.orm.default_entity_manager" ]
+        arguments: [ "@doctrine.orm.default_entity_manager","@http_client" ]
         public: true
 
     #forms

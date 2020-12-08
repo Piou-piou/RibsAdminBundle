@@ -56,6 +56,13 @@ class Version
     private $version;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="last_packagist_version", type="string", length=255, nullable=true)
+     */
+    private $last_packagist_version;
+
+    /**
      * @var DateTime
      *
      * @ORM\Column(name="version_date", type="date", nullable=true)
@@ -174,6 +181,25 @@ class Version
     public function setVersion(string $version): self
     {
         $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastPackagistVersion(): ?string
+    {
+        return $this->last_packagist_version;
+    }
+
+    /**
+     * @param string $last_packagist_version
+     * @return Version
+     */
+    public function setLastPackagistVersion(string $last_packagist_version): self
+    {
+        $this->last_packagist_version = $last_packagist_version;
 
         return $this;
     }

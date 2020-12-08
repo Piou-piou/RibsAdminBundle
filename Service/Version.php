@@ -3,6 +3,12 @@
 namespace PiouPiou\RibsAdminBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Exception;
 
 class Version
 {
@@ -12,12 +18,19 @@ class Version
     private $em;
 
     /**
+     * @var HttpClientInterface
+     */
+    private $client;
+
+    /**
      * Version constructor.
      * @param EntityManagerInterface $em
+     * @param HttpClientInterface $client
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, HttpClientInterface $client)
     {
         $this->em = $em;
+        $this->client = $client;
     }
 
     /**
@@ -65,6 +78,7 @@ class Version
     /**
      * @param $package_name
      * @return mixed|null
+     * @throws Exception
      */
     public function getVersionDate($package_name)
     {
@@ -80,6 +94,33 @@ class Version
 
     /**
      * @param $package_name
+     * @return false|int|string|null
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function getLastPackagistVersion($package_name)
+    {
+        if (!strpos($package_name, "/")) {
+            return false;
+        }
+
+        $packgist_url = "https://repo.packagist.org/p/".$package_name.".json";
+
+        $response = $this->client->request("GET", $packgist_url);
+
+        if ($response->getStatusCode() == 200) {
+            $content = json_decode($response->getContent(), true);
+            if (is_array($content) && $content["packages"] && $content["packages"][$package_name]) {
+                return array_key_first($content["packages"][$package_name]);
+            }
+        }
+    }
+
+    /**
+     * @param $package_name
+     * @throws Exception
      */
     public function save($package_name)
     {
@@ -95,6 +136,7 @@ class Version
 
         $version->setVersion($this->getVersion($package_name));
         $version->setVersionDate($this->getVersionDate($package_name));
+        $version->setLastPackagistVersion($this->getLastPackagistVersion($package_name));
         $version->setLastCheck(new \DateTime());
 
         $this->em->persist($version);

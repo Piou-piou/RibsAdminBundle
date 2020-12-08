@@ -98,11 +98,7 @@ class VersionController extends AbstractController
         $version_entity = $em->getRepository(Version::class)->findOneBy(["guid" => $guid]);
 
         if ($version_entity) {
-            $version_entity->setVersion($version->getVersion($version_entity->getPackageName()));
-            $version_entity->setVersionDate($version->getVersionDate($version_entity->getPackageName()));
-            $version_entity->setLastCheck(new \DateTime());
-            $em->persist($version_entity);
-            $em->flush();
+            $version->save($version_entity->getPackageName());
 
             $this->addFlash("success-flash", "The project version was updated");
         } else {
