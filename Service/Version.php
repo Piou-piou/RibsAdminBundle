@@ -55,7 +55,7 @@ class Version
     private function getComposerLockJson()
     {
         if ($this->version_entity && !$this->version_entity->isIsLocal()) {
-            $response = $this->client->request("GET", $this->version_entity->getComposerLockUrl());
+            $response = $this->client->request("GET", $this->version_entity->getProjectUrl().$this->version_entity->getComposerLockUrl());
             $composer_lock = $response->getStatusCode() == 200 ? $response->getContent() : null;
         } else {
             $composer_lock = file_get_contents('../composer.lock');
