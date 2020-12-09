@@ -23,6 +23,11 @@ class Version
     private $client;
 
     /**
+     * @var \PiouPiou\RibsAdminBundle\Entity\Version
+     */
+    private $version_entity;
+
+    /**
      * Version constructor.
      * @param EntityManagerInterface $em
      * @param HttpClientInterface $client
@@ -34,11 +39,27 @@ class Version
     }
 
     /**
+     * @param \PiouPiou\RibsAdminBundle\Entity\Version $version
+     */
+    public function setVersionEntity(\PiouPiou\RibsAdminBundle\Entity\Version $version) {
+        $this->version_entity = $version;
+    }
+
+    /**
      * @return mixed|null
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     private function getComposerLockJson()
     {
-        $composer_lock = file_get_contents('../composer.lock');
+        if ($this->version_entity && !$this->version_entity->isIsLocal()) {
+            $response = $this->client->request("GET", $this->version_entity->getComposerLockUrl());
+            $composer_lock = $response->getStatusCode() == 200 ? $response->getContent() : null;
+        } else {
+            $composer_lock = file_get_contents('../composer.lock');
+        }
 
         if ($composer_lock) {
             return json_decode($composer_lock, true);
@@ -50,6 +71,10 @@ class Version
     /**
      * @param $package_name
      * @return mixed|null
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     private function getPackage($package_name)
     {

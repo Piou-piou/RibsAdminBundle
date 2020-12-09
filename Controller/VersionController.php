@@ -3,6 +3,7 @@
 namespace PiouPiou\RibsAdminBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use PiouPiou\RibsAdminBundle\Entity\Version;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -98,6 +99,7 @@ class VersionController extends AbstractController
         $version_entity = $em->getRepository(Version::class)->findOneBy(["guid" => $guid]);
 
         if ($version_entity) {
+            $version->setVersionEntity($version_entity);
             $version->save($version_entity->getPackageName());
 
             $this->addFlash("success-flash", "The project version was updated");
@@ -110,15 +112,38 @@ class VersionController extends AbstractController
 
     /**
      * @Route("/versions/send-version/{package_name}", name="ribsadmin_versions_send", requirements={"package_name"=".+"})
+     * @param EntityManagerInterface $em
      * @param \PiouPiou\RibsAdminBundle\Service\Version $version
      * @param string $package_name
      * @return mixed|null
+     * @throws Exception
      */
-    public function sendPackageInformations(\PiouPiou\RibsAdminBundle\Service\Version $version, string $package_name): JsonResponse
+    public function sendPackageInformations(EntityManagerInterface $em, \PiouPiou\RibsAdminBundle\Service\Version $version, string $package_name): JsonResponse
     {
+        $version_entity = $em->getRepository(Version::class)->findOneBy(["package_name" => $package_name]);
+
+        if ($version_entity) {
+            $version->setVersionEntity($version_entity);
+        }
+
         return new JsonResponse([
             "version" => $version->getVersion($package_name),
             "version_date" => $version->getVersionDate($package_name)
         ]);
+    }
+
+    /**
+     * @Route("/versions/send-composer-lock/", name="ribsadmin_versions_send_composer_lock")
+     * @return JsonResponse
+     */
+    public function sendComposerJson(): JsonResponse
+    {
+        $composer_lock = file_get_contents('../composer.lock');
+
+        if ($composer_lock) {
+            $composer_lock = json_decode($composer_lock);
+        }
+
+        return new JsonResponse($composer_lock);
     }
 }
