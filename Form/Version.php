@@ -34,8 +34,12 @@ class Version extends AbstractType
                 "label" => "Check version url",
                 "required" => true
             ])
+            ->add("composerLockUrl", TextType::class, [
+                "label" => "Check composer.lock url",
+                "required" => true
+            ])
             ->add('isLocal', CheckboxType::class, [
-                'label' => 'Projet en local',
+                'label' => 'Is local project',
                 'attr' => [
                     'class' => 'ribs-checkbox switched'
                 ],

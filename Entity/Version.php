@@ -91,6 +91,13 @@ class Version
     private $check_version_url;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="composer_lock_url", type="string", length=255, nullable=false)
+     */
+    private $composer_lock_url;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="is_local", type="boolean", nullable=false, options={"default": false}))
@@ -283,6 +290,25 @@ class Version
     public function setCheckVersionUrl(string $check_version_url): self
     {
         $this->check_version_url = $check_version_url;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComposerLockUrl(): ?string
+    {
+        return $this->composer_lock_url;
+    }
+
+    /**
+     * @param string $composer_lock_url
+     * @return Version
+     */
+    public function setComposerLockUrl(string $composer_lock_url): self
+    {
+        $this->composer_lock_url = $composer_lock_url;
 
         return $this;
     }
