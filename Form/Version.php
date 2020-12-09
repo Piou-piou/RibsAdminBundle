@@ -19,24 +19,22 @@ class Version extends AbstractType
 	{
 		$builder
 			->add("projectName", TextType::class, [
-				"label" => "Project name",
-				"required" => true
+				"label" => "Project name"
 			])
 			->add("projectUrl", TextType::class, [
 				"label" => "Project url",
 				"required" => true
 			])
             ->add("packageName", TextType::class, [
-                "label" => "Package name",
-                "required" => true
+                "label" => "Package name"
             ])
             ->add("checkVersionUrl", TextType::class, [
                 "label" => "Check version url",
-                "required" => true
+                "required" => false
             ])
             ->add("composerLockUrl", TextType::class, [
                 "label" => "Check composer.lock url",
-                "required" => true
+                "required" => false
             ])
             ->add('isLocal', CheckboxType::class, [
                 'label' => 'Is local project',

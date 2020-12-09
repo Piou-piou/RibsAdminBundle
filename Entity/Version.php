@@ -86,14 +86,14 @@ class Version
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="check_version_url", type="string", length=255, nullable=false)
+	 * @ORM\Column(name="check_version_url", type="string", length=255, nullable=true)
 	 */
     private $check_version_url;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="composer_lock_url", type="string", length=255, nullable=false)
+     * @ORM\Column(name="composer_lock_url", type="string", length=255, nullable=true)
      */
     private $composer_lock_url;
 
@@ -284,10 +284,10 @@ class Version
     }
 
     /**
-     * @param string $check_version_url
+     * @param string|null $check_version_url
      * @return Version
      */
-    public function setCheckVersionUrl(string $check_version_url): self
+    public function setCheckVersionUrl(?string $check_version_url): self
     {
         $this->check_version_url = $check_version_url;
 
@@ -303,10 +303,10 @@ class Version
     }
 
     /**
-     * @param string $composer_lock_url
+     * @param string|null $composer_lock_url
      * @return Version
      */
-    public function setComposerLockUrl(string $composer_lock_url): self
+    public function setComposerLockUrl(?string $composer_lock_url): self
     {
         $this->composer_lock_url = $composer_lock_url;
 
@@ -316,7 +316,7 @@ class Version
     /**
      * @return bool
      */
-    public function isIsLocal(): bool
+    public function isIsLocal(): ?bool
     {
         return $this->is_local;
     }
