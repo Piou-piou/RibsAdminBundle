@@ -91,6 +91,13 @@ class Version
     private $check_version_url;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_local", type="boolean", nullable=false, options={"default": false}))
+     */
+    private $is_local;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -278,6 +285,30 @@ class Version
         $this->check_version_url = $check_version_url;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIsLocal(): bool
+    {
+        return $this->is_local;
+    }
+
+    /**
+     * @param bool $is_local
+     * @return Version
+     */
+    public function setIsLocal(bool $is_local): self
+    {
+        $this->is_local = $is_local;
+
+        return $this;
+    }
+
+    public function getFormattedIsLocal()
+    {
+        return $this->isIsLocal() ? "Yes" : "No";
     }
 }
 

@@ -29,6 +29,7 @@
                                 <th>Version</th>
                                 <th>Version date</th>
                                 <th>Last check</th>
+                                <th>Local</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -41,6 +42,7 @@
                                     <td>{{ version.lastPackagistVersion }}</td>
                                     <td>{{ version.versionDate|date('Y/m/d') }}</td>
                                     <td>{{ version.lastCheck|date('Y/m/d H:i:s') }}</td>
+                                    <td>{{ version.formattedIsLocal }}</td>
                                     <td>
                                         <a href="{{ path('ribsadmin_versions_update', {'guid': version.guid}) }}">Update infos</a>
                                         <a href="{{ path('ribsadmin_versions_show', {'guid': version.guid}) }}">Show</a>
