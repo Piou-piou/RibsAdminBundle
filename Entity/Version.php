@@ -192,7 +192,7 @@ class Version
      * @param string $version
      * @return Version
      */
-    public function setVersion(string $version): self
+    public function setVersion(?string $version): self
     {
         $this->version = $version;
 
@@ -211,7 +211,7 @@ class Version
      * @param string $last_packagist_version
      * @return Version
      */
-    public function setLastPackagistVersion(string $last_packagist_version): self
+    public function setLastPackagistVersion(?string $last_packagist_version): self
     {
         $this->last_packagist_version = $last_packagist_version;
 
@@ -230,7 +230,7 @@ class Version
      * @param DateTime $version_date
      * @return Version
      */
-    public function setVersionDate(DateTime $version_date): self
+    public function setVersionDate(?DateTime $version_date): self
     {
         $this->version_date = $version_date;
 
