@@ -3,6 +3,7 @@
 namespace PiouPiou\RibsAdminBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
+use PiouPiou\RibsAdminBundle\Entity\Package;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
@@ -23,9 +24,9 @@ class Version
     private $client;
 
     /**
-     * @var \PiouPiou\RibsAdminBundle\Entity\Version
+     * @var Package
      */
-    private $version_entity;
+    private $package;
 
     /**
      * Version constructor.
@@ -39,10 +40,10 @@ class Version
     }
 
     /**
-     * @param \PiouPiou\RibsAdminBundle\Entity\Version $version
+     * @param Package $package
      */
-    public function setVersionEntity(\PiouPiou\RibsAdminBundle\Entity\Version $version) {
-        $this->version_entity = $version;
+    public function setPackageEntity(Package $package) {
+        $this->package = $package;
     }
 
     /**
@@ -54,8 +55,8 @@ class Version
      */
     private function getComposerLockJson()
     {
-        if ($this->version_entity && !$this->version_entity->isIsLocal()) {
-            $response = $this->client->request("GET", $this->version_entity->getProjectUrl().$this->version_entity->getComposerLockUrl());
+        if ($this->package && !$this->package->isIsLocal()) {
+            $response = $this->client->request("GET", $this->package->getProjectUrl().$this->package->getComposerLockUrl());
             $composer_lock = $response->getStatusCode() == 200 ? $response->getContent() : null;
         } else {
             $composer_lock = file_get_contents('../composer.lock');
@@ -149,22 +150,22 @@ class Version
      */
     public function save($package_name)
     {
-        $version = $this->em->getRepository(\PiouPiou\RibsAdminBundle\Entity\Version::class)->findOneBy(["package_name" => $package_name]);
+        $package = $this->em->getRepository(Package::class)->findOneBy(["package_name" => $package_name]);
 
-        if (!$version) {
-            $version = new \PiouPiou\RibsAdminBundle\Entity\Version();
-            $version->setProjectName($package_name);
-            $version->setPackageName($package_name);
-            $version->setProjectUrl($package_name);
-            $version->setCheckVersionUrl($package_name);
+        if (!$package) {
+            $package = new Package();
+            $package->setProjectName($package_name);
+            $package->setPackageName($package_name);
+            $package->setProjectUrl($package_name);
+            $package->setCheckVersionUrl($package_name);
         }
 
-        $version->setVersion($this->getVersion($package_name));
-        $version->setVersionDate($this->getVersionDate($package_name));
-        $version->setLastPackagistVersion($this->getLastPackagistVersion($package_name));
-        $version->setLastCheck(new \DateTime());
+        $package->setVersion($this->getVersion($package_name));
+        $package->setVersionDate($this->getVersionDate($package_name));
+        $package->setLastPackagistVersion($this->getLastPackagistVersion($package_name));
+        $package->setLastCheck(new \DateTime());
 
-        $this->em->persist($version);
+        $this->em->persist($package);
         $this->em->flush();
     }
 }

@@ -201,6 +201,12 @@ class AccessRights
 		$it = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($haystack));
 		
 		foreach ($it AS $element => $value) {
+		    if (strpos($value, ", ") !== false) {
+		        if (in_array($needle, $explode = explode(", ", $value))) {
+                    $value = $needle;
+                }
+            }
+
 			if ($value == $needle) {
 				$rights[] = $it->getInnerIterator()["right"];
 			}

@@ -94,6 +94,7 @@ class PackageController extends AbstractController
      * @param Version $version
      * @param string $guid
      * @return RedirectResponse
+     * @throws Exception
      */
     public function updatePackage(EntityManagerInterface $em, Version $version, string $guid): RedirectResponse
     {
