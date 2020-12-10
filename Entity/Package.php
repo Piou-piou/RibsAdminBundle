@@ -7,13 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Version
+ * Package
  *
- * @ORM\Table(name="verion", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE_version", columns={"guid"})})
+ * @ORM\Table(name="package", uniqueConstraints={@ORM\UniqueConstraint(name="guid_UNIQUE_package", columns={"guid"})})
  * @ORM\Entity
  * @ORM\EntityListeners({"PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener", "PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener"})
  */
-class Version
+class Package
 {
     use GuidTrait;
     use CreatedUpdatedTrait;
@@ -114,7 +114,7 @@ class Version
 
     /**
      * @param int $id
-     * @return Version
+     * @return Package
      */
     public function setId(int $id): self
     {
@@ -133,7 +133,7 @@ class Version
 
     /**
      * @param string $project_name
-     * @return Version
+     * @return Package
      */
     public function setProjectName(string $project_name): self
     {
@@ -152,7 +152,7 @@ class Version
 
     /**
      * @param string $package_name
-     * @return Version
+     * @return Package
      */
     public function setPackageName(string $package_name): self
     {
@@ -171,7 +171,7 @@ class Version
 
     /**
      * @param string $project_url
-     * @return Version
+     * @return Package
      */
     public function setProjectUrl(string $project_url): self
     {
@@ -190,7 +190,7 @@ class Version
 
     /**
      * @param string $version
-     * @return Version
+     * @return Package
      */
     public function setVersion(?string $version): self
     {
@@ -209,7 +209,7 @@ class Version
 
     /**
      * @param string $last_packagist_version
-     * @return Version
+     * @return Package
      */
     public function setLastPackagistVersion(?string $last_packagist_version): self
     {
@@ -228,7 +228,7 @@ class Version
 
     /**
      * @param DateTime $version_date
-     * @return Version
+     * @return Package
      */
     public function setVersionDate(?DateTime $version_date): self
     {
@@ -247,7 +247,7 @@ class Version
 
     /**
      * @param DateTime $last_check
-     * @return Version
+     * @return Package
      */
     public function setLastCheck(DateTime $last_check): self
     {
@@ -266,7 +266,7 @@ class Version
 
     /**
      * @param string $mode
-     * @return Version
+     * @return Package
      */
     public function setMode(string $mode): self
     {
@@ -285,7 +285,7 @@ class Version
 
     /**
      * @param string|null $check_version_url
-     * @return Version
+     * @return Package
      */
     public function setCheckVersionUrl(?string $check_version_url): self
     {
@@ -304,7 +304,7 @@ class Version
 
     /**
      * @param string|null $composer_lock_url
-     * @return Version
+     * @return Package
      */
     public function setComposerLockUrl(?string $composer_lock_url): self
     {
@@ -323,7 +323,7 @@ class Version
 
     /**
      * @param bool $is_local
-     * @return Version
+     * @return Package
      */
     public function setIsLocal(bool $is_local): self
     {

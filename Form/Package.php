@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Version extends AbstractType
+class Package extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -55,7 +55,7 @@ class Version extends AbstractType
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults([
-			"data_class" => \PiouPiou\RibsAdminBundle\Entity\Version::class,
+			"data_class" => \PiouPiou\RibsAdminBundle\Entity\Package::class,
 		]);
 	}
 }

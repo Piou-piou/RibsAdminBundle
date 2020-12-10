@@ -107,29 +107,24 @@
       "text": "Access to log detail page"
     },
     {
-      "right": "ribsadmin@versions",
-      "url": "ribsadmin_versions",
-      "text": "Access to versions detail page"
+      "right": "ribsadmin@packages",
+      "url": "ribsadmin_packages",
+      "text": "Access to packages detail page"
     },
     {
-      "right": "ribsadmin@versions@create",
-      "url": "ribsadmin_versions_create",
-      "text": "Create a version detail"
+      "right": "ribsadmin@packages@create",
+      "url": "ribsadmin_packages_create",
+      "text": "Create a package detail"
     },
     {
-      "right": "ribsadmin@versions@edit",
-      "url": "ribsadmin_versions_edit",
-      "text": "Edit a version detail"
+      "right": "ribsadmin@packages@edit",
+      "url": "ribsadmin_packages_edit",
+      "text": "Edit a package detail"
     },
     {
-      "right": "ribsadmin@versions@delete",
-      "url": "ribsadmin_versions_delete",
-      "text": "Delete a version detail"
-    },
-    {
-      "right": "ribsadmin@versions",
-      "url": "ribsadmin_versions_update",
-      "text": "Access to versions detail page"
+      "right": "ribsadmin@packages@delete",
+      "url": "ribsadmin_packages_delete",
+      "text": "Delete a package detail"
     }
   ]
 }

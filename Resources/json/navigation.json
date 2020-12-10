@@ -37,10 +37,10 @@
       "text": "Logs"
     },
     {
-      "right": "ribsadmin@versions",
-      "url": "ribsadmin_versions",
+      "right": "ribsadmin@packages",
+      "url": "ribsadmin_packages",
       "icon": "fa-link",
-      "text": "Versions control"
+      "text": "Packages control"
     }
   ]
 }

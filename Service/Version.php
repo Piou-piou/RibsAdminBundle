@@ -76,7 +76,7 @@ class Version
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    private function getPackage($package_name)
+    public function getPackage($package_name)
     {
         $composer_lock = $this->getComposerLockJson();
         if ($composer_lock) {

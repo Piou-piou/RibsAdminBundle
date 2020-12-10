@@ -1,0 +1,70 @@
+{% extends "@RibsAdmin/base.html.twig" %}
+
+{% block body %}
+    <div class="ribs-container-fluid">
+        {% if ribsadmin_acces_right.testRight("ribsadmin@packages@create") == true %}
+            <div class="top-links">
+                <a href="{{ path('ribsadmin_packages_create') }}" class="ribs-button">Create a project</a>
+            </div>
+        {% endif %}
+
+        <div class="page-title">
+            <span>Overview</span>
+            <h3>List all projects and packages</h3>
+        </div>
+
+        <div class="row">
+            <div class="cxs-12">
+                <div class="block">
+                    <header>
+                        <h5>Project packages</h5>
+                    </header>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Project name</th>
+                                <th>Project url</th>
+                                <th>Packagist package</th>
+                                <th>Package</th>
+                                <th>Package date</th>
+                                <th>Last check</th>
+                                <th>Local</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for package in packages %}
+                                <tr>
+                                    <td>{{ package.projectName }}</td>
+                                    <td>{{ package.projectUrl }}</td>
+                                    <td>{{ package.lastPackagistVersion }}</td>
+                                    <td>{{ package.version }}</td>
+                                    <td>{{ package.versionDate|date('Y/m/d') }}</td>
+                                    <td>{{ package.lastCheck|date('Y/m/d H:i:s') }}</td>
+                                    <td>{{ package.formattedIsLocal }}</td>
+                                    <td>
+                                        <a href="{{ path('ribsadmin_packages_update', {'guid': package.guid}) }}">Update infos</a>
+                                        <a href="{{ path('ribsadmin_packages_show', {'guid': package.guid}) }}">Show</a>
+                                        {% if ribsadmin_acces_right.testRight("ribsadmin@packages@edit") == true %}
+                                            <a href="{{ path('ribsadmin_packages_edit', {'guid': package.guid}) }}">Edit</a>
+                                        {% endif %}
+                                        {% if ribsadmin_acces_right.testRight("ribsadmin@packages@delete") == true %}
+                                            <a href="#" class="delete open-popup" data-ribspopup data-href="{{ path('ribsadmin_packages_delete', {'guid': package.guid}) }}" data-popup="delete-element">
+                                                Delete
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="8" class="text-center">No project was found</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
