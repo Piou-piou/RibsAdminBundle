@@ -1,5 +1,6 @@
 {
   "items": [
-    "ribsadmin_packages_send"
+    "ribsadmin_packages_send",
+    "ribsadmin_packages_send_composer_lock"
   ]
 }
