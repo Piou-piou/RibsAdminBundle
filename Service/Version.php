@@ -5,6 +5,7 @@ namespace PiouPiou\RibsAdminBundle\Service;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use PiouPiou\RibsAdminBundle\Entity\Package;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
@@ -25,6 +26,16 @@ class Version
     private $client;
 
     /**
+     * @var ParameterBagInterface
+     */
+    private $parameter;
+
+    /**
+     * @var mixed
+     */
+    private $local_token;
+
+    /**
      * @var Package
      */
     private $package;
@@ -35,11 +46,14 @@ class Version
      * Version constructor.
      * @param EntityManagerInterface $em
      * @param HttpClientInterface $client
+     * @param ParameterBagInterface $parameter
      */
-    public function __construct(EntityManagerInterface $em, HttpClientInterface $client)
+    public function __construct(EntityManagerInterface $em, HttpClientInterface $client, ParameterBagInterface $parameter)
     {
         $this->em = $em;
         $this->client = $client;
+        $this->parameter = $parameter;
+        $this->local_token = $parameter->get("ribs_admin.packages_token");
     }
 
     /**
@@ -55,6 +69,22 @@ class Version
      */
     public function setPackageEntity(Package $package) {
         $this->package = $package;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    private function getToken()
+    {
+        $token = null;
+        $response = $this->client->request("GET", $this->package->getProjectUrl()."ribs-admin/packages/send-token/");
+        $datas = $response->getStatusCode() == 200 ? $response->getContent() : null;
+
+        if ($datas) {
+            $token = json_decode($datas, true)["token"];
+        }
+
+        return $token;
     }
 
     /**
@@ -163,6 +193,11 @@ class Version
 
         if ($package) {
             $this->setPackageEntity($package);
+
+            if (!$this->getToken() || $this->getToken() !== $this->local_token) {
+                $this->messages["token_error"] = "Token not matching on : " . $this->package->getProjectUrl();
+                return;
+            }
 
             $package->setVersion($this->getVersion());
             $package->setVersionDate($this->getVersionDate());

@@ -7,6 +7,7 @@ use Exception;
 use PiouPiou\RibsAdminBundle\Entity\Package;
 use PiouPiou\RibsAdminBundle\Service\Version;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -154,5 +155,17 @@ class PackageController extends AbstractController
         }
 
         return new JsonResponse($composer_lock);
+    }
+
+    /**
+     * @Route("/packages/send-token/", name="ribsadmin_packages_send_token")
+     * @param ParameterBagInterface $parameter
+     * @return JsonResponse
+     */
+    public function sendToken(ParameterBagInterface $parameter): JsonResponse
+    {
+        return new JsonResponse([
+            "token" => $parameter->get("ribs_admin.packages_token")
+        ]);
     }
 }

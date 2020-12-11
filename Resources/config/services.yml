@@ -80,7 +80,7 @@ services:
 
     ribs_admin.versions:
         class: PiouPiou\RibsAdminBundle\Service\Version
-        arguments: [ "@doctrine.orm.default_entity_manager","@http_client" ]
+        arguments: [ "@doctrine.orm.default_entity_manager","@http_client", "@parameter_bag" ]
         public: true
 
     PiouPiou\RibsAdminBundle\Service\ModuleService:
@@ -92,7 +92,7 @@ services:
         public: true
 
     PiouPiou\RibsAdminBundle\Service\Version:
-        arguments: [ "@doctrine.orm.default_entity_manager","@http_client" ]
+        arguments: [ "@doctrine.orm.default_entity_manager","@http_client", , "@parameter_bag" ]
         public: true
 
     #forms
