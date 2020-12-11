@@ -4,8 +4,7 @@ parameters:
     ribs_admin.paginator_element_per_page: 20
     ribs_admin.base_upload_url: ''
     ribs_admin.upload_dir: ''
-    ribs_admin.check_version_url: '%env(RIBS_ADMIN_CHECK_VERSION_URL)%'
-    ribs_admin.allow_check_version_from_url: '%env(RIBS_ADMIN_ALLOW_CHECK_VERSION_FROM_URL)%'
+    ribs_admin.packages_token: '%env(RIBS_ADMIN_TOKEN)%'
 
 services:
     PiouPiou\RibsAdminBundle\:
