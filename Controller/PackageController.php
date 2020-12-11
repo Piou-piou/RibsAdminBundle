@@ -60,6 +60,7 @@ class PackageController extends AbstractController
         }
 
         return $this->render("@RibsAdmin/packages/edit.html.twig", [
+            "disabled_form" => $disabled_form,
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
             "package" => $package
