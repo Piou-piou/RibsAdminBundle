@@ -54,8 +54,6 @@ class PackagistApi
      */
     public function getLastPackagistVersion(string $package_name)
     {
-        if ($this->getPackageInformation())
-
         if (!strpos($package_name, "/")) {
             return false;
         }
