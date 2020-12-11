@@ -110,9 +110,9 @@ class PackageController extends AbstractController
                 $message .= "</ul>";
 
                 $this->addFlash("info-flash", $message);
+            } else {
+                $this->addFlash("success-flash", "The project package was updated");
             }
-
-            $this->addFlash("success-flash", "The project package was updated");
         } else {
             $this->addFlash("error-flash", "The project package was not found");
         }
