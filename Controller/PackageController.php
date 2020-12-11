@@ -39,6 +39,7 @@ class PackageController extends AbstractController
      */
     public function edit(Request $request, EntityManagerInterface $em, string $guid = null): Response
     {
+        $disabled_form = strpos($request->get("_route"), "_show") ? true : false;
         if (!$guid) {
             $package = new Package();
             $text = "created";
@@ -47,7 +48,7 @@ class PackageController extends AbstractController
             $text = "edited";
         }
 
-        $form = $this->createForm(\PiouPiou\RibsAdminBundle\Form\Package::class, $package);
+        $form = $this->createForm(\PiouPiou\RibsAdminBundle\Form\Package::class, $package, ["disabled" => $disabled_form]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -103,6 +104,17 @@ class PackageController extends AbstractController
         if ($package) {
             $version->setPackageEntity($package);
             $version->save($package->getPackageName());
+
+            if ($version->getMessages()) {
+                $message = "<ul>";
+                $message .= "<li>The project package was not well updated</li>";
+                foreach ($version->getMessages() as $version_message) {
+                    $message .= "<li>".$version_message."</li>";
+                }
+                $message .= "</ul>";
+
+                $this->addFlash("info-flash", $message);
+            }
 
             $this->addFlash("success-flash", "The project package was updated");
         } else {

@@ -28,6 +28,8 @@ class Version
      */
     private $package;
 
+    private $messages = [];
+
     /**
      * Version constructor.
      * @param EntityManagerInterface $em
@@ -37,6 +39,14 @@ class Version
     {
         $this->em = $em;
         $this->client = $client;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMessages(): array
+    {
+        return $this->messages;
     }
 
     /**
@@ -88,6 +98,8 @@ class Version
                 return $packages[$key];
             }
         }
+
+        $this->messages["composer_lock"] = "Composer lock not found at " . $this->package->getProjectUrl();
 
         return null;
     }

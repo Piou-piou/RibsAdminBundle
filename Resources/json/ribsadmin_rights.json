@@ -108,7 +108,7 @@
     },
     {
       "right": "ribsadmin@packages",
-      "url": "ribsadmin_packages, ribsadmin_packages_update",
+      "url": "ribsadmin_packages, ribsadmin_packages_show, ribsadmin_packages_update",
       "text": "Access to packages detail page"
     },
     {
