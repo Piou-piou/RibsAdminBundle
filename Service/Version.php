@@ -2,6 +2,7 @@
 
 namespace PiouPiou\RibsAdminBundle\Service;
 
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use PiouPiou\RibsAdminBundle\Entity\Package;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
@@ -115,16 +116,16 @@ class Version
 
     /**
      * @param $package_name
-     * @return mixed|null
+     * @return DateTime|null
      * @throws Exception
      */
-    public function getVersionDate($package_name)
+    public function getVersionDate($package_name): ?DateTime
     {
         $string_date = $this->getPackage($package_name) ? explode("T", $this->getPackage($package_name)["time"])[0] : null;
         $version_date = null;
 
         if ($string_date) {
-            $version_date = new \DateTime($string_date);
+            $version_date = new DateTime($string_date);
         }
 
         return $version_date;
@@ -175,7 +176,7 @@ class Version
         $package->setVersion($this->getVersion($package_name));
         $package->setVersionDate($this->getVersionDate($package_name));
         $package->setLastPackagistVersion($this->getLastPackagistVersion($package_name));
-        $package->setLastCheck(new \DateTime());
+        $package->setLastCheck(new DateTime());
 
         $this->em->persist($package);
         $this->em->flush();

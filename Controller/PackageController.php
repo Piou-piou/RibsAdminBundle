@@ -130,6 +130,7 @@ class PackageController extends AbstractController
      * @param Version $version
      * @param string $package_name
      * @return mixed|null
+     * @throws Exception
      */
     public function sendPackageInformations(EntityManagerInterface $em, Version $version, string $package_name): JsonResponse
     {
@@ -141,7 +142,7 @@ class PackageController extends AbstractController
 
         return new JsonResponse([
             "package" => $version->getPackage($package_name),
-            "package_date" => $version->getPackageDate($package_name)
+            "package_date" => $version->getVersionDate($package_name)
         ]);
     }
 
