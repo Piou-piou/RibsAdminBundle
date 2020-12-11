@@ -81,19 +81,18 @@ class Version
     }
 
     /**
-     * @param $package_name
      * @return mixed|null
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function getPackage($package_name)
+    public function getPackage()
     {
         $composer_lock = $this->getComposerLockJson();
         if ($composer_lock) {
             $packages = $composer_lock["packages"];
-            $key = array_search($package_name, array_column($packages, 'name'));
+            $key = array_search($this->package->getPackageName(), array_column($packages, 'name'));
 
             if ($key) {
                 return $packages[$key];
@@ -106,22 +105,20 @@ class Version
     }
 
     /**
-     * @param $package_name
      * @return mixed|null
      */
-    public function getVersion($package_name)
+    public function getVersion()
     {
-        return $this->getPackage($package_name) ? $this->getPackage($package_name)["version"] : null;
+        return $this->getPackage($this->package->getPackageName()) ? $this->getPackage($this->package->getPackageName())["version"] : null;
     }
 
     /**
-     * @param $package_name
      * @return DateTime|null
      * @throws Exception
      */
-    public function getVersionDate($package_name): ?DateTime
+    public function getVersionDate(): ?DateTime
     {
-        $string_date = $this->getPackage($package_name) ? explode("T", $this->getPackage($package_name)["time"])[0] : null;
+        $string_date = $this->getPackage($this->package->getPackageName()) ? explode("T", $this->getPackage($this->package->getPackageName())["time"])[0] : null;
         $version_date = null;
 
         if ($string_date) {
@@ -132,53 +129,48 @@ class Version
     }
 
     /**
-     * @param $package_name
      * @return false|int|string|null
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function getLastPackagistVersion($package_name)
+    public function getLastPackagistVersion()
     {
-        if (!strpos($package_name, "/")) {
+        if (!strpos($this->package->getPackageName(), "/")) {
             return false;
         }
 
-        $packgist_url = "https://repo.packagist.org/p/".$package_name.".json";
+        $packgist_url = "https://repo.packagist.org/p/".$this->package->getPackageName().".json";
 
         $response = $this->client->request("GET", $packgist_url);
 
         if ($response->getStatusCode() == 200) {
             $content = json_decode($response->getContent(), true);
-            if (is_array($content) && $content["packages"] && $content["packages"][$package_name]) {
-                return array_key_first($content["packages"][$package_name]);
+            if (is_array($content) && $content["packages"] && $content["packages"][$this->package->getPackageName()]) {
+                return array_key_first($content["packages"][$this->package->getPackageName()]);
             }
         }
     }
 
     /**
-     * @param $package_name
+     * @param $package_guid
      * @throws Exception
      */
-    public function save($package_name)
+    public function save($package_guid)
     {
-        $package = $this->em->getRepository(Package::class)->findOneBy(["package_name" => $package_name]);
+        $package = $this->em->getRepository(Package::class)->findOneBy(["guid" => $package_guid]);
 
-        if (!$package) {
-            $package = new Package();
-            $package->setProjectName($package_name);
-            $package->setPackageName($package_name);
-            $package->setProjectUrl($package_name);
-            $package->setCheckVersionUrl($package_name);
+        if ($package) {
+            $this->setPackageEntity($package);
+
+            $package->setVersion($this->getVersion());
+            $package->setVersionDate($this->getVersionDate());
+            $package->setLastPackagistVersion($this->getLastPackagistVersion());
+            $package->setLastCheck(new DateTime());
+
+            $this->em->persist($package);
+            $this->em->flush();
         }
-
-        $package->setVersion($this->getVersion($package_name));
-        $package->setVersionDate($this->getVersionDate($package_name));
-        $package->setLastPackagistVersion($this->getLastPackagistVersion($package_name));
-        $package->setLastCheck(new DateTime());
-
-        $this->em->persist($package);
-        $this->em->flush();
     }
 }

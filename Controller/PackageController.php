@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Date;
 
 class PackageController extends AbstractController
 {
@@ -91,19 +90,15 @@ class PackageController extends AbstractController
 
     /**
      * @Route("/packages/update/{guid}", name="ribsadmin_packages_update")
-     * @param EntityManagerInterface $em
      * @param Version $version
      * @param string $guid
      * @return RedirectResponse
      * @throws Exception
      */
-    public function updatePackage(EntityManagerInterface $em, Version $version, string $guid): RedirectResponse
+    public function updatePackage(Version $version, string $guid): RedirectResponse
     {
-        $package = $em->getRepository(Package::class)->findOneBy(["guid" => $guid]);
-
-        if ($package) {
-            $version->setPackageEntity($package);
-            $version->save($package->getPackageName());
+        if ($guid) {
+            $version->save($guid);
 
             if ($version->getMessages()) {
                 $message = "<ul>";
@@ -141,8 +136,8 @@ class PackageController extends AbstractController
         }
 
         return new JsonResponse([
-            "package" => $version->getPackage($package_name),
-            "package_date" => $version->getVersionDate($package_name)
+            "package" => $version->getPackage(),
+            "package_date" => $version->getVersionDate()
         ]);
     }
 

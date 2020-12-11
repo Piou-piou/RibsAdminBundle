@@ -28,6 +28,11 @@ services:
         tags:
             - { name: 'console.command', command: 'ribsadmin:create-admin' }
 
+    PiouPiou\RibsAdminBundle\Command\UpdatePackagesInfo:
+        arguments: [ "@doctrine.orm.default_entity_manager", "@ribs_admin.versions" ]
+        tags:
+            - { name: 'console.command', command: 'ribsadmin:update-packages-info' }
+
     PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener:
         arguments: [ "@service_container" ]
         tags:
@@ -72,6 +77,11 @@ services:
     ribs_admin.api:
         class: PiouPiou\RibsAdminBundle\Service\Api
         arguments: ['@service_container', "@doctrine.orm.default_entity_manager", "@session", "@request_stack"]
+        public: true
+
+    ribs_admin.versions:
+        class: PiouPiou\RibsAdminBundle\Service\Version
+        arguments: [ "@doctrine.orm.default_entity_manager","@http_client" ]
         public: true
 
     PiouPiou\RibsAdminBundle\Service\ModuleService:
