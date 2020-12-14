@@ -6,7 +6,7 @@
 		{{ form_start(form) }}
 		<div class="top-links">
 			{% if disabled_form %}
-				<a href="{{ path('ribsadmin_packages') }}" class="ribs-button danger">Return</a>
+				<a href="{{ path('ribsadmin_packages') }}" class="ribs-button">Return</a>
 			{% else %}
 				<a href="{{ path('ribsadmin_packages') }}" class="ribs-button danger">Cancel</a>
 				{{ form_widget(form.submit) }}
