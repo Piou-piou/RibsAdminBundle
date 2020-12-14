@@ -71,4 +71,12 @@ class PackagistApi
 
         return false;
     }
+
+    public function getAllPackagistVersions(string $package_name)
+    {
+        $this->package_name = $package_name;
+        if ($package = $this->getPackageInformation()) {
+            return array_keys($package);
+        }
+    }
 }

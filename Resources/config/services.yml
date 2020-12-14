@@ -92,6 +92,10 @@ services:
         arguments: ['@service_container', "@ribs_admin.globals"]
         public: true
 
+    PiouPiou\RibsAdminBundle\Service\PackagistApi:
+        arguments: [ "@http_client" ]
+        public: true
+
     PiouPiou\RibsAdminBundle\Service\Api:
         arguments: ["@service_container","@doctrine.orm.default_entity_manager", "@session", "@request_stack"]
         public: true

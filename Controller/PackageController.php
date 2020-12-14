@@ -5,6 +5,7 @@ namespace PiouPiou\RibsAdminBundle\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use PiouPiou\RibsAdminBundle\Entity\Package;
+use PiouPiou\RibsAdminBundle\Service\PackagistApi;
 use PiouPiou\RibsAdminBundle\Service\Version;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -32,10 +33,11 @@ class PackageController extends AbstractController
      * @Route("/packages/edit/{guid}", name="ribsadmin_packages_edit")
      * @param Request $request
      * @param EntityManagerInterface $em
+     * @param PackagistApi $packagist
      * @param string|null $guid
      * @return Response
      */
-    public function edit(Request $request, EntityManagerInterface $em, string $guid = null): Response
+    public function edit(Request $request, EntityManagerInterface $em, PackagistApi $packagist, string $guid = null): Response
     {
         $disabled_form = strpos($request->get("_route"), "_show") ? true : false;
         if (!$guid) {
@@ -63,7 +65,8 @@ class PackageController extends AbstractController
             "disabled_form" => $disabled_form,
             "form" => $form->createView(),
             "form_errors" => $form->getErrors(),
-            "package" => $package
+            "package" => $package,
+            "versions" => $packagist->getAllPackagistVersions($package->getPackageName())
         ]);
     }
 
