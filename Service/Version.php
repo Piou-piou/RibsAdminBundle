@@ -31,6 +31,11 @@ class Version
     private $parameter;
 
     /**
+     * @var PackagistApi
+     */
+    private $packagist;
+
+    /**
      * @var mixed
      */
     private $local_token;
@@ -47,12 +52,14 @@ class Version
      * @param EntityManagerInterface $em
      * @param HttpClientInterface $client
      * @param ParameterBagInterface $parameter
+     * @param PackagistApi $packagist
      */
-    public function __construct(EntityManagerInterface $em, HttpClientInterface $client, ParameterBagInterface $parameter)
+    public function __construct(EntityManagerInterface $em, HttpClientInterface $client, ParameterBagInterface $parameter, PackagistApi $packagist)
     {
         $this->em = $em;
         $this->client = $client;
         $this->parameter = $parameter;
+        $this->packagist = $packagist;
         $this->local_token = $parameter->get("ribs_admin.packages_token");
     }
 
@@ -159,31 +166,6 @@ class Version
     }
 
     /**
-     * @return false|int|string|null
-     * @throws ClientExceptionInterface
-     * @throws RedirectionExceptionInterface
-     * @throws ServerExceptionInterface
-     * @throws TransportExceptionInterface
-     */
-    public function getLastPackagistVersion()
-    {
-        if (!strpos($this->package->getPackageName(), "/")) {
-            return false;
-        }
-
-        $packgist_url = "https://repo.packagist.org/p/".$this->package->getPackageName().".json";
-
-        $response = $this->client->request("GET", $packgist_url);
-
-        if ($response->getStatusCode() == 200) {
-            $content = json_decode($response->getContent(), true);
-            if (is_array($content) && $content["packages"] && $content["packages"][$this->package->getPackageName()]) {
-                return array_key_first($content["packages"][$this->package->getPackageName()]);
-            }
-        }
-    }
-
-    /**
      * @param $package_guid
      * @throws Exception
      */
@@ -201,7 +183,7 @@ class Version
 
             $package->setVersion($this->getVersion());
             $package->setVersionDate($this->getVersionDate());
-            $package->setLastPackagistVersion($this->getLastPackagistVersion());
+            $package->setLastPackagistVersion($this->packagist->getLastPackagistVersion($package->getPackageName()));
             $package->setLastCheck(new DateTime());
 
             $this->em->persist($package);

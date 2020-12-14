@@ -2,6 +2,7 @@
 
 namespace PiouPiou\RibsAdminBundle\Service;
 
+use Exception;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class PackagistApi
@@ -10,6 +11,16 @@ class PackagistApi
      * @var HttpClientInterface
      */
     private $client;
+
+    /**
+     * @var string
+     */
+    private $package_name = null;
+
+    /**
+     * @var array
+     */
+    private $package_info = [];
 
     /**
      * PackagistApi constructor.
@@ -21,26 +32,25 @@ class PackagistApi
     }
 
     /**
-     * @param string $package_name
      * @return false|mixed
      */
-    public function getPackageInformation(string $package_name)
+    private function getPackageInformation()
     {
         if ($this->package_info) {
             return $this->package_info;
         }
 
-        if (!strpos($package_name, "/")) {
+        if (!$this->package_name || !strpos($this->package_name, "/")) {
             return false;
         }
 
-        $packgist_url = "https://repo.packagist.org/p/".$package_name.".json";
+        $packgist_url = "https://repo.packagist.org/p/".$this->package_name.".json";
         $response = $this->client->request("GET", $packgist_url);
 
         if ($response->getStatusCode() == 200) {
             $content = json_decode($response->getContent(), true);
-            if (is_array($content) && $content["packages"] && $content["packages"][$this->package->getPackageName()]) {
-                $this->package_info = $content["packages"][$this->package->getPackageName()];
+            if (is_array($content) && $content["packages"] && $content["packages"][$this->package_name]) {
+                $this->package_info = $content["packages"][$this->package_name];
                 return $this->package_info;
             }
         }
@@ -54,19 +64,11 @@ class PackagistApi
      */
     public function getLastPackagistVersion(string $package_name)
     {
-        if (!strpos($package_name, "/")) {
-            return false;
+        $this->package_name = $package_name;
+        if ($package = $this->getPackageInformation()) {
+            return array_key_first($package);
         }
 
-        $packgist_url = "https://repo.packagist.org/p/".$package_name.".json";
-
-        $response = $this->client->request("GET", $packgist_url);
-
-        if ($response->getStatusCode() == 200) {
-            $content = json_decode($response->getContent(), true);
-            if (is_array($content) && $content["packages"] && $content["packages"][$this->package->getPackageName()]) {
-                return array_key_first($content["packages"][$this->package->getPackageName()]);
-            }
-        }
+        return false;
     }
 }

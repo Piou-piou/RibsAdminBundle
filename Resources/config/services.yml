@@ -78,9 +78,14 @@ services:
         arguments: ['@service_container', "@doctrine.orm.default_entity_manager", "@session", "@request_stack"]
         public: true
 
+    ribs_admin.packagist:
+        class: PiouPiou\RibsAdminBundle\Service\PackagistApi
+        arguments: [ "@http_client" ]
+        public: true
+
     ribs_admin.versions:
         class: PiouPiou\RibsAdminBundle\Service\Version
-        arguments: [ "@doctrine.orm.default_entity_manager","@http_client", "@parameter_bag" ]
+        arguments: [ "@doctrine.orm.default_entity_manager","@http_client", "@parameter_bag", "@ribs_admin.packagist" ]
         public: true
 
     PiouPiou\RibsAdminBundle\Service\ModuleService:
@@ -92,7 +97,7 @@ services:
         public: true
 
     PiouPiou\RibsAdminBundle\Service\Version:
-        arguments: [ "@doctrine.orm.default_entity_manager","@http_client", , "@parameter_bag" ]
+        arguments: [ "@doctrine.orm.default_entity_manager","@http_client", "@parameter_bag", "@ribs_admin.packagist" ]
         public: true
 
     #forms
