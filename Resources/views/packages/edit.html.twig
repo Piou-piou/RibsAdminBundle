@@ -69,6 +69,17 @@
 						<header>
 							<h5>All verions</h5>
 						</header>
+
+						<div class="row">
+							<table class="cxs-12">
+								{%  for version in versions %}
+									<tr>
+										<td>{{ version }}</td>
+										<td>{% if version != package.version %}Install{% elseif version == package.version  %}Current version{% endif %}</td>
+									</tr>
+								{% endfor %}
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
