@@ -3,6 +3,10 @@
 namespace PiouPiou\RibsAdminBundle\Service;
 
 use Exception;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class PackagistApi
@@ -33,6 +37,10 @@ class PackagistApi
 
     /**
      * @return false|mixed
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     private function getPackageInformation()
     {
@@ -61,6 +69,10 @@ class PackagistApi
     /**
      * @param string $package_name
      * @return false|int|string|null
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function getLastPackagistVersion(string $package_name)
     {
@@ -72,6 +84,14 @@ class PackagistApi
         return false;
     }
 
+    /**
+     * @param string $package_name
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
     public function getAllPackagistVersions(string $package_name)
     {
         $this->package_name = $package_name;
