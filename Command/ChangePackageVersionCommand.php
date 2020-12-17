@@ -19,12 +19,7 @@ class ChangePackageVersionCommand extends Command
             ->addArgument(
                 'package-name',
                 InputArgument::REQUIRED,
-                'Name of composer package to import'
-            )
-            ->addArgument(
-                'package-version',
-                InputArgument::REQUIRED,
-                'version of package to install'
+                'Name of composer package to import with version (example : piou/piou/test-bundle:1.0.0)'
             )
         ;
     }
@@ -32,10 +27,9 @@ class ChangePackageVersionCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $pacakge_name = $input->getArgument('package-name');
-        $pacakge_version = $input->getArgument('package-version');
         $output->writeln("Start composer require " . $pacakge_name);
 
-        $process = new Process("composer require " . $pacakge_name.":".$pacakge_version);
+        $process = new Process("composer require " . $pacakge_name);
         $process->run(function ($type, $buffer) {
             echo $buffer;
         });

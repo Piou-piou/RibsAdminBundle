@@ -7,8 +7,11 @@ use Exception;
 use PiouPiou\RibsAdminBundle\Entity\Package;
 use PiouPiou\RibsAdminBundle\Service\Version;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PackagesDistController extends AbstractController
@@ -60,5 +63,29 @@ class PackagesDistController extends AbstractController
         return new JsonResponse([
             "token" => $parameter->get("ribs_admin.packages_token")
         ]);
+    }
+
+    /**
+     * @Route("/packages/change-version/{package_name}", name="ribsadmin_packages_change_version", requirements={"package_name"=".+"})
+     * @param KernelInterface $kernel
+     * @param string $package_name
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function changePackageVersion(KernelInterface $kernel, string $package_name): JsonResponse
+    {
+        $application = new Application($kernel);
+        $application->setAutoExit(false);
+
+        $input = new ArrayInput([
+            'command' => 'ribsadmin:change-package-version',
+            'package-name' => $package_name,
+        ]);
+
+        $output = new BufferedOutput();
+        $application->run($input, $output);
+        $content = $output->fetch();
+
+        return new JsonResponse($content);
     }
 }
