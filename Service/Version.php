@@ -174,6 +174,14 @@ class Version
         return $version_date;
     }
 
+    /**
+     * @param string $guid
+     * @param string $version
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
     public function updatePackage(string $guid, string $version)
     {
         $package = $this->em->getRepository(Package::class)->findOneBy(["guid" => $guid]);
