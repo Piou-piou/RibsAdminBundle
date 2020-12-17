@@ -186,7 +186,7 @@ class Version
                 return;
             }
 
-            $this->client->request("GET", $this->package->getProjectUrl().'packages/dist/change-version/'.$package->getPackageName().':'.$version);
+            $this->client->request("GET", $this->package->getProjectUrl().'ribs-admin/packages/dist/change-version/'.$package->getPackageName().':'.$version);
             //$composer_lock = $response->getStatusCode() == 200 ? $response->getContent() : null;
 
             $this->save($guid);
