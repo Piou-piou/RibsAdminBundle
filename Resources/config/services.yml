@@ -32,6 +32,10 @@ services:
         tags:
             - { name: 'console.command', command: 'ribsadmin:update-packages-info' }
 
+    PiouPiou\RibsAdminBundle\Command\ChangePackageVersionCommand:
+        tags:
+            - { name: 'console.command', command: 'ribsadmin:change-package-version' }
+
     PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener:
         arguments: [ "@service_container" ]
         tags:
