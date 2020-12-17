@@ -74,12 +74,17 @@ class Version
     /**
      * @param Package $package
      */
-    public function setPackageEntity(Package $package) {
+    public function setPackageEntity(Package $package)
+    {
         $this->package = $package;
     }
 
     /**
      * @return mixed|null
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     private function getToken()
     {
@@ -143,6 +148,10 @@ class Version
 
     /**
      * @return mixed|null
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function getVersion()
     {
@@ -166,10 +175,13 @@ class Version
     }
 
     /**
-     * @param $package_guid
-     * @throws Exception
+     * @param string $package_guid
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
-    public function save($package_guid)
+    public function save(string $package_guid)
     {
         $package = $this->em->getRepository(Package::class)->findOneBy(["guid" => $package_guid]);
 
