@@ -89,7 +89,7 @@ class Version
     private function getToken()
     {
         $token = null;
-        $response = $this->client->request("GET", $this->package->getProjectUrl()."ribs-admin/packages/send-token/");
+        $response = $this->client->request("GET", $this->package->getProjectUrl()."ribs-admin/packages/dist/send-token/");
         $datas = $response->getStatusCode() == 200 ? $response->getContent() : null;
 
         if ($datas) {
@@ -186,7 +186,7 @@ class Version
                 return;
             }
 
-            $this->client->request("GET", $this->package->getProjectUrl().'rpackages/change-version/'.$package->getPackageName().':'.$version);
+            $this->client->request("GET", $this->package->getProjectUrl().'packages/dist/change-version/'.$package->getPackageName().':'.$version);
             //$composer_lock = $response->getStatusCode() == 200 ? $response->getContent() : null;
 
             $this->save($guid);
