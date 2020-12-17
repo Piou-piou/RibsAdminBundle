@@ -75,7 +75,13 @@
 								{%  for version in versions %}
 									<tr>
 										<td>{{ version }}</td>
-										<td>{% if version != package.version %}Install{% elseif version == package.version  %}Current version{% endif %}</td>
+										<td>
+											{% if version != package.version %}
+												<a href="{{ path('ribsadmin_packages_update_version', {'guid': package.guid, 'install_version': version}) }}">Install</a>
+											{% elseif version == package.version  %}
+												Current version
+											{% endif %}
+										</td>
 									</tr>
 								{% endfor %}
 							</table>

@@ -174,6 +174,25 @@ class Version
         return $version_date;
     }
 
+    public function updatePackage(string $guid, string $version)
+    {
+        $package = $this->em->getRepository(Package::class)->findOneBy(["guid" => $guid]);
+
+        if ($package) {
+            $this->setPackageEntity($package);
+
+            if (!$this->getToken() || $this->getToken() !== $this->local_token) {
+                $this->messages["token_error"] = "Token not matching on : " . $this->package->getProjectUrl();
+                return;
+            }
+
+            $this->client->request("GET", $this->package->getProjectUrl().'rpackages/change-version/'.$package->getPackageName().':'.$version);
+            //$composer_lock = $response->getStatusCode() == 200 ? $response->getContent() : null;
+
+            $this->save($guid);
+        }
+    }
+
     /**
      * @param string $package_guid
      * @throws ClientExceptionInterface

@@ -129,4 +129,18 @@ class PackageController extends AbstractController
 
         return $this->redirectToRoute("ribsadmin_packages");
     }
+
+    /**
+     * @Route("/packages/update-version/{guid}/{install_version}", name="ribsadmin_packages_update_version")
+     * @param Version $version
+     * @param string $guid
+     * @param string $install_version
+     * @return RedirectResponse
+     */
+    public function changePackageVersion(Version $version, string $guid, string $install_version): RedirectResponse
+    {
+        $version->updatePackage($guid, $install_version);
+
+        return $this->redirectToRoute("ribsadmin_packages_update", ["guid" => $guid]);
+    }
 }
