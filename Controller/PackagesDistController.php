@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PackagesDistController extends AbstractController
 {
     /**
-     * @Route("/packages/send-package/{package_name}", name="ribsadmin_packages_send", requirements={"package_name"=".+"})
+     * @Route("/packages/dist/send-package/{package_name}", name="ribsadmin_packages_dist_send", requirements={"package_name"=".+"})
      * @param EntityManagerInterface $em
      * @param Version $version
      * @param string $package_name
@@ -39,7 +39,7 @@ class PackagesDistController extends AbstractController
     }
 
     /**
-     * @Route("/packages/send-composer-lock/", name="ribsadmin_packages_send_composer_lock")
+     * @Route("/packages/dist/send-composer-lock/", name="ribsadmin_packages_dist_send_composer_lock")
      * @return JsonResponse
      */
     public function sendComposerJson(): JsonResponse
@@ -54,7 +54,7 @@ class PackagesDistController extends AbstractController
     }
 
     /**
-     * @Route("/packages/send-token/", name="ribsadmin_packages_send_token")
+     * @Route("/packages/dist/send-token/", name="ribsadmin_packages_dist_send_token")
      * @param ParameterBagInterface $parameter
      * @return JsonResponse
      */
@@ -66,7 +66,7 @@ class PackagesDistController extends AbstractController
     }
 
     /**
-     * @Route("/packages/change-version/{package_name}", name="ribsadmin_packages_change_version", requirements={"package_name"=".+"})
+     * @Route("/packages/dist/change-version/{package_name}", name="ribsadmin_packages_dist_change_version", requirements={"package_name"=".+"})
      * @param KernelInterface $kernel
      * @param string $package_name
      * @return JsonResponse

@@ -1,7 +1,8 @@
 {
   "items": [
-    "ribsadmin_packages_send",
-    "ribsadmin_packages_send_composer_lock",
-    "ribsadmin_packages_send_token"
+    "ribsadmin_packages_dist_send",
+    "ribsadmin_packages_dist_send_composer_lock",
+    "ribsadmin_packages_dist_send_token",
+    "ribsadmin_packages_dist_change_version"
   ]
 }
