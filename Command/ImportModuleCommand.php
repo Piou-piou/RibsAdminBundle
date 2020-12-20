@@ -46,10 +46,10 @@ class ImportModuleCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $pacakge_name = $input->getArgument('package-name');
-        $output->writeln("Start composer require " . $pacakge_name);
+        $package_name = $input->getArgument('package-name');
+        $output->writeln("Start composer require " . $package_name);
 
-        $process = new Process("composer require " . $pacakge_name);
+        $process = Process::fromShellCommandline("composer require " . $package_name);
         $process->run(function ($type, $buffer) {
             echo $buffer;
         });
@@ -58,18 +58,18 @@ class ImportModuleCommand extends Command
             throw new ProcessFailedException($process);
         }
 
-        $output->writeln("End composer require " . $pacakge_name);
-        $output->writeln("Start insertion of module in database " . $pacakge_name);
+        $output->writeln("End composer require " . $package_name);
+        $output->writeln("Start insertion of module in database " . $package_name);
 
         $module = new Module();
-        $module->setPackageName($pacakge_name);
+        $module->setPackageName($package_name);
         $module->setTitle($input->getArgument('module-name'));
         $module->setActive(false);
         $module->setDisplayed(true);
         $this->em->persist($module);
         $this->em->flush();
 
-        $output->writeln("Installation of " . $pacakge_name . " is finished. You have now to configure this module in your administration interface");
+        $output->writeln("Installation of " . $package_name . " is finished. You have now to configure this module in your administration interface");
 
         return 0;
     }
