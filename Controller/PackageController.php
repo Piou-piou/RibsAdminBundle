@@ -135,11 +135,20 @@ class PackageController extends AbstractController
      * @param Version $version
      * @param string $guid
      * @param string $install_version
-     * @return RedirectResponse
+     * @return RedirectResponse|Response
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
-    public function changePackageVersion(Version $version, string $guid, string $install_version): RedirectResponse
+    public function changePackageVersion(Version $version, string $guid, string $install_version)
     {
-        $version->updatePackage($guid, $install_version);
+        $response = $version->updatePackage($guid, $install_version);
+
+        if ($response) {
+            $response = str_replace("\n", "<br>", $response);
+            return new Response($response, 200, ["Content-Type" => "text/html"]);
+        }
 
         return $this->redirectToRoute("ribsadmin_packages_update", ["guid" => $guid]);
     }

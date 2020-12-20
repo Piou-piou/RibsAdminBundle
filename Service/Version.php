@@ -177,6 +177,7 @@ class Version
     /**
      * @param string $guid
      * @param string $version
+     * @return string|void|null
      * @throws ClientExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
@@ -194,10 +195,10 @@ class Version
                 return;
             }
 
-            $this->client->request("GET", $this->package->getProjectUrl().'ribs-admin/packages/dist/change-version/'.$package->getPackageName().':'.$version);
-            //$composer_lock = $response->getStatusCode() == 200 ? $response->getContent() : null;
-
+            $response = $this->client->request("GET", $this->package->getProjectUrl().'ribs-admin/packages/dist/change-version/'.$package->getPackageName().':'.$version);
             $this->save($guid);
+
+            return $response->getStatusCode() == 200 ? $response->getContent() : null;
         }
     }
 
