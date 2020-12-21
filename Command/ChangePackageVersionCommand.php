@@ -35,7 +35,11 @@ class ChangePackageVersionCommand extends Command
         }
 
         $package_name = $input->getArgument('package-name');
-        $output->writeln("Start composer require " . $package_name);
+
+        $process = Process::fromShellCommandline("echo Start composer require " . $package_name);
+        $process->run(function ($type, $buffer) {
+            echo $buffer;
+        });
 
         $process = Process::fromShellCommandline($cd . "chmod 777 composer.json");
         $process->run(function ($type, $buffer) {
@@ -56,7 +60,10 @@ class ChangePackageVersionCommand extends Command
             echo $buffer;
         });
 
-        $output->writeln("Change version of " . $package_name . " is finished.");
+        $process = Process::fromShellCommandline("echo Change version of " . $package_name . " is finished.");
+        $process->run(function ($type, $buffer) {
+            echo $buffer;
+        });
 
         return 0;
     }
