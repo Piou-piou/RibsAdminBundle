@@ -147,7 +147,7 @@ class PackageController extends AbstractController
 
         if ($response) {
             $response = str_replace("\n", "<br>", $response);
-            return new Response($response, 200, ["Content-Type" => "text/html"]);
+            return $this->render("@RibsAdmin/packages/show-update-version.html.twig", ["logs" => $response]);
         }
 
         return $this->redirectToRoute("ribsadmin_packages_update", ["guid" => $guid]);
