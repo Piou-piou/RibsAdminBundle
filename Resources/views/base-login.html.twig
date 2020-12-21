@@ -5,8 +5,8 @@
 		<meta charset="UTF-8">
 		
 		{% block stylesheets %}
-			<link rel="stylesheet" href="{{ asset('bundles/ribsadmin/css/vendor.css') }}">
-			<link rel="stylesheet" href="{{ asset('bundles/ribsadmin/css/style.css') }}">
+			<link rel="stylesheet" href="{{ asset('bundles/ribsadmin/css/vendor.css', 'ribsadmin') }}">
+			<link rel="stylesheet" href="{{ asset('bundles/ribsadmin/css/style.css', 'ribsadmin') }}">
 		{% endblock %}
 	</head>
 	<body>
@@ -25,9 +25,9 @@
 		{% endfor %}
 		
 		{% block javascripts %}
-			<script src="{{ asset('bundles/ribsadmin/runtime.js') }}"></script>
-			<script src="{{ asset('bundles/ribsadmin/js/vendor.js') }}"></script>
-			<script src="{{ asset('bundles/ribsadmin/js/login.js') }}"></script>
+			<script src="{{ asset('bundles/ribsadmin/runtime.js', 'ribsadmin') }}"></script>
+			<script src="{{ asset('bundles/ribsadmin/js/vendor.js', 'ribsadmin') }}"></script>
+			<script src="{{ asset('bundles/ribsadmin/js/login.js', 'ribsadmin') }}"></script>
 		{% endblock %}
 	</body>
 </html>
