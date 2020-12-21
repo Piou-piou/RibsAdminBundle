@@ -6,10 +6,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use PiouPiou\RibsAdminBundle\Entity\Package;
 use PiouPiou\RibsAdminBundle\Service\Version;
+use SensioLabs\AnsiConverter\AnsiToHtmlConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -83,10 +85,12 @@ class PackagesDistController extends AbstractController
             'package-name' => $package_name,
         ]);
 
-        $output = new BufferedOutput();
+        $output = new BufferedOutput(OutputInterface::VERBOSITY_NORMAL, true);
         $application->run($input, $output);
+
+        $converter = new AnsiToHtmlConverter();
         $content = $output->fetch();
 
-        return new JsonResponse($content);
+        return new JsonResponse($converter->convert($content));
     }
 }

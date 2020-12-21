@@ -34,7 +34,8 @@
     "symfony/http-kernel": "^3.3|^4.4|^5.0",
     "symfony/asset": "^3.4 || ^4.0 || ^5.0",
     "firebase/php-jwt": "^5.0.0",
-    "piou-piou/ribs-cron-bundle": "^1.0"
+    "piou-piou/ribs-cron-bundle": "^1.0",
+    "sensiolabs/ansi-to-html": "^1.2"
   },
   "require-dev": {
     "symfony/yaml": "^3.4 || ^4.4 || ^5.0"
