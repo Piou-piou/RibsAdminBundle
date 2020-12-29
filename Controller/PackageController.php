@@ -104,7 +104,10 @@ class PackageController extends AbstractController
      * @param Version $version
      * @param string $guid
      * @return RedirectResponse
-     * @throws Exception
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function updatePackage(Version $version, string $guid): RedirectResponse
     {
