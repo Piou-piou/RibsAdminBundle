@@ -27,6 +27,7 @@
     "symfony/http-client": "^4.4 || ^5.1",
     "symfony/http-foundation": "^4.4 || ^5.1",
     "symfony/http-kernel": "^4.4 || ^5.1",
+    "symfony/mime": "^v4.4 || ^5.1",
     "symfony/orm-pack": "*",
     "symfony/polyfill-mbstring": "1.13.*",
     "symfony/routing": "^4.4 || ^5.1",

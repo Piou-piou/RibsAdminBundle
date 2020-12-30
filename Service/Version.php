@@ -6,6 +6,7 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use PiouPiou\RibsAdminBundle\Entity\Package;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Mime\Part\Multipart\FormDataPart;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
@@ -195,7 +196,16 @@ class Version
                 return;
             }
 
-            $response = $this->client->request("GET", $this->package->getProjectUrl().'ribs-admin/packages/dist/change-version/'.$package->getPackageName().':'.$version);
+            $form_data = new FormDataPart([
+                "package_name" => $package->getPackageName(),
+                "version" => $version,
+            ]);
+
+            $response = $this->client->request("POST", $this->package->getProjectUrl().'ribs-admin/packages/dist/change-version/', [
+                "headers" => $form_data->getPreparedHeaders()->toArray(),
+                "body" => $form_data->bodyToIterable()
+            ]);
+
             $this->save($guid);
 
             return $response->getStatusCode() == 200 ? $response->getContent() : null;

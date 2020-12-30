@@ -13,7 +13,9 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -69,20 +71,53 @@ class PackagesDistController extends AbstractController
     }
 
     /**
-     * @Route("/packages/dist/change-version/{package_name}", name="ribsadmin_packages_dist_change_version", requirements={"package_name"=".+"})
+     * @param $file
+     * @param $folder
+     * @return bool
+     */
+    private function uploadConfigFile($file, $folder)
+    {
+        $success = true;
+        if ($file) {
+            try {
+                $file->move('../config/'.$folder, $file->getClientOriginalName());
+            } catch (FileException $exception) {
+                $success = false;
+            }
+        }
+        return $success;
+    }
+
+    /**
+     * @Route("/packages/dist/change-version/", name="ribsadmin_packages_dist_change_version", requirements={"package_name"=".+"}, methods={"POST"})
      * @param KernelInterface $kernel
-     * @param string $package_name
+     * @param Request $request
      * @return JsonResponse
      * @throws Exception
      */
-    public function changePackageVersion(KernelInterface $kernel, string $package_name): JsonResponse
+    public function changePackageVersion(KernelInterface $kernel, Request $request): JsonResponse
     {
         $application = new Application($kernel);
         $application->setAutoExit(false);
 
+        $package_name = $request->get("package_name");
+        $version = $request->get("version");
+
+        if (!$this->uploadConfigFile($request->files->get('package_routes'), "routes")) {
+            return new JsonResponse([
+                "error_message" => "Routes file move is impossible"
+            ]);
+        }
+
+        if (!$this->uploadConfigFile($request->files->get('package_config'), "packages")) {
+            return new JsonResponse([
+                "error_message" => "Package file move is impossible"
+            ]);
+        }
+
         $input = new ArrayInput([
             'command' => 'ribsadmin:change-package-version',
-            'package-name' => $package_name,
+            'package-name' => $package_name.":".$version,
         ]);
 
         $output = new BufferedOutput(OutputInterface::VERBOSITY_NORMAL, true);
