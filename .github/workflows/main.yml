@@ -21,3 +21,11 @@ jobs:
         command: /home/${{ secrets.DEV_SRV_USER }}/${{ secrets.SCRIPT }}.sh
         hosts: ${{ secrets.DEV_SRV_URL }}
         privateKey: ${{ secrets.SSH_KEY }}
+    - name: Slack Notify
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: github-actions
+        SLACK_USERNAME: RibsGithub
+        SLACK_TITLE: 'Ribs update'
+        SLACK_MESSAGE: 'Ribs update is finished'
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
