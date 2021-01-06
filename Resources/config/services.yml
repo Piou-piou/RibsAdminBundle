@@ -46,6 +46,11 @@ services:
         tags:
             - { name: doctrine.orm.entity_listener }
 
+    PiouPiou\RibsAdminBundle\EventListener\ExceptionListener:
+        arguments: ["@parameter_bag"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+
     PiouPiou\RibsAdminBundle\Service\AccessRights:
         arguments: ['@service_container', "@router", "@session", "@request_stack", "@security.token_storage", "@ribs_admin.globals", "@ribs_admin.module_service", "@ribs_admin.api"]
         public: true
