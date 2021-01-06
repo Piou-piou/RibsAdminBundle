@@ -2,16 +2,29 @@
 
 namespace PiouPiou\RibsAdminBundle\EventListener;
 
+use PiouPiou\RibsAdminBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ExceptionListener
 {
+    /**
+     * @var ParameterBagInterface
+     */
     private $paramter;
 
-    public function __construct(ParameterBagInterface $parameterBag)
+    /**
+     * @var User
+     */
+    private $user;
+
+    public function __construct(ParameterBagInterface $parameterBag, TokenStorageInterface $tokenStorage)
     {
         $this->paramter = $parameterBag;
+        if ($tokenStorage->getToken() && is_object($tokenStorage->getToken()->getUser()) && $tokenStorage->getToken()->getUser()->getUser()) {
+            $this->user = $tokenStorage->getToken()->getUser()->getUser();
+        }
     }
 
     public function onKernelException(ExceptionEvent $event)
@@ -23,6 +36,12 @@ class ExceptionListener
             $data['username'] = $_SERVER['HTTP_HOST'];
             $data['text'] = "• *Erreur* : " . strip_tags($event->getThrowable()->getMessage());
             $data['text'] .= "\n• *Erreur File* : " . strip_tags($event->getThrowable()->getFile()) . " at line :" . strip_tags($event->getThrowable()->getLine());
+            $data['text'] .= "\n• *URL* : " . $event->getRequest()->getUri();
+
+            if ($this->user) {
+                $data['text'] .= "\n• *Utilisateur* : " . $this->user . " with id : " . $this->user->getId();
+            }
+
             $data['unfurl_links'] = false;
             $data_json = json_encode($data);
 
