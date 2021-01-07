@@ -28,15 +28,16 @@ class NavigationBuilderController extends AbstractController
             }
         }
 
-        $this->getModuleNavigation();
+        $this->getModuleNavigation($access_rights);
 
         return $this->render("@RibsAdmin/navigation.html.twig", ["navigation" => $this->nav]);
     }
 
     /**
      * to get all modules navigation and test right navigation
+     * @param AccessRights $access_rights
      */
-    private function getModuleNavigation()
+    private function getModuleNavigation(AccessRights $access_rights)
     {
         $modules = $this->getDoctrine()->getRepository(Module::class)->findBy([
             "active" => true,
@@ -48,7 +49,7 @@ class NavigationBuilderController extends AbstractController
                 ($module->getPackageName(), $module->getDevMode()) . "/Resources/json/navigation.json"), true);
 
             foreach ($navigation["items"] as $item) {
-                if ($this->get("ribs_admin.acess_rights")->testRight($item["right"]) && (!isset($item["position"]) || $item["position"] === "left")) {
+                if ($access_rights->testRight($item["right"]) && (!isset($item["position"]) || $item["position"] === "left")) {
                     $this->nav[] = $item;
                 }
             }

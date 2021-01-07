@@ -3,7 +3,7 @@
 namespace PiouPiou\RibsAdminBundle\EventListener;
 
 use PiouPiou\RibsAdminBundle\Entity\User;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class CreateUpdateAwareListener
 {
@@ -14,9 +14,9 @@ class CreateUpdateAwareListener
 
     /**
      * CreateUpdateAwareListener constructor.
-     * @param TokenStorage $tokenStorage
+     * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(TokenStorage $tokenStorage)
+    public function __construct(TokenStorageInterface $tokenStorage)
     {
         if ($tokenStorage->getToken() && is_object($tokenStorage->getToken()->getUser()) && $tokenStorage->getToken()->getUser()->getUser()) {
             $this->user = $tokenStorage->getToken()->getUser()->getUser();

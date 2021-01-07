@@ -7,6 +7,11 @@ parameters:
     ribs_admin.packages_token: '%env(RIBS_ADMIN_TOKEN)%'
 
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
     PiouPiou\RibsAdminBundle\:
         resource: '../../*'
         exclude: '../../{Entity,Migrations,Tests}'
@@ -17,103 +22,23 @@ services:
             - [setContainer, ["@service_container"]]
         tags: ['controller.service_arguments']
 
-    PiouPiou\RibsAdminBundle\Command\ImportModuleCommand:
-        arguments: [ "@doctrine.orm.default_entity_manager" ]
-        tags:
-            - { name: 'console.command', command: 'ribsadmin:import-module' }
-
-    PiouPiou\RibsAdminBundle\Command\CreateAdminCommand:
-        arguments: [ "@doctrine.orm.default_entity_manager", "@security.password_encoder" ]
-        tags:
-            - { name: 'console.command', command: 'ribsadmin:create-admin' }
-
-    PiouPiou\RibsAdminBundle\Command\UpdatePackagesInfo:
-        arguments: [ "@doctrine.orm.default_entity_manager", "@ribs_admin.versions" ]
-        tags:
-            - { name: 'console.command', command: 'ribsadmin:update-packages-info' }
-
-    PiouPiou\RibsAdminBundle\Command\ChangePackageVersionCommand:
-        tags:
-            - { name: 'console.command', command: 'ribsadmin:change-package-version' }
-
     PiouPiou\RibsAdminBundle\EventListener\GuidAwareListener:
-        arguments: [ "@service_container" ]
         tags:
             - { name: doctrine.orm.entity_listener }
 
     PiouPiou\RibsAdminBundle\EventListener\CreateUpdateAwareListener:
-        arguments: [ "@security.untracked_token_storage" ]
         tags:
             - { name: doctrine.orm.entity_listener }
 
     PiouPiou\RibsAdminBundle\EventListener\ExceptionListener:
-        arguments: ["@parameter_bag", "@security.token_storage"]
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 
-    PiouPiou\RibsAdminBundle\Service\AccessRights:
-        arguments: ['@service_container', "@router", "@session", "@request_stack", "@security.token_storage", "@ribs_admin.globals", "@ribs_admin.module_service", "@ribs_admin.api"]
-        public: true
-
     PiouPiou\RibsAdminBundle\Service\UserLog:
-        arguments: ["@security.token_storage", "@doctrine.orm.default_entity_manager"]
         tags:
-            - {name: kernel.event_listener, event: kernel.request}
-        public: true
-
-    PiouPiou\RibsAdminBundle\Service\Globals:
-        arguments: ['@service_container']
-        public: true
+            - { name: kernel.event_listener, event: kernel.request }
 
     ribs_admin.acess_rights:
         class: PiouPiou\RibsAdminBundle\Service\AccessRights
-        arguments: ['@service_container', "@router", "@session", "@request_stack", "@security.token_storage", "@ribs_admin.globals", "@ribs_admin.module_service", "@ribs_admin.api"]
         tags:
-            - {name: kernel.event_listener, event: kernel.controller}
-        public: true
-
-    ribs_admin.globals:
-        class: PiouPiou\RibsAdminBundle\Service\Globals
-        arguments: ['@service_container']
-        public: true
-
-    ribs_admin.module_service:
-        class: PiouPiou\RibsAdminBundle\Service\ModuleService
-        arguments: ['@service_container', "@ribs_admin.globals"]
-        public: true
-
-    ribs_admin.api:
-        class: PiouPiou\RibsAdminBundle\Service\Api
-        arguments: ['@service_container', "@doctrine.orm.default_entity_manager", "@session", "@request_stack"]
-        public: true
-
-    ribs_admin.packagist:
-        class: PiouPiou\RibsAdminBundle\Service\PackagistApi
-        arguments: [ "@http_client" ]
-        public: true
-
-    ribs_admin.versions:
-        class: PiouPiou\RibsAdminBundle\Service\Version
-        arguments: [ "@doctrine.orm.default_entity_manager","@http_client", "@parameter_bag", "@ribs_admin.packagist" ]
-        public: true
-
-    PiouPiou\RibsAdminBundle\Service\ModuleService:
-        arguments: ['@service_container', "@ribs_admin.globals"]
-        public: true
-
-    PiouPiou\RibsAdminBundle\Service\PackagistApi:
-        arguments: [ "@http_client" ]
-        public: true
-
-    PiouPiou\RibsAdminBundle\Service\Api:
-        arguments: ["@service_container","@doctrine.orm.default_entity_manager", "@session", "@request_stack"]
-        public: true
-
-    PiouPiou\RibsAdminBundle\Service\Version:
-        arguments: [ "@doctrine.orm.default_entity_manager","@http_client", "@parameter_bag", "@ribs_admin.packagist" ]
-        public: true
-
-    #forms
-    PiouPiou\RibsAdminBundle\Form\User:
-        arguments: ['@doctrine.orm.entity_manager', '@security.token_storage']
-        tags: [form.type]
+            - { name: kernel.event_listener, event: kernel.controller }
