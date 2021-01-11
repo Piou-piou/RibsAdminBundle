@@ -28,16 +28,17 @@ class NavigationBuilderController extends AbstractController
             }
         }
 
-        $this->getModuleNavigation($access_rights);
+        $this->getModuleNavigation($globals, $access_rights);
 
         return $this->render("@RibsAdmin/navigation.html.twig", ["navigation" => $this->nav]);
     }
 
     /**
      * to get all modules navigation and test right navigation
+     * @param Globals $globals
      * @param AccessRights $access_rights
      */
-    private function getModuleNavigation(AccessRights $access_rights)
+    private function getModuleNavigation(Globals $globals, AccessRights $access_rights)
     {
         $modules = $this->getDoctrine()->getRepository(Module::class)->findBy([
             "active" => true,
@@ -45,7 +46,7 @@ class NavigationBuilderController extends AbstractController
         ]);
 
         foreach ($modules as $module) {
-            $navigation = json_decode(file_get_contents($this->get("ribs_admin.globals")->getBaseBundlePath
+            $navigation = json_decode(file_get_contents($globals->getBaseBundlePath
                 ($module->getPackageName(), $module->getDevMode()) . "/Resources/json/navigation.json"), true);
 
             foreach ($navigation["items"] as $item) {
