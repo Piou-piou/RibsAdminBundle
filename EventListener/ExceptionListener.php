@@ -37,6 +37,7 @@ class ExceptionListener
             $data['text'] = "• *Erreur* : " . strip_tags($event->getThrowable()->getMessage());
             $data['text'] .= "\n• *Erreur File* : " . strip_tags($event->getThrowable()->getFile()) . " at line :" . strip_tags($event->getThrowable()->getLine());
             $data['text'] .= "\n• *URL* : " . $event->getRequest()->getUri();
+            $data['text'] .= "\n• *IP* : " . $_SERVER["REMOTE_ADDR"];
 
             if ($this->user) {
                 $data['text'] .= "\n• *Utilisateur* : " . $this->user . " with id : " . $this->user->getId();
