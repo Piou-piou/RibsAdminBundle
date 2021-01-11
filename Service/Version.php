@@ -93,7 +93,7 @@ class Version
         $response = $this->client->request("GET", $this->package->getProjectUrl()."ribs-admin/packages/dist/send-token/");
         $datas = $response->getStatusCode() == 200 ? $response->getContent() : null;
 
-        if ($datas) {
+        if ($datas && json_decode($datas)) {
             $token = json_decode($datas, true)["token"];
         }
 
