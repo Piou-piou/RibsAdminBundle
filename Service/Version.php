@@ -6,6 +6,7 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use PiouPiou\RibsAdminBundle\Entity\Package;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mime\Part\Multipart\FormDataPart;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -199,11 +200,13 @@ class Version
             $form_data = new FormDataPart([
                 "package_name" => $package->getPackageName(),
                 "version" => $version,
+//                "package_routes" => DataPart::fromPath('../config/routes/ribs_admin.yaml'),
+//                "package_config" => DataPart::fromPath('../config/packages/ribs_admin.yaml'),
             ]);
 
             $response = $this->client->request("POST", $this->package->getProjectUrl().'ribs-admin/packages/dist/change-version/', [
                 "headers" => $form_data->getPreparedHeaders()->toArray(),
-                "body" => $form_data->bodyToIterable()
+                "body" => $form_data->bodyToString(),
             ]);
 
             $this->save($guid);
