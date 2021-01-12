@@ -22,28 +22,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class PackagesDistController extends AbstractController
 {
     /**
-     * @Route("/packages/dist/send-package/{package_name}", name="ribsadmin_packages_dist_send", requirements={"package_name"=".+"})
-     * @param EntityManagerInterface $em
-     * @param Version $version
-     * @param string $package_name
-     * @return mixed|null
-     * @throws Exception
-     */
-    public function sendPackageInformations(EntityManagerInterface $em, Version $version, string $package_name): JsonResponse
-    {
-        $package = $em->getRepository(Package::class)->findOneBy(["package_name" => $package_name]);
-
-        if ($package) {
-            $version->setPackageEntity($package);
-        }
-
-        return new JsonResponse([
-            "package" => $version->getPackage(),
-            "package_date" => $version->getVersionDate()
-        ]);
-    }
-
-    /**
      * @Route("/packages/dist/send-composer-lock/", name="ribsadmin_packages_dist_send_composer_lock")
      * @return JsonResponse
      */
@@ -102,6 +80,12 @@ class PackagesDistController extends AbstractController
 
         $package_name = $request->get("package_name");
         $version = $request->get("version");
+
+        if (!$package_name || !$version) {
+            return new JsonResponse([
+                "error_message" => "No package name or version provided"
+            ]);
+        }
 
         if (!$this->uploadConfigFile($request->files->get('package_routes'), "routes")) {
             return new JsonResponse([
