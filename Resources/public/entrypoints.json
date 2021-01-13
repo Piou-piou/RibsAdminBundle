@@ -21,6 +21,12 @@
         "/bundles/ribsadmin/js/edit-page.css"
       ]
     },
+    "js/edit-package": {
+      "js": [
+        "/bundles/ribsadmin/runtime.js",
+        "/bundles/ribsadmin/js/edit-package.js"
+      ]
+    },
     "css/vendor": {
       "js": [
         "/bundles/ribsadmin/runtime.js"

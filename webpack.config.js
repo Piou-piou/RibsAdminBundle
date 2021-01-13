@@ -27,6 +27,9 @@ Encore
   './assets/js/page/edit.js',
 ])
 
+.addEntry('js/edit-package', [
+  './assets/js/packages/edit.js',
+])
 
 // ----------------------  CSS --------------------------------------//
 .addStyleEntry('css/vendor', [

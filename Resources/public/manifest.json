@@ -1,6 +1,7 @@
 {
   "bundles/ribsadmin/css/style.css": "/bundles/ribsadmin/css/style.css",
   "bundles/ribsadmin/css/vendor.css": "/bundles/ribsadmin/css/vendor.css",
+  "bundles/ribsadmin/js/edit-package.js": "/bundles/ribsadmin/js/edit-package.js",
   "bundles/ribsadmin/js/edit-page.css": "/bundles/ribsadmin/js/edit-page.css",
   "bundles/ribsadmin/js/edit-page.js": "/bundles/ribsadmin/js/edit-page.js",
   "bundles/ribsadmin/js/main.js": "/bundles/ribsadmin/js/main.js",
