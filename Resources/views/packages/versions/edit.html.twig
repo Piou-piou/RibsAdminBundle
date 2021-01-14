@@ -5,16 +5,12 @@
     <div class="ribs-container-fluid">
         {{ form_start(form) }}
         <div class="top-links">
-            {% if disabled_form %}
-                <a href="{{ path('ribsadmin_packages') }}" class="ribs-button">Return</a>
-            {% else %}
-                <a href="{{ path('ribsadmin_packages') }}" class="ribs-button danger">Cancel</a>
-                {{ form_widget(form.submit) }}
-            {% endif %}
+            <a href="{{ path('ribsadmin_packages') }}" class="ribs-button danger">Cancel</a>
+            {{ form_widget(form.submit) }}
         </div>
 
         <div class="page-title">
-            <span>Versions of {{ package.projectName }}</span>
+            <span>Versions</span>
             <h3>Edit</h3>
         </div>
 
@@ -28,18 +24,18 @@
 
                     <div class="row form-group mt1">
                         <div class="cxs-12 cmd-6">
-                            {{ form_row(form.) }}
+                            {{ form_row(form.packageConfig) }}
                         </div>
                         <div class="cxs-12 cmd-6">
-                            {{ form_row(form.) }}
+                            {{ form_row(form.packageConfigFile) }}
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="cxs-12 cmd-6">
-                            {{ form_row(form.) }}
+                            {{ form_row(form.packageRoute) }}
                         </div>
                         <div class="cxs-12 cmd-6">
-                            {{ form_row(form.) }}
+                            {{ form_row(form.packageRouteFile) }}
                         </div>
                     </div>
                 </div>

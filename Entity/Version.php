@@ -49,6 +49,13 @@ class Version
     /**
      * @var string
      *
+     * @ORM\Column(name="package_route", type="string", length=255, nullable=true)
+     */
+    private $package_route;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="package_route_file", type="string", length=255, nullable=true)
      */
     private $package_route_file;
@@ -125,6 +132,25 @@ class Version
     public function setPackageConfigFile(string $package_config_file): self
     {
         $this->package_config_file = $package_config_file;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPackageRoute(): string
+    {
+        return $this->package_route;
+    }
+
+    /**
+     * @param string $package_route
+     * @return Version
+     */
+    public function setPackageRoute(string $package_route): self
+    {
+        $this->package_route = $package_route;
 
         return $this;
     }
