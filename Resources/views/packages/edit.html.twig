@@ -81,9 +81,7 @@
 											{% elseif version == package.version  %}
 												Current version
 											{% endif %}
-											<a href="#" class="open-popup" data-ribspopup data-href="{{ path('ribsadmin_packages') }}" data-popup="update-document-package">
-												Archive
-											</a>
+											<a href="{{ path('ribsadmin_version_edit', {'guid_package': package.guid, 'version_number': version}) }}">Edit</a>
 										</td>
 									</tr>
 								{% endfor %}

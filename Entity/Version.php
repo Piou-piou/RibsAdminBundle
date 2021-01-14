@@ -35,21 +35,21 @@ class Version
     /**
      * @var string
      *
-     * @ORM\Column(name="package_config", type="string", length=255, nullable=false)
+     * @ORM\Column(name="package_config", type="string", length=255, nullable=true)
      */
     private $package_config;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="package_config_file", type="string", length=255, nullable=false)
+     * @ORM\Column(name="package_config_file", type="string", length=255, nullable=true)
      */
     private $package_config_file;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="package_route_file", type="string", length=255, nullable=false)
+     * @ORM\Column(name="package_route_file", type="string", length=255, nullable=true)
      */
     private $package_route_file;
 
@@ -94,7 +94,7 @@ class Version
     /**
      * @return string
      */
-    public function getPackageConfig(): string
+    public function getPackageConfig(): ?string
     {
         return $this->package_config;
     }
@@ -113,7 +113,7 @@ class Version
     /**
      * @return string
      */
-    public function getPackageConfigFile(): string
+    public function getPackageConfigFile(): ?string
     {
         return $this->package_config_file;
     }
@@ -132,7 +132,7 @@ class Version
     /**
      * @return string
      */
-    public function getPackageRouteFile(): string
+    public function getPackageRouteFile(): ?string
     {
         return $this->package_route_file;
     }

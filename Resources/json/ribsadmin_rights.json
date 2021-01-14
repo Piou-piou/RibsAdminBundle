@@ -125,6 +125,11 @@
       "right": "ribsadmin@packages@delete",
       "url": "ribsadmin_packages_delete",
       "text": "Delete a package detail"
+    },
+    {
+      "right": "ribsadmin@packages@edit",
+      "url": "ribsadmin_version_edit",
+      "text": "Edit a package version details"
     }
   ]
 }
