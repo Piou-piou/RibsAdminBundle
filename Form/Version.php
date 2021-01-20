@@ -8,9 +8,20 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Routing\RouterInterface;
 
 class Version extends AbstractType
 {
+    /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    public function __construct(RouterInterface $router)
+    {
+        $this->router = $router;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -23,18 +34,20 @@ class Version extends AbstractType
 			])
             ->add("packageConfigFile", UploaderType::class, [
                 "uploader_name" => "config_file",
-                "data_url_param" => "upload",
-                "data_retrieve_url_param" => "upload",
-                "data_delete_url_param" => "upload",
+                "data_url_param" => '{"url":"'.$this->router->generate("ribsadmin_upload").'"}',
+                "data_retrieve_url_param" => '{"url":"'.$this->router->generate("ribsadmin_retrieve_uploaded_file").'"}',
+                "data_delete_url_param" => '{"url":"'.$this->router->generate("ribsadmin_delete_uploaded_file").'"}',
+                "accept" => "application/x-yaml"
             ])
             ->add("packageRoute", TextType::class, [
                 "label" => "Config route name"
             ])
             ->add("packageRouteFile", UploaderType::class, [
                 "uploader_name" => "route_file",
-                "data_url_param" => "upload",
-                "data_retrieve_url_param" => "upload",
-                "data_delete_url_param" => "upload",
+                "data_url_param" => '{"url":"'.$this->router->generate("ribsadmin_upload").'"}',
+                "data_retrieve_url_param" => '{"url":"'.$this->router->generate("ribsadmin_retrieve_uploaded_file").'"}',
+                "data_delete_url_param" => '{"url":"'.$this->router->generate("ribsadmin_delete_uploaded_file").'"}',
+                "accept" => "application/x-yaml"
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Validate',

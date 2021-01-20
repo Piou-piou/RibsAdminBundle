@@ -14,7 +14,7 @@
     "font-awesome": "^4.7.0",
     "ribs-admin-bundle-templates": "^1.0.20",
     "ribs-core": "0.0.9-4",
-    "ribs-file-uploader": "^1.0.0",
+    "ribs-file-uploader": "^1.0.3",
     "ribs-flash-message": "*",
     "ribs-popup": "*",
     "ribs-wysiwyg": "^1.0.6"
