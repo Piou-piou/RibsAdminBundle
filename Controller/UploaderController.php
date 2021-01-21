@@ -90,7 +90,6 @@ class UploaderController extends AbstractController
     {
         $success = true;
         $upload_dir = $folder != "" ? '../'.$folder : $parameter->get("ribs_admin.upload_dir");
-        $fs = new Filesystem();
         $finder = new Finder();
         $finder->files()->in($upload_dir);
         $files = [];
@@ -117,7 +116,7 @@ class UploaderController extends AbstractController
      * @param $path
      * @return string
      */
-    private function createRecursiveDirFromRoot($path)
+    private function createRecursiveDirFromRoot($path): string
     {
         $fs = new Filesystem();
         $new_path = $path;
