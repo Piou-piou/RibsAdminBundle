@@ -34,9 +34,9 @@ class Version extends AbstractType
 			])
             ->add("packageConfigFile", UploaderType::class, [
                 "uploader_name" => "config_file",
-                "data_url_param" => '{"url":"'.$this->router->generate("ribsadmin_upload").'"}',
-                "data_retrieve_url_param" => '{"url":"'.$this->router->generate("ribsadmin_retrieve_uploaded_file").'"}',
-                "data_delete_url_param" => '{"url":"'.$this->router->generate("ribsadmin_delete_uploaded_file").'"}',
+                "data_url_param" => '{"url":"'.$this->router->generate("ribsadmin_upload", ["folder" => "data/ribs-package"]).'"}',
+                "data_retrieve_url_param" => '{"url":"'.$this->router->generate("ribsadmin_retrieve_uploaded_file", ["folder" => "data/ribs-package"]).'"}',
+                "data_delete_url_param" => '{"url":"'.$this->router->generate("ribsadmin_delete_uploaded_file", ["folder" => "data/ribs-package"]).'"}',
                 "accept" => "application/x-yaml"
             ])
             ->add("packageRoute", TextType::class, [
@@ -44,9 +44,9 @@ class Version extends AbstractType
             ])
             ->add("packageRouteFile", UploaderType::class, [
                 "uploader_name" => "route_file",
-                "data_url_param" => '{"url":"'.$this->router->generate("ribsadmin_upload").'"}',
-                "data_retrieve_url_param" => '{"url":"'.$this->router->generate("ribsadmin_retrieve_uploaded_file").'"}',
-                "data_delete_url_param" => '{"url":"'.$this->router->generate("ribsadmin_delete_uploaded_file").'"}',
+                "data_url_param" => '{"url":"'.$this->router->generate("ribsadmin_upload", ["folder" => "data/ribs-package"]).'"}',
+                "data_retrieve_url_param" => '{"url":"'.$this->router->generate("ribsadmin_retrieve_uploaded_file", ["folder" => "data/ribs-package"]).'"}',
+                "data_delete_url_param" => '{"url":"'.$this->router->generate("ribsadmin_delete_uploaded_file", ["folder" => "data/ribs-package"]).'"}',
                 "accept" => "application/x-yaml"
             ])
             ->add('submit', SubmitType::class, [

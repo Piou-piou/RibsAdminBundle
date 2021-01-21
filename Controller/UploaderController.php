@@ -15,21 +15,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class UploaderController extends AbstractController
 {
     /**
-     * @Route("/upload", name="ribsadmin_upload")
+     * @Route("/upload/${folder}", name="ribsadmin_upload", requirements={"folder"=".+"})
      * @param Request $request
      * @param ParameterBagInterface $parameter
+     * @param string $folder
      * @return JsonResponse
-     * @throws Exception
      */
-    public function upload(Request $request, ParameterBagInterface $parameter): JsonResponse
+    public function upload(Request $request, ParameterBagInterface $parameter, string $folder = ""): JsonResponse
     {
         $success = false;
         $new_filename = null;
         $file = null;
-        $upload_dir = null;
+        $upload_dir = $folder != "" ? '../'.$folder : $parameter->get("ribs_admin.upload_dir");
 
         if ($request->files && $request->files->has("file")) {
-            $upload_dir = $parameter->get("ribs_admin.upload_dir");
             /** @var UploadedFile $file */
             $file = $request->files->get("file");
             $date = new \DateTime();
@@ -54,17 +53,18 @@ class UploaderController extends AbstractController
     }
 
     /**
-     * @Route("/delete-uploaded-file", name="ribsadmin_delete_uploaded_file")
+     * @Route("/delete-uploaded-file/${folder}", name="ribsadmin_delete_uploaded_file", requirements={"folder"=".+"})
      * @param Request $request
      * @param ParameterBagInterface $parameter
+     * @param string $folder
      * @return JsonResponse
      */
-    public function deleteUploadedFile(Request $request, ParameterBagInterface $parameter): JsonResponse
+    public function deleteUploadedFile(Request $request, ParameterBagInterface $parameter, string $folder = ""): JsonResponse
     {
         $success = false;
         if ($request->get("file_path") && $request->get("file_name")) {
             $fs = new Filesystem();
-            $upload_dir = $parameter->get("ribs_admin.upload_dir");
+            $upload_dir = $folder != "" ? '../'.$folder : $parameter->get("ribs_admin.upload_dir");
 
             if (is_file($request->get("file_path"))) {
                 $fs->remove($request->get("file_path"));
@@ -80,17 +80,19 @@ class UploaderController extends AbstractController
     }
 
     /**
-     * @Route("/retrieve-uploaded-files", name="ribsadmin_retrieve_uploaded_file")
+     * @Route("/retrieve-uploaded-files/${folder}", name="ribsadmin_retrieve_uploaded_file", requirements={"folder"=".+"})
      * @param Request $request
      * @param ParameterBagInterface $parameter
+     * @param string $folder
      * @return JsonResponse
      */
-    public function retrieveUploadedFile(Request $request, ParameterBagInterface $parameter): JsonResponse
+    public function retrieveUploadedFile(Request $request, ParameterBagInterface $parameter, string $folder = ""): JsonResponse
     {
         $success = true;
+        $upload_dir = $folder != "" ? '../'.$folder : $parameter->get("ribs_admin.upload_dir");
         $fs = new Filesystem();
         $finder = new Finder();
-        $finder->files()->in($parameter->get("ribs_admin.upload_dir"));
+        $finder->files()->in($upload_dir);
         $files = [];
         $index = 0;
 
