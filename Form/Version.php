@@ -28,6 +28,17 @@ class Version extends AbstractType
      */
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
+	    $version = isset($options["data"]) && $options["data"] ? $options["data"] : null;
+	    $entity_name = null;
+	    $entity_id = null;
+	    $param_retrieve = null;
+
+	    if ($version) {
+	        $entity_id = $version->getId();
+	        $entity_name = str_replace("\\", "\/", get_class($version));
+            $param_retrieve = ',"entity_name": "'.$entity_name.'","entity_id": "'.$entity_id.'"';
+        }
+
 		$builder
 			->add("packageConfig", TextType::class, [
 				"label" => "Config file name"
@@ -35,7 +46,7 @@ class Version extends AbstractType
             ->add("packageConfigFile", UploaderType::class, [
                 "uploader_name" => "config_file",
                 "data_url_param" => '{"url":"'.$this->router->generate("ribsadmin_upload", ["folder" => "data/ribs-package"]).'"}',
-                "data_retrieve_url_param" => '{"url":"'.$this->router->generate("ribsadmin_retrieve_uploaded_file", ["folder" => "data/ribs-package"]).'"}',
+                "data_retrieve_url_param" => '{"url":"'.$this->router->generate("ribsadmin_retrieve_uploaded_file", ["folder" => "data/ribs-package"]).'","field_name": "packageConfigFile"'.$param_retrieve.'}',
                 "data_delete_url_param" => '{"url":"'.$this->router->generate("ribsadmin_delete_uploaded_file", ["folder" => "data/ribs-package"]).'"}',
                 "accept" => "application/x-yaml"
             ])
@@ -45,7 +56,7 @@ class Version extends AbstractType
             ->add("packageRouteFile", UploaderType::class, [
                 "uploader_name" => "route_file",
                 "data_url_param" => '{"url":"'.$this->router->generate("ribsadmin_upload", ["folder" => "data/ribs-package"]).'"}',
-                "data_retrieve_url_param" => '{"url":"'.$this->router->generate("ribsadmin_retrieve_uploaded_file", ["folder" => "data/ribs-package"]).'"}',
+                "data_retrieve_url_param" => '{"url":"'.$this->router->generate("ribsadmin_retrieve_uploaded_file", ["folder" => "data/ribs-package"]).'","field_name": "packageRouteFile"'.$param_retrieve.'}',
                 "data_delete_url_param" => '{"url":"'.$this->router->generate("ribsadmin_delete_uploaded_file", ["folder" => "data/ribs-package"]).'"}',
                 "accept" => "application/x-yaml"
             ])
