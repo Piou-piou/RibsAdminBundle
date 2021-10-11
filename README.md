@@ -25,6 +25,10 @@ WIP : this part can change in case of developpment requirments
 
 Go in your Symfony project and install the bundle with composer.
 
+## Possibility to add plugin
+
+RibsAdminBudle allow to create module that you can add in backend of admin and laso use them on the front app
+
 ```
 composer require piou-piou/ribs-admin-bundle    
 ```
