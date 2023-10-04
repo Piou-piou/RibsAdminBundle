@@ -1,5 +1,7 @@
 # RibsAdminBundle
 
+UNMAINTENED
+
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Piou-piou/RibsAdminBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Piou-piou/RibsAdminBundle/?branch=master)
 ![](https://img.shields.io/david/Piou-piou/RibsAdminBundle.svg)
 ![](https://img.shields.io/david/dev/Piou-piou/RibsAdminBundle.svg)
